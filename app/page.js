@@ -50,11 +50,11 @@ const bestSellers = [
         image: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529'
     },
     {
-        id: 806,
-        name: 'Flower Urli Candle',
-        fragrance: 'Floral',
+        id: 807,
+        name: 'Sandalwood Urli',
+        fragrance: 'Woody',
         price: 350,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634'
+        image: 'https://www.ambrecandle.com/cdn/shop/files/185dcfa6-6cab-4306-bd57-b27a38c77d35.jpg?v=1760275359'
     },
     {
         id: 802,
