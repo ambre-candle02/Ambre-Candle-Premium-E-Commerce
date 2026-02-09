@@ -82,7 +82,7 @@ const products = [
     {
         id: 808,
         name: 'Ladoo candle (pack of 4)',
-        productType: 'Hampers | Combo',
+        productType: 'Cake / Dessert Candle',
         scentFamily: 'Gourmand',
         occasion: 'Diwali',
         price: 150,

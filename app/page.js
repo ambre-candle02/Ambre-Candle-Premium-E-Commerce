@@ -7,7 +7,7 @@ import Image from 'next/image';
 const categorybanners = [
     {
         title: 'Gifts & Sets',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
+        img: 'https://www.ambrecandle.com/cdn/shop/files/WhatsAppImage2025-10-07at11.34.53AM_1.jpg?v=1759819864',
         path: '/shop?category=Hampers%20|%20Combo'
     },
     {
