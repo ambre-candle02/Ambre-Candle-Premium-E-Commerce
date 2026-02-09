@@ -136,12 +136,18 @@
 
 @media (max-width: 768px) {
     .footer-main {
-        padding: 40px 0 30px;
+        padding: 40px 25px 30px !important;
+        /* Increased and forced padding */
+        width: 100%;
+        overflow-x: hidden;
+        /* Prevent horizontal scroll causing issues */
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 35px;
+        padding-left: 5px;
+        /* Extra nudge */
     }
 
     .footer-brand {

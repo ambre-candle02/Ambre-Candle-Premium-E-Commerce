@@ -202,15 +202,16 @@ export default function AdminDashboard() {
 
     return (
         <div style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a', paddingTop: '100px' }}>
+            <style>{styles}</style>
             <div className="container" style={{ maxWidth: '1400px', padding: '0 30px' }}>
 
                 {/* Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '50px', borderBottom: '1px solid #e5e5e5', paddingBottom: '30px' }}>
+                <div className="admin-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '50px', borderBottom: '1px solid #e5e5e5', paddingBottom: '30px' }}>
                     <div>
                         <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '5px' }}>Overview</p>
                         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', margin: 0 }}>Dashboard</h1>
                     </div>
-                    <div style={{ display: 'flex', gap: '15px' }}>
+                    <div className="admin-actions" style={{ display: 'flex', gap: '15px' }}>
                         <motion.button
                             onClick={loadOrders}
                             whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
@@ -244,7 +245,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* KPI Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '50px' }}>
+                <div className="admin-kpi-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '50px' }}>
                     <StatCard
                         title="Total Orders"
                         value={orders.length}
@@ -264,10 +265,10 @@ export default function AdminDashboard() {
 
                 {/* Orders Table Section */}
                 <div style={{ background: '#fff', borderRadius: '20px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', overflow: 'hidden', border: '1px solid #eee' }}>
-                    <div style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="admin-table-header" style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', margin: 0 }}>Recent Orders</h3>
-                        <div style={{ display: 'flex', gap: '10px' }}>
-                            <div style={{ position: 'relative' }}>
+                        <div className="admin-search-wrapper" style={{ display: 'flex', gap: '10px' }}>
+                            <div style={{ position: 'relative', width: '100%' }}>
                                 <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#d4af37' }} />
                                 <input
                                     className="admin-search-input"
@@ -381,6 +382,7 @@ export default function AdminDashboard() {
                                 style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
                             />
                             <motion.div
+                                className="admin-modal-content"
                                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                                 animate={{ scale: 1, opacity: 1, y: 0 }}
                                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -395,7 +397,7 @@ export default function AdminDashboard() {
                                 </div>
 
                                 <div style={{ padding: '30px', maxHeight: '60vh', overflowY: 'auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '30px' }}>
+                                    <div className="admin-modal-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '30px' }}>
                                         <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px' }}>
                                             <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Customer</h4>
                                             <p style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '0 0 5px' }}>{selectedOrder.customer?.firstName} {selectedOrder.customer?.lastName}</p>
@@ -538,3 +540,51 @@ const getStatusColor = (status) => {
         default: return { bg: '#fef9c3', text: '#854d0e' };
     }
 };
+
+const styles = `
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+    }
+    
+    .admin-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-actions button {
+        justify-content: center;
+    }
+
+    .admin-table-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+
+    .admin-search-wrapper {
+        width: 100%;
+    }
+
+    .admin-search-input {
+        width: 100% !important;
+    }
+
+    .admin-modal-content {
+        max-height: 80vh !important;
+        overflow-y: auto;
+    }
+
+    .admin-modal-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .admin-kpi-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+`;
