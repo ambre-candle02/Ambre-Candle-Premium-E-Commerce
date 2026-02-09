@@ -361,13 +361,18 @@ export default function Shop() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    // Get search query from URL
+    // Get search and category query from URL
     useEffect(() => {
         setIsMounted(true);
         const params = new URLSearchParams(window.location.search);
         const search = params.get('search');
+        const category = params.get('category');
+
         if (search) {
             setSearchQuery(search);
+        }
+        if (category) {
+            setActiveCategory(category);
         }
     }, []);
 

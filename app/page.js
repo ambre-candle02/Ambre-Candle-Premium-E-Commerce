@@ -8,22 +8,22 @@ const categorybanners = [
     {
         title: 'Gifts & Sets',
         img: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
-        path: '/shop'
+        path: '/shop?category=Hampers%20|%20Combo'
     },
     {
         title: 'Candles',
         img: 'https://www.ambrecandle.com/cdn/shop/files/b97213b8-3e2f-4858-8f85-684ded0f7ecf_3294eca4-a32a-4bd7-9a47-7d94dcae5102.jpg?v=1761578738',
-        path: '/shop'
+        path: '/shop?category=Glass%20Jar%20Candle'
     },
     {
-        title: 'Accessories',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/185dcfa6-6cab-4306-bd57-b27a38c77d35.jpg?v=1760275359',
-        path: '/shop'
+        title: 'New Arrivals',
+        img: '/images/new_arrivals/tulip_candle.jpg',
+        path: '/shop?category=Bouquet%20Candle'
     },
     {
         title: 'Collections',
         img: 'https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634',
-        path: '/shop'
+        path: '/shop?category=Urli%20Candle'
     }
 ];
 
