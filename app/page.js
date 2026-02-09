@@ -28,10 +28,10 @@ const categorybanners = [
 ];
 
 const microGallery = [
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/dd00ec79-d22f-4a5c-a03f-8115101b3d7a.jpg?v=1760275135', title: 'Lotus Series' },
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485', title: 'Artisan Pillars' },
-    { img: '/images/new_arrivals/rasmalai_candle.jpg', title: 'Dessert Series' },
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529', title: 'Daily Rituals' }
+    { img: 'https://www.ambrecandle.com/cdn/shop/files/dd00ec79-d22f-4a5c-a03f-8115101b3d7a.jpg?v=1760275135', title: 'Lotus Series', path: '/shop?category=Urli%20Candle' },
+    { img: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485', title: 'Artisan Pillars', path: '/shop?category=Pillar%20Candle' },
+    { img: '/images/new_arrivals/rasmalai_candle.jpg', title: 'Dessert Series', path: '/shop?category=Cake%20/%20Dessert%20Candle' },
+    { img: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529', title: 'Daily Rituals', path: '/shop?category=Hampers%20|%20Combo' }
 ];
 
 const bestSellers = [
@@ -200,7 +200,7 @@ export default function Home() {
             <section className="misa-section" style={{ paddingTop: '0' }}>
                 <div className="misa-categories-grid">
                     {microGallery.map((item, i) => (
-                        <Link href="/shop" key={i} className="misa-cat-card">
+                        <Link href={item.path} key={i} className="misa-cat-card">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
