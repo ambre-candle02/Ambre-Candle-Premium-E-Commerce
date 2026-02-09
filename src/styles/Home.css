@@ -1,0 +1,826 @@
+/* --- Ambre Candle: Misa.in Replica Styles --- */
+
+.home-page-misa {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- HERO SECTION --- */
+.misa-hero {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 90px;
+    background: #f9f9f9;
+}
+
+.misa-hero-slideshow {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.misa-hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.misa-hero-image {
+    object-fit: cover;
+    filter: contrast(1.25) saturate(1.6);
+    /* Super "Chatak" Vibrant Look */
+    /* Super "Chatak" Vibrant Look */
+}
+
+.misa-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #fdfbf7 0%, rgba(253, 251, 247, 0.95) 25%, rgba(253, 251, 247, 0) 80%);
+    /* Gradient clears earlier to show more image */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.misa-hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: flex-start;
+    /* Align Left */
+    align-items: center;
+    z-index: 3;
+    padding-left: 8%;
+    /* Spacing from left edge */
+    padding-top: 0;
+    /* Let Flexbox center it vertically */
+}
+
+/* Invisible Container for Text alignment */
+.misa-hero-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: 600px;
+    text-align: left;
+    /* Text aligns left */
+}
+
+.misa-hero-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: block;
+}
+
+.misa-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+}
+
+.misa-hero-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 35px;
+}
+
+/* Premium "Magnetic" Button */
+.misa-btn-premium {
+    padding: 18px 50px;
+    background: transparent;
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: 1px solid #1a1a1a;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.misa-btn-premium:hover {
+    background: #d4c4a8;
+    /* Gold Background */
+    border-color: #d4c4a8;
+    color: #fff;
+    /* White Text */
+    box-shadow: 0 10px 30px rgba(212, 196, 168, 0.4);
+    transform: translateY(-3px);
+}
+
+.misa-btn {
+    padding: 16px 45px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid #1a1a1a;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.misa-btn:hover {
+    background: #c4b595;
+    /* Elegant Gold */
+    color: #fff;
+    border-color: #c4b595;
+    box-shadow: 0 10px 20px rgba(196, 181, 149, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .misa-hero-card {
+        padding: 30px;
+        width: 90%;
+        background: rgba(253, 251, 247, 0.92);
+        /* More solid on mobile for readability */
+    }
+}
+
+/* --- TRUST STRIP --- */
+.misa-trust-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    /* Remove gap, use flex basis or padding */
+    padding: 20px 0;
+    /* Reduced top/bottom padding */
+    background: #f2f0eb;
+    /* Slightly darker/warmer for visibility */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* Stronger border */
+    margin-bottom: 30px;
+    /* Reduced margin */
+}
+
+.misa-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 40px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    /* Vertical Separator */
+}
+
+.misa-trust-item:last-child {
+    border-right: none;
+}
+
+.misa-trust-item span {
+    font-size: 1.2rem;
+}
+
+.misa-trust-item p {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+}
+
+/* --- SECTION HEADERS --- */
+.misa-section {
+    padding: 20px 0 40px;
+    /* Reduced top padding significantly */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.misa-section-header {
+    text-align: center;
+    margin-bottom: 25px;
+    /* Tighter spacing below header */
+}
+
+.misa-section-header {
+    text-align: center;
+    margin-bottom: 30px;
+    /* Reduced from 60px */
+}
+
+.misa-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.misa-section-header span {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+}
+
+/* --- CATEGORY GRID (4 COLUMNS) --- */
+.misa-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 40px;
+}
+
+.misa-cat-card {
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.misa-cat-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    /* Reduced height for a clean, horizontally balanced look */
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.misa-cat-img-wrapper img {
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.misa-cat-card:hover {
+    transform: translateY(-8px);
+}
+
+.misa-cat-card:hover .misa-cat-img-wrapper {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.misa-cat-card:hover img {
+    transform: scale(1.08);
+}
+
+.misa-cat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    letter-spacing: 0.8px;
+    transition: color 0.3s ease;
+}
+
+.misa-cat-card:hover h3 {
+    color: #c4b595;
+    /* Subtle premium gold/beige tint */
+}
+
+.misa-cat-link {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: all 0.3s ease;
+}
+
+.misa-cat-card:hover .misa-cat-link {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+    letter-spacing: 3.5px;
+}
+
+/* --- BESTSELLERS / PRODUCT GRID --- */
+.misa-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 40px;
+}
+
+.misa-product-card {
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+}
+
+.misa-prod-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    /* Square for products */
+    background: #f9f9f9;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.misa-prod-img-box img {
+    object-fit: cover;
+}
+
+.misa-product-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
+
+.misa-product-card p {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* --- BESTSELLERS / PRODUCT GRID --- */
+.misa-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 40px;
+    margin-bottom: 60px;
+}
+
+.misa-product-card {
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.misa-prod-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    /* Square for products */
+    margin-bottom: 25px;
+    background: #fdfdfd;
+    overflow: hidden;
+    /* Soft border for structure */
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.4s ease;
+}
+
+.misa-search-icon,
+.misa-bag-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.misa-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    z-index: 5;
+    border-radius: 2px;
+    z-index: 5;
+    letter-spacing: 1px;
+}
+
+.misa-wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ccc;
+    /* Default grey */
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.misa-wishlist-btn:hover {
+    color: #ff4d4d;
+    /* Red on hover */
+    transform: scale(1.1);
+}
+
+.misa-product-card:hover .misa-wishlist-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.misa-quick-add {
+    position: absolute;
+    bottom: 20px;
+    /* Floating at bottom */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    /* Start slightly down */
+    width: auto;
+    min-width: 140px;
+    padding: 0;
+    background: transparent;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: none;
+}
+
+.misa-quick-add button {
+    width: 100%;
+    padding: 12px 25px;
+    background: #1a1a1a;
+    /* Solid Black */
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    /* Pill Shape */
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.misa-quick-add button:hover {
+    background: #fff;
+    color: #1a1a1a;
+    transform: scale(1.05);
+    /* Slight grow */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.misa-product-card:hover .misa-quick-add {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    /* Float up naturally */
+}
+
+.misa-prod-img {
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.misa-product-card:hover .misa-prod-img {
+    transform: scale(1.05);
+}
+
+.misa-prod-info {
+    padding: 0 5px;
+}
+
+.misa-prod-fragrance {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.misa-prod-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.misa-prod-price {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c4b595;
+    /* Premium Gold Price */
+    letter-spacing: 0.5px;
+}
+
+.misa-prod-img-box img {
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.misa-product-card:hover {
+    transform: translateY(-5px);
+}
+
+.misa-product-card:hover .misa-prod-img-box {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.misa-product-card:hover img {
+    transform: scale(1.08);
+}
+
+.misa-product-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+}
+
+.misa-product-card:hover h4 {
+    color: #c4b595;
+    /* Gold tint */
+}
+
+.misa-product-card p {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 8px;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.misa-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+/* --- STORY SECTION --- */
+.misa-story {
+    background: #fff;
+    /* Pure white for modern look */
+    padding: 100px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.misa-story-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    /* Increased gap for elegance */
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.misa-story-image {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    box-shadow: 50px 50px 0px #fdfbf7;
+    /* Designer offset background */
+    z-index: 1;
+}
+
+.misa-story-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+}
+
+.misa-story-image img {
+    object-fit: cover;
+    transition: transform 1.5s ease;
+}
+
+.misa-story-image:hover img {
+    transform: scale(1.03);
+}
+
+.misa-story-content {
+    max-width: 500px;
+}
+
+.misa-story-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.2rem);
+    line-height: 1;
+    margin-bottom: 35px;
+    font-weight: 400;
+}
+
+.misa-story-content p {
+    font-size: 1rem;
+    line-height: 2;
+    color: #666;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+/* --- NEWSLETTER (PREMIUM REDESIGN) --- */
+/* --- NEWSLETTER (ADVANCED MODERN DESIGN) --- */
+.misa-newsletter {
+    background: linear-gradient(145deg, #1a1e26 0%, #0f1218 100%);
+    /* Depth-heavy gradient */
+    padding: 140px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.misa-newsletter::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(196, 181, 149, 0.03) 0%, transparent 70%);
+    /* Subtle gold aura */
+    pointer-events: none;
+}
+
+.misa-newsletter-box {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.misa-newsletter-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    margin-bottom: 25px;
+    color: #d4af37;
+    /* Mustard Gold Title */
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.misa-newsletter-box p {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 55px;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.misa-modern-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    max-width: 650px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(5px);
+}
+
+.misa-modern-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 15px 30px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    font-weight: 300;
+}
+
+.misa-modern-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.misa-modern-btn {
+    background: transparent;
+    color: #d4af37;
+    /* Gold Text */
+    border: 2px solid #d4af37;
+    /* Gold Border */
+    padding: 18px 50px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.misa-modern-btn:hover {
+    transform: translateY(-3px);
+    background: #d4af37;
+    /* Turns solid Gold */
+    color: #000;
+    /* Black text on gold */
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+    /* Gold Glow */
+}
+
+@media (max-width: 768px) {
+    .misa-modern-form {
+        flex-direction: column;
+        background: transparent;
+        border: none;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .misa-modern-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .misa-modern-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .misa-modern-form {
+        flex-direction: column;
+    }
+
+    .misa-modern-input,
+    .misa-modern-btn {
+        width: 100%;
+    }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1200px) {
+
+    .misa-categories-grid,
+    .misa-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .misa-section {
+        padding: 60px 0;
+    }
+
+    .misa-story-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .misa-story-image {
+        height: 450px;
+    }
+
+    .misa-story-content h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .misa-categories-grid,
+    .misa-products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .misa-hero-title {
+        font-size: 2.5rem;
+    }
+}

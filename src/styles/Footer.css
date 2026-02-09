@@ -1,0 +1,175 @@
+/* --- Clean & Modern Footer Styles --- */
+
+.footer {
+    background: linear-gradient(180deg, #dfd7c2 0%, #c4b595 100%);
+    /* Deeper Antique Gold for Separation */
+    color: var(--color-text-primary);
+    padding: 0;
+    font-family: var(--font-body);
+    border-top: 1px solid rgba(45, 74, 62, 0.1);
+}
+
+/* Main Footer Grid */
+.footer-main {
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+}
+
+/* Brand Section */
+.footer-brand {
+    max-width: 350px;
+}
+
+.footer-logo-wrap {
+    margin-bottom: 20px;
+}
+
+.footer-mission {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 30px;
+}
+
+.footer-social-v2 {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social-v2 a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 74, 62, 0.05);
+    border-radius: 50%;
+    color: var(--color-text-primary);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(45, 74, 62, 0.1);
+}
+
+.footer-social-v2 a:hover {
+    background: rgba(212, 175, 55, 0.1);
+    /* Deep Gold Tint */
+    border-color: #d4af37;
+    color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Navigation Columns */
+.footer-nav-col h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--color-text-primary);
+}
+
+.footer-nav-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-nav-col ul li a {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-nav-col ul li a:hover {
+    color: var(--color-accent);
+    transform: translateX(5px);
+}
+
+/* Bottom Bar */
+.footer-bottom-v2 {
+    background: #0a0a0a;
+    /* Original Black Aesthetic */
+    padding: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.bottom-links {
+    display: flex;
+    gap: 25px;
+}
+
+.bottom-links a {
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.bottom-links a:hover {
+    color: var(--color-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        padding: 40px 0 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .bottom-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .bottom-links {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-social-v2 a {
+        width: 36px;
+        height: 36px;
+    }
+
+    .footer-nav-col h4 {
+        font-size: 0.85rem;
+    }
+
+    .footer-nav-col ul li a {
+        font-size: 0.85rem;
+    }
+}

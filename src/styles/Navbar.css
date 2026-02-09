@@ -1,0 +1,338 @@
+/* --- Ambre Candle Navbar: Clean & Precise --- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.2rem 0;
+    background: linear-gradient(90deg, #dfd7c2 0%, #c4b595 50%, #dfd7c2 100%);
+    /* Matches Footer Deeper Gold */
+    border-bottom: 1px solid rgba(45, 74, 62, 0.15);
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.scrolled {
+    top: 0;
+    padding: 0.8rem 0;
+    background: rgba(223, 215, 194, 0.95);
+    /* Match deeper gold glass */
+    backdrop-filter: blur(25px) saturate(150%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(45, 74, 62, 0.2);
+}
+
+
+.nav-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    gap: 20px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    justify-self: start;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    justify-self: center;
+}
+
+.nav-link {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+    flex-shrink: 0;
+    justify-self: end;
+}
+
+.nav-action-btn {
+    color: var(--color-text-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.nav-action-btn:hover {
+    color: var(--color-accent);
+}
+
+.user-profile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.user-name-bold {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    margin-top: 3px;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.6rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.mobile-menu-btn {
+    display: none;
+    cursor: pointer;
+    color: var(--color-text-primary);
+}
+
+/* Mobile Menu Logic */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.mobile-menu-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-nav-link {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: 3px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu-content {
+    background: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border);
+}
+
+/* Search Overlay */
+.search-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 998;
+}
+
+/* Search Overlay - Floating Luxury Pill */
+.search-overlay {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    border: 2px solid #d4af37;
+    padding: 10px;
+    animation: floatUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 15px;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 15px 10px;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    color: #333;
+    outline: none;
+    letter-spacing: 1px;
+}
+
+.search-input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.search-submit-btn,
+.search-close-btn {
+    background: #fcfaf7;
+    border: none;
+    cursor: pointer;
+    color: #d4af37;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.search-submit-btn:hover {
+    background: #d4af37;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.search-close-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+}
+
+.profile-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.profile-dropdown-item:hover {
+    background: #d4af37;
+    color: #fff;
+    padding-left: 20px;
+    /* Slight slide effect */
+}
+
+.logout-red {
+    color: #d32f2f;
+    font-weight: 600;
+}
