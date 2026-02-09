@@ -201,7 +201,7 @@ export default function AdminDashboard() {
     if (!mounted) return null;
 
     return (
-        <div style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a', paddingTop: '100px' }}>
+        <div className="admin-main-container" style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a', paddingTop: '100px', paddingBottom: '50px' }}>
             <style>{styles}</style>
             <div className="container" style={{ maxWidth: '1400px', padding: '0 30px' }}>
 
@@ -543,19 +543,31 @@ const getStatusColor = (status) => {
 
 const styles = `
 @media (max-width: 768px) {
+    /* Fix Header Overlap - Aggressive */
+    .admin-main-container {
+        padding-top: 160px !important; 
+    }
+    
+    .container {
+        padding: 0 20px !important;
+    }
+
     .admin-header {
         flex-direction: column;
         align-items: flex-start !important;
         gap: 20px;
     }
     
+    
     .admin-actions {
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .admin-actions button {
+        width: 100%;
         justify-content: center;
     }
 

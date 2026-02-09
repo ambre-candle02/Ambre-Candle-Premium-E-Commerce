@@ -372,3 +372,10 @@
         font-size: 2rem;
     }
 }
+
+/* Fix Mobile Header Overlap */
+@media (max-width: 768px) {
+    .cart-page {
+        padding-top: 180px !important;
+    }
+}

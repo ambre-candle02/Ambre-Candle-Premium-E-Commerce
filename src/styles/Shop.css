@@ -397,3 +397,10 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Fix Mobile Header Overlap */
+@media (max-width: 768px) {
+    .ambre-boutique-shop {
+        padding-top: 180px !important;
+    }
+}

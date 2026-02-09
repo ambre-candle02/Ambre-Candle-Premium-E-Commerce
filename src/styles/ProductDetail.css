@@ -161,3 +161,10 @@
 .trust-icon-v5 {
     font-size: 1.1rem;
 }
+
+/* Fix Mobile Header Overlap */
+@media (max-width: 768px) {
+    .product-detail-v5 {
+        padding-top: 180px !important;
+    }
+}
