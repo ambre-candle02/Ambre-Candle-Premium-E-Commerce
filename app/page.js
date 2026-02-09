@@ -7,12 +7,12 @@ import Image from 'next/image';
 const categorybanners = [
     {
         title: 'Gifts & Sets',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/WhatsAppImage2025-10-07at11.34.53AM_1.jpg?v=1759819864',
+        img: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
         path: '/shop?category=Hampers%20|%20Combo'
     },
     {
         title: 'Candles',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/b97213b8-3e2f-4858-8f85-684ded0f7ecf_3294eca4-a32a-4bd7-9a47-7d94dcae5102.jpg?v=1761578738',
+        img: 'https://www.ambrecandle.com/cdn/shop/files/a96c2a84-b8d9-4f81-8634-828506ac3fe9.jpg?v=1760269864',
         path: '/shop?category=Glass%20Jar%20Candle'
     },
     {
