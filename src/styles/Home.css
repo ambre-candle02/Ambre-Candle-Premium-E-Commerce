@@ -793,34 +793,114 @@
     }
 }
 
+
+/* --- MOBILE OPTIMIZATION TWEAKS --- */
 @media (max-width: 768px) {
-    .misa-section {
-        padding: 60px 0;
+
+    /* Hero Section Fixes */
+    .misa-hero {
+        height: 80vh;
+        /* Slightly shorter on mobile */
+        margin-top: 60px;
+        /* Reduced top margin for mobile navbar */
     }
 
+    .misa-hero-content {
+        padding-left: 5%;
+        padding-right: 5%;
+        justify-content: center;
+        /* Center text on mobile */
+        text-align: center;
+    }
+
+    .misa-hero-card {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .misa-hero-title {
+        font-size: 2.5rem;
+        /* Smaller font to prevent cutting */
+        line-height: 1.2;
+    }
+
+    .misa-hero-desc {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Section Headers */
+    .misa-section-header h2 {
+        font-size: 2rem;
+    }
+
+    /* Grids: 2 Columns for Mobile */
+    .misa-categories-grid,
+    .misa-products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        /* Force 2 columns */
+        gap: 15px;
+        /* Smaller gap */
+        padding: 0 15px;
+        /* Smaller side padding */
+    }
+
+    .misa-cat-img-wrapper {
+        height: 200px;
+        /* Proportional height */
+    }
+
+    /* Story Section Stack */
     .misa-story-container {
         grid-template-columns: 1fr;
         gap: 40px;
+        padding: 0 20px;
         text-align: center;
     }
 
     .misa-story-image {
-        height: 450px;
+        height: 300px;
+        box-shadow: 20px 20px 0px #fdfbf7;
+        /* Smaller shadow offset */
     }
 
     .misa-story-content h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+
+    .misa-story-content p {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+
+    /* Newsletter */
+    .misa-newsletter {
+        padding: 80px 20px;
+    }
+
+    .misa-newsletter-box h2 {
+        font-size: 2rem;
+    }
+
+    .misa-newsletter-box p {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
 
+    /* Even smaller screens (phones) */
+    .misa-hero-title {
+        font-size: 2rem;
+    }
+
     .misa-categories-grid,
     .misa-products-grid {
         grid-template-columns: 1fr;
-    }
-
-    .misa-hero-title {
-        font-size: 2.5rem;
+        /* 1 column for very small screens if needed, or keep 2 */
     }
 }

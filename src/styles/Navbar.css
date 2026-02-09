@@ -336,3 +336,19 @@
     color: #d32f2f;
     font-weight: 600;
 }
+
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 768px) {
+    .mobile-nav-link {
+        font-size: 1.1rem;
+        /* Slightly smaller for better fit */
+        padding: 12px 0;
+        letter-spacing: 2px;
+    }
+
+    .mobile-menu-content {
+        width: 80%;
+        /* Takes up less space */
+        max-width: 300px;
+    }
+}
