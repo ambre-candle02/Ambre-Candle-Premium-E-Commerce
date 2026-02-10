@@ -187,9 +187,9 @@ export default function ContactPage() {
                                     }}>
                                         <Mail size={20} color="#d4af37" />
                                     </div>
-                                    <div>
+                                    <div style={{ flex: 1, minWidth: 0 }}>
                                         <h4 style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '2px', color: '#9ca3af', marginBottom: '8px' }}>Email Us</h4>
-                                        <a href="mailto:gautampratibha623@gmail.com" style={{ color: '#fff', fontSize: '1.1rem', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#d4af37'} onMouseLeave={(e) => e.target.style.color = '#fff'}>
+                                        <a href="mailto:gautampratibha623@gmail.com" style={{ color: '#fff', fontSize: '1.1rem', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-all', display: 'block', maxWidth: '100%', overflowWrap: 'break-word' }} onMouseEnter={(e) => e.target.style.color = '#d4af37'} onMouseLeave={(e) => e.target.style.color = '#fff'}>
                                             gautampratibha623@gmail.com
                                         </a>
                                     </div>
