@@ -267,6 +267,28 @@ export default function ContactPage() {
                                     >
                                         <Facebook size={22} />
                                     </a>
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
+                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#0A66C2'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                        onMouseLeave={(e) => { e.currentTarget.style.color = '#9ca3af'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                                        aria-label="LinkedIn"
+                                    >
+                                        <Linkedin size={22} />
+                                    </a>
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
+                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#1DA1F2'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                        onMouseLeave={(e) => { e.currentTarget.style.color = '#9ca3af'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                                        aria-label="Twitter"
+                                    >
+                                        <Twitter size={22} />
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>
