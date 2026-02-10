@@ -91,7 +91,7 @@ const Navbar = () => {
                         >
                             <div className="user-profile-menu">
                                 <User size={20} strokeWidth={2.5} />
-                                <span className="user-name-bold">{user.name}</span>
+                                <span className="user-name-bold">{user.displayName || user.email}</span>
                             </div>
 
                             <AnimatePresence>
@@ -103,7 +103,7 @@ const Navbar = () => {
                                         className="profile-dropdown-container"
                                     >
                                         <div className="profile-dropdown-header">
-                                            <div className="dropdown-user-name">{user.name}</div>
+                                            <div className="dropdown-user-name">{user.displayName || user.email}</div>
                                             <div className="dropdown-user-email">{user.email}</div>
                                         </div>
                                         <div className="profile-dropdown-links">

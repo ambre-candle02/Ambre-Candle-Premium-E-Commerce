@@ -1,45 +1,52 @@
 "use client";
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { auth } from '../config/firebase';
+import {
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    updateProfile
+} from 'firebase/auth';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(() => {
-        if (typeof window !== 'undefined') {
-            try {
-                const savedUser = localStorage.getItem('ambre_user');
-                return savedUser ? JSON.parse(savedUser) : null;
-            } catch (e) {
-                console.error("Auth initialization failed:", e);
-                return null;
-            }
-        }
-        return null;
-    });
-    const loading = false; // Directly setting loading to false
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // The useEffect for initial user loading is no longer needed as useState now handles it.
-    // The loading state is also set to false directly.
+    // Monitor Firebase Auth State
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
 
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem('ambre_user', JSON.stringify(userData));
+    const login = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    const signup = async (name, email, password) => {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        // Update the user's display name
+        await updateProfile(userCredential.user, {
+            displayName: name
+        });
+        // Force update local user state to include display name immediately
+        setUser({ ...userCredential.user, displayName: name });
+        return userCredential;
     };
 
     const logout = () => {
-        setUser(null);
-        localStorage.removeItem('ambre_user');
-    };
-
-    const signup = (userData) => {
-        setUser(userData);
-        localStorage.setItem('ambre_user', JSON.stringify(userData));
+        return signOut(auth);
     };
 
     return (
         <AuthContext.Provider value={{ user, login, logout, signup, loading }}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 };

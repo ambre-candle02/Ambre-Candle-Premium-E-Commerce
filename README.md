@@ -70,8 +70,8 @@ A luxury candle e-commerce platform built with **Next.js 15**, featuring advance
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd "Advance Veloria Candles"
+   git clone https://github.com/chitranjan-patel/ambre-candle-product-catalog.git
+   cd "Ambre Candle Product Catalog"
    ```
 
 2. **Install dependencies**
@@ -100,7 +100,7 @@ npm start
 ## 📂 Project Structure
 
 ```
-Advance Veloria Candles/
+Ambre Candle Product Catalog/
 ├── app/
 │   ├── page.js              # Home page
 │   ├── shop/                # Shop page

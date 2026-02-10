@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, User, ArrowRight, Phone, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Lock, User, ArrowRight, Phone } from 'lucide-react';
 import { useAuth } from '@/src/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -16,57 +16,24 @@ export default function SignupPage() {
     });
     const { signup } = useAuth();
     const router = useRouter();
-
-    const [otpSent, setOtpSent] = useState(false);
-    const [otp, setOtp] = useState('');
-    const [serverOtp, setServerOtp] = useState('');
     const [loading, setLoading] = useState(false);
-    const [focusedField, setFocusedField] = useState(null);
 
-    const handleSendOtp = async (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const response = await fetch('/api/auth/otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone: formData.phone })
-            });
-
-            const responseText = await response.text();
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (pErr) {
-                console.error("JSON Parse Error. Raw response:", responseText);
-                alert("Server returned invalid data format. Please check console or try again.");
-                setLoading(false);
-                return;
-            }
-
-            if (data.success) {
-                setServerOtp(data.otp);
-                setOtpSent(true);
-                alert(`DEMO MODE: OTP for ${formData.phone} is [ ${data.otp} ]. Please enter this code to verify.`);
-            } else {
-                alert("Failed to send OTP. Please try again.");
-            }
+            await signup(formData.name, formData.email, formData.password);
+            // Optionally save phone number to Firestore later, for now we just register Auth
+            router.push('/');
         } catch (error) {
-            console.error("Error sending OTP:", error);
-            alert("Error sending OTP. Please try again later.");
+            console.error("Signup Error:", error);
+            let msg = "Failed to create account.";
+            if (error.code === 'auth/email-already-in-use') msg = "Email is already in use.";
+            if (error.code === 'auth/weak-password') msg = "Password should be at least 6 characters.";
+            alert(msg);
         } finally {
             setLoading(false);
-        }
-    };
-
-    const handleVerifyAndSignup = (e) => {
-        e.preventDefault();
-        if (otp === serverOtp) {
-            signup({ name: formData.name, email: formData.email, phone: formData.phone });
-            router.push('/');
-        } else {
-            alert("Invalid OTP. Please try again.");
         }
     };
 
@@ -118,89 +85,62 @@ export default function SignupPage() {
                         </p>
                     </div>
 
-                    <form onSubmit={otpSent ? handleVerifyAndSignup : handleSendOtp}>
-                        {!otpSent && (
-                            <>
-                                <div className="modern-form-group">
-                                    <div className="modern-input-wrapper">
-                                        <User size={18} className="modern-input-icon" />
-                                        <input
-                                            type="text"
-                                            className="modern-input"
-                                            placeholder="Full Name"
-                                            required
-                                            value={formData.name}
-                                            onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        />
-                                    </div>
-                                </div>
+                    <form onSubmit={handleSignup}>
+                        <div className="modern-form-group">
+                            <div className="modern-input-wrapper">
+                                <User size={18} className="modern-input-icon" />
+                                <input
+                                    type="text"
+                                    className="modern-input"
+                                    placeholder="Full Name"
+                                    required
+                                    value={formData.name}
+                                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                />
+                            </div>
+                        </div>
 
-                                <div className="modern-form-group">
-                                    <div className="modern-input-wrapper">
-                                        <Mail size={18} className="modern-input-icon" />
-                                        <input
-                                            type="email"
-                                            className="modern-input"
-                                            placeholder="Email Address"
-                                            required
-                                            value={formData.email}
-                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                        />
-                                    </div>
-                                </div>
+                        <div className="modern-form-group">
+                            <div className="modern-input-wrapper">
+                                <Mail size={18} className="modern-input-icon" />
+                                <input
+                                    type="email"
+                                    className="modern-input"
+                                    placeholder="Email Address"
+                                    required
+                                    value={formData.email}
+                                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                />
+                            </div>
+                        </div>
 
-                                <div className="modern-form-group">
-                                    <div className="modern-input-wrapper">
-                                        <Phone size={18} className="modern-input-icon" />
-                                        <input
-                                            type="tel"
-                                            className="modern-input"
-                                            placeholder="Phone Number"
-                                            required
-                                            value={formData.phone}
-                                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                        />
-                                    </div>
-                                </div>
+                        <div className="modern-form-group">
+                            <div className="modern-input-wrapper">
+                                <Phone size={18} className="modern-input-icon" />
+                                <input
+                                    type="tel"
+                                    className="modern-input"
+                                    placeholder="Phone Number"
+                                    required
+                                    value={formData.phone}
+                                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                />
+                            </div>
+                        </div>
 
-                                <div className="modern-form-group">
-                                    <div className="modern-input-wrapper">
-                                        <Lock size={18} className="modern-input-icon" />
-                                        <input
-                                            type="password"
-                                            className="modern-input"
-                                            placeholder="Create Password"
-                                            required
-                                            value={formData.password}
-                                            onChange={e => setFormData({ ...formData, password: e.target.value })}
-                                        />
-                                    </div>
-                                </div>
-                            </>
-                        )}
-
-                        <AnimatePresence>
-                            {otpSent && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    className="otp-group"
-                                >
-                                    <label className="otp-label">
-                                        Enter 6-digit Code sent to <b>{formData.phone}</b>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={otp}
-                                        onChange={(e) => setOtp(e.target.value)}
-                                        placeholder="• • • • • •"
-                                        maxLength={6}
-                                        className="otp-input"
-                                    />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                        <div className="modern-form-group">
+                            <div className="modern-input-wrapper">
+                                <Lock size={18} className="modern-input-icon" />
+                                <input
+                                    type="password"
+                                    className="modern-input"
+                                    placeholder="Create Password"
+                                    required
+                                    value={formData.password}
+                                    onChange={e => setFormData({ ...formData, password: e.target.value })}
+                                />
+                            </div>
+                        </div>
 
                         <button
                             type="submit"
@@ -212,8 +152,7 @@ export default function SignupPage() {
                                 <div className="loading-spinner-sm"></div>
                             ) : (
                                 <>
-                                    {otpSent ? 'Confirm & Sign Up' : 'Get Verification Code'}
-                                    {!loading && <ArrowRight size={20} />}
+                                    Create Account <ArrowRight size={20} />
                                 </>
                             )}
                         </button>
