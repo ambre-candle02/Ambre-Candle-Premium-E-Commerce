@@ -2,6 +2,10 @@
 
 A luxury candle e-commerce platform built with **Next.js 15**, featuring advanced animations, interactive quiz, and a premium user experience.
 
+## 🌐 Live Demo
+
+**🚀 [View Live Site on Vercel](https://ambre-candle-product-catalog.vercel.app)**
+
 ---
 
 ## ✨ Features
