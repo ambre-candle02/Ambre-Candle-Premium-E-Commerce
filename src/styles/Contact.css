@@ -24,3 +24,21 @@
         color: #000;
     }
 }
+
+/* Mobile responsive: Social icons - prevent cutoff */
+@media (max-width: 768px) {
+
+    /* Ensure social icons container doesn't overflow */
+    .contact-info-section {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Make sure social icons wrap properly on very small screens */
+    .social-icons-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px !important;
+        justify-content: flex-start;
+    }
+}

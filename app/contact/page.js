@@ -244,7 +244,7 @@ export default function ContactPage() {
                             {/* Socials */}
                             <div style={{ marginTop: '60px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '30px' }}>
                                 <h4 style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '2px', color: '#9ca3af', marginBottom: '20px' }}>Follow Us</h4>
-                                <div style={{ display: 'flex', gap: '20px' }}>
+                                <div className="social-icons-container" style={{ display: 'flex', gap: '20px' }}>
                                     <a
                                         href="https://www.instagram.com/candleambre?igsh=cmM3MDR2dndocWEx&utm_source=qr"
                                         target="_blank"
