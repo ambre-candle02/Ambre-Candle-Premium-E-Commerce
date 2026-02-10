@@ -1,10 +1,51 @@
 # 🕯️ Ambre Candle | Premium E-Commerce Platform
 
-A luxury candle e-commerce platform built with **Next.js 15**, featuring advanced animations, interactive quiz, and a premium user experience.
+A luxury candle e-commerce platform built with **Next.js 15**, featuring advanced animations, interactive quiz, Firebase authentication, and a premium user experience.
 
-## 🌐 Live Demo
+## 🌐 Live Demo & Links
 
-**🚀 [View Live Site on Vercel](https://ambre-candle-product-catalog.vercel.app)**
+**🚀 [Live Site on Vercel](https://ambre-candle-product-catalog.vercel.app)**
+
+**📌 [GitHub Repository](https://github.com/chitranjan-patel/ambre-candle-product-catalog)**
+
+---
+
+## 🔐 Firebase Authentication Setup
+
+### Firebase Configuration
+- **Project ID**: `ambre-candle-product-catalog`
+- **Authentication**: Email/Password enabled
+- **Status**: ✅ Fully Configured
+
+### Test Credentials
+```
+Email: chitranjapatel8873@gmail.com
+(Or create your own account via signup)
+```
+
+### Setup Instructions for Developers
+
+1. **Firebase Project Settings**
+   - Go to [Firebase Console](https://console.firebase.google.com)
+   - Select "ambre-candle-product-catalog" project
+   - Navigate to Project Settings → General
+
+2. **Environment Variables**
+   - Copy `.env.local.example` to `.env.local`
+   - Add your Firebase config from Project Settings:
+   ```env
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+   ```
+
+3. **Enable Authentication Methods**
+   - Go to Authentication → Sign-in Method
+   - Ensure "Email/Password" is enabled ✅
 
 ---
 
@@ -30,9 +71,11 @@ A luxury candle e-commerce platform built with **Next.js 15**, featuring advance
 - **Contact Form**: Professional contact page with success modal
 - **Newsletter Signup**: Email subscription with validation
 
-### 🔐 **User Authentication**
-- **Login/Signup**: Complete authentication flow
-- **User Profile**: Personalized user experience
+### 🔐 **User Authentication** (Firebase)
+- **Email/Password Login**: Secure authentication with Firebase
+- **User Registration**: Create new account with email verification
+- **User Profile**: Personalized user experience with display name
+- **Logout**: Secure session management
 - **Protected Routes**: Secure checkout and order management
 
 ### 📱 **Pages**
@@ -65,6 +108,7 @@ A luxury candle e-commerce platform built with **Next.js 15**, featuring advance
 ### Prerequisites
 - Node.js 18+ installed
 - npm or yarn package manager
+- Firebase Account (with ambre-candle-product-catalog project configured)
 
 ### Installation
 
@@ -74,19 +118,34 @@ A luxury candle e-commerce platform built with **Next.js 15**, featuring advance
    cd "Ambre Candle Product Catalog"
    ```
 
-2. **Install dependencies**
+2. **Set up Firebase Configuration**
+   - Copy `.env.local.example` to `.env.local`
+   - Add your Firebase credentials (see [Firebase Authentication Setup](#-firebase-authentication-setup) section above)
+
+3. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Run development server**
+4. **Run development server**
    ```bash
    npm run dev
    ```
 
-4. **Open in browser**
+5. **Open in browser**
    
    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Testing the Application
+
+**User Authentication**
+- Go to [http://localhost:3000/login](http://localhost:3000/login)
+- Try login with: `chitranjapatel8873@gmail.com`
+- Or create new account at [http://localhost:3000/signup](http://localhost:3000/signup)
+
+**Browse Products**
+- Visit [http://localhost:3000/shop](http://localhost:3000/shop) to see all candles
+- Try the interactive quiz at [http://localhost:3000/quiz](http://localhost:3000/quiz)
 
 ### Build for Production
 
@@ -94,6 +153,13 @@ A luxury candle e-commerce platform built with **Next.js 15**, featuring advance
 npm run build
 npm start
 ```
+
+### Deploy to Vercel
+
+The project is configured to auto-deploy from GitHub:
+1. Push changes to `main` branch
+2. Vercel automatically builds and deploys
+3. View deployment at: [https://ambre-candle-product-catalog.vercel.app](https://ambre-candle-product-catalog.vercel.app)
 
 ---
 
@@ -195,6 +261,30 @@ const [isMounted, setIsMounted] = useState(false);
 useEffect(() => setIsMounted(true), []);
 {isMounted && totalItems > 0 && <span>{totalItems}</span>}
 ```
+
+---
+
+## 🔧 Recent Updates & Fixes (Feb 2026)
+
+### Firebase Authentication ✅
+- Fixed AuthProvider loading state issue
+- Email/Password login integration
+- User display name in navbar
+- Proper error handling for duplicate emails
+- Signup/Login flow fully working
+
+### UI/UX Improvements ✅
+- Fixed blank page on login route
+- User profile dropdown menu
+- Logout functionality
+- Responsive auth pages
+- Better error messages
+
+### Deployment ✅
+- GitHub repository updated
+- Vercel auto-deployment configured
+- Environment variables properly set
+- Production build working
 
 ---
 
