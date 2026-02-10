@@ -246,7 +246,7 @@ export default function ContactPage() {
                                 <h4 style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '2px', color: '#9ca3af', marginBottom: '20px' }}>Follow Us</h4>
                                 <div style={{ display: 'flex', gap: '20px' }}>
                                     <a
-                                        href="https://www.instagram.com/ambrecandle"
+                                        href="https://www.instagram.com/candleambre?igsh=cmM3MDR2dndocWEx&utm_source=qr"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
@@ -257,7 +257,7 @@ export default function ContactPage() {
                                         <Instagram size={22} />
                                     </a>
                                     <a
-                                        href="https://www.facebook.com/ambrecandle"
+                                        href="https://www.facebook.com/share/1Cgib9LvU7/"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
@@ -266,28 +266,6 @@ export default function ContactPage() {
                                         aria-label="Facebook"
                                     >
                                         <Facebook size={22} />
-                                    </a>
-                                    <a
-                                        href="https://www.linkedin.com/company/ambrecandle"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
-                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#0A66C2'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                        onMouseLeave={(e) => { e.currentTarget.style.color = '#9ca3af'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                                        aria-label="LinkedIn"
-                                    >
-                                        <Linkedin size={22} />
-                                    </a>
-                                    <a
-                                        href="https://twitter.com/ambrecandle"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ color: '#9ca3af', transition: 'all 0.3s ease' }}
-                                        onMouseEnter={(e) => { e.currentTarget.style.color = '#1DA1F2'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                        onMouseLeave={(e) => { e.currentTarget.style.color = '#9ca3af'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                                        aria-label="Twitter"
-                                    >
-                                        <Twitter size={22} />
                                     </a>
                                 </div>
                             </div>
