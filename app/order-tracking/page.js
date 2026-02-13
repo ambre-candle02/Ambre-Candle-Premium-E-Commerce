@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import SafeImage from '@/src/components/SafeImage';
 import Link from 'next/link';
 import { CheckCircle, Truck, Package, MapPin, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -46,7 +47,7 @@ export default function OrderTracking() {
                     <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
                         {order.items.map((item, i) => (
                             <div key={i} style={{ width: '60px', height: '60px', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee', position: 'relative' }}>
-                                <img src={item.image} alt="item" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <SafeImage src={item.image} alt="item" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 <span style={{ position: 'absolute', bottom: 0, right: 0, background: '#000', color: '#fff', fontSize: '10px', padding: '2px 5px', borderTopLeftRadius: '5px' }}>x{item.quantity}</span>
                             </div>
                         ))}

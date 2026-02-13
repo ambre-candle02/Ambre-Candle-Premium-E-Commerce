@@ -1,25 +1,41 @@
 # 🕯️ Ambre Candle | Premium E-Commerce Platform
 
-A luxury candle e-commerce platform built with **Next.js 15**, featuring advanced animations, interactive quiz, Firebase authentication, and a premium user experience.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+**Ambre Candle** is a high-performance, luxury e-commerce platform designed for artisanal fragrance brands. Built with the latest **Next.js 15** and **React 19**, it offers a prestigious shopping experience with a focus on visual excellence and seamless interactions.
+
+---
+
+## 🚀 Key Highlights
+
+- **💎 Premium Aesthetics**: Curated design system with glassmorphism and golden accents.
+- **📊 Smart Admin Dashboard**: Advanced order management and real-time data visualization.
+- **🧠 Interactive Scent Quiz**: Lead-generation tool that matches users with their perfect fragrance.
+- **⚡ Blazing Fast**: Fully optimized with Next.js App Router and server-side rendering.
+
+---
 
 ## 🌐 Live Demo & Links
 
-**🚀 [Live Site on Vercel](https://ambre-candle-product-catalog.vercel.app)**
+**🚀 [Live Site & Link](https://your-deployment-link.vercel.app)**
 
-**📌 [GitHub Repository](https://github.com/chitranjan-patel/ambre-candle-product-catalog)**
+**📌 [GitHub Repository](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME)**
 
 ---
 
 ## 🔐 Firebase Authentication Setup
 
 ### Firebase Configuration
-- **Project ID**: `ambre-candle-product-catalog`
+- **Project ID**: `your-firebase-project-id`
 - **Authentication**: Email/Password enabled
 - **Status**: ✅ Fully Configured
 
 ### Test Credentials
 ```
-Email: chitranjapatel8873@gmail.com
+Email: your-email@example.com
 (Or create your own account via signup)
 ```
 
@@ -27,7 +43,7 @@ Email: chitranjapatel8873@gmail.com
 
 1. **Firebase Project Settings**
    - Go to [Firebase Console](https://console.firebase.google.com)
-   - Select "ambre-candle-product-catalog" project
+   - Select your Firebase project
    - Navigate to Project Settings → General
 
 2. **Environment Variables**
@@ -114,7 +130,7 @@ Email: chitranjapatel8873@gmail.com
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/chitranjan-patel/ambre-candle-product-catalog.git
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
    cd "Ambre Candle Product Catalog"
    ```
 
@@ -140,7 +156,7 @@ Email: chitranjapatel8873@gmail.com
 
 **User Authentication**
 - Go to [http://localhost:3000/login](http://localhost:3000/login)
-- Try login with: `chitranjapatel8873@gmail.com`
+- Try login with your registered admin email
 - Or create new account at [http://localhost:3000/signup](http://localhost:3000/signup)
 
 **Browse Products**
@@ -159,7 +175,28 @@ npm start
 The project is configured to auto-deploy from GitHub:
 1. Push changes to `main` branch
 2. Vercel automatically builds and deploys
-3. View deployment at: [https://ambre-candle-product-catalog.vercel.app](https://ambre-candle-product-catalog.vercel.app)
+3. View deployment at your Vercel URL
+
+---
+
+## 🔄 Migration to New GitHub Account
+
+If you are moving this project to a new GitHub account, follow these steps:
+
+1. **Change Git Remote**:
+   ```bash
+   git remote remove origin
+   git remote add origin https://github.com/NEW_USERNAME/NEW_REPO_NAME.git
+   git push -u origin main
+   ```
+
+2. **Update Deployment (Vercel)**:
+   - Connect the new repository to Vercel.
+   - Copy all Environment Variables from your `.env.local` to the Vercel project settings.
+
+3. **Firebase**:
+   - No changes needed in Firebase Console unless you want to create a new project.
+   - Just ensure the "Authorized Domains" in Firebase Authentication includes your new Vercel domain.
 
 ---
 

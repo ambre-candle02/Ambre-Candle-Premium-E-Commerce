@@ -25,7 +25,7 @@
     padding: 0;
     background: linear-gradient(90deg, #dfd7c2 0%, #c4b595 50%, #dfd7c2 100%);
     border-bottom: 1px solid rgba(45, 74, 62, 0.15);
-    transition: var(--transition-smooth);
+    transition: height 0.2s ease, background-color 0.2s ease, backdrop-filter 0.2s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -59,17 +59,33 @@
     align-items: center;
     justify-content: center;
     flex: 1;
+    z-index: 10;
+}
+
+.nav-link-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mega-menu-trigger-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link {
+    position: relative;
+    z-index: 11;
     text-decoration: none;
     color: var(--color-text-primary);
     font-weight: 700;
-    /* Increased from 500 for "hlka bold" look */
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 1.5px;
     transition: var(--transition-fast);
+    cursor: pointer;
 }
 
 .nav-link:hover {
@@ -193,7 +209,7 @@
 
 .profile-dropdown-container {
     position: absolute;
-    top: calc(100% + 5px);
+    top: 100%;
     right: 0;
     width: 220px;
     background: #fdfbf7;
@@ -201,7 +217,18 @@
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(212, 175, 55, 0.2);
     padding: 10px;
-    z-index: 1500;
+    z-index: 10000;
+}
+
+/* Invisible bridge to prevent mouse-out when moving from icon to dropdown */
+.profile-dropdown-container::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
 }
 
 .profile-dropdown-header {
@@ -275,6 +302,12 @@
     gap: 30px;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.2);
     z-index: 10000;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.mobile-menu-content::-webkit-scrollbar {
+    display: none;
 }
 
 .mobile-menu-header {
@@ -321,7 +354,7 @@
     }
 
     .nav-container {
-        padding: 0 15px !important;
+        padding: 0 20px !important;
     }
 
     .nav-logo img {
@@ -467,5 +500,65 @@
     .search-submit-btn,
     .search-close-btn {
         padding: 12px;
+    }
+}
+
+/* --- MEGA MENU STYLING --- */
+.mega-menu-container {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    overflow: hidden;
+}
+
+.scrolled .mega-menu-container {
+    top: calc(var(--header-height) * 0.8);
+}
+
+.mega-menu-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.mega-menu-item {
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: #f8f8f8;
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.mega-menu-item:hover {
+    background: var(--color-accent);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.mega-menu-item.active {
+    background: var(--color-accent);
+    color: #fff !important;
+}
+
+@media (max-width: 1024px) {
+    .mega-menu-container {
+        display: none !important;
     }
 }

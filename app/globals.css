@@ -52,6 +52,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: var(--header-height-mobile);
+  }
 }
 
 body {
@@ -95,11 +102,16 @@ a {
   transition: color var(--transition-fast);
 }
 
-button {
+button,
+a {
   cursor: pointer;
   border: none;
   background: none;
   font-family: inherit;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 /* Utility Classes */
@@ -130,6 +142,13 @@ button {
   color: #fff;
   transform: translateY(-3px);
   box-shadow: var(--hover-shadow);
+}
+
+.btn-gold-hover:hover {
+  background: #d4af37 !important;
+  color: #1b1f1c !important;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4) !important;
+  border-color: #d4af37 !important;
 }
 
 .luxury-card {
@@ -219,6 +238,11 @@ img {
   .btn-primary {
     padding: 14px 24px;
     font-size: 0.8rem;
+    background: #d4af37 !important;
+    /* Force Gold on Mobile */
+    color: #1b1f1c !important;
+    /* Dark text for contrast */
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3) !important;
   }
 
   h1 {

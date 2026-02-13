@@ -51,12 +51,13 @@ export default function SignupPage() {
                 <div className="auth-circle-decor circle-2"></div>
 
                 <motion.img
-                    src="/images/sacred-garden-opt.png"
+                    src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878560/ambre-candles/Favourites/lngfplnzboyv4tyvll8x.jpg"
                     alt="Ambre Candle Collection"
                     className="auth-visual-image"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
+                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', objectFit: 'cover', height: '100%', width: '100%' }}
                 />
 
                 <motion.div
@@ -142,20 +143,19 @@ export default function SignupPage() {
                             </div>
                         </div>
 
-                        <button
+                        <motion.button
+                            whileTap={{ scale: 0.95 }}
                             type="submit"
                             className="btn-modern"
                             disabled={loading}
-                            style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
                         >
-                            {loading ? (
-                                <div className="loading-spinner-sm"></div>
-                            ) : (
+                            {loading ? <div className="loading-spinner-sm"></div> : (
                                 <>
-                                    Create Account <ArrowRight size={20} />
+                                    Create Account
+                                    <ArrowRight size={18} />
                                 </>
                             )}
-                        </button>
+                        </motion.button>
                     </form>
                 </motion.div>
             </div>

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/src/context/AuthContext';
@@ -15,6 +15,11 @@ export default function LoginPage() {
     const { login } = useAuth();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,6 +45,8 @@ export default function LoginPage() {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
 
+    if (!mounted) return <div style={{ minHeight: '100vh', background: '#fff' }}></div>;
+
     return (
         <div className="auth-split-page">
             {/* Left Panel - Visual (Wax Candle) */}
@@ -48,13 +55,13 @@ export default function LoginPage() {
                 <div className="auth-circle-decor circle-2"></div>
 
                 <motion.img
-                    src="/images/rich-lavender-opt.jpg"
+                    src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
                     alt="Ambre Lux Collection"
                     className="auth-visual-image"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
+                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', objectFit: 'cover', height: '100%', width: '100%' }}
                 />
 
                 <motion.div
@@ -119,20 +126,19 @@ export default function LoginPage() {
                             <Link href="/contact" className="auth-forgot">Forgot Password?</Link>
                         </div>
 
-                        <button
+                        <motion.button
+                            whileTap={{ scale: 0.95 }}
                             type="submit"
                             className="btn-modern"
                             disabled={isLoading}
-                            style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'not-allowed' : 'pointer' }}
                         >
-                            {isLoading ? (
-                                <div className="loading-spinner-sm"></div>
-                            ) : (
+                            {isLoading ? <div className="loading-spinner-sm"></div> : (
                                 <>
-                                    Log In <ArrowRight size={20} />
+                                    Log In
+                                    <ArrowRight size={20} />
                                 </>
                             )}
-                        </button>
+                        </motion.button>
                     </form>
                 </motion.div>
             </div>

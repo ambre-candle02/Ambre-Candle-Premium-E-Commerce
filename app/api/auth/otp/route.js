@@ -14,7 +14,7 @@ export async function POST(req) {
     return NextResponse.json({
         success: true,
         message: "OTP generated successfully (Simulation Mode)",
-        otp: otp, // Sending back so you can see it in the alert during testing
+
         mode: "simulation"
     }, { status: 200 });
 }

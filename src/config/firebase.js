@@ -27,10 +27,4 @@ if (!getApps().length) {
 // Initialize Firebase Authentication
 export const auth = getAuth(app);
 
-// Log connection status (for testing)
-if (typeof window !== 'undefined') {
-    console.log('🔥 Firebase initialized successfully!');
-    console.log('Project ID:', firebaseConfig.projectId);
-}
-
 export default app;

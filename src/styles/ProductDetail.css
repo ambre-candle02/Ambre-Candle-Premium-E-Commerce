@@ -1,170 +1,362 @@
-/* --- Ambre Product Detail: Professional Launch --- */
+/* --- Ambre Product Detail: Elite Artisan Experience --- */
 
 .product-detail-v5 {
-    padding-top: calc(var(--header-height) + 40px);
-    padding-bottom: 100px;
-    background: #fff;
+    padding-top: calc(var(--header-height) + 60px);
+    padding-bottom: 150px;
+    background: #fdfbf7;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+        url('https://res.cloudinary.com/dmw5efwf5/image/upload/v1770901734/ambre-boutique-texture.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
 }
 
-.back-link-v5 {
+.back-link-v6 {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
-    color: #999;
     margin-bottom: 40px;
+    color: #8c7e6a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-link-v6:hover {
+    color: #d4af37;
+    transform: translateX(-5px);
 }
 
 .detail-layout-v5 {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 80px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: center;
 }
 
+/* Artisan Spotlight Stage */
 .main-visual-v5 {
-    background: #fdfbf7;
     position: relative;
-    overflow: hidden;
-    border-radius: 20px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 40px;
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.05);
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.main-visual-v5.active-gold-border {
+    border-color: #d4af37;
+    box-shadow: 0 40px 120px rgba(212, 175, 55, 0.15);
+}
+
+.main-visual-v5::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    right: 10%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+    filter: blur(15px);
+    z-index: -1;
 }
 
 .main-visual-container {
-    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    position: relative;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .main-visual-container {
+        min-height: 350px;
+        background: #f9f9f9;
+    }
+}
+
+.main-visual-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.main-visual-v5:hover img {
+    transform: scale(1.05);
+}
+
+/* Thumbnail Gallery */
+.thumb-gallery-v6 {
     display: flex;
-    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
     justify-content: center;
 }
 
-.main-visual-v5 img {
-    max-width: 100%;
-    max-height: 550px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+.thumb-v6 {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.3s ease;
+    padding: 2px;
 }
 
-.main-info-v5 h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #1a1a1a;
+.thumb-v6.active {
+    border-color: #d4af37;
+    border-width: 3px;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
-.p-cat-v5 {
-    font-size: 0.75rem;
+.thumb-v6 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Elite Info Card */
+.elite-info-card {
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.03);
+}
+
+.p-meta-v6 {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.meta-tag-v6 {
+    font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #b08d55;
+    font-weight: 800;
+    color: #d4af37;
+    padding: 6px 12px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 100px;
+}
+
+.elite-info-card h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: #1a1a13;
     margin-bottom: 20px;
-    display: block;
+    font-weight: 300;
+    letter-spacing: -1px;
 }
 
-.p-price-v5 {
-    font-size: 1.5rem;
-    font-weight: 400;
+.p-price-v6 {
+    font-size: 1.8rem;
+    color: #1b4a3e;
+    font-weight: 500;
     margin-bottom: 30px;
-    color: #1a1a1a;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
 }
 
-.p-desc-v5 {
-    font-size: 1rem;
+.p-price-v6::before {
+    content: 'RS.';
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #d4af37;
+}
+
+.p-narrative-v6 {
+    font-size: 1.05rem;
     line-height: 1.8;
     color: #555;
     margin-bottom: 40px;
-    padding-top: 30px;
-    border-top: 1px solid #f0f0f0;
 }
 
-.p-actions-v5 {
+/* Artisan Controls */
+.p-actions-v6 {
     display: flex;
     gap: 20px;
     margin-bottom: 50px;
 }
 
-.qty-v5 {
+.qty-pill-v6 {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
+    background: #fff;
+    border: 2px solid #d4af37;
+    border-radius: 100px;
+    padding: 5px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
 }
 
-.qty-v5 button {
-    padding: 15px;
+.qty-pill-v6 button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    color: #d4af37;
+    /* Gold Icons */
+    transition: all 0.2s;
+    font-weight: 800;
 }
 
-.qty-v5 span {
+.qty-pill-v6 button:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #1a1a13;
+}
+
+.qty-pill-v6 span {
     width: 40px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #1a1a13;
 }
 
-.add-v5-big {
+.add-btn-v6 {
     flex: 1;
-    background: #1a1a1a;
-    color: #fff;
+    background: #d4af37;
+    /* Gold Background */
+    color: #000;
     border: none;
+    border-radius: 100px;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: opacity 0.3s;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.add-v5-big:hover {
-    opacity: 0.9;
+.add-btn-v6::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
-.p-shipping-v5 {
-    padding-top: 40px;
-    border-top: 1px solid #f0f0f0;
+.add-btn-v6:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    background: #c5a02c;
+}
+
+.add-btn-v6:hover::after {
+    transform: translateX(100%);
+}
+
+/* Spec List */
+.artisan-specs-v6 {
+    padding-top: 35px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.spec-item-v6 {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
 }
 
-.ship-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.85rem;
-    color: #1a1a1a;
+.spec-label-v6 {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.spec-value-v6 {
+    font-size: 0.9rem;
+    color: #1a1a13;
     font-weight: 500;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .detail-layout-v5 {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
+    }
+
+    .main-visual-v5 {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
-.product-trust-badges-v5 {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid #f5f5f5;
-}
-
-.trust-badge-v5 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-    color: #444;
-}
-
-.trust-icon-v5 {
-    font-size: 1.1rem;
-}
-
-/* Fix Mobile Header Overlap */
 @media (max-width: 768px) {
     .product-detail-v5 {
-        padding-top: calc(var(--header-height-mobile) + 40px) !important;
+        padding-top: calc(var(--header-height-mobile) + 20px);
+        padding-bottom: 80px;
+    }
+
+    .elite-info-card {
+        padding: 25px;
+        border-radius: 25px;
+        text-align: center;
+    }
+
+    .p-meta-v6 {
+        justify-content: center;
+    }
+
+    .elite-info-card h1 {
+        font-size: 2.22rem;
+        margin-bottom: 15px;
+    }
+
+    .p-price-v6 {
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .p-actions-v6 {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .qty-pill-v6 {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .add-btn-v6 {
+        width: 100%;
+        padding: 18px;
+        font-size: 0.9rem;
+    }
+
+    .artisan-specs-v6 {
+        grid-template-columns: 1fr;
+        text-align: left;
     }
 }

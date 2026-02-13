@@ -2,68 +2,75 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-import '../src/config/firebase'; // Test Firebase connection
+import SafeImage from '@/src/components/SafeImage';
+
 
 const categorybanners = [
     {
-        title: 'Gifts & Sets',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
-        path: '/shop?category=Hampers%20|%20Combo'
+        title: 'Signature Hampers',
+        img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840787/ambre-candles/Hampers_%7C_Combo/lxpbksaxenyc77vrmatf.jpg',
+        path: '/categories/Hampers%20|%20Combo'
     },
     {
-        title: 'Candles',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/a96c2a84-b8d9-4f81-8634-828506ac3fe9.jpg?v=1760269864',
-        path: '/shop?category=Glass%20Jar%20Candle'
+        title: 'Luxury Glass Jars',
+        img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg',
+        path: '/categories/Glass%20Jar%20Candle'
     },
     {
-        title: 'New Arrivals',
-        img: '/images/new_arrivals/tulip_candle.jpg',
-        path: '/shop?category=Bouquet%20Candle'
+        title: 'Artisan Bouquets',
+        img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831575/ambre-candles/Bouquet%20Candle/vjq28br0vds2dh0va5np.jpg',
+        path: '/categories/Bouquet%20Candle'
     },
     {
-        title: 'Collections',
-        img: 'https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634',
-        path: '/shop?category=Urli%20Candle'
+        title: 'Festive Series',
+        img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg',
+        path: '/categories/Diwali'
     }
 ];
 
 const microGallery = [
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/dd00ec79-d22f-4a5c-a03f-8115101b3d7a.jpg?v=1760275135', title: 'Lotus Series', path: '/shop?search=Lotus' },
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485', title: 'Artisan Pillars', path: '/shop?category=Pillar%20Candle' },
-    { img: '/images/new_arrivals/rasmalai_candle.jpg', title: 'Dessert Series', path: '/shop?category=Cake%20/%20Dessert%20Candle' },
-    { img: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529', title: 'Daily Rituals', path: '/shop?search=Ladoo' }
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841203/ambre-candles/Glass_Jar_Candle/kbyef5tbqfaixxiqojfa.jpg', title: 'Lotus Series', path: '/shop?search=Lotus' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842058/ambre-candles/Pillar_Candle/gxxf6o9neqvvmvvwnckz.jpg', title: 'Artisan Pillars', path: '/categories/Pillar%20Candle' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836239/ambre-candles/Cake_/_Dessert_Candle/nd46v75p3uov7o68pkhy.jpg', title: 'Dessert Series', path: '/categories/Cake%20/%20Dessert%20Candle' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841790/ambre-candles/Ladoo_Candle/yzjn0157ps4dxxluxiut.jpg', title: 'Daily Rituals', path: '/categories/Ladoo%20Candle' }
 ];
 
 const bestSellers = [
     {
-        id: 801,
-        name: 'Bouquet candle',
-        fragrance: 'Floral',
-        price: 250,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/b97213b8-3e2f-4858-8f85-684ded0f7ecf_3294eca4-a32a-4bd7-9a47-7d94dcae5102.jpg?v=1761578738'
+        id: 2001,
+        name: 'Sculpted Pillar Series',
+        fragrance: 'Minimalist',
+        price: 280,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881874/ambre-candles/Favourites/tbe1noasbw0ww9zt0ypk.jpg'
     },
     {
-        id: 808,
-        name: 'Ladoo candle (pack of 4)',
-        fragrance: 'Cardamom & Festive',
-        price: 150,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529'
+        id: 2002,
+        name: 'Premium Glass Essence',
+        fragrance: 'Signature Blend',
+        price: 499,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881876/ambre-candles/Favourites/avf2saud9glrbz70wtjh.jpg'
     },
     {
-        id: 807,
-        name: 'Sandalwood Urli',
-        fragrance: 'Woody',
-        price: 350,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/185dcfa6-6cab-4306-bd57-b27a38c77d35.jpg?v=1760275359'
+        id: 2003,
+        name: 'Eco-Luxe Scented Candle',
+        fragrance: 'Clean Burning',
+        price: 320,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881877/ambre-candles/Favourites/mffy3sldgxnfjj2cizte.jpg'
     },
     {
-        id: 802,
-        name: 'Bubble candle',
-        fragrance: 'Fresh & Fruity',
-        price: 120,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485'
+        id: 2004,
+        name: 'Festive Glow Collection',
+        fragrance: 'Heritage Spice',
+        price: 450,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837011/ambre-candles/Diwali/qd1oi1jxl44g0fiu9dny.jpg'
     }
+];
+const HERO_IMAGES = [
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878560/ambre-candles/Favourites/lngfplnzboyv4tyvll8x.jpg',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878530/ambre-candles/Favourites/mzcchlhpaolfydep8pwe.jpg',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878532/ambre-candles/Favourites/eelqgmh1w0atnrfqsud5.jpg',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878534/ambre-candles/Favourites/y2g2ptjsikgf7uqcgzj2.jpg'
 ];
 
 export default function Home() {
@@ -71,11 +78,13 @@ export default function Home() {
 
     // Auto-rotate hero images
     useEffect(() => {
+        if (HERO_IMAGES.length <= 1) return;
+
         const timer = setInterval(() => {
-            setCurrentHeroIndex((prev) => (prev + 1) % 5);
+            setCurrentHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [HERO_IMAGES.length]);
 
     return (
         <div className="home-page-misa">
@@ -84,34 +93,40 @@ export default function Home() {
             <section className="misa-hero">
                 {/* Cinematic Background Slideshow */}
                 <div className="misa-hero-slideshow">
-                    {[
-                        '/images/hero/hero_banner_1.jpg?v=3',
-                        '/images/hero/hero_banner_2.jpg?v=3',
-                        '/images/hero/hero_slideshow_1.png?v=3',
-                        '/images/new_arrivals/snake_pillar_candle.jpg?v=3',
-                        '/images/new_arrivals/tulip_candle.jpg?v=3'
-                    ].map((src, index) => (
+                    {HERO_IMAGES.map((src, index) => (
                         <div
                             key={index}
                             className="misa-hero-slide"
                             style={{
                                 opacity: currentHeroIndex === index ? 1 : 0,
                                 transform: currentHeroIndex === index ? 'scale(1)' : 'scale(1.1)',
-                                transition: 'opacity 2.5s ease-in-out, transform 2.5s ease-in-out',
+                                transition: 'opacity 1.5s ease-in-out, transform 1.5s ease-in-out',
                                 zIndex: currentHeroIndex === index ? 1 : 0
                             }}
                         >
-                            <Image
-                                src={src}
-                                alt="Misa Luxury"
-                                fill
-                                priority={index === 0}
-                                sizes="100vw"
-                                className="misa-hero-image"
-                            />
+                            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                                <SafeImage
+                                    src={src}
+                                    alt="Misa Luxury"
+                                    className="misa-hero-image"
+                                    priority={index === 0}
+                                />
+                            </div>
                         </div>
                     ))}
                     <div className="misa-hero-overlay"></div>
+
+                    {/* Slide Indicators (Dots) */}
+                    <div className="misa-hero-dots">
+                        {HERO_IMAGES.map((_, index) => (
+                            <button
+                                key={index}
+                                className={`misa-hero-dot ${currentHeroIndex === index ? 'active' : ''}`}
+                                onClick={() => setCurrentHeroIndex(index)}
+                                aria-label={`Go to slide ${index + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Editorial Content Layer */}
@@ -142,9 +157,12 @@ export default function Home() {
                         </p>
 
                         <Link href="/shop" className="misa-cta-wrapper">
-                            <button className="misa-btn-premium">
+                            <motion.button
+                                whileTap={{ scale: 0.95 }}
+                                className="misa-btn-premium"
+                            >
                                 Explore Collection
-                            </button>
+                            </motion.button>
                         </Link>
                     </motion.div>
                 </div>
@@ -176,24 +194,13 @@ export default function Home() {
                     {categorybanners.map((cat, i) => (
                         <Link href={cat.path} key={i} className="misa-cat-card">
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5, delay: i * 0.1 }}
                             >
-                                <div className="misa-cat-img-wrapper">
-                                    <motion.div
-                                        whileHover={{ scale: 1.1 }}
-                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        style={{ width: '100%', height: '100%', position: 'relative' }}
-                                    >
-                                        <Image
-                                            src={cat.img}
-                                            alt={cat.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 25vw"
-                                        />
-                                    </motion.div>
+                                <div className="misa-cat-img-wrapper" style={{ position: 'relative' }}>
+                                    <SafeImage src={cat.img} alt={cat.title} />
                                 </div>
                                 <h3>{cat.title}</h3>
                                 <span className="misa-cat-link">View All</span>
@@ -203,65 +210,36 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* SECOND IMAGE GRID: EXACTLY SAME AS FIRST SECTION */}
-            <section className="misa-section" style={{ paddingTop: '0' }}>
-                <div className="misa-categories-grid">
-                    {microGallery.map((item, i) => (
-                        <Link href={item.path} key={i} className="misa-cat-card">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <div className="misa-cat-img-wrapper">
-                                    <motion.div
-                                        whileHover={{ scale: 1.1 }}
-                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        style={{ width: '100%', height: '100%', position: 'relative' }}
-                                    >
-                                        <Image
-                                            src={item.img}
-                                            alt={item.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 25vw"
-                                        />
-                                    </motion.div>
-                                </div>
-                                <h3>{item.title}</h3>
-                                <span className="misa-cat-link">View All</span>
-                            </motion.div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
+
 
             {/* STORY SECTION */}
             <section className="misa-story">
                 <div className="misa-story-container">
                     <motion.div
                         className="misa-story-image"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        style={{ position: 'relative' }}
                     >
-                        <Image
-                            src="https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634"
-                            alt="Misa Craft"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                        <SafeImage
+                            src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881032/ambre-candles/Favourites/f47a3zsbk8tz6rnkwscn.jpg"
+                            alt="Ambre Artisan Craft"
+                            priority={true}
                         />
                     </motion.div>
                     <motion.div
                         className="misa-story-content"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h2>The Art of <br /> Olfaction</h2>
-                        <p>We believe that a candle is more than just light. It's a memory, a mood, and a statement. Our scents are meticulously developed to transform your space into a sanctuary of refined elegance.</p>
+                        <h2>Sustainable <br /> Craftsmanship</h2>
+                        <p>At Ambre Candle, we believe luxury should be kind to the planet. Our candles are meticulously handcrafted using 100% natural soy wax and eco-friendly materials, bringing a warm, sustainable glow to your home sanctuary.</p>
                         <Link href="/about">
-                            <button className="misa-btn">Our Philosophy</button>
+                            <button className="misa-btn" style={{ background: '#d4af37', color: '#fff', border: 'none' }}>Our Story</button>
                         </Link>
                     </motion.div>
                 </div>
@@ -285,15 +263,9 @@ export default function Home() {
                                     <motion.div
                                         whileHover={{ scale: 1.1 }}
                                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        style={{ width: '100%', height: '100%', position: 'relative' }}
+                                        style={{ position: 'relative', width: '100%', height: '100%' }}
                                     >
-                                        <Image
-                                            src={product.image}
-                                            alt={product.name}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 25vw"
-                                            className="misa-prod-img"
-                                        />
+                                        <SafeImage src={product.image} alt="Ambre Candle Product" className="misa-prod-img" />
                                     </motion.div>
                                     <div className="misa-quick-add">
                                         <button onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>
@@ -321,7 +293,7 @@ export default function Home() {
                         viewport={{ once: true }}
                     >
                         <h2>Join the Inner Circle</h2>
-                        <p>Unlock 10% off your first artisan collection order.</p>
+                        <p>Unlock a world of fragrance. Join our inner circle for exclusive updates, early access to new collections, and 10% off your first artisan order.</p>
                         <form className="misa-modern-form" onSubmit={(e) => e.preventDefault()}>
                             <input
                                 type="email"

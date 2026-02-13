@@ -49,7 +49,7 @@ export default function OrderHistoryPage() {
                 <Package size={64} style={{ color: '#ccc', marginBottom: '20px' }} />
                 <h2>No Orders Found</h2>
                 <p style={{ color: '#666', marginBottom: '30px' }}>Looks like you haven't placed any orders yet.</p>
-                <Link href="/shop" className="btn-primary">Start Shopping</Link>
+                <Link href="/shop" className="btn-primary btn-gold-hover">Start Shopping</Link>
             </div>
         );
     }

@@ -1,0 +1,94 @@
+/* --- Ambre Collection Page: Master Gallery Styles --- */
+
+.ambre-collection-grid-master {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Add to Cart Button (Bubble) Base Styling */
+.cart-add-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #d4af37;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.cart-add-btn:hover {
+    transform: scale(1.1);
+    background: #c19b2e;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+/* --- Responsive Layouts --- */
+
+@media (max-width: 1400px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    /* Force Golden Border on Product Cards for Mobile */
+    .motion-card {
+        border: 2px solid #d4af37 !important;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2) !important;
+    }
+
+    .cart-add-btn {
+        border: 2px solid #b8941f !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* Target the product card height on mobile */
+    .ambre-collection-grid-master .motion-card div[style*="height"] {
+        height: 140px !important;
+    }
+}
+
+/* --- Ensuring No Displacement --- */
+/* This ensures the Navbar stays fixed and doesn't get caught in the grid */
+.navbar {
+    position: fixed !important;
+    z-index: 1100 !important;
+}

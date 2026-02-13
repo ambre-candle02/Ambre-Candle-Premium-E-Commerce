@@ -1,44 +1,310 @@
 /* Contact Page Styles */
 
-/* Mobile responsive: Gold Send Message button */
+.contact-page-wrapper {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Hero Section --- */
+.contact-hero {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1410 0%, #2d2416 100%);
+    color: #fff;
+    padding-top: 180px;
+    padding-bottom: 80px;
+}
+
+.contact-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, #3d2f1f 0%, #1a1410 100%);
+    opacity: 0.7;
+    zIndex: 0;
+}
+
+.contact-hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.contact-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 50px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+    letter-spacing: 0.2em;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-title {
+    font-family: var(--font-heading);
+    fontSize: clamp(3rem, 5vw, 4.5rem);
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.contact-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* --- Main Content --- */
+.contact-main {
+    padding: 80px 0;
+    flex: 1;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    align-items: start;
+}
+
+/* Left Info Card */
+.contact-info-card {
+    background: linear-gradient(135deg, #1a1410 0%, #2d2416 100%);
+    color: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info-glow {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.contact-info-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.contact-info-line {
+    width: 60px;
+    height: 3px;
+    background: #d4af37;
+    margin-top: 15px;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+}
+
+.info-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
+
+.info-link {
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    word-break: break-all;
+    display: block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.info-link:hover {
+    color: #d4af37 !important;
+}
+
+/* Right Form Card */
+.contact-form-card {
+    background: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.form-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1b1f1c;
+}
+
+.form-subtitle {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    display: grid;
+    gap: 25px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #d4af37;
+    background: #f9fafb;
+    outline: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    color: #1f2937;
+}
+
+.form-input:focus {
+    border-color: #d4af37;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.form-input:hover {
+    border-color: #d4af37;
+}
+
+/* Send Button Styling */
+.contact-send-button {
+    background: #1b1f1c !important;
+    color: #fff !important;
+}
+
+.contact-send-button:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #f4cf5e 100%) !important;
+    color: #000 !important;
+}
+
+/* Success Modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #fff;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 450px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Icons */
+.social-section {
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.social-icons-container {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon-link {
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+    color: #d4af37;
+    transform: translateY(-3px);
+}
+
+/* Mobile responsive fixes */
 @media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero {
+        height: auto;
+        padding: 140px 20px 80px;
+    }
+
+    .contact-info-card,
+    .contact-form-card {
+        padding: 30px 20px;
+    }
+
     .contact-send-button {
         background: #d4af37 !important;
         color: #000 !important;
-    }
-
-    .contact-send-button:hover {
-        background: #c19b2e !important;
-    }
-}
-
-/* Desktop: Keep dark background */
-@media (min-width: 769px) {
-    .contact-send-button {
-        background: #1b1f1c;
-        color: #fff;
-    }
-
-    .contact-send-button:hover {
-        background: #d4af37;
-        color: #000;
-    }
-}
-
-/* Mobile responsive: Social icons - prevent cutoff */
-@media (max-width: 768px) {
-
-    /* Ensure social icons container doesn't overflow */
-    .contact-info-section {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    /* Make sure social icons wrap properly on very small screens */
-    .social-icons-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px !important;
-        justify-content: flex-start;
     }
 }

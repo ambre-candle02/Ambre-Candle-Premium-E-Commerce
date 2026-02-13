@@ -8,6 +8,8 @@
     font-family: var(--font-primary, sans-serif);
     padding-top: 110px;
     /* Sufficient clearance for sticky navbar */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* --- Left Panel (Visual) --- */
@@ -303,6 +305,201 @@
         display: none;
         /* Hide visual on mobile */
     }
+}
+
+.auth-header {
+    margin-bottom: 1.5rem;
+    /* Reduced from 2.5rem */
+    text-align: left;
+}
+
+.auth-title {
+    font-family: var(--font-heading, serif);
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    color: #888;
+    font-size: 1rem;
+}
+
+.auth-subtitle a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.auth-subtitle a:hover {
+    color: #bfa030;
+    text-decoration: underline;
+}
+
+/* Inputs */
+.modern-form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.modern-input-wrapper {
+    position: relative;
+}
+
+.modern-input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.modern-input {
+    width: 100%;
+    padding: 1.2rem 1rem 1.2rem 3.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #333;
+    background: #fdfbf7;
+    transition: all 0.3s ease;
+}
+
+.modern-input:focus {
+    background: #fff;
+    border-color: #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+    outline: none;
+}
+
+.modern-input:focus+.modern-input-icon,
+.modern-input-wrapper:focus-within .modern-input-icon {
+    color: #d4af37;
+}
+
+.modern-input::placeholder {
+    color: #aaa;
+}
+
+/* Button - Resting Black, Hover Gold */
+.btn-modern {
+    width: 100%;
+    padding: 1rem;
+    background: #1a1a1a;
+    /* Dark Initial State */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-modern:hover {
+    background: #d4af37;
+    /* Gold on Hover */
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-modern:disabled {
+    background: #e0e0e0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Links & Extras */
+.auth-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    cursor: pointer;
+}
+
+.auth-forgot {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-forgot:hover {
+    text-decoration: underline;
+}
+
+/* OTP Input */
+.otp-group {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.otp-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.otp-input {
+    width: 80%;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    text-align: center;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    background: #fff;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Loaders */
+.loading-spinner-sm {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .auth-split-page {
+        flex-direction: column;
+        padding-top: 55px;
+        /* Final mobile balance */
+    }
+
+    .auth-left-panel {
+        display: none;
+        /* Hide visual on mobile */
+    }
 
     .auth-right-panel {
         padding: 1.5rem;
@@ -310,5 +507,48 @@
 
     .auth-title {
         font-size: 2rem;
+    }
+
+    .btn-modern {
+        background: #d4af37 !important;
+        color: #1a1a1a !important;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+    }
+}
+
+/* --- Admin Specific Auth Refinements --- */
+.admin-auth-left {
+    padding: 2rem 2rem 2rem 6rem !important;
+}
+
+.admin-auth-visual-text {
+    position: absolute;
+    z-index: 10;
+    bottom: 50px;
+    left: 120px;
+    right: 50px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+}
+
+@media (max-width: 1024px) {
+    .admin-auth-left {
+        padding: 2rem !important;
+    }
+
+    .admin-auth-visual-text {
+        left: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-auth-left {
+        display: flex !important;
+        /* Force show for admin splash on some mobile */
+        min-height: 400px;
     }
 }

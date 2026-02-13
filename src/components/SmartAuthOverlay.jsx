@@ -10,27 +10,13 @@ const SmartAuthOverlay = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Disabled automatic popup to allow guest browsing
-        // To re-enable, uncomment the code below
-        /*
-        // Show after 5 seconds if user is not logged in and hasn't dismissed it this session
-        const hasSeen = sessionStorage.getItem('ambre_auth_prompt_seen');
-
-        if (!user && !hasSeen) {
-            const timer = setTimeout(() => {
-                setIsVisible(true);
-            }, 6000); // 6 seconds delay for premium feel
-            return () => clearTimeout(timer);
-        }
-        */
+        // Auth monitoring logic
     }, [user]);
 
     const handleDismiss = () => {
         setIsVisible(false);
         sessionStorage.setItem('ambre_auth_prompt_seen', 'true');
     };
-
-    if (!isVisible) return null;
 
     if (!isVisible) return null;
 

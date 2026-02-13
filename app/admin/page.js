@@ -1,14 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Package, Truck, CheckCircle, DollarSign, Users, Lock, LogOut, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, User, ArrowRight } from 'lucide-react';
+import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '@/src/styles/Admin.css';
-import '@/src/styles/AuthModern.css';
 
 export default function AdminDashboard() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [orders, setOrders] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -16,11 +12,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         setMounted(true);
-        const session = sessionStorage.getItem('ambre_admin_session');
-        if (session === 'active') {
-            setIsAuthenticated(true);
-            loadOrders();
-        }
+        loadOrders();
     }, []);
 
     const loadOrders = () => {
@@ -39,35 +31,12 @@ export default function AdminDashboard() {
                     loadedOrders = [JSON.parse(lastOrderRaw)];
                 }
             }
-            // Sort by latest
             loadedOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
             setOrders(loadedOrders);
         } catch (error) {
             console.error("Failed to load orders:", error);
             setOrders([]);
         }
-    };
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        const u = username.toLowerCase().trim();
-        const p = password.trim();
-
-        if (u === '@ambre02' && p === 'Ambre@012') {
-            setIsAuthenticated(true);
-            sessionStorage.setItem('ambre_admin_session', 'active');
-            loadOrders();
-        } else {
-            alert('Invalid Credentials!\nAdmin User: @Ambre02\nAdmin Pass: Ambre@012');
-        }
-    };
-
-    const handleLogout = () => {
-        setIsAuthenticated(false);
-        sessionStorage.removeItem('ambre_admin_session');
-        setUsername('');
-        setPassword('');
-        setOrders([]);
     };
 
     const formatCurrency = (amount) => {
@@ -96,150 +65,11 @@ export default function AdminDashboard() {
         );
     });
 
-    if (!isAuthenticated) {
-        return (
-            <div className="auth-split-page">
-                {/* Left Panel - Visual (Different Image) */}
-                <div className="auth-left-panel">
-                    <div className="auth-circle-decor circle-1" style={{ background: 'rgba(212, 175, 55, 0.1)' }}></div>
-                    <div className="auth-circle-decor circle-2" style={{ background: 'rgba(212, 175, 55, 0.05)' }}></div>
-
-                    <motion.img
-                        src="/images/new_arrivals/sunflower_urli_candle__6_5inch_.jpg?v=admin2"
-                        alt="Ambre Admin"
-                        className="auth-visual-image"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        style={{ maxHeight: '70vh', objectFit: 'contain' }}
-                    />
-
-                    <motion.div
-                        className="auth-visual-text"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
-                    >
-                        <h2 className="auth-visual-heading" style={{ color: '#1a1a1a' }}>Admin Portal.</h2>
-                        <p className="auth-visual-subtext" style={{ color: '#555' }}>Manage your empire of fragrance and elegance.</p>
-                    </motion.div>
-                </div>
-
-                {/* Right Panel - Form */}
-                <div className="auth-right-panel">
-                    <motion.div
-                        className="auth-form-container"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className="auth-header">
-                            <div style={{
-                                width: '60px', height: '60px', borderRadius: '50%',
-                                background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                margin: '0 auto 20px', boxShadow: '0 10px 20px rgba(212,175,55,0.2)'
-                            }}>
-                                <Lock size={28} color="#fff" />
-                            </div>
-                            <h1 className="auth-title">Welcome Back</h1>
-                            <p className="auth-subtitle">Please sign in to continue</p>
-                        </div>
-
-                        <form onSubmit={handleLogin}>
-                            <div className="modern-form-group">
-                                <div className="modern-input-wrapper">
-                                    <User size={18} className="modern-input-icon" />
-                                    <input
-                                        type="text"
-                                        className="modern-input"
-                                        placeholder="Username"
-                                        value={username}
-                                        onChange={e => setUsername(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="modern-form-group">
-                                <div className="modern-input-wrapper">
-                                    <Lock size={18} className="modern-input-icon" />
-                                    <input
-                                        type="password"
-                                        className="modern-input"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={e => setPassword(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-
-                            <motion.button
-                                type="submit"
-                                className="btn-modern"
-                                initial={{ background: '#1a1a1a', borderColor: '#1a1a1a', color: '#fff' }}
-                                whileHover={{
-                                    scale: 1.02,
-                                    background: '#d4af37',
-                                    borderColor: '#d4af37',
-                                    color: '#fff',
-                                    boxShadow: '0 10px 25px rgba(212, 175, 55, 0.4)'
-                                }}
-                                whileTap={{ scale: 0.98 }}
-                                transition={{ duration: 0.3 }}
-                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', width: '100%' }}
-                            >
-                                Authenticate Access
-                                <ArrowRight size={20} />
-                            </motion.button>
-                        </form>
-                    </motion.div>
-                </div>
-            </div>
-        );
-    }
-
     if (!mounted) return null;
 
     return (
-        <div className="admin-main-container" style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a' }}>
-            <div className="admin-dashboard-grid" style={{ maxWidth: '1400px', margin: '0 auto' }}>
-
-                {/* 1. Title Section */}
-                <div className="admin-title-section">
-                    <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '5px' }}>Overview</p>
-                    <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', margin: 0 }}>Dashboard</h1>
-                </div>
-
-                {/* 2. Actions Section */}
-                <div className="admin-actions">
-                    <motion.button
-                        onClick={loadOrders}
-                        whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
-                        whileTap={{ scale: 0.95 }}
-                        style={actionButtonStyle}
-                    >
-                        <RefreshCw size={18} /> Refresh
-                    </motion.button>
-                    <motion.button
-                        onClick={clearAllOrders}
-                        whileHover={{ scale: 1.05, backgroundColor: '#ef4444', color: '#fff', borderColor: '#ef4444' }}
-                        whileTap={{ scale: 0.95 }}
-                        style={{ ...actionButtonStyle, background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
-                    >
-                        <Trash2 size={18} /> Clear Data
-                    </motion.button>
-                    <motion.button
-                        onClick={handleLogout}
-                        className="admin-logout-btn"
-                        whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#fff', borderColor: '#d4af37' }}
-                        whileTap={{ scale: 0.95 }}
-                        style={actionButtonStyle}
-                    >
-                        <LogOut size={18} /> Logout
-                    </motion.button>
-                </div>
+        <div className="admin-main-container">
+            <div className="admin-dashboard-grid">
 
                 {/* KPI Cards */}
                 <div className="admin-kpi-grid">
@@ -247,17 +77,57 @@ export default function AdminDashboard() {
                         title="Total Orders"
                         value={orders.length}
                         icon={<Package size={28} color="#d4af37" />}
+                        trend="up"
                     />
                     <StatCard
                         title="Revenue"
                         value={formatCurrency(orders.reduce((acc, curr) => acc + (parseFloat(curr.total) || 0), 0))}
                         icon={<DollarSign size={28} color="#d4af37" />}
+                        trend="up"
                     />
                     <StatCard
                         title="Customers"
                         value={new Set(orders.map(o => o.customer?.email)).size}
                         icon={<Users size={28} color="#d4af37" />}
+                        trend="stable"
                     />
+                </div>
+
+                <div className="admin-header-v2">
+                    <div className="admin-header-title">
+                        <span>Management</span>
+                        <h1>Order History</h1>
+                    </div>
+                    <div className="admin-header-actions">
+                        <motion.button
+                            onClick={loadOrders}
+                            className="admin-refresh-btn"
+                            style={actionButtonStyle}
+                            whileHover={{
+                                background: '#d4af37',
+                                color: '#fff',
+                                borderColor: '#d4af37',
+                                boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)'
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <RefreshCw size={18} /> Refresh
+                        </motion.button>
+                        <motion.button
+                            onClick={clearAllOrders}
+                            className="admin-clear-btn"
+                            style={{ ...actionButtonStyle, background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
+                            whileHover={{
+                                background: '#dc2626',
+                                color: '#fff',
+                                borderColor: '#dc2626',
+                                boxShadow: '0 5px 15px rgba(220, 38, 38, 0.3)'
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <Trash2 size={18} /> Clear Data
+                        </motion.button>
+                    </div>
                 </div>
 
                 {/* Orders Table Section */}
@@ -279,7 +149,8 @@ export default function AdminDashboard() {
                                         fontSize: '0.9rem',
                                         outline: 'none',
                                         width: '250px',
-                                        color: '#333'
+                                        color: '#333',
+                                        border: '1px solid #d4af37'
                                     }}
                                 />
                             </div>
@@ -340,10 +211,15 @@ export default function AdminDashboard() {
                                             <td style={{ padding: '20px 30px' }}>
                                                 <motion.button
                                                     onClick={() => setSelectedOrder(order)}
-                                                    whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
-                                                    whileTap={{ scale: 0.95 }}
                                                     className="admin-table-btn"
-                                                    style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+                                                    style={{ ...actionButtonStyle, padding: '8px 15px', fontSize: '0.8rem', transition: 'all 0.3s ease' }}
+                                                    whileHover={{
+                                                        background: '#d4af37',
+                                                        color: '#fff',
+                                                        borderColor: '#d4af37',
+                                                        boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)'
+                                                    }}
+                                                    whileTap={{ scale: 0.98 }}
                                                 >
                                                     View Details
                                                 </motion.button>
@@ -356,104 +232,9 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                {/* Modal */}
                 <AnimatePresence>
                     {selectedOrder && (
-                        <div style={{ position: 'fixed', inset: 0, zIndex: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setSelectedOrder(null)}
-                                style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
-                            />
-                            <motion.div
-                                className="admin-modal-content"
-                                initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                                style={{ background: '#fff', width: '100%', maxWidth: '700px', borderRadius: '24px', position: 'relative', zIndex: 1010, overflow: 'hidden', boxShadow: '0 50px 100px rgba(0,0,0,0.3)' }}
-                            >
-                                <div style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fafafa' }}>
-                                    <div>
-                                        <h2 style={{ fontFamily: 'var(--font-heading)', margin: 0, fontSize: '1.5rem' }}>Order #{selectedOrder.id}</h2>
-                                        <p style={{ margin: '5px 0 0', color: '#666', fontSize: '0.9rem' }}>Placed on {new Date(selectedOrder.date).toLocaleString()}</p>
-                                    </div>
-                                    <button onClick={() => setSelectedOrder(null)} style={{ border: 'none', background: 'transparent', fontSize: '1.5rem', cursor: 'pointer', color: '#aaa', padding: '10px' }}>&times;</button>
-                                </div>
-
-                                <div style={{ padding: '30px', maxHeight: '60vh', overflowY: 'auto' }}>
-                                    <div className="admin-modal-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '30px' }}>
-                                        <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px' }}>
-                                            <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Customer</h4>
-                                            <p style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '0 0 5px' }}>{selectedOrder.customer?.firstName} {selectedOrder.customer?.lastName}</p>
-                                            <p style={{ margin: '0 0 5px', color: '#555' }}>{selectedOrder.customer?.email}</p>
-                                            <p style={{ margin: 0, color: '#555' }}>{selectedOrder.customer?.phone}</p>
-                                        </div>
-                                        <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px' }}>
-                                            <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Shipping Address</h4>
-                                            <p style={{ margin: '0 0 5px', color: '#333' }}>{selectedOrder.customer?.address}</p>
-                                            <p style={{ margin: '0 0 5px', color: '#333' }}>{selectedOrder.customer?.city}, {selectedOrder.customer?.state}</p>
-                                            <p style={{ margin: 0, color: '#333' }}>Pincode: {selectedOrder.customer?.pincode}</p>
-                                        </div>
-                                    </div>
-
-                                    <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Items Ordered</h4>
-                                    <div style={{ border: '1px solid #eee', borderRadius: '16px', overflow: 'hidden', marginBottom: '30px' }}>
-                                        {selectedOrder.items?.map((item, idx) => (
-                                            <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 20px', borderBottom: idx !== selectedOrder.items?.length - 1 ? '1px solid #f0f0f0' : 'none', alignItems: 'center' }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                                                    <div style={{ width: '50px', height: '50px', background: '#f0f0f0', borderRadius: '8px', overflow: 'hidden' }}>
-                                                        <img src={item.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                    </div>
-                                                    <div>
-                                                        <div style={{ fontWeight: '600' }}>{item.name}</div>
-                                                        <div style={{ fontSize: '0.85rem', color: '#888' }}>Qty: {item.quantity}</div>
-                                                    </div>
-                                                </div>
-                                                <div style={{ fontWeight: '600' }}>{formatCurrency(item.price * item.quantity)}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.2rem', fontWeight: 'bold', padding: '20px', background: '#fcfcfc', borderRadius: '12px', border: '1px solid #eee' }}>
-                                        <span>Total Amount</span>
-                                        <span style={{ color: '#d4af37' }}>{formatCurrency(selectedOrder.total)}</span>
-                                    </div>
-                                </div>
-
-                                <div style={{ padding: '20px 30px', background: '#fafafa', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                                        <label style={{ fontSize: '0.9rem', fontWeight: '600' }}>Order Status:</label>
-                                        <select
-                                            value={selectedOrder.status || 'Pending'}
-                                            onChange={(e) => {
-                                                const newStatus = e.target.value;
-                                                const updatedOrders = orders.map(o => o.id === selectedOrder.id ? { ...o, status: newStatus } : o);
-                                                setOrders(updatedOrders);
-                                                setSelectedOrder({ ...selectedOrder, status: newStatus });
-                                                localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
-                                            }}
-                                            style={{
-                                                padding: '10px 16px',
-                                                borderRadius: '8px',
-                                                border: '1px solid #ddd',
-                                                outline: 'none',
-                                                fontWeight: '500',
-                                                cursor: 'pointer',
-                                                background: '#fff'
-                                            }}
-                                        >
-                                            <option value="Processing">Processing</option>
-                                            <option value="Shipped">Shipped</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Cancelled">Cancelled</option>
-                                        </select>
-                                    </div>
-                                    <button onClick={() => setSelectedOrder(null)} style={{ padding: '12px 30px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>Close Details</button>
-                                </div>
-                            </motion.div>
-                        </div>
+                        <OrderModal order={selectedOrder} onClose={() => setSelectedOrder(null)} formatCurrency={formatCurrency} orders={orders} setOrders={setOrders} />
                     )}
                 </AnimatePresence>
             </div>
@@ -461,44 +242,256 @@ export default function AdminDashboard() {
     );
 }
 
-const StatCard = ({ title, value, icon, color }) => (
+const StatCard = ({ title, value, icon, trend }) => (
     <motion.div
-        className="luxury-card"
-        whileHover={{ scale: 1.02 }}
+        className="luxury-card stat-card"
+        whileHover={{ scale: 1.02, y: -5 }}
         style={{
-            background: '#1a1a1a',
+            background: 'linear-gradient(145deg, #1e1e1e, #121212)',
             padding: '30px',
-            borderRadius: '20px',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+            borderRadius: '24px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
             display: 'flex',
-            alignItems: 'center',
+            flexDirection: 'column',
             gap: '20px',
-            color: '#fff'
+            color: '#fff',
+            border: '1px solid rgba(212, 175, 55, 0.1)',
+            position: 'relative',
+            overflow: 'hidden'
         }}
     >
+        {/* Subtle Background Glow */}
         <div style={{
-            width: '64px', height: '64px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(212,175,55,0.2)', // Gold tint background
-            color: '#d4af37', // Gold Icon
-            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
-        }}>
-            {icon}
+            position: 'absolute', top: '-50%', right: '-50%', width: '150%', height: '150%',
+            background: 'radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 70%)',
+            zIndex: 0, pointerEvents: 'none'
+        }} />
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', position: 'relative', zIndex: 1 }}>
+            <div style={{
+                width: '64px', height: '64px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(212,175,55,0.15)',
+                color: '#d4af37',
+                border: '1px solid rgba(212,175,55,0.2)'
+            }}>
+                {icon}
+            </div>
+            <div>
+                <h3 style={{ margin: 0, fontSize: '0.8rem', color: '#d4af37', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '5px' }}>{title}</h3>
+                <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#fff', letterSpacing: '-1px' }}>{value}</div>
+            </div>
         </div>
-        <div>
-            <h3 style={{ margin: 0, fontSize: '0.85rem', color: '#d4af37', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '5px' }}>{title}</h3>
-            <div style={{ fontSize: '2rem', fontWeight: '800', color: '#fff', fontFamily: 'var(--font-heading)' }}>{value}</div>
+
+        {/* Mock Sparkline/Trend */}
+        <div style={{ width: '100%', height: '40px', marginTop: '10px', position: 'relative', zIndex: 1 }}>
+            <TrendChart color={trend === 'up' ? '#10b981' : '#d4af37'} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
+                <span style={{ fontSize: '0.75rem', color: trend === 'up' ? '#10b981' : '#888', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {trend === 'up' ? <TrendingUp size={14} /> : null}
+                    {trend === 'up' ? '+12.5% vs last month' : 'Stable'}
+                </span>
+            </div>
         </div>
     </motion.div>
 );
 
-// styles removed
+const TrendChart = ({ color }) => (
+    <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+        <path
+            d="M0,35 Q10,32 20,38 T40,25 T60,30 T80,15 T100,20"
+            fill="none"
+            stroke={color}
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+        <path
+            d="M0,35 Q10,32 20,38 T40,25 T60,30 T80,15 T100,20 V40 H0 Z"
+            fill={`url(#gradient-${color})`}
+            opacity="0.1"
+        />
+        <defs>
+            <linearGradient id={`gradient-${color}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={color} />
+                <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+        </defs>
+    </svg>
+);
+
+const StatusDropdown = ({ currentStatus, onStatusChange }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const statuses = ['Processing', 'Shipped', 'Delivered', 'Cancelled'];
+
+    return (
+        <div style={{ position: 'relative', width: '160px' }}>
+            <motion.div
+                onClick={() => setIsOpen(!isOpen)}
+                whileHover={{ borderColor: '#d4af37', boxShadow: '0 0 10px rgba(212, 175, 55, 0.2)' }}
+                style={{
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    border: '1px solid #ddd',
+                    background: '#fff',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    fontSize: '0.85rem',
+                    fontWeight: '600',
+                    transition: 'border-color 0.3s'
+                }}
+            >
+                {currentStatus}
+                <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+                    <ChevronDown size={16} />
+                </motion.div>
+            </motion.div>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        <div
+                            style={{ position: 'fixed', inset: 0, zIndex: 1100 }}
+                            onClick={() => setIsOpen(false)}
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            style={{
+                                position: 'absolute',
+                                bottom: '100%',
+                                left: 0,
+                                right: 0,
+                                background: '#fff',
+                                borderRadius: '12px',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+                                overflow: 'hidden',
+                                marginBottom: '10px',
+                                zIndex: 1101,
+                                border: '1px solid #f0f0f0'
+                            }}
+                        >
+                            {statuses.map(status => (
+                                <motion.div
+                                    key={status}
+                                    onClick={() => {
+                                        onStatusChange(status);
+                                        setIsOpen(false);
+                                    }}
+                                    whileHover={{ background: '#d4af37', color: '#fff' }}
+                                    style={{
+                                        padding: '10px 15px',
+                                        cursor: 'pointer',
+                                        fontSize: '0.85rem',
+                                        fontWeight: '500',
+                                        color: currentStatus === status ? '#d4af37' : '#333',
+                                        background: currentStatus === status ? '#f9f9f9' : '#fff',
+                                        transition: 'color 0.2s'
+                                    }}
+                                >
+                                    {status}
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
+const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
+        />
+        <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            style={{ background: '#fff', width: '100%', maxWidth: '700px', borderRadius: '24px', position: 'relative', zIndex: 1010, overflow: 'hidden', boxShadow: '0 50px 100px rgba(0,0,0,0.3)' }}
+        >
+            <div style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fafafa' }}>
+                <div>
+                    <h2 style={{ fontFamily: 'var(--font-heading)', margin: 0, fontSize: '1.5rem' }}>Order #{order.id}</h2>
+                    <p style={{ margin: '5px 0 0', color: '#666', fontSize: '0.9rem' }}>Placed on {new Date(order.date).toLocaleString()}</p>
+                </div>
+                <button onClick={onClose} style={{ border: 'none', background: 'transparent', fontSize: '1.5rem', cursor: 'pointer', color: '#aaa' }}>&times;</button>
+            </div>
+
+            <div style={{ padding: '30px', maxHeight: '60vh', overflowY: 'auto' }}>
+                <div className="admin-modal-grid-v2">
+                    <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px', border: '1px solid #d4af37' }}>
+                        <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Customer</h4>
+                        <p style={{ fontWeight: 'bold', margin: '0 0 5px' }}>{order.customer?.firstName} {order.customer?.lastName}</p>
+                        <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.email}</p>
+                        <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.phone}</p>
+                    </div>
+                    <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px', border: '1px solid #d4af37' }}>
+                        <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Address</h4>
+                        <p style={{ margin: '0 0 5px', color: '#333', fontSize: '0.9rem' }}>{order.customer?.address}</p>
+                        <p style={{ margin: 0, color: '#333', fontSize: '0.9rem' }}>{order.customer?.city}, {order.customer?.state}</p>
+                    </div>
+                </div>
+
+                <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Items Ordered</h4>
+                <div style={{ border: '1px solid #d4af37', borderRadius: '16px', overflow: 'hidden', marginBottom: '30px' }}>
+                    {order.items?.map((item, idx) => (
+                        <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 20px', borderBottom: idx !== order.items?.length - 1 ? '1px solid #f0f0f0' : 'none', alignItems: 'center' }}>
+                            <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                                <div style={{ width: '50px', height: '50px', background: '#f0f0f0', borderRadius: '8px', overflow: 'hidden' }}>
+                                    <img src={item.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                </div>
+                                <div>
+                                    <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.name}</div>
+                                    <div style={{ fontSize: '0.8rem', color: '#888' }}>Qty: {item.quantity}</div>
+                                </div>
+                            </div>
+                            <div style={{ fontWeight: '600' }}>{formatCurrency(item.price * item.quantity)}</div>
+                        </div>
+                    ))}
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.1rem', fontWeight: 'bold', padding: '15px 20px', background: '#fcfcfc', borderRadius: '12px', border: '1px solid #d4af37' }}>
+                    <span>Total Amount</span>
+                    <span style={{ color: '#d4af37' }}>{formatCurrency(order.total)}</span>
+                </div>
+            </div>
+
+            <div style={{ padding: '20px 30px', background: '#fafafa', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <label style={{ fontSize: '0.85rem', fontWeight: '600' }}>Status:</label>
+                    <StatusDropdown
+                        currentStatus={order.status || 'Processing'}
+                        onStatusChange={(newStatus) => {
+                            const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
+                            setOrders(updatedOrders);
+                            localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+                        }}
+                    />
+                </div>
+                <motion.button
+                    onClick={onClose}
+                    whileHover={{ background: '#d4af37', color: '#fff', boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)' }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{ padding: '10px 25px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.3s' }}
+                >
+                    Close
+                </motion.button>
+            </div>
+        </motion.div>
+    </div>
+);
 
 const actionButtonStyle = {
     padding: '10px 20px',
-    borderRadius: '8px',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: '#e5e5e5',
+    borderRadius: '12px',
+    border: '1px solid #e5e5e5',
     background: '#fff',
     cursor: 'pointer',
     display: 'flex',
@@ -506,11 +499,9 @@ const actionButtonStyle = {
     gap: '8px',
     fontWeight: '600',
     fontSize: '0.9rem',
-    color: '#333',
-    transition: 'all 0.2s'
+    color: '#333'
 };
 
-// styles removed
 const getStatusColor = (status) => {
     switch (status) {
         case 'Delivered': return { bg: '#dcfce7', text: '#166534' };

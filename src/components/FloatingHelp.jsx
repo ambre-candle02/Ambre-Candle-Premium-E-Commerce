@@ -1,10 +1,17 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageCircle, X, Phone, Mail, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FloatingHelp() {
     const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
@@ -70,7 +77,7 @@ export default function FloatingHelp() {
                             </motion.a>
 
                             <motion.a
-                                href="mailto:gautampratibha623@gmail.com"
+                                href="mailto:ambrecandle@gmail.com"
                                 style={itemStyle}
                                 whileHover={{
                                     scale: 1.02,
@@ -82,7 +89,7 @@ export default function FloatingHelp() {
                                 <div style={iconBoxStyle('#f3e5f5', '#7b1fa2')}><Mail size={20} /></div>
                                 <div>
                                     <div style={{ fontWeight: '600', fontSize: '0.95rem' }}>Email Us</div>
-                                    <div style={{ fontSize: '0.8rem', color: '#666' }}>gautampratibha623@gmail.com</div>
+                                    <div style={{ fontSize: '0.8rem', color: '#666' }}>ambrecandle@gmail.com</div>
                                 </div>
                             </motion.a>
                         </div>
@@ -99,8 +106,8 @@ export default function FloatingHelp() {
                     height: '60px',
                     borderRadius: '50%',
                     background: '#1a1a1a',
-                    color: '#fff',
-                    border: 'none',
+                    color: '#d4af37',
+                    border: '2px solid #d4af37',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -108,7 +115,7 @@ export default function FloatingHelp() {
                     cursor: 'pointer'
                 }}
             >
-                {isOpen ? <X size={28} /> : <HelpCircle size={32} />}
+                {isOpen ? <X size={28} /> : <HelpCircle size={32} color="#d4af37" />}
             </motion.button>
         </div>
     );

@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, Heart, Leaf, Award, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import SafeImage from '@/src/components/SafeImage';
 import { useRef } from 'react';
 
 // Animation Variants
@@ -46,18 +46,18 @@ export default function AboutPage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                background: '#0a0a0a',
+                background: 'linear-gradient(135deg, #2d1f14 0%, #3f2a1a 100%)',
                 color: '#fff',
-                paddingTop: '80px', // Final tuned for perfect balance
+                paddingTop: '160px', // Increased to avoid header overlap
                 paddingBottom: '80px'
             }}>
-                {/* Background Video/Image Placeholder - Dark & Premium */}
+                {/* Background Video/Image Placeholder - Warm Premium */}
                 <div style={{
                     position: 'absolute',
                     inset: 0,
                     backgroundImage: 'url("/images/noise.png")', // Try to use noise if valid or fallback
-                    background: 'radial-gradient(circle at center, #2a2a2a 0%, #000 100%)',
-                    opacity: 0.8,
+                    background: 'radial-gradient(circle at center, #4d3421 0%, #2d1f14 100%)',
+                    opacity: 0.7,
                     zIndex: 0
                 }}></div>
 
@@ -103,7 +103,7 @@ export default function AboutPage() {
                             Experience the art of illumination with Ambre Candle. Where sustainability meets luxury in every hand-poured drop.
                         </motion.p>
                         <motion.div variants={fadeInUp}>
-                            <Link href="/shop" style={{
+                            <Link href="/collection" style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '12px',
@@ -139,7 +139,8 @@ export default function AboutPage() {
             <section style={{
                 padding: '80px 0',
                 borderBottom: '1px solid rgba(212,175,55,0.2)',
-                background: '#fff'
+                background: 'linear-gradient(135deg, #f5f1e8 0%, #ede7d9 100%)',
+                borderTop: '1px solid rgba(212,175,55,0.15)'
             }}>
                 <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
                     <div style={{
@@ -215,13 +216,7 @@ export default function AboutPage() {
                                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
                             >
-                                <Image
-                                    src="https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634"
-                                    alt="Artisan pouring a candle"
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    style={{ objectFit: 'cover' }}
-                                />
+                                <SafeImage src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770899720/ambre-candles/Favourites/fyrg1vwl7uzm2nbrl8ky.jpg" alt="Artisan pouring a candle" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.1)' }}></div>
                             </div>
                             {/* Floating Element removed as it was hidden/redundant */}
@@ -308,7 +303,7 @@ export default function AboutPage() {
                                     background: 'rgba(255,255,255,0.05)',
                                     padding: '40px',
                                     borderRadius: '24px',
-                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    border: '1px solid #d4af37',
                                     transition: 'background 0.3s ease'
                                 }}
                                 initial={{ opacity: 0, y: 30 }}
@@ -351,7 +346,7 @@ export default function AboutPage() {
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(3rem, 5vw, 4.5rem)', color: '#1b1f1c', marginBottom: '32px', lineHeight: '1.1' }}>
                             Ready to Transform<br />Your Space?
                         </h2>
-                        <Link href="/shop" style={{
+                        <Link href="/collection" style={{
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '12px',
