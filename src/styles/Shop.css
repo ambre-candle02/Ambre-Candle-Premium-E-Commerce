@@ -410,17 +410,18 @@
 }
 
 .btn-quickview:hover {
-    background: #1a1a1a !important;
-    color: #d4af37 !important;
-    /* Gold Icon on Hover */
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    background: #d4af37 !important;
+    /* Radiant Gold Background */
+    color: #1a1a1a !important;
+    /* Dark Icon/Text */
+    transform: scale(1.06);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
 }
 
 .btn-quickview:hover svg {
-    color: #d4af37 !important;
-    stroke: #d4af37 !important;
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6));
+    color: #1a1a1a !important;
+    stroke: #1a1a1a !important;
+    filter: none;
 }
 
 .btn-add-cart {
