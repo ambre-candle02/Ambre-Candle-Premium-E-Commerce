@@ -198,7 +198,8 @@
     border-radius: 32px;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr;
+    /* Symmetric Split */
     position: relative;
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4);
     border: 1px solid #d4af37;
@@ -208,10 +209,15 @@
 }
 
 .qv-content {
-    padding: 60px 50px;
+    padding: 60px;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #fff 0%, #fdfbf7 100%);
+    justify-content: center;
+    /* Vertical Center */
+    text-align: center;
+    /* Horizontal Center for balance */
+    align-items: center;
+    background: linear-gradient(135deg, #fff 0%, #fefcf9 100%);
     position: relative;
     overflow-y: auto;
 }
@@ -291,19 +297,22 @@
 }
 
 .qv-desc {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: #555;
     margin-bottom: 45px;
     font-weight: 300;
-    max-width: 90%;
+    max-width: 100%;
+    /* Fill the width */
 }
 
 .qv-actions {
     display: flex;
     gap: 15px;
-    margin-top: auto;
+    margin-top: 10px;
     padding-top: 20px;
+    width: 100%;
+    /* Ensure full prominence */
 }
 
 .qv-view-details {
