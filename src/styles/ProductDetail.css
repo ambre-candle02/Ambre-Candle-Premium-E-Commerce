@@ -299,8 +299,23 @@
 
 @media (max-width: 768px) {
     .product-detail-v5 {
-        padding-top: calc(var(--header-height-mobile) + 20px);
+        padding-top: calc(var(--header-height-mobile) + 15px);
         padding-bottom: 80px;
+    }
+
+    .main-visual-v5 {
+        padding: 12px;
+        /* Reduced padding to prevent clipping */
+        border-radius: 25px;
+        border-width: 2px;
+        margin-bottom: 10px;
+    }
+
+    .main-visual-container {
+        min-height: auto;
+        /* Remove restrictive height */
+        aspect-ratio: 1/1;
+        border-radius: 18px;
     }
 
     .elite-info-card {
