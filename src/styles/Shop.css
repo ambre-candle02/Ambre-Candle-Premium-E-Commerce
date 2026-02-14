@@ -35,10 +35,10 @@
 
 .shop-sidebar {
     position: sticky;
-    top: 140px;
-    height: calc(100vh - 180px);
+    top: 130px;
+    height: calc(100vh - 150px);
     background: linear-gradient(135deg, #2d1f14 0%, #3f2a1a 100%);
-    padding: 30px 15px;
+    padding: 35px 20px;
     border-radius: 28px;
     border: 2px solid #d4af37;
     /* Prominent gold border */
@@ -73,18 +73,20 @@
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
 }
 
 .sidebar-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 20px;
+    padding: 16px 20px;
+    /* Slimmer padding */
     color: #d4af37;
     text-decoration: none;
-    font-size: 1.05rem;
-    border-radius: 20px;
+    font-size: 1rem;
+    /* Slightly smaller font */
+    border-radius: 18px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: rgba(212, 175, 55, 0.08);
     border: 1px solid rgba(212, 175, 55, 0.2);
@@ -95,7 +97,7 @@
 .sidebar-item:hover {
     background: linear-gradient(135deg, #b8860b 0%, #8b6914 100%);
     color: #fff;
-    transform: translateX(12px);
+    transform: translateX(10px);
     border-color: #d4af37;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
@@ -107,7 +109,7 @@
     font-weight: 700;
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
     border-color: #fff;
-    transform: scale(1.04);
+    transform: scale(1.02);
     cursor: pointer;
 }
 
