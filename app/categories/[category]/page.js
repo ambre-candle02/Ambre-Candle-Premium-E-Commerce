@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState, Suspense } from 'react';
+import { useMemo, useState, Suspense, useEffect } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -8,50 +8,94 @@ import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
 import { PRODUCTS } from '@/src/config/products';
 import { PRODUCT_CATEGORIES } from '@/src/config/constants';
-import { Heart, ShoppingBag, Check, ArrowLeft } from 'lucide-react';
+import { Heart, ShoppingBag, Check, ArrowLeft, Eye, X } from 'lucide-react';
 import '@/src/styles/Shop.css';
 import '@/src/styles/Categories.css';
 
-const AddToCartButton = ({ product }) => {
+const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct }) => {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
 
-    const handleClick = () => {
-        addToCart({ ...product, quantity: 1 });
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart({ ...p, quantity: 1 });
         setAdded(true);
         setTimeout(() => setAdded(false), 2000);
     };
 
     return (
-        <motion.button
-            whileTap={{ scale: 0.9 }}
-            className={`btn-add-cart ${added ? 'added' : ''}`}
-            onClick={handleClick}
+        <motion.div
+            layout
+            className="category-artisan-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
         >
-            <AnimatePresence mode="wait">
-                {added ? (
-                    <motion.div key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                        <Check size={16} />
-                    </motion.div>
-                ) : (
-                    <motion.div key="bag" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                        <ShoppingBag size={16} />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.button>
+            <div className="card-img-wrapper">
+                <Link href={`/product/${p.id}`}>
+                    <SafeImage
+                        src={p.image}
+                        alt={p.name}
+                    />
+                </Link>
+
+                <div className="shop-card-overlay">
+                    <motion.button
+                        whileTap={{ scale: 0.8 }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setQuickViewProduct(p);
+                        }}
+                        className="btn-quickview"
+                    >
+                        <Eye size={16} />
+                    </motion.button>
+
+                    <motion.button
+                        whileTap={{ scale: 0.9 }}
+                        className={`btn-add-cart ${added ? 'added' : ''}`}
+                        onClick={handleAddToCart}
+                    >
+                        {added ? <Check size={18} /> : <ShoppingBag size={18} />}
+                    </motion.button>
+                </div>
+
+                <button
+                    className="card-action-btn category-wishlist-btn"
+                    style={{
+                        background: 'rgba(255,255,255,0.8)',
+                        backdropFilter: 'blur(4px)'
+                    }}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        toggleWishlist(p);
+                    }}
+                >
+                    <Heart
+                        size={18}
+                        fill={isInWishlist(p.id) ? "#d4af37" : "none"}
+                        color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"}
+                    />
+                </button>
+            </div>
+
+            <div className="card-content">
+                <h3 className="card-title">{p.name}</h3>
+                <p className="card-price"><span className="currency-symbol">₹</span>{p.price}</p>
+            </div>
+        </motion.div>
     );
 };
-
-
 
 function CategoryContent() {
     const params = useParams();
     const searchParams = useSearchParams();
-    const sort = searchParams.get('sort');
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    const [quickViewProduct, setQuickViewProduct] = useState(null);
 
     const categoryName = decodeURIComponent(params.category);
-    const { toggleWishlist, isInWishlist } = useWishlist();
 
     const filteredProducts = useMemo(() => {
         const sort = searchParams.get('sort');
@@ -75,45 +119,14 @@ function CategoryContent() {
             <div className="category-results-grid">
                 <AnimatePresence mode='popLayout'>
                     {filteredProducts.map((p, i) => (
-                        <motion.div
-                            layout
+                        <CategoryCard
                             key={p.id}
-                            className="category-artisan-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
-                        >
-                            <div className="card-img-wrapper">
-                                <Link href={`/product/${p.id}`}>
-                                    <SafeImage
-                                        src={p.image}
-                                        alt={p.name}
-                                    />
-                                </Link>
-
-                                {/* Wishlist Button */}
-                                <button
-                                    className="card-action-btn category-wishlist-btn"
-                                    onClick={() => toggleWishlist(p)}
-                                >
-                                    <Heart
-                                        size={18}
-                                        fill={isInWishlist(p.id) ? "#d4af37" : "none"}
-                                        color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"}
-                                    />
-                                </button>
-
-                                {/* Add to Cart Button */}
-                                <div className="card-action-btn category-cart-btn">
-                                    <AddToCartButton product={p} />
-                                </div>
-                            </div>
-
-                            <div className="card-content">
-                                <h3 className="card-title">{p.name}</h3>
-                                <p className="card-price"><span className="currency-symbol">₹</span>{p.price}</p>
-                            </div>
-                        </motion.div>
+                            p={p}
+                            i={i}
+                            isInWishlist={isInWishlist}
+                            toggleWishlist={toggleWishlist}
+                            setQuickViewProduct={setQuickViewProduct}
+                        />
                     ))}
                 </AnimatePresence>
             </div>
@@ -126,6 +139,55 @@ function CategoryContent() {
                     </Link>
                 </div>
             )}
+
+            {/* Quick View Modal */}
+            <AnimatePresence>
+                {quickViewProduct && (
+                    <div className="quickview-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
+                        <motion.div
+                            className="qv-modal"
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            style={{ background: '#fff', width: '100%', maxWidth: '900px', borderRadius: '25px', overflow: 'hidden', position: 'relative' }}
+                        >
+                            <button
+                                style={{ position: 'absolute', top: '20px', right: '20px', background: '#f5f5f5', padding: '8px', borderRadius: '50%', zIndex: 2 }}
+                                onClick={() => setQuickViewProduct(null)}
+                            >
+                                <X size={20} />
+                            </button>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+                                <div style={{ position: 'relative', height: '500px' }}>
+                                    <SafeImage src={quickViewProduct.image} alt="Ambre Candle" className="shop-unit-image" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                                </div>
+                                <div style={{ padding: '50px' }}>
+                                    <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>{quickViewProduct.productType}</span>
+                                    <h2 style={{ fontSize: '2rem', margin: '15px 0', fontFamily: 'var(--font-heading)', color: '#1a1a1a' }}>{quickViewProduct.name}</h2>
+                                    <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--color-accent)', marginBottom: '30px' }}><span className="currency-symbol">₹</span>{quickViewProduct.price}</div>
+                                    <p style={{ color: '#666', lineHeight: '1.8', marginBottom: '40px' }}>{quickViewProduct.desc}</p>
+                                    <div style={{ display: 'flex', gap: '15px' }}>
+                                        <button
+                                            className="btn-primary"
+                                            style={{ flex: 1, height: '55px', borderRadius: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+                                            onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
+                                        >
+                                            <ShoppingBag size={18} /> Add to Cart
+                                        </button>
+                                    </div>
+                                    <Link
+                                        href={`/product/${quickViewProduct.id}`}
+                                        style={{ display: 'block', textAlign: 'center', marginTop: '20px', color: '#999', textDecoration: 'underline', fontSize: '0.9rem' }}
+                                        onClick={() => setQuickViewProduct(null)}
+                                    >
+                                        View Full Details
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

@@ -150,11 +150,18 @@
 .category-wishlist-btn {
     top: 15px;
     right: 15px;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
 }
 
-.category-cart-btn {
-    top: 58px;
-    right: 15px;
+.category-wishlist-btn:hover {
+    background: #fff !important;
+    transform: scale(1.1);
 }
 
 /* ========================================
