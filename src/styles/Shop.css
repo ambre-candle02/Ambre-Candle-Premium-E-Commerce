@@ -113,6 +113,45 @@
     cursor: pointer;
 }
 
+/* Category Bar (Mobile) */
+.category-bar {
+    display: none;
+    /* Hidden on desktop, shown on mobile */
+    gap: 12px;
+    overflow-x: auto;
+    padding: 15px 5px;
+    margin-bottom: 30px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.category-pill {
+    display: inline-block;
+    padding: 10px 22px;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50px;
+    color: #5d4037;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.category-pill.active {
+    background: #d4af37;
+    color: #fff;
+    border-color: #d4af37;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+
 /* Price Slider Styling */
 .price-slider-container {
     padding: 10px 5px;
@@ -332,14 +371,16 @@
 }
 
 /* Product Grid & Elite Artisan Cards */
-.product-wall {
+.product-wall,
+.misa-products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
     padding: 20px 0;
 }
 
-.elite-artisan-card {
+.elite-artisan-card,
+.misa-product-card {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
@@ -349,7 +390,8 @@
     flex-direction: column;
 }
 
-.elite-artisan-card:hover {
+.elite-artisan-card:hover,
+.misa-product-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
@@ -567,9 +609,20 @@
         height: 36px;
     }
 
-    .product-wall {
+    .product-wall,
+    .misa-products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+    }
+
+    .category-bar {
+        display: flex;
+        /* Show pill bar on mobile */
+    }
+
+    .shop-sidebar {
+        display: none;
+        /* Hide sidebar list on mobile as we now have pills */
     }
 }
 
