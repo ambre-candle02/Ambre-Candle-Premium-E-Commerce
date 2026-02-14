@@ -10,12 +10,18 @@ export default function CategoriesPage() {
     return (
         <div className="categories-explorer-right">
             {/* HERO SECTION - Right Side */}
-            <div className="categories-hero-container">
+            <div className="categories-hero-container" style={{ padding: '20px' }}>
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="categories-hero-card"
+                    style={{
+                        minHeight: '400px',
+                        border: '2px solid #d4af37',
+                        borderRadius: '30px',
+                        overflow: 'hidden'
+                    }}
                 >
                     <SafeImage
                         src={DEFAULT_CAT_IMAGE}
