@@ -401,8 +401,8 @@
     aspect-ratio: 1;
     overflow: hidden;
     background: #f9f9f9;
-    border: 1px solid #d4af37 !important;
-    /* Elite Permanent Gold Border */
+    border: 3px solid #d4af37 !important;
+    /* Thick Elite Gold Border */
     border-radius: 20px;
 }
 
@@ -618,9 +618,11 @@
         padding: 10px 0 !important;
     }
 
-    .misa-product-card.mobile-hover .shop-card-overlay {
+    .misa-product-card.mobile-hover .shop-card-overlay,
+    .shop-card-overlay {
         opacity: 1 !important;
         transform: translateY(0) !important;
+        visibility: visible !important;
     }
 
     .shop-card-overlay {
