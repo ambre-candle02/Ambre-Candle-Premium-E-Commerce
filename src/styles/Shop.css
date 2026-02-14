@@ -279,8 +279,15 @@
 }
 
 .btn-quickview:hover {
-    background: #fff;
+    background: #1a1a1a;
+    color: #d4af37;
+    /* Gold Icon on Hover */
     transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.btn-quickview:hover svg {
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6));
 }
 
 .btn-add-cart {
@@ -322,9 +329,17 @@
     font-weight: 400;
 }
 
+.u-price {
+    font-size: 1.2rem;
+    color: #d4af37 !important;
+    /* Premium Gold Price */
+    font-weight: 700;
+}
+
 .unit-meta p {
     font-size: 1.2rem;
-    color: #1a1a1a;
+    color: #d4af37 !important;
+    /* Premium Gold Price */
     font-weight: 700;
 }
 
