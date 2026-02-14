@@ -85,6 +85,11 @@
     box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
 }
 
+.category-artisan-card:hover .shop-card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .card-img-wrapper {
     position: relative;
     border-radius: 14px;
@@ -125,10 +130,11 @@
 }
 
 .card-price {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #1a1a1a;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
 }
 
 .card-action-btn {
