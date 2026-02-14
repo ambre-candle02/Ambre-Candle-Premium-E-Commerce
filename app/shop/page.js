@@ -1,6 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/src/context/CartContext';
@@ -468,11 +469,20 @@ export default function Shop() {
                                 className="mobile-filter-btn"
                                 onClick={() => setIsFilterOpen(true)}
                                 style={{
-                                    /* display: 'none',  handled by CSS media query */
-                                    padding: '8px 16px', border: '1px solid #ddd', borderRadius: '5px', background: '#fff', fontSize: '0.9rem', alignItems: 'center', gap: '8px'
+                                    padding: '10px 20px',
+                                    border: '2px solid #d4af37',
+                                    borderRadius: '30px',
+                                    background: '#fff',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '700',
+                                    color: '#d4af37',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '8px',
+                                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.1)'
                                 }}
                             >
-                                <span style={{ fontSize: '1.2rem' }}>≡</span> Filters
+                                <Filter size={16} /> Filters
                             </button>
 
                             <span style={{ color: '#333', fontSize: '0.9rem', fontWeight: '600' }}>Showing {sortedProducts.length} results</span>
