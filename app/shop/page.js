@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
 import { Heart, Search, X, ShoppingBag, Check, Filter } from 'lucide-react';
-import '@/src/styles/Shop.css'; // Re-importing the CSS file
+import '@/src/styles/Shop.css';
 
 const products = [
     {
@@ -351,7 +351,7 @@ const AddToCartButton = ({ product }) => {
     );
 };
 
-export default function Shop() {
+function ShopContent() {
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
     const [sortBy, setSortBy] = useState('Featured');
@@ -469,20 +469,11 @@ export default function Shop() {
                                 className="mobile-filter-btn"
                                 onClick={() => setIsFilterOpen(true)}
                                 style={{
-                                    padding: '10px 20px',
-                                    border: '2px solid #d4af37',
-                                    borderRadius: '30px',
-                                    background: '#fff',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '700',
-                                    color: '#d4af37',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '8px',
-                                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.1)'
+                                    /* display: 'none',  handled by CSS media query */
+                                    padding: '8px 16px', border: '1px solid #ddd', borderRadius: '5px', background: '#fff', fontSize: '0.9rem', alignItems: 'center', gap: '8px'
                                 }}
                             >
-                                <Filter size={16} /> Filters
+                                <span style={{ fontSize: '1.2rem' }}>≡</span> Filters
                             </button>
 
                             <span style={{ color: '#333', fontSize: '0.9rem', fontWeight: '600' }}>Showing {sortedProducts.length} results</span>
@@ -584,7 +575,7 @@ export default function Shop() {
                 </div >
 
                 {/* Quick View Modal */}
-                < AnimatePresence >
+                <AnimatePresence>
                     {quickViewProduct && (
                         <div className="quickview-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
                             <motion.div
@@ -637,8 +628,23 @@ export default function Shop() {
                         </div>
                     )
                     }
-                </AnimatePresence >
-            </div >
-        </div >
+                </AnimatePresence>
+            </div>
+        </div>
+    );
+}
+
+export default function Shop() {
+    return (
+        <Suspense fallback={
+            <div className="flex-center" style={{ minHeight: '100vh', background: '#fdfbf7' }}>
+                <div className="loading-shimmer" style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.2rem', color: '#d4af37', letterSpacing: '4px' }}>AMBRE BOUTIQUE</div>
+                    <div style={{ fontSize: '0.8rem', color: '#999', marginTop: '10px' }}>Loading Collection...</div>
+                </div>
+            </div>
+        }>
+            <ShopContent />
+        </Suspense>
     );
 }

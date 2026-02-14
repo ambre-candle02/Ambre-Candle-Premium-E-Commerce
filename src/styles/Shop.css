@@ -92,7 +92,7 @@
 }
 
 .filter-group h3 {
-    font-size: 0.85rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     color: #d4af37;
@@ -203,7 +203,7 @@
 .price-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #333;
     margin-top: 5px;
@@ -233,7 +233,7 @@
     background: #fff;
     padding: 8px 12px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #333;
     cursor: pointer;
@@ -309,7 +309,7 @@
 }
 
 .unit-meta h3 {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     /* Petit Font */
     font-weight: 600;
     text-transform: uppercase;
@@ -322,7 +322,7 @@
 }
 
 .unit-meta p {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-accent);
     margin-top: auto;
@@ -331,7 +331,7 @@
 /* Petit Grid */
 .product-wall {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     /* Very compact */
     gap: 15px;
 }
@@ -393,31 +393,61 @@
 }
 
 @media (max-width: 500px) {
-@media (max-width: 800px) {
-    .sidebar-shop-container {
-        display: block !important;
+    .product-wall {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Responsive Refinement (Desktop Protected) --- */
+
+@media (max-width: 1024px) {
+    .shop-layout {
+        grid-template-columns: 220px 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 850px) {
+    .shop-layout {
+        grid-template-columns: 1fr;
     }
 
     .shop-sidebar {
         display: none !important;
     }
 
+    .sidebar-shop-container {
+        display: block !important;
+    }
+
     .category-mobile-nav {
         display: flex !important;
     }
+
+    .mobile-filter-btn {
+        display: flex !important;
+    }
+
+    .product-wall {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    .boutique-header h1 {
+        font-size: 3rem !important;
+    }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .product-wall {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
     }
-    
+
     .boutique-header h1 {
         font-size: 2.2rem !important;
     }
 
-    /* Fixed Categories Hero for Small Screens */
     .categories-hero-overlay h1 {
         font-size: 2rem !important;
         letter-spacing: 2px !important;
