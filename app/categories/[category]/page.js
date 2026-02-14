@@ -143,46 +143,48 @@ function CategoryContent() {
             {/* Quick View Modal */}
             <AnimatePresence>
                 {quickViewProduct && (
-                    <div className="quickview-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
+                    <div className="quickview-overlay" onClick={() => setQuickViewProduct(null)}>
                         <motion.div
                             className="qv-modal"
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            style={{ background: '#fff', width: '100%', maxWidth: '900px', borderRadius: '25px', overflow: 'hidden', position: 'relative' }}
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <button
-                                style={{ position: 'absolute', top: '20px', right: '20px', background: '#f5f5f5', padding: '8px', borderRadius: '50%', zIndex: 2 }}
+                                className="qv-close-btn"
                                 onClick={() => setQuickViewProduct(null)}
                             >
                                 <X size={20} />
                             </button>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-                                <div style={{ position: 'relative', height: '500px' }}>
-                                    <SafeImage src={quickViewProduct.image} alt="Ambre Candle" className="shop-unit-image" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                            <div className="qv-image-side">
+                                <SafeImage src={quickViewProduct.image} alt={quickViewProduct.name} />
+                            </div>
+                            <div className="qv-content">
+                                <span className="qv-category">{quickViewProduct.productType}</span>
+                                <h2 className="qv-title">{quickViewProduct.name}</h2>
+                                <div className="qv-price">
+                                    <span className="currency-symbol">₹</span>{quickViewProduct.price}
                                 </div>
-                                <div style={{ padding: '50px' }}>
-                                    <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>{quickViewProduct.productType}</span>
-                                    <h2 style={{ fontSize: '2rem', margin: '15px 0', fontFamily: 'var(--font-heading)', color: '#1a1a1a' }}>{quickViewProduct.name}</h2>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--color-accent)', marginBottom: '30px' }}><span className="currency-symbol">₹</span>{quickViewProduct.price}</div>
-                                    <p style={{ color: '#666', lineHeight: '1.8', marginBottom: '40px' }}>{quickViewProduct.desc}</p>
-                                    <div style={{ display: 'flex', gap: '15px' }}>
-                                        <button
-                                            className="btn-primary"
-                                            style={{ flex: 1, height: '55px', borderRadius: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
-                                            onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
-                                        >
-                                            <ShoppingBag size={18} /> Add to Cart
-                                        </button>
-                                    </div>
-                                    <Link
-                                        href={`/product/${quickViewProduct.id}`}
-                                        style={{ display: 'block', textAlign: 'center', marginTop: '20px', color: '#999', textDecoration: 'underline', fontSize: '0.9rem' }}
-                                        onClick={() => setQuickViewProduct(null)}
+                                <p className="qv-desc">{quickViewProduct.desc}</p>
+
+                                <div className="qv-actions">
+                                    <button
+                                        className="btn-primary"
+                                        style={{ flex: 1, height: '60px' }}
+                                        onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
                                     >
-                                        View Full Details
-                                    </Link>
+                                        <ShoppingBag size={20} /> Add to Cart
+                                    </button>
                                 </div>
+
+                                <Link
+                                    href={`/product/${quickViewProduct.id}`}
+                                    className="qv-view-details"
+                                    onClick={() => setQuickViewProduct(null)}
+                                >
+                                    View Full Product Details
+                                </Link>
                             </div>
                         </motion.div>
                     </div>
