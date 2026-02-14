@@ -12,7 +12,9 @@ import {
     Search,
     ShoppingBag,
     Menu,
-    X
+    X,
+    Eye,
+    EyeOff
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -25,6 +27,7 @@ export default function AdminLayout({ children }) {
     const [password, setPassword] = useState('');
     const [mounted, setMounted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
 
@@ -59,7 +62,7 @@ export default function AdminLayout({ children }) {
         router.push('/admin');
     };
 
-    if (!mounted) return <div style={{ minHeight: '100vh', background: '#f8f8f8' }}></div>;
+    if (!mounted) return <div style={{ minHeight: '100vh', background: '#f8f8f8' }} suppressHydrationWarning></div>;
 
     if (!isAuthenticated) {
         return (
@@ -103,6 +106,7 @@ export default function AdminLayout({ children }) {
                                 borderRadius: '30px',
                                 filter: 'brightness(0.75)',
                                 boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+                                border: '2px solid #d4af37'
                             }}
                         />
                         <motion.div
@@ -155,13 +159,20 @@ export default function AdminLayout({ children }) {
                                     <div className="modern-input-wrapper">
                                         <Lock size={18} className="modern-input-icon" />
                                         <input
-                                            type="password"
+                                            type={showPassword ? "text" : "password"}
                                             className="modern-input"
                                             placeholder="Password"
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
                                             required
                                         />
+                                        <button
+                                            type="button"
+                                            className="password-toggle-btn"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        </button>
                                     </div>
                                 </div>
 

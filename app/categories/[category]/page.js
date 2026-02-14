@@ -111,7 +111,7 @@ function CategoryContent() {
 
                             <div className="card-content">
                                 <h3 className="card-title">{p.name}</h3>
-                                <p className="card-price">₹{p.price}</p>
+                                <p className="card-price"><span className="currency-symbol">₹</span>{p.price}</p>
                             </div>
                         </motion.div>
                     ))}

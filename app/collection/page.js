@@ -47,7 +47,7 @@ function CollectionContent() {
                         padding: '80px 50px',
                         borderRadius: '28px',
                         boxShadow: '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,175,55,0.2)',
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        border: '2px solid #d4af37',
                         position: 'relative',
                         overflow: 'hidden'
                     }}
@@ -254,7 +254,7 @@ function CollectionContent() {
                                     fontWeight: '700',
                                     marginBottom: '15px'
                                 }}>
-                                    ₹{product.price}
+                                    <span className="currency-symbol">₹</span>{product.price}
                                 </p>
 
                                 {/* View Product Button */}

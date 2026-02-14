@@ -22,8 +22,8 @@ export default function CartPage() {
                     </motion.div>
                     <h2 className="cart-empty-title">The Gallery is Quiet</h2>
                     <p className="cart-empty-text">Your curated collection is waiting for its first masterpiece.</p>
-                    <Link href="/shop" className="checkout-btn" style={{ maxWidth: '300px', margin: '0 auto', textDecoration: 'none' }}>
-                        Browse Collection
+                    <Link href="/shop" className="empty-cart-browse-btn">
+                        <Sparkles size={20} className="browse-sparkle-icon" /> Browse Collection
                     </Link>
                 </div>
             </div>
@@ -58,6 +58,14 @@ export default function CartPage() {
                         >
                             Your Collection
                         </motion.h1>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2, duration: 1 }}
+                            className="cart-hero-desc"
+                        >
+                            A curated selection of your favorite artisan pieces, hand-crafted to illuminate your most cherished moments.
+                        </motion.p>
                     </div>
                 </motion.div>
 
@@ -75,61 +83,32 @@ export default function CartPage() {
                                     transition={{ duration: 0.8, delay: index * 0.15, ease: [0.19, 1, 0.22, 1] }}
                                     className="cart-item"
                                 >
-                                    <div className="cart-item-image">
+                                    <Link href={`/product/${item.id}`} className="cart-item-image">
                                         <SafeImage src={item.image} alt={item.name} />
-                                    </div>
+                                    </Link>
                                     <div className="cart-item-details">
                                         <div className="item-category">
                                             {item.category || 'Artisan Series'}
                                         </div>
-                                        <h3>{item.name}</h3>
+                                        <Link href={`/product/${item.id}`} style={{ textDecoration: 'none' }}>
+                                            <h3>{item.name}</h3>
+                                        </Link>
 
                                         <div className="item-controls">
                                             <div className="quantity-control">
-                                                <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                                                <button onClick={(e) => { e.preventDefault(); updateQuantity(item.id, item.quantity - 1); }}><Minus size={14} /></button>
                                                 <span>{item.quantity}</span>
-                                                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                                                <button onClick={(e) => { e.preventDefault(); updateQuantity(item.id, item.quantity + 1); }}><Plus size={14} /></button>
                                             </div>
 
                                             <div className="item-price-display">
-                                                <p className="item-total-price">₹{item.price * item.quantity}</p>
+                                                <p className="item-total-price"><span className="currency-symbol">₹</span>{item.price * item.quantity}</p>
                                             </div>
 
-                                            <button onClick={() => removeFromCart(item.id)} className="remove-btn" title="Remove from collection">
-                                                <Trash2 size={20} />
+                                            <button onClick={(e) => { e.preventDefault(); removeFromCart(item.id); }} className="remove-btn" title="Remove from collection">
+                                                <Trash2 size={18} />
                                             </button>
                                         </div>
-
-                                        {/* View Product Button */}
-                                        <Link
-                                            href={`/product/${item.id}`}
-                                            style={{
-                                                display: 'inline-block',
-                                                marginTop: '15px',
-                                                padding: '10px 24px',
-                                                background: 'transparent',
-                                                color: '#d4af37',
-                                                textDecoration: 'none',
-                                                borderRadius: '25px',
-                                                fontSize: '0.9rem',
-                                                fontWeight: '600',
-                                                transition: 'all 0.3s ease',
-                                                border: '2px solid #d4af37',
-                                                cursor: 'pointer'
-                                            }}
-                                            onMouseEnter={(e) => {
-                                                e.currentTarget.style.background = '#d4af37';
-                                                e.currentTarget.style.color = '#fff';
-                                                e.currentTarget.style.transform = 'translateY(-2px)';
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.currentTarget.style.background = 'transparent';
-                                                e.currentTarget.style.color = '#d4af37';
-                                                e.currentTarget.style.transform = 'translateY(0)';
-                                            }}
-                                        >
-                                            View Product
-                                        </Link>
                                     </div>
                                 </motion.div>
                             ))}
@@ -146,7 +125,7 @@ export default function CartPage() {
                         <h2>Collection Summary</h2>
                         <div className="summary-row">
                             <span>Boutique Subtotal</span>
-                            <span>₹{subtotal}</span>
+                            <span><span className="currency-symbol">₹</span>{subtotal}</span>
                         </div>
                         <div className="summary-row">
                             <span>Artisan Delivery</span>
@@ -155,16 +134,16 @@ export default function CartPage() {
 
                         <div className="summary-total">
                             <span>Total</span>
-                            <span>₹{subtotal}</span>
+                            <span><span className="currency-symbol">₹</span>{subtotal}</span>
                         </div>
 
                         <div style={{ marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
-                                <ShieldCheck size={16} color="#d4af37" />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>
+                                <ShieldCheck size={16} color="var(--color-accent)" />
                                 <span>Authenticity Guaranteed</span>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
-                                <Truck size={16} color="#d4af37" />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>
+                                <Truck size={16} color="var(--color-accent)" />
                                 <span>Premium Insured Shipping</span>
                             </div>
                         </div>
@@ -190,11 +169,7 @@ export default function CartPage() {
                         <div className="section-accent-line"></div>
                     </div>
 
-                    <div className="cart-collection-grid" style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '40px'
-                    }}>
+                    <div className="cart-collection-grid">
                         {[
                             { title: 'The Hampers', path: '/categories/Hampers%20|%20Combo', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840787/ambre-candles/Hampers_%7C_Combo/lxpbksaxenyc77vrmatf.jpg' },
                             { title: 'The Glass Jars', path: '/categories/Glass%20Jar%20Candle', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg' },

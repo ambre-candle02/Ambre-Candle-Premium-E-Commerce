@@ -16,7 +16,7 @@
     border-radius: 32px;
     overflow: hidden;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 2px solid #d4af37;
     display: flex;
     align-items: center;
 }
@@ -42,7 +42,8 @@
     align-items: center;
     color: #fff;
     text-align: center;
-    padding: 60px;
+    padding: 80px 60px 60px;
+    /* Added more top padding to prevent clipping */
 }
 
 .hero-scroll-dots .dot {

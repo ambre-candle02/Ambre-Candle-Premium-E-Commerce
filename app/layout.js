@@ -18,8 +18,7 @@ import { WishlistProvider } from "@/src/context/WishlistContext";
 import SmartAuthOverlay from "@/src/components/SmartAuthOverlay";
 import FloatingHelp from "@/src/components/FloatingHelp";
 import LocalStorageCleanup from "@/src/components/LocalStorageCleanup";
-
-
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
@@ -38,6 +37,16 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+                <Toaster position="bottom-center" toastOptions={{
+                    style: {
+                        background: '#1a1a1a',
+                        color: '#d4af37',
+                        border: '1px solid #d4af37',
+                        borderRadius: '10px',
+                        fontSize: '0.9rem',
+                        fontWeight: '600'
+                    }
+                }} />
                 <LocalStorageCleanup />
                 <AuthProvider>
                     <CartProvider>

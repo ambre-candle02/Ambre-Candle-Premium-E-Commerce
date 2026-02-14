@@ -18,7 +18,8 @@
     "next-cloudinary": "^6.17.5",
     "nodemailer": "^8.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.6.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

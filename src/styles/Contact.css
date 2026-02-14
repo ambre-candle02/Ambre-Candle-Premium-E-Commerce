@@ -28,7 +28,8 @@
     inset: 0;
     background: radial-gradient(circle at center, #3d2f1f 0%, #1a1410 100%);
     opacity: 0.7;
-    zIndex: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .contact-hero-content {
@@ -55,7 +56,7 @@
 
 .contact-title {
     font-family: var(--font-heading);
-    fontSize: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(3rem, 5vw, 4.5rem);
     margin-bottom: 24px;
     line-height: 1.2;
 }
@@ -88,6 +89,8 @@
     padding: 50px;
     border-radius: 30px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 2px solid #d4af37;
+    /* Elite Gold Border */
     position: relative;
     overflow: hidden;
 }
@@ -101,6 +104,7 @@
     background: rgba(212, 175, 55, 0.1);
     border-radius: 50%;
     filter: blur(40px);
+    pointer-events: none;
 }
 
 .contact-info-title {
@@ -174,7 +178,8 @@
     padding: 50px;
     border-radius: 30px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0;
+    border: 2px solid #d4af37;
+    /* Elite Gold Border */
 }
 
 .form-title {

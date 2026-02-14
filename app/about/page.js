@@ -81,7 +81,7 @@ export default function AboutPage() {
                             marginBottom: '24px',
                             backdropFilter: 'blur(10px)'
                         }}>
-                            Est. 2026
+                            Est. 2024
                         </motion.span>
                         <motion.h1 variants={fadeInUp} style={{
                             fontFamily: 'var(--font-heading)',
@@ -209,6 +209,9 @@ export default function AboutPage() {
                                 borderRadius: '30px',
                                 overflow: 'hidden',
                                 boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                                border: '2px solid #d4af37', // Elite Gold Border
+                                padding: '10px', // Framed Effect
+                                background: '#fdfbf7', // Premium Background
                                 aspectRatio: '4/5',
                                 transform: 'scale(1)',
                                 transition: 'transform 0.7s ease'

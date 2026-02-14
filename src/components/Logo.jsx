@@ -5,7 +5,7 @@ const Logo = () => {
             <div className="logo-content">
                 <span className="logo-brand">Ambre candle</span>
                 <span className="logo-catalog">Product Catalog</span>
-                <span className="logo-est">Est. 2026</span>
+                <span className="logo-est">Est. 2024</span>
             </div>
         </div>
     );

@@ -197,7 +197,7 @@ export default function CheckoutPage() {
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '15px', color: '#666', fontSize: '0.9rem' }}>
                         <span style={{ color: step === 1 ? '#000' : '#888', fontWeight: step === 1 ? 'bold' : 'normal' }}>1. Shipping Details</span>
                         <span>&gt;</span>
-                        <span style={{ color: step === 2 ? '#000' : '#888', fontWeight: step === 2 ? 'bold' : 'normal' }}>2. Payment & Order</span>
+                        <span style={{ color: step === 2 ? '#888' : '#aaa', fontWeight: step === 2 ? 'bold' : 'normal' }}>2. Payment & Order</span>
                     </div>
                 </div>
 
@@ -219,7 +219,7 @@ export default function CheckoutPage() {
                                             value={formData.firstName}
                                             onChange={handleInputChange}
                                             placeholder="First Name *"
-                                            style={{ ...inputStyle, borderColor: errors.firstName ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.firstName ? 'red' : '#d4af37' }}
                                         />
                                         {errors.firstName && <span style={errorStyle}>{errors.firstName}</span>}
                                     </div>
@@ -230,7 +230,7 @@ export default function CheckoutPage() {
                                             value={formData.lastName}
                                             onChange={handleInputChange}
                                             placeholder="Last Name *"
-                                            style={{ ...inputStyle, borderColor: errors.lastName ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.lastName ? 'red' : '#d4af37' }}
                                         />
                                         {errors.lastName && <span style={errorStyle}>{errors.lastName}</span>}
                                     </div>
@@ -241,7 +241,7 @@ export default function CheckoutPage() {
                                             value={formData.email}
                                             onChange={handleInputChange}
                                             placeholder="Email Address *"
-                                            style={{ ...inputStyle, borderColor: errors.email ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.email ? 'red' : '#d4af37' }}
                                         />
                                         {errors.email && <span style={errorStyle}>{errors.email}</span>}
                                     </div>
@@ -253,7 +253,7 @@ export default function CheckoutPage() {
                                             onChange={handleInputChange}
                                             placeholder="Phone Number *"
                                             maxLength={10}
-                                            style={{ ...inputStyle, borderColor: errors.phone ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.phone ? 'red' : '#d4af37' }}
                                         />
                                         {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
                                     </div>
@@ -285,7 +285,7 @@ export default function CheckoutPage() {
                                             value={formData.address}
                                             onChange={handleInputChange}
                                             placeholder="Street Address, Flat No. *"
-                                            style={{ ...inputStyle, borderColor: errors.address ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.address ? 'red' : '#d4af37' }}
                                         />
                                         {errors.address && <span style={errorStyle}>{errors.address}</span>}
                                     </div>
@@ -296,7 +296,7 @@ export default function CheckoutPage() {
                                             value={formData.city}
                                             onChange={handleInputChange}
                                             placeholder="City *"
-                                            style={{ ...inputStyle, borderColor: errors.city ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.city ? 'red' : '#d4af37' }}
                                         />
                                         {errors.city && <span style={errorStyle}>{errors.city}</span>}
                                     </div>
@@ -307,7 +307,7 @@ export default function CheckoutPage() {
                                             value={formData.state}
                                             onChange={handleInputChange}
                                             placeholder="State *"
-                                            style={{ ...inputStyle, borderColor: errors.state ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.state ? 'red' : '#d4af37' }}
                                         />
                                         {errors.state && <span style={errorStyle}>{errors.state}</span>}
                                     </div>
@@ -319,14 +319,14 @@ export default function CheckoutPage() {
                                             onChange={handleInputChange}
                                             placeholder="Pincode *"
                                             maxLength={6}
-                                            style={{ ...inputStyle, borderColor: errors.pincode ? 'red' : '#eee' }}
+                                            style={{ ...inputStyle, borderColor: errors.pincode ? 'red' : '#d4af37' }}
                                         />
                                         {errors.pincode && <span style={errorStyle}>{errors.pincode}</span>}
                                     </div>
 
                                 </div>
 
-                                <button className="btn-primary" style={{ marginTop: '30px', width: '100%', padding: '15px' }} onClick={handleContinue}>
+                                <button className="btn-primary btn-gold-hover" style={{ marginTop: '30px', width: '100%', padding: '15px' }} onClick={handleContinue}>
                                     Order Now <ArrowRight size={18} style={{ display: 'inline', marginLeft: '8px' }} />
                                 </button>
                             </div>
@@ -336,7 +336,7 @@ export default function CheckoutPage() {
                                     <CreditCard size={24} /> Payment
                                 </h2>
 
-                                <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '10px', marginBottom: '20px' }}>
+                                <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '10px', marginBottom: '20px', border: '1px solid #d4af37' }}>
                                     <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>Delivery To:</p>
                                     <p style={{ margin: 0, color: '#555' }}>{formData.firstName} {formData.lastName}</p>
                                     <p style={{ margin: 0, color: '#555' }}>{formData.address}, {formData.city}</p>
@@ -356,12 +356,12 @@ export default function CheckoutPage() {
                                     </label>
                                     <label style={paymentOptionStyle}>
                                         <input type="radio" name="payment" defaultChecked />
-                                        <span style={{ fontWeight: 'bold', color: '#2b7a4b' }}>Cash on Delivery (Available)</span>
+                                        <span style={{ fontWeight: 'bold', color: '#d4af37' }}>Cash on Delivery (Available)</span>
                                     </label>
                                 </div>
 
                                 <button
-                                    className="btn-primary"
+                                    className="btn-primary btn-gold-hover"
                                     style={{ marginTop: '30px', width: '100%', padding: '15px', opacity: loading ? 0.7 : 1 }}
                                     onClick={handlePlaceOrder}
                                     disabled={loading}
@@ -370,7 +370,7 @@ export default function CheckoutPage() {
                                 </button>
 
                                 <button
-                                    style={{ marginTop: '15px', color: '#999', width: '100%', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                    style={{ marginTop: '15px', color: '#555', width: '100%', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                     onClick={() => setStep(1)}
                                 >
                                     <ArrowLeft size={16} style={{ marginRight: '5px' }} /> Back to Shipping
@@ -380,7 +380,7 @@ export default function CheckoutPage() {
                     </div>
 
                     {/* RIGHT SIDE: SUMMARY */}
-                    <div className="order-summary-side" style={{ background: '#faf8f5', padding: '30px', borderRadius: '20px', height: 'fit-content', border: '1px solid #eee' }}>
+                    <div className="order-summary-side" style={{ background: '#faf8f5', padding: '30px', borderRadius: '20px', height: 'fit-content', border: '1px solid #d4af37' }}>
                         <h2 style={{ marginBottom: '20px', fontSize: '1.4rem' }}>Order Summary</h2>
                         <div style={{ maxHeight: '400px', overflowY: 'auto', marginBottom: '20px' }}>
                             {cart.map(item => (
@@ -394,11 +394,11 @@ export default function CheckoutPage() {
                             ))}
                         </div>
                         <div style={{ borderTop: '2px solid #ddd', paddingTop: '20px' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#666' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#888' }}>
                                 <span>Subtotal</span>
                                 <span>Rs. {subtotal.toFixed(2)}</span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#666' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#888' }}>
                                 <span>Shipping</span>
                                 <span style={{ color: 'green' }}>FREE</span>
                             </div>
@@ -407,7 +407,7 @@ export default function CheckoutPage() {
                                 <span>Rs. {subtotal.toFixed(2)}</span>
                             </div>
                         </div>
-                        <div style={{ marginTop: '30px', background: '#eefcf4', padding: '15px', borderRadius: '10px', display: 'flex', gap: '10px', fontSize: '0.85rem', color: '#2b7a4b', alignItems: 'center' }}>
+                        <div style={{ marginTop: '30px', background: 'rgba(212, 100, 55, 0.05)', padding: '15px', borderRadius: '10px', display: 'flex', gap: '10px', fontSize: '0.85rem', color: '#d46437', alignItems: 'center', border: '1px solid rgba(212, 100, 55, 0.1)' }}>
                             <ShieldCheck size={20} />
                             <span>Secure SSL Encrypted Payment</span>
                         </div>
@@ -421,7 +421,10 @@ export default function CheckoutPage() {
 const inputStyle = {
     padding: '15px',
     borderRadius: '8px',
-    border: '1px solid #e0e0e0',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: '#d4af37',
+    color: '#1a1a1a',
     outline: 'none',
     width: '100%',
     fontSize: '1rem',
@@ -440,7 +443,7 @@ const paymentOptionStyle = {
     alignItems: 'center',
     gap: '15px',
     padding: '15px',
-    border: '1px solid #e0e0e0',
+    border: '1px solid #d4af37',
     borderRadius: '10px',
     cursor: 'pointer',
     background: '#fff',

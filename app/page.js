@@ -276,7 +276,7 @@ export default function Home() {
                                 <div className="misa-prod-info">
                                     <span className="misa-prod-fragrance">{product.fragrance}</span>
                                     <h3>{product.name}</h3>
-                                    <span className="misa-prod-price">₹{product.price}</span>
+                                    <span className="misa-prod-price"><span className="currency-symbol">₹</span>{product.price}</span>
                                 </div>
                             </Link>
                         </motion.div>

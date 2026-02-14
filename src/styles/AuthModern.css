@@ -126,7 +126,7 @@
 }
 
 .auth-subtitle {
-    color: #888;
+    color: #666;
     font-size: 1rem;
 }
 
@@ -164,10 +164,11 @@
 .modern-input {
     width: 100%;
     padding: 1.2rem 1rem 1.2rem 3.5rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d4af37;
+    /* Gold border by default */
     border-radius: 12px;
     font-size: 1rem;
-    color: #333;
+    color: #1a1a1a;
     background: #fdfbf7;
     transition: all 0.3s ease;
 }
@@ -186,6 +187,34 @@
 
 .modern-input::placeholder {
     color: #aaa;
+}
+
+/* Password Visibility Toggle - Moved to Left */
+.password-toggle-btn {
+    position: absolute;
+    left: 2.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.password-toggle-btn:hover {
+    color: #d4af37;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* When toggle is present, move text further right */
+.modern-input-wrapper:has(.password-toggle-btn) .modern-input {
+    padding-left: 5rem;
 }
 
 /* Button - Resting Black, Hover Gold */
@@ -321,7 +350,7 @@
 }
 
 .auth-subtitle {
-    color: #888;
+    color: #666;
     font-size: 1rem;
 }
 
@@ -359,10 +388,11 @@
 .modern-input {
     width: 100%;
     padding: 1.2rem 1rem 1.2rem 3.5rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d4af37;
+    /* Gold border by default */
     border-radius: 12px;
     font-size: 1rem;
-    color: #333;
+    color: #1a1a1a;
     background: #fdfbf7;
     transition: all 0.3s ease;
 }
@@ -531,7 +561,7 @@
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid #d4af37;
     text-align: left;
 }
 

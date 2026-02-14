@@ -92,7 +92,7 @@ const ArtisanCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct }
 
             <div className="unit-meta">
                 <h3>{p.name}</h3>
-                <p className="u-price">₹{p.price}</p>
+                <p className="u-price"><span className="currency-symbol">₹</span>{p.price}</p>
             </div>
         </motion.div>
     );
@@ -175,14 +175,64 @@ function ShopContent() {
     if (!isMounted) return null;
 
     return (
-        <div className="home-page-misa section">
+        <div className="ambre-boutique-shop section">
             <div className="container">
-                <header className="misa-section-header" style={{ marginBottom: '60px' }}>
-                    <span>Curated For You</span>
-                    <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontFamily: 'var(--font-heading)', color: '#1a1a1a', marginTop: '20px' }}>
+                <motion.div
+                    className="shop-hero-v5"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                        textAlign: 'center',
+                        marginBottom: '60px',
+                        background: 'linear-gradient(135deg, #1a0f0a 0%, #2d1810 50%, #1a0f0a 100%)',
+                        padding: '80px 50px',
+                        borderRadius: '28px',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,175,55,0.2)',
+                        border: '2px solid #d4af37',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}
+                >
+                    <span style={{
+                        color: '#d4af37',
+                        fontSize: '0.9rem',
+                        letterSpacing: '3px',
+                        textTransform: 'uppercase',
+                        fontWeight: '600',
+                        display: 'block',
+                        marginBottom: '15px'
+                    }}>
+                        Curated For You
+                    </span>
+                    <h1 style={{
+                        fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+                        fontFamily: 'var(--font-heading)',
+                        color: '#fff',
+                        marginTop: '20px',
+                        fontWeight: '300',
+                        letterSpacing: '2px'
+                    }}>
                         The Candle Collection
                     </h1>
-                </header>
+                    <div style={{
+                        width: '80px',
+                        height: '2px',
+                        background: '#d4af37',
+                        margin: '25px auto',
+                        boxShadow: '0 0 15px rgba(212, 175, 55, 0.5)'
+                    }}></div>
+                    <p style={{
+                        fontSize: '1.1rem',
+                        color: 'rgba(255,255,255,0.85)',
+                        maxWidth: '600px',
+                        margin: '0 auto',
+                        lineHeight: '1.8',
+                        fontStyle: 'italic'
+                    }}>
+                        "Discover the essence of artisan luxury through our hand-poured collections."
+                    </p>
+                </motion.div>
 
                 <div className="category-bar">
                     <Link href="/shop" className={`category-pill ${!currentCategory ? 'active' : ''}`}>
@@ -264,7 +314,7 @@ function ShopContent() {
                                 <div style={{ padding: '50px' }}>
                                     <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>{quickViewProduct.productType}</span>
                                     <h2 style={{ fontSize: '2rem', margin: '15px 0', fontFamily: 'var(--font-heading)', color: '#1a1a1a' }}>{quickViewProduct.name}</h2>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--color-accent)', marginBottom: '30px' }}>₹{quickViewProduct.price}</div>
+                                    <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--color-accent)', marginBottom: '30px' }}><span className="currency-symbol">₹</span>{quickViewProduct.price}</div>
                                     <p style={{ color: '#666', lineHeight: '1.8', marginBottom: '40px' }}>{quickViewProduct.desc}</p>
                                     <div style={{ display: 'flex', gap: '15px' }}>
                                         <button

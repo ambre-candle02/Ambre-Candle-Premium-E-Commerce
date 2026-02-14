@@ -40,7 +40,8 @@
     background: linear-gradient(135deg, #2d1f14 0%, #3f2a1a 100%);
     padding: 30px 15px;
     border-radius: 28px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 2px solid #d4af37;
+    /* Prominent gold border */
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
     scrollbar-width: none;
@@ -281,22 +282,25 @@
 }
 
 .btn-add-cart {
-    background: rgba(212, 175, 55, 0.9);
-    border: none;
-    color: #fff;
+    background: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
     width: 45px;
     height: 45px;
-    border-radius: 12px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
 }
 
 .btn-add-cart:hover {
     background: #d4af37;
+    color: #fff;
     transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
 }
 
 .btn-add-cart.added {

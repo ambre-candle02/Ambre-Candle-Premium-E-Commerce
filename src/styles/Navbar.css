@@ -102,7 +102,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text-primary);
+    color: #1a1a1a;
     padding: 8px;
     border-radius: 50%;
     transition: var(--transition-fast);
@@ -113,11 +113,14 @@
 
 .nav-action-btn:hover {
     background: rgba(212, 175, 55, 0.1);
-    color: #b8860b;
+    color: #d4af37;
 }
 
 .cart-btn {
     position: relative;
+    color: #1a1a1a !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .cart-badge {
@@ -215,7 +218,8 @@
     background: #fdfbf7;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid #d4af37;
+    /* Thin Elite Gold Border */
     padding: 10px;
     z-index: 10000;
 }
@@ -377,6 +381,15 @@
 
     .logo-est {
         display: none;
+    }
+
+    .nav-actions {
+        gap: 5px !important;
+    }
+
+    .nav-action-btn {
+        padding: 6px !important;
+        /* Smaller buttons for mobile */
     }
 
     .user-profile-menu {

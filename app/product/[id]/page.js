@@ -24,7 +24,7 @@ export default function ProductDetailPage() {
     return (
         <div className="product-detail-v5 section">
             <div className="container">
-                <Link href="/shop" className="back-link-v6">
+                <Link href="/collection" className="back-link-v6">
                     <ArrowLeft size={14} /> Back to Collection
                 </Link>
 
@@ -41,21 +41,6 @@ export default function ProductDetailPage() {
                             <SafeImage src={mainImage} alt={product.name} />
                         </div>
 
-                        {/* Image Gallery Thumbnails */}
-                        {product.images && product.images.length > 1 && (
-                            <div className="thumb-gallery-v6">
-                                {product.images.map((img, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`thumb-v6 ${idx === activeImgIndex ? 'active' : ''}`}
-                                        onClick={() => setActiveImgIndex(idx)}
-                                        onMouseEnter={() => setActiveImgIndex(idx)}
-                                    >
-                                        <SafeImage src={img} alt={`${product.name} detail ${idx + 1}`} />
-                                    </div>
-                                ))}
-                            </div>
-                        )}
                     </motion.div>
 
                     {/* Elite Info Card */}
@@ -75,7 +60,7 @@ export default function ProductDetailPage() {
                         </h1>
 
                         <div className="p-price-v6">
-                            {product.price}
+                            <span className="currency-symbol">₹</span>{product.price}
                         </div>
 
                         <div className="p-narrative-v6">
@@ -89,7 +74,7 @@ export default function ProductDetailPage() {
                                 <button onClick={() => setQuantity(quantity + 1)}><Plus size={18} /></button>
                             </div>
                             <button className="add-btn-v6" onClick={() => addToCart({ ...product, quantity })}>
-                                Reserve Piece
+                                ADD TO CART
                             </button>
                         </div>
 

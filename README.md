@@ -20,16 +20,16 @@
 
 ## 🌐 Live Demo & Links
 
-**🚀 [Live Site & Link](https://your-deployment-link.vercel.app)**
+**🚀 [Live Site & Link](https://ambre-candle-premium-e-commerce.vercel.app/)**
 
-**📌 [GitHub Repository](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME)**
+**📌 [GitHub Repository](https://github.com/ambre-candle02/Ambre-Candle-Premium-E-Commerce.git)**
 
 ---
 
 ## 🔐 Firebase Authentication Setup
 
 ### Firebase Configuration
-- **Project ID**: `your-firebase-project-id`
+- **Project ID**: `ambre-candle-product-catalog`
 - **Authentication**: Email/Password enabled
 - **Status**: ✅ Fully Configured
 
@@ -130,7 +130,7 @@ Email: your-email@example.com
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   git clone https://github.com/ambre-candle02/Ambre-Candle-Premium-E-Commerce.git
    cd "Ambre Candle Product Catalog"
    ```
 
@@ -327,7 +327,7 @@ useEffect(() => setIsMounted(true), []);
 
 ## 📝 License
 
-© 2026 Ambre Candle Studio. All rights reserved.
+© 2024 Ambre Candle Studio. All rights reserved.
 
 ---
 

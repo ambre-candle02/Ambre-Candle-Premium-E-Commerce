@@ -19,16 +19,22 @@ export default function OrderHistoryPage() {
                 // If user is logged in, filter by their email/phone
                 // For demo purposes (since auth might be simple), we show all if no user filter rule is strict
                 // But ideally: 
-                if (user) {
+                if (user && user.email) {
+                    const userEmailLower = user.email.toLowerCase();
                     const userOrders = allOrders.filter(o =>
-                        o.customer?.email === user.email ||
-                        o.customer?.phone === user.phone
+                        (o.customer?.email && o.customer.email.toLowerCase() === userEmailLower) ||
+                        (o.customer?.phone && o.customer.phone === user.phone)
                     );
-                    setOrders(userOrders);
+
+                    // Fallback: If no user-specific orders found, but there are total orders, 
+                    // maybe show them all or handle logic differently for better UX
+                    if (userOrders.length > 0) {
+                        setOrders(userOrders);
+                    } else {
+                        setOrders(allOrders);
+                    }
                 } else {
-                    // If guest, maybe show only if they just placed it? 
-                    // For now, let's show all for demo simplicity or ask to login
-                    // But to be "Flipkart-like", let's just show the local device's history
+                    // If guest, show all local device history
                     setOrders(allOrders);
                 }
             } catch (e) {
@@ -65,14 +71,14 @@ export default function OrderHistoryPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            style={{ border: '1px solid #eee', borderRadius: '12px', overflow: 'hidden', background: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', cursor: 'pointer' }}
-                            whileHover={{ scale: 1.01, boxShadow: '0 10px 25px rgba(0,0,0,0.05)' }}
+                            style={{ border: '2px solid #d4af37', borderRadius: '20px', overflow: 'hidden', background: '#fff', boxShadow: '0 15px 40px rgba(0,0,0,0.05)', cursor: 'pointer' }}
+                            whileHover={{ scale: 1.01, boxShadow: '0 20px 50px rgba(212, 175, 55, 0.2)' }}
                         >
                             {/* Header */}
-                            <div style={{ background: '#f9f9f9', padding: '15px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee' }}>
+                            <div style={{ background: 'rgba(212, 175, 55, 0.12)', padding: '15px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
                                 <div>
-                                    <span style={{ fontWeight: 'bold', marginRight: '10px' }}>Order #{order.id}</span>
-                                    <span style={{ fontSize: '0.85rem', color: '#666' }}>Place on {order.date}</span>
+                                    <span style={{ fontWeight: 'bold', marginRight: '10px', color: '#1a1a1a' }}>Order #{order.id}</span>
+                                    <span style={{ fontSize: '0.85rem', color: '#555' }}>Place on {order.date}</span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.9rem', fontWeight: '500', color: getStatusColor(order.status) }}>
                                     {getStatusIcon(order.status)}
@@ -81,18 +87,18 @@ export default function OrderHistoryPage() {
                             </div>
 
                             {/* Body */}
-                            <div style={{ padding: '20px' }}>
+                            <div style={{ padding: '25px' }}>
                                 {order.items.map((item, i) => (
-                                    <div key={i} style={{ display: 'flex', gap: '20px', marginBottom: '15px', alignItems: 'center' }}>
-                                        <div style={{ width: '60px', height: '60px', background: '#f5f5f5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            {/* Placeholder for image if not available in item object */}
-                                            <Package size={24} color="#ccc" />
+                                    <div key={i} style={{ display: 'flex', gap: '25px', marginBottom: '20px', alignItems: 'center' }}>
+                                        <div style={{ width: '70px', height: '70px', background: 'rgba(212, 175, 55, 0.08)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                                            {/* Gold themed placeholder - Refined: slightly more visible 'light' */}
+                                            <Package size={30} color="#d4af37" strokeWidth={1.5} style={{ opacity: 0.8 }} />
                                         </div>
                                         <div style={{ flex: 1 }}>
-                                            <h4 style={{ margin: '0 0 5px', fontSize: '1rem' }}>{item.name}</h4>
-                                            <p style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>Qty: {item.quantity} × Rs. {item.price}</p>
+                                            <h4 style={{ margin: '0 0 5px', fontSize: '1.1rem', color: '#1a1a1a', fontWeight: '500' }}>{item.name}</h4>
+                                            <p style={{ margin: 0, fontSize: '0.9rem', color: '#555' }}>Qty: {item.quantity} × Rs. {item.price}</p>
                                         </div>
-                                        <div style={{ fontWeight: '600' }}>
+                                        <div style={{ fontWeight: '700', fontSize: '1.2rem', color: '#1a1a1a' }}>
                                             Rs. {item.price * item.quantity}
                                         </div>
                                     </div>
@@ -100,11 +106,11 @@ export default function OrderHistoryPage() {
                             </div>
 
                             {/* Footer */}
-                            <div style={{ padding: '15px 20px', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <div style={{ fontSize: '0.9rem' }}>
-                                    <strong>Total: Rs. {order.total}</strong>
+                            <div style={{ padding: '15px 25px', borderTop: '1px solid rgba(212, 175, 55, 0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(212, 175, 55, 0.08)' }}>
+                                <div style={{ fontSize: '1.1rem', color: '#1a1a1a' }}>
+                                    <strong>Total: <span style={{ color: '#b45d06', fontWeight: '800' }}>Rs. {order.total}</span></strong>
                                 </div>
-                                <span style={{ color: '#C19A6B', fontWeight: '500', fontSize: '0.9rem' }}>
+                                <span style={{ color: '#b45d06', fontWeight: 'bold', fontSize: '0.95rem', letterSpacing: '1px', textTransform: 'uppercase', textDecoration: 'underline' }}>
                                     View Details &gt;
                                 </span>
                             </div>
@@ -118,9 +124,9 @@ export default function OrderHistoryPage() {
 
 function getStatusColor(status) {
     switch (status?.toLowerCase()) {
-        case 'delivered': return 'green';
-        case 'processing': return 'orange';
-        case 'cancelled': return 'red';
+        case 'delivered': return '#27ae60';
+        case 'processing': return '#b45d06'; // Richer, more visible gold-brown
+        case 'cancelled': return '#c0392b';
         default: return '#1a1a1a';
     }
 }

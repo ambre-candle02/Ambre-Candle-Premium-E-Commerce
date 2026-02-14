@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/src/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -16,6 +16,7 @@ export default function LoginPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -61,7 +62,7 @@ export default function LoginPage() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', objectFit: 'cover', height: '100%', width: '100%' }}
+                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', objectFit: 'cover', height: '100%', width: '100%', border: '2px solid #d4af37' }}
                 />
 
                 <motion.div
@@ -109,13 +110,20 @@ export default function LoginPage() {
                             <div className="modern-input-wrapper">
                                 <Lock size={18} className="modern-input-icon" />
                                 <input
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     className="modern-input"
                                     placeholder="Password"
                                     required
                                     value={formData.password}
                                     onChange={e => setFormData({ ...formData, password: e.target.value })}
                                 />
+                                <button
+                                    type="button"
+                                    className="password-toggle-btn"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                </button>
                             </div>
                         </div>
 

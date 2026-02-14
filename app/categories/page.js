@@ -25,7 +25,7 @@ export default function CategoriesPage() {
 
                     <div className="categories-hero-overlay">
                         <motion.div
-                            initial={{ y: -50, opacity: 0 }}
+                            initial={{ y: -20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3, duration: 0.8 }}
                             style={{ marginBottom: '20px' }}

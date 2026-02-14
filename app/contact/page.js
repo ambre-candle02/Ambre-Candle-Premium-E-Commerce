@@ -147,7 +147,7 @@ export default function ContactPage() {
                                     </div>
                                     <div className="info-content">
                                         <h4 className="info-label">WhatsApp</h4>
-                                        <a href="https://wa.me/918577079877" target="_blank" rel="noopener noreferrer" className="info-link">
+                                        <a href="https://api.whatsapp.com/send?phone=918577079877" target="_blank" rel="noopener noreferrer" className="info-link">
                                             Chat with us
                                         </a>
                                     </div>
