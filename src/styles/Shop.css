@@ -443,6 +443,8 @@
     color: #1a1a1a;
     padding: 12px 20px;
     border-radius: 12px;
+    border: 1px solid #d4af37 !important;
+    /* Gold Border for Eye Button */
     font-size: 0.9rem;
     font-weight: 600;
     display: flex;
@@ -635,6 +637,8 @@
         padding: 8px 12px !important;
         font-size: 0.75rem !important;
         border-radius: 8px !important;
+        border: 1px solid #d4af37 !important;
+        /* Ensuring gold border on mobile */
     }
 
     .btn-add-cart {
