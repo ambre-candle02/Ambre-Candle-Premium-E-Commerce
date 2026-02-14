@@ -151,24 +151,45 @@ function CategoriesContent({ children }) {
 
             {/* Main Content (Right Side) */}
             <main className="shop-main-view">
-                {/* Mobile Category Navigation */}
-                <div className="category-bar">
-                    <Link href="/shop" className="category-pill">
-                        All
-                    </Link>
-                    {categories.map((cat) => {
-                        const isActive = pathname.includes(encodeURIComponent(cat));
-                        return (
-                            <motion.div key={cat} whileTap={{ scale: 0.9 }}>
-                                <Link
-                                    href={`/categories/${encodeURIComponent(cat)}`}
-                                    className={`category-pill ${isActive ? 'active' : ''}`}
-                                >
-                                    {cat}
-                                </Link>
-                            </motion.div>
-                        );
-                    })}
+                {/* Mobile Category Navigation - Gold Dropdown Style */}
+                <div className="category-mobile-nav" style={{
+                    display: 'none',
+                    padding: '20px',
+                    borderBottom: '1px solid #eee',
+                    marginBottom: '20px',
+                    justifyContent: 'center'
+                }}>
+                    <div className="sort-wrapper" style={{ width: '100%', maxWidth: '300px' }}>
+                        <select
+                            value={pathname.split('/').pop() || 'All'}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === 'All') router.push('/shop');
+                                else router.push(`/categories/${encodeURIComponent(val)}`);
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '12px 40px 12px 25px',
+                                borderRadius: '35px',
+                                border: '1px solid #d4af37',
+                                background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
+                                color: '#000',
+                                fontWeight: '700',
+                                appearance: 'none',
+                                cursor: 'pointer',
+                                fontSize: '0.9rem',
+                                boxShadow: '0 8px 20px rgba(212, 175, 55, 0.25)',
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'right 20px center'
+                            }}
+                        >
+                            <option value="All">Explorer: All Collections</option>
+                            {categories.map(cat => (
+                                <option key={cat} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 {children}
             </main>

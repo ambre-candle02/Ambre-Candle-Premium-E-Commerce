@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useMemo, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
@@ -101,6 +101,7 @@ const ArtisanCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct }
 
 
 function ShopContent() {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const currentCategory = searchParams?.get('category') || null;
     const { addToCart } = useCart();
@@ -234,50 +235,70 @@ function ShopContent() {
                     </p>
                 </motion.div>
 
-                <div className="category-bar">
-                    <Link href="/shop" className={`category-pill ${!currentCategory ? 'active' : ''}`}>
-                        All
-                    </Link>
-                    {PRODUCT_CATEGORIES.filter(c => c !== 'All').map((cat) => (
-                        <motion.div key={cat} whileTap={{ scale: 0.9 }}>
-                            <Link
-                                href={`/categories/${encodeURIComponent(cat)}`}
-                                className={`category-pill ${currentCategory === cat ? 'active' : ''}`}
-                            >
-                                {cat}
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
 
-                <div className="shop-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingBottom: '20px', borderBottom: '1px solid #eee' }}>
+                <div className="shop-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingBottom: '20px', borderBottom: '1px solid #eee', gap: '15px', flexWrap: 'wrap' }}>
                     <span style={{ color: '#666', fontSize: '0.9rem' }}>Showing {sortedProducts.length} results</span>
-                    <div className="sort-wrapper">
-                        <select
-                            value={sortBy}
-                            onChange={(e) => setSortBy(e.target.value)}
-                            style={{
-                                padding: '10px 35px 10px 20px',
-                                borderRadius: '30px',
-                                border: '1px solid #d4af37',
-                                background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
-                                color: '#000',
-                                fontWeight: '700',
-                                appearance: 'none',
-                                cursor: 'pointer',
-                                fontSize: '0.85rem',
-                                boxShadow: '0 5px 15px rgba(212, 175, 55, 0.2)',
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'right 15px center'
-                            }}
-                        >
-                            <option value="Featured">Featured</option>
-                            <option value="Bestsellers">Bestsellers</option>
-                            <option value="Newest">Newest</option>
-                            <option value="Price: Low-High">Price: Low to High</option>
-                            <option value="Price: High-Low">Price: High to Low</option>
-                        </select>
+                    <div className="toolbar-actions" style={{ display: 'flex', gap: '12px' }}>
+                        {/* Categories Dropdown */}
+                        <div className="sort-wrapper">
+                            <select
+                                value={currentCategory || 'All'}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (val === 'All') router.push('/shop');
+                                    else router.push(`/categories/${encodeURIComponent(val)}`);
+                                }}
+                                style={{
+                                    padding: '10px 35px 10px 20px',
+                                    borderRadius: '30px',
+                                    border: '1px solid #d4af37',
+                                    background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
+                                    color: '#000',
+                                    fontWeight: '700',
+                                    appearance: 'none',
+                                    cursor: 'pointer',
+                                    fontSize: '0.85rem',
+                                    boxShadow: '0 5px 15px rgba(212, 175, 55, 0.2)',
+                                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'right 15px center'
+                                }}
+                            >
+                                <option value="All">All Collections</option>
+                                {PRODUCT_CATEGORIES.filter(c => c !== 'All').map(cat => (
+                                    <option key={cat} value={cat}>{cat}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Sort Dropdown */}
+                        <div className="sort-wrapper">
+                            <select
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value)}
+                                style={{
+                                    padding: '10px 35px 10px 20px',
+                                    borderRadius: '30px',
+                                    border: '1px solid #d4af37',
+                                    background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
+                                    color: '#000',
+                                    fontWeight: '700',
+                                    appearance: 'none',
+                                    cursor: 'pointer',
+                                    fontSize: '0.85rem',
+                                    boxShadow: '0 5px 15px rgba(212, 175, 55, 0.2)',
+                                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'right 15px center'
+                                }}
+                            >
+                                <option value="Featured">Sort: Featured</option>
+                                <option value="Bestsellers">Sort: Bestsellers</option>
+                                <option value="Newest">Sort: Newest</option>
+                                <option value="Price: Low-High">Price: Low to High</option>
+                                <option value="Price: High-Low">Price: High to Low</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
