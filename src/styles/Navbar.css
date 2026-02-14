@@ -500,19 +500,28 @@
 /* Mobile Search Styling */
 @media (max-width: 768px) {
     .search-overlay {
-        width: 95%;
-        padding: 25px 20px;
+        width: 96%;
+        /* Slightly wider but with tighter padding */
+        padding: 20px 12px;
+        /* Tighter side padding (12px instead of 20px) */
         border-radius: 0 0 20px 20px;
     }
 
+    .search-form {
+        gap: 8px;
+        /* Reduced gap between input and buttons */
+    }
+
     .search-input {
-        padding: 16px 20px;
+        padding: 14px 15px;
+        /* Tighter padding for mobile */
         font-size: 0.95rem;
     }
 
     .search-submit-btn,
     .search-close-btn {
-        padding: 12px;
+        padding: 10px;
+        /* More compact buttons */
     }
 }
 
