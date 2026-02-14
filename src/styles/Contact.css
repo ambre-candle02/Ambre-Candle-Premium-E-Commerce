@@ -294,18 +294,34 @@
 
 /* Mobile responsive fixes */
 @media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        /* Remove min-width to prevent overflow */
+        gap: 30px;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
 
     .contact-hero {
         height: auto;
-        padding: 140px 20px 80px;
+        padding: 140px 15px 60px;
+        /* Tighter for mobile */
     }
 
     .contact-info-card,
     .contact-form-card {
         padding: 30px 20px;
+        width: 96%;
+        /* Leave room for shadow/border */
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .contact-info-title,
+    .form-title {
+        font-size: 1.8rem;
     }
 
     .contact-send-button {
