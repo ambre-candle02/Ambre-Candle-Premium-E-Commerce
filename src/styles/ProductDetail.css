@@ -304,18 +304,21 @@
     }
 
     .main-visual-v5 {
-        padding: 12px;
-        /* Reduced padding to prevent clipping */
-        border-radius: 25px;
+        padding: 10px;
+        /* Tighter padding for mobile */
+        border-radius: 20px;
         border-width: 2px;
-        margin-bottom: 10px;
+        margin: 0 auto 20px auto;
+        /* Centered with bottom spacing */
+        width: 96%;
+        /* Leave room for shadow/border on edges */
+        box-sizing: border-box;
     }
 
     .main-visual-container {
         min-height: auto;
-        /* Remove restrictive height */
         aspect-ratio: 1/1;
-        border-radius: 18px;
+        border-radius: 15px;
     }
 
     .elite-info-card {
