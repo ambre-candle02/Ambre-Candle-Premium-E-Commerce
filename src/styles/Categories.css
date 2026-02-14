@@ -131,8 +131,8 @@
 
 .card-price {
     font-size: 1.15rem;
-    color: #d4af37;
-    /* Premium Gold Price */
+    color: #d4af37 !important;
+    /* Force Gold Price */
     font-weight: 800;
     letter-spacing: 0.5px;
     margin-top: 5px;

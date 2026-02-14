@@ -401,14 +401,16 @@
 }
 
 .btn-quickview:hover {
-    background: #1a1a1a;
-    color: #d4af37;
+    background: #1a1a1a !important;
+    color: #d4af37 !important;
     /* Gold Icon on Hover */
     transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
 .btn-quickview:hover svg {
+    color: #d4af37 !important;
+    stroke: #d4af37 !important;
     filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6));
 }
 
