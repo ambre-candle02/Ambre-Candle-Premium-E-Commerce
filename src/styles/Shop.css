@@ -117,14 +117,13 @@
 .category-bar {
     display: none;
     /* Hidden on desktop, shown on mobile */
-    gap: 12px;
-    overflow-x: auto;
-    padding: 15px 5px;
-    margin-bottom: 30px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    white-space: nowrap;
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    gap: 12px !important;
+    overflow-x: auto !important;
+    padding: 15px 20px !important;
+    margin-bottom: 30px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    white-space: nowrap !important;
 }
 
 .category-bar::-webkit-scrollbar {
@@ -616,12 +615,12 @@
     }
 
     .category-bar {
-        display: flex;
+        display: flex !important;
         /* Show pill bar on mobile */
     }
 
     .shop-sidebar {
-        display: none;
+        display: none !important;
         /* Hide sidebar list on mobile as we now have pills */
     }
 }
