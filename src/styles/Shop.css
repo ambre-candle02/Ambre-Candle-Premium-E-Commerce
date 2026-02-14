@@ -523,6 +523,43 @@
 @media (max-width: 768px) {
     .qv-modal {
         grid-template-columns: 1fr;
+        max-height: 85vh;
+        /* slightly less for mobile browser bars */
+        width: 95%;
+        border-radius: 20px;
+    }
+
+    .qv-image-side {
+        height: 250px;
+        min-height: 250px;
+    }
+
+    .qv-content {
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .qv-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .qv-price {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .qv-desc {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+
+    .qv-close-btn {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
     }
 
     .product-wall {
