@@ -94,6 +94,11 @@ function CategoryContent() {
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
     const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const categoryName = decodeURIComponent(params.category);
 
@@ -113,6 +118,8 @@ function CategoryContent() {
         }
         return list;
     }, [categoryName, searchParams]);
+
+    if (!isMounted) return null;
 
     return (
         <div className="category-products-container" style={{ width: '100%' }}>

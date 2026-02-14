@@ -362,15 +362,16 @@ function ShopContent() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
+    const searchParams = useSearchParams();
+
     // Get search query from URL
     useEffect(() => {
         setIsMounted(true);
-        const params = new URLSearchParams(window.location.search);
-        const search = params.get('search');
+        const search = searchParams.get('search');
         if (search) {
             setSearchQuery(search);
         }
-    }, []);
+    }, [searchParams]);
 
     const filteredProducts = products.filter(p => {
         const matchesCategory = activeCategory === 'All' ||
@@ -637,8 +638,15 @@ function ShopContent() {
 export default function Shop() {
     return (
         <Suspense fallback={
-            <div className="flex-center" style={{ minHeight: '100vh', background: '#fdfbf7' }}>
-                <div className="loading-shimmer" style={{ textAlign: 'center' }}>
+            <div style={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#fdfbf7',
+                fontFamily: 'serif'
+            }}>
+                <div style={{ textAlign: 'center' }}>
                     <div style={{ fontSize: '1.2rem', color: '#d4af37', letterSpacing: '4px' }}>AMBRE BOUTIQUE</div>
                     <div style={{ fontSize: '0.8rem', color: '#999', marginTop: '10px' }}>Loading Collection...</div>
                 </div>

@@ -15,6 +15,11 @@ function CategoriesContent({ children }) {
     // Initial max price from URL or default to 2000
     const initialMax = parseInt(searchParams.get('max')) || 2000;
     const [maxPrice, setMaxPrice] = useState(initialMax);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const categories = PRODUCT_CATEGORIES.filter(cat => cat !== 'All');
 
@@ -29,6 +34,12 @@ function CategoriesContent({ children }) {
         params.set('max', maxPrice);
         router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
+
+    if (!isMounted) return (
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fdfbf7' }}>
+            <div style={{ textAlign: 'center', color: '#d4af37', letterSpacing: '2px' }}>Loading...</div>
+        </div>
+    );
 
     return (
         <div className="sidebar-shop-container">
