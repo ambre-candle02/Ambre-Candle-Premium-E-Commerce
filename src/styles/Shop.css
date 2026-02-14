@@ -381,18 +381,22 @@
 .elite-artisan-card,
 .misa-product-card {
     background: #fff;
-    border-radius: 20px;
+    border-radius: 25px;
+    /* Slightly more rounded for luxury */
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    /* Subtle desktop border */
 }
 
 .elite-artisan-card:hover,
 .misa-product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
 }
 
 .unit-visual {
@@ -401,9 +405,9 @@
     aspect-ratio: 1;
     overflow: hidden;
     background: #f9f9f9;
-    border: 3px solid #d4af37 !important;
-    /* Thick Elite Gold Border */
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
+    /* Rounded top for full card frame */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
 }
 
 .shop-unit-image {
@@ -617,7 +621,14 @@
     .misa-products-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px !important;
-        padding: 10px 0 !important;
+        padding: 15px 5px !important;
+    }
+
+    .misa-product-card {
+        border: 2px solid #d4af37 !important;
+        /* Shifting Gold Border to Entire Card Section */
+        background: #fff !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
     }
 
     .misa-product-card.mobile-hover .shop-card-overlay,
