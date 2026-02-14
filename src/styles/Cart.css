@@ -113,14 +113,15 @@
     align-items: center;
     width: 140px;
     height: 140px;
-    background: transparent;
+    background: #fff;
     border-radius: 50%;
     margin-bottom: 40px;
     color: #d4af37;
-    border: 2px solid #d4af37;
+    border: 3px double #d4af37;
+    /* Prestigious double border */
     box-shadow:
-        0 8px 30px rgba(212, 175, 55, 0.15);
-    /* Soft glow */
+        0 15px 45px rgba(212, 175, 55, 0.25),
+        inset 0 0 20px rgba(212, 175, 55, 0.1);
     position: relative;
     animation: goldGlowPulse 4s infinite ease-in-out;
 }
@@ -131,6 +132,17 @@
     color: var(--color-text-primary);
     margin-bottom: 20px;
     font-weight: 200;
+    position: relative;
+}
+
+.cart-empty-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: #d4af37;
+    margin: 15px auto 0;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 .cart-empty-text {
@@ -139,6 +151,7 @@
     margin-bottom: 60px;
     letter-spacing: 1px;
     font-weight: 300;
+    font-style: italic;
 }
 
 .empty-cart-browse-btn {
@@ -542,39 +555,41 @@
 
     /* Empty Cart mobile scaling */
     .cart-empty-container {
-        padding: 10vh 15px;
+        padding: 8vh 15px;
         /* Add side padding for safety */
     }
 
     .empty-icon-wrapper {
-        width: 110px;
-        height: 110px;
-        margin-bottom: 25px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 30px;
+        background: #fff;
+        border: 2px double #d4af37;
         box-shadow:
-            0 0 0 4px #fff,
-            0 0 0 5px #d4af37,
-            0 10px 30px rgba(212, 175, 55, 0.2);
+            0 0 0 6px #fff,
+            0 0 0 8px rgba(212, 175, 55, 0.2),
+            0 15px 40px rgba(212, 175, 55, 0.3);
     }
 
     .empty-icon-wrapper svg {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
     }
 
     .cart-empty-title {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        padding: 0 10px;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        padding: 0 15px;
         /* Prevent boundary touch */
     }
 
     .cart-empty-text {
-        font-size: 0.95rem;
-        margin-bottom: 35px;
-        padding: 0 15px;
+        font-size: 1rem;
+        margin-bottom: 40px;
+        padding: 0 20px;
         /* Prevent boundary touch */
         line-height: 1.6;
-        max-width: 90%;
+        max-width: 92%;
         /* Center containment */
         margin-left: auto;
         margin-right: auto;

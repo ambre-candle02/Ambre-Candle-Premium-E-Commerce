@@ -256,7 +256,21 @@ function ShopContent() {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            style={{ padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', background: '#fff' }}
+                            style={{
+                                padding: '10px 35px 10px 20px',
+                                borderRadius: '30px',
+                                border: '1px solid #d4af37',
+                                background: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
+                                color: '#000',
+                                fontWeight: '700',
+                                appearance: 'none',
+                                cursor: 'pointer',
+                                fontSize: '0.85rem',
+                                boxShadow: '0 5px 15px rgba(212, 175, 55, 0.2)',
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'right 15px center'
+                            }}
                         >
                             <option value="Featured">Featured</option>
                             <option value="Bestsellers">Bestsellers</option>
