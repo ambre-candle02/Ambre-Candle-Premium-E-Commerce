@@ -151,6 +151,25 @@ function CategoriesContent({ children }) {
 
             {/* Main Content (Right Side) */}
             <main className="shop-main-view">
+                {/* Mobile Category Navigation */}
+                <div className="category-bar">
+                    <Link href="/shop" className="category-pill">
+                        All
+                    </Link>
+                    {categories.map((cat) => {
+                        const isActive = pathname.includes(encodeURIComponent(cat));
+                        return (
+                            <motion.div key={cat} whileTap={{ scale: 0.9 }}>
+                                <Link
+                                    href={`/categories/${encodeURIComponent(cat)}`}
+                                    className={`category-pill ${isActive ? 'active' : ''}`}
+                                >
+                                    {cat}
+                                </Link>
+                            </motion.div>
+                        );
+                    })}
+                </div>
                 {children}
             </main>
         </div>

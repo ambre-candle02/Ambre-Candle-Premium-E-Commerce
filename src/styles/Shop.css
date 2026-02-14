@@ -117,13 +117,16 @@
 .category-bar {
     display: none;
     /* Hidden on desktop, shown on mobile */
-    gap: 12px !important;
-    overflow-x: auto !important;
-    padding: 15px 20px !important;
-    margin-bottom: 30px !important;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-    white-space: nowrap !important;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 20px 10px;
+    margin-bottom: 25px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
+    justify-content: center;
+    width: 100%;
+    z-index: 10;
 }
 
 .category-bar::-webkit-scrollbar {
