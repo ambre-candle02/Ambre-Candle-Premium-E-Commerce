@@ -523,20 +523,25 @@
 @media (max-width: 768px) {
     .qv-modal {
         grid-template-columns: 1fr;
-        max-height: 85vh;
-        /* slightly less for mobile browser bars */
-        width: 95%;
-        border-radius: 20px;
+        max-height: 90vh;
+        width: 92%;
+        border-radius: 24px;
+        overflow-y: auto;
+        /* Enable scrolling for long content */
+        display: block;
+        /* Stack rows naturally */
     }
 
     .qv-image-side {
-        height: 250px;
-        min-height: 250px;
+        height: 220px;
+        width: 100%;
     }
 
     .qv-content {
-        padding: 30px 20px;
+        padding: 40px 24px;
         text-align: center;
+        overflow-y: visible;
+        /* Let the parent modal handle scrolling */
     }
 
     .qv-title {
