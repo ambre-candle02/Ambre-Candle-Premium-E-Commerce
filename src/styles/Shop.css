@@ -404,11 +404,8 @@
     aspect-ratio: 1;
     overflow: hidden;
     background: #f9f9f9;
-    border: 3px solid #d4af37 !important;
-    /* Elite Permanent Gold Border on Image Section */
-    border-radius: 20px;
-    box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.1);
-    /* Subtle internal glow */
+    border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+    /* Subtle divider within the frame */
 }
 
 .shop-unit-image {
@@ -626,20 +623,20 @@
     }
 
     .misa-product-card {
-        border: none !important;
-        /* Removing Border from Entire Section */
+        border: 3px solid #d4af37 !important;
+        /* RESTORED: Pure Section Gold Border */
         background: #fff !important;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05) !important;
-        border-radius: 20px !important;
+        box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2) !important;
+        border-radius: 25px !important;
+        overflow: hidden !important;
+        margin-bottom: 10px !important;
     }
 
     .unit-visual {
-        border: 2.5px solid #d4af37 !important;
-        /* Gold Border ONLY on Image Section */
-        border-radius: 18px !important;
-        box-shadow:
-            0 8px 20px rgba(212, 175, 55, 0.2),
-            inset 0 0 10px rgba(212, 175, 55, 0.1) !important;
+        border: none !important;
+        /* Removing inner border to let card border shine */
+        border-bottom: 2px solid rgba(212, 175, 55, 0.3) !important;
+        border-radius: 22px 22px 0 0 !important;
     }
 
     .misa-product-card.mobile-hover .shop-card-overlay,
