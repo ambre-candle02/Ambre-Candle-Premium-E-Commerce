@@ -136,32 +136,58 @@
 
 @media (max-width: 768px) {
     .footer-main {
-        padding: 40px 25px 30px !important;
-        /* Increased and forced padding */
+        padding: 30px 20px 20px !important;
+        /* Reduced vertical padding */
         width: 100%;
         overflow-x: hidden;
-        /* Prevent horizontal scroll causing issues */
     }
 
     .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        padding-left: 5px;
-        /* Extra nudge */
+        grid-template-columns: 1fr 1fr;
+        /* Two-column grid for efficiency */
+        gap: 30px 20px;
     }
 
+    /* Make brand section span full width in the two-column grid */
     .footer-brand {
+        grid-column: 1 / -1;
         max-width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .footer-logo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .footer-mission {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .footer-social-v2 {
+        justify-content: center;
+    }
+
+    .footer-nav-col h4 {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-nav-col ul li {
+        margin-bottom: 8px;
     }
 
     .bottom-content {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         text-align: center;
     }
 
     .bottom-links {
-        gap: 20px;
+        gap: 15px;
     }
 }
 
