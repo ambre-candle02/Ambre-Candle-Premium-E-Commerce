@@ -108,50 +108,50 @@
 }
 
 .empty-icon-wrapper {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 140px;
-    height: 140px;
-    background: #fff;
-    border-radius: 50%;
-    margin-bottom: 40px;
-    color: #d4af37;
-    border: 3px double #d4af37;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 140px !important;
+    height: 140px !important;
+    background: #fff !important;
+    border-radius: 50% !important;
+    margin-bottom: 40px !important;
+    color: #d4af37 !important;
+    border: 3px double #d4af37 !important;
     /* Prestigious double border */
     box-shadow:
         0 15px 45px rgba(212, 175, 55, 0.25),
-        inset 0 0 20px rgba(212, 175, 55, 0.1);
-    position: relative;
-    animation: goldGlowPulse 4s infinite ease-in-out;
+        inset 0 0 20px rgba(212, 175, 55, 0.1) !important;
+    position: relative !important;
+    animation: goldGlowPulse 4s infinite ease-in-out !important;
 }
 
 .cart-empty-title {
-    font-size: 3.5rem;
-    font-family: var(--font-heading);
-    color: var(--color-text-primary);
-    margin-bottom: 20px;
-    font-weight: 200;
-    position: relative;
+    font-size: 3.5rem !important;
+    font-family: var(--font-heading) !important;
+    color: var(--color-text-primary) !important;
+    margin-bottom: 20px !important;
+    font-weight: 200 !important;
+    position: relative !important;
 }
 
 .cart-empty-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: #d4af37;
-    margin: 15px auto 0;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    content: '' !important;
+    display: block !important;
+    width: 60px !important;
+    height: 2px !important;
+    background: #d4af37 !important;
+    margin: 15px auto 0 !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
 }
 
 .cart-empty-text {
-    font-size: 1.2rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 60px;
-    letter-spacing: 1px;
-    font-weight: 300;
-    font-style: italic;
+    font-size: 1.2rem !important;
+    color: var(--color-text-secondary) !important;
+    margin-bottom: 60px !important;
+    letter-spacing: 1px !important;
+    font-weight: 300 !important;
+    font-style: italic !important;
 }
 
 .empty-cart-browse-btn {

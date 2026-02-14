@@ -166,7 +166,7 @@ function ShopContent() {
             }
         );
 
-        const cards = document.querySelectorAll('.luxury-card');
+        const cards = document.querySelectorAll('.misa-product-card');
         cards.forEach((card) => observer.observe(card));
 
         return () => observer.disconnect();
