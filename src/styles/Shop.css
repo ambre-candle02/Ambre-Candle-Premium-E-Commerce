@@ -1,5 +1,83 @@
 ﻿/* --- Ambre Premium Shop: Elite Aesthetic --- */
 
+/* FORCED CATEGORIES DESKTOP RESTORATION */
+.sidebar-shop-container {
+    display: grid !important;
+    grid-template-columns: 350px 1fr !important;
+    gap: 40px !important;
+    padding: 120px 60px 60px !important;
+    max-width: 1800px !important;
+    margin: 0 auto !important;
+    min-height: 100vh !important;
+    background: #fdfbf7 !important;
+}
+
+.shop-sidebar {
+    background: #2a1b0a !important;
+    /* Deep Chocolate Card */
+    border-radius: 40px !important;
+    padding: 50px 40px !important;
+    color: #fff !important;
+    height: fit-content !important;
+    position: sticky !important;
+    top: 120px !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15) !important;
+    display: block !important;
+}
+
+.sidebar-section {
+    margin-bottom: 30px !important;
+}
+
+.section-subtitle {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    color: #d4af37 !important;
+    margin-bottom: 25px !important;
+    font-weight: 700 !important;
+}
+
+.sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.sidebar-item {
+    padding: 18px 30px !important;
+    border-radius: 40px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border: 1px solid transparent !important;
+    text-decoration: none !important;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: #d4af37 !important;
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    transform: translateX(10px) !important;
+}
+
+.shop-main-view {
+    width: 100% !important;
+    display: block !important;
+}
+
+/* END FORCED RESTORATION */
+
 .ambre-boutique-shop {
     background-color: #fdfbf7;
     /* Luxury Shopping Bag Texture - Diagonal Pinstripes */
