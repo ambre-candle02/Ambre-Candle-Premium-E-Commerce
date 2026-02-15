@@ -574,14 +574,14 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
                                     setOrders(updatedOrders);
                                     localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
 
-                                    // Send Notification if Shipped
-                                    if (newStatus === 'Shipped') {
+                                    // Send Notification for Status Updates
+                                    if (['Packed', 'Shipped', 'Delivered'].includes(newStatus)) {
                                         await fetch('/api/orders/confirmation', {
                                             method: 'POST',
                                             headers: { 'Content-Type': 'application/json' },
                                             body: JSON.stringify({
                                                 order: { ...order, status: newStatus },
-                                                type: 'tracking'
+                                                type: newStatus.toLowerCase() // packed, shipped, delivered
                                             })
                                         });
                                     }

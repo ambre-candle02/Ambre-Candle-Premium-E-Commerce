@@ -34,25 +34,43 @@ export async function POST(req) {
             throw verifyError;
         }
 
-        // Determine Subject and Message based on type (Confirmation vs Tracking)
+        // Determine Subject and Message based on type
         let subject = `Order Confirmed - #${order.id} | Ambre Candle`;
         let statusTitle = "Order Successfully Placed!";
         let trackingInfo = "";
+        let messageBody = "We have received your order and are currently processing it.";
 
-        if (type === 'tracking') {
-            subject = `Your Order #${order.id} has been Shipped! | Ambre Candle`;
-            statusTitle = "Your Order is on its way!";
-            trackingInfo = `
+        // Handle Status Updates
+        switch (type) {
+            case 'packed':
+                subject = `Your Order #${order.id} is Packed! | Ambre Candle`;
+                statusTitle = "Packed with Care ✨";
+                messageBody = "Good news! Your order has been carefully packed and is ready to be shipped.";
+                break;
+
+            case 'shipped':
+            case 'tracking': // Backward compatibility
+                subject = `Your Order #${order.id} has been Shipped! | Ambre Candle`;
+                statusTitle = "Your Order is on its way! 🚚";
+                messageBody = "Your package has been handed over to our courier partner.";
+                trackingInfo = `
                 <div style="background: #fdfbf7; padding: 20px; border-radius: 12px; border: 1px solid #d4af37; margin-bottom: 25px;">
                     <h3 style="margin-top: 0; color: #d4af37;">Tracking Details</h3>
-                    <p><strong>AWB Number:</strong> ${order.trackingID}</p>
+                    <p><strong>AWB Number:</strong> ${order.trackingID || 'Pending'}</p>
                     <p><strong>Carrier:</strong> Delhivery Global</p>
-                    <a href="https://www.delhivery.com/track/package/${order.trackingID}" 
+                    ${order.trackingID ? `<a href="https://www.delhivery.com/track/package/${order.trackingID}" 
                        style="display: inline-block; background: #d4af37; color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px;">
                        Track Your Package ↗
-                    </a>
+                    </a>` : ''}
                 </div>
             `;
+                break;
+
+            case 'delivered':
+                subject = `Order Delivered - #${order.id} | Ambre Candle`;
+                statusTitle = "Package Delivered! 🎁";
+                messageBody = "Your order has been delivered. We hope it brings warmth and light to your space!";
+                break;
         }
 
         const itemsHtml = order.items.map(item => `
@@ -78,7 +96,7 @@ export async function POST(req) {
                     <h2 style="font-size: 1.5rem; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 20px;">${statusTitle}</h2>
                     
                     <p>Hi ${order.customer.firstName},</p>
-                    <p>Thank you for shopping with Ambre Candle! ${type === 'tracking' ? 'We have updated your order with tracking details.' : 'We have received your order and are currently processing it.'}</p>
+                    <p>Thank you for shopping with Ambre Candle! ${messageBody}</p>
                     
                     <div style="margin: 30px 0;">
                         <p><strong>Order ID:</strong> #${order.id}</p>
