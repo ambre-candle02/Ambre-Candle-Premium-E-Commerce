@@ -28,6 +28,7 @@ export default function AdminLayout({ children }) {
     const [mounted, setMounted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
     const pathname = usePathname();
     const router = useRouter();
 
@@ -41,18 +42,15 @@ export default function AdminLayout({ children }) {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setError('');
         const u = username.toLowerCase().trim();
         const p = password.trim();
 
-        console.log("Admin Login Attempt:", { username: u });
-
         if (u === '@ambre02' && p === 'Ambre@012') {
-            console.log("Admin Login Success!");
             sessionStorage.setItem('ambre_admin_session', 'active');
             setIsAuthenticated(true);
         } else {
-            console.warn("Admin Login Failed: Invalid Credentials");
-            alert('Invalid Credentials!\n\nUse EXACTLY these details:\nUser: @Ambre02\nPass: Ambre@012');
+            setError('Invalid credentials. Please contact the administrator.');
         }
     };
 
@@ -138,6 +136,28 @@ export default function AdminLayout({ children }) {
                                 </div>
                                 <h1 className="auth-title">Welcome Back</h1>
                                 <p className="auth-subtitle">Please sign in to continue</p>
+                                <AnimatePresence>
+                                    {error && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            style={{
+                                                background: 'rgba(239, 68, 68, 0.1)',
+                                                color: '#ef4444',
+                                                padding: '12px',
+                                                borderRadius: '12px',
+                                                fontSize: '0.85rem',
+                                                textAlign: 'center',
+                                                marginTop: '15px',
+                                                border: '1px solid rgba(239, 68, 68, 0.2)',
+                                                fontWeight: '600'
+                                            }}
+                                        >
+                                            {error}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
 
                             <form onSubmit={handleLogin}>
@@ -188,7 +208,7 @@ export default function AdminLayout({ children }) {
                                 </motion.button>
 
                                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                                    <p style={{ fontSize: '0.8rem', color: '#888' }}>Difficulties? <span onClick={() => { setIsAuthenticated(true); sessionStorage.setItem('ambre_admin_session', 'active'); }} style={{ color: '#d4af37', cursor: 'pointer', textDecoration: 'underline' }}>Emergency Access</span></p>
+                                    <p style={{ fontSize: '0.8rem', color: '#888', opacity: 0.6 }}>Portal Access Restricted</p>
                                 </div>
                             </form>
                         </motion.div>
