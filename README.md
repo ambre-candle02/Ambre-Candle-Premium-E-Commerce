@@ -57,7 +57,17 @@ Email: your-email@example.com
    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+   # Email Notifications (Nodemailer)
+   EMAIL_USER=your-gmail@gmail.com
+   EMAIL_PASS=your_gmail_app_password
    ```
+
+4. **Gmail App Password Setup**
+   - Go to your [Google Account Settings](https://myaccount.google.com/).
+   - Search for **"App Passwords"** (Ensure 2nd Step Verification is ON).
+   - Create a new App Password for "Mail" and "Other (Custom Name: Ambre Candle)".
+   - Copy the 16-character code and paste it into `EMAIL_PASS` in your `.env.local`.
 
 3. **Enable Authentication Methods**
    - Go to Authentication → Sign-in Method
