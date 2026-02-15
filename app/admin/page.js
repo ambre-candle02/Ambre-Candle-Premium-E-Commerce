@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs, doc, setDoc, updateDoc, query, orderBy } from 'firebase/firestore';
 import '@/src/styles/Admin.css';
 
 export default function AdminDashboard() {
@@ -10,32 +12,51 @@ export default function AdminDashboard() {
     const [searchTerm, setSearchTerm] = useState('');
     const [mounted, setMounted] = useState(false);
 
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
     useEffect(() => {
         setMounted(true);
         loadOrders();
     }, []);
 
-    const loadOrders = () => {
+    const loadOrders = async () => {
+        setIsRefreshing(true);
         try {
-            const historyRaw = localStorage.getItem('ambre_orders');
-            let loadedOrders = [];
+            // 1. Fetch from Firestore (Source of Truth)
+            const querySnapshot = await getDocs(query(collection(db, "orders"), orderBy("date", "desc")));
+            let cloudOrders = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
 
-            if (historyRaw) {
-                loadedOrders = JSON.parse(historyRaw);
-                if (!Array.isArray(loadedOrders)) {
-                    loadedOrders = [loadedOrders];
+            // 2. Fallback / Sync with LocalStorage
+            const localRaw = localStorage.getItem('ambre_orders');
+            let localOrders = localRaw ? JSON.parse(localRaw) : [];
+            if (!Array.isArray(localOrders)) localOrders = [localOrders];
+
+            // Migration: If local has orders not in cloud, sync them
+            if (localOrders.length > cloudOrders.length) {
+                for (const order of localOrders) {
+                    const exists = cloudOrders.find(co => co.id === order.id);
+                    if (!exists) {
+                        await setDoc(doc(db, "orders", order.id.toString()), order);
+                        cloudOrders.push(order);
+                    }
                 }
-            } else {
-                const lastOrderRaw = localStorage.getItem('ambre_last_order');
-                if (lastOrderRaw) {
-                    loadedOrders = [JSON.parse(lastOrderRaw)];
-                }
+                cloudOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
             }
-            loadedOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
-            setOrders(loadedOrders);
+
+            setOrders(cloudOrders);
+            localStorage.setItem('ambre_orders', JSON.stringify(cloudOrders));
         } catch (error) {
-            console.error("Failed to load orders:", error);
-            setOrders([]);
+            console.error("Firebase fetch error, falling back to local:", error);
+            const historyRaw = localStorage.getItem('ambre_orders');
+            if (historyRaw) {
+                const loaded = JSON.parse(historyRaw);
+                setOrders(Array.isArray(loaded) ? loaded : [loaded]);
+            }
+        } finally {
+            setIsRefreshing(false);
         }
     };
 
@@ -102,6 +123,7 @@ export default function AdminDashboard() {
                         <motion.button
                             onClick={loadOrders}
                             className="admin-refresh-btn"
+                            disabled={isRefreshing}
                             style={actionButtonStyle}
                             whileHover={{
                                 background: '#d4af37',
@@ -111,7 +133,7 @@ export default function AdminDashboard() {
                             }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <RefreshCw size={18} /> Refresh
+                            <RefreshCw size={18} className={isRefreshing ? 'spin' : ''} /> {isRefreshing ? 'Syncing...' : 'Refresh & Sync'}
                         </motion.button>
                         <motion.button
                             onClick={clearAllOrders}
@@ -394,15 +416,26 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
 
     const handleSaveTracking = () => {
         setIsSaving(true);
-        // Simulate API call to email service
-        setTimeout(() => {
+        try {
+            // Update Firestore
+            const orderRef = doc(db, "orders", order.id.toString());
+            await updateDoc(orderRef, {
+                trackingID: trackingID
+            });
+
+            // Update Local State
             const updatedOrders = orders.map(o => o.id === order.id ? { ...o, trackingID: trackingID } : o);
             setOrders(updatedOrders);
             localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
-            setIsSaving(false);
+
             setNotified(true);
             setTimeout(() => setNotified(false), 3000);
-        }, 800);
+        } catch (error) {
+            console.error("Error saving tracking info:", error);
+            alert("Failed to save to cloud, but updated locally.");
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     return (
@@ -516,10 +549,17 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
                         <label style={{ fontSize: '0.85rem', fontWeight: '600' }}>Status:</label>
                         <StatusDropdown
                             currentStatus={order.status || 'Processing'}
-                            onStatusChange={(newStatus) => {
-                                const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
-                                setOrders(updatedOrders);
-                                localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+                            onStatusChange={async (newStatus) => {
+                                try {
+                                    const orderRef = doc(db, "orders", order.id.toString());
+                                    await updateDoc(orderRef, { status: newStatus });
+
+                                    const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
+                                    setOrders(updatedOrders);
+                                    localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+                                } catch (error) {
+                                    console.error("Error updating status:", error);
+                                }
                             }}
                         />
                     </div>

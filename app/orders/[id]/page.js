@@ -4,6 +4,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Package, Truck, CheckCircle, Clock, MapPin, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { db } from '@/src/config/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default function OrderDetailPage() {
     const { id } = useParams();
@@ -11,13 +13,30 @@ export default function OrderDetailPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const loadOrder = () => {
+        const loadOrder = async () => {
+            setLoading(true);
             try {
-                const allOrders = JSON.parse(localStorage.getItem('ambre_orders') || '[]');
-                const foundOrder = allOrders.find(o => o.id === id);
-                setOrder(foundOrder || null);
+                // 1. Try Firestore First
+                const docRef = doc(db, "orders", id);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setOrder({ id: docSnap.id, ...docSnap.data() });
+                } else {
+                    // 2. Fallback to localStorage
+                    const allOrders = JSON.parse(localStorage.getItem('ambre_orders') || '[]');
+                    const foundOrder = allOrders.find(o => o.id === id);
+                    if (foundOrder) {
+                        setOrder(foundOrder);
+                    } else {
+                        setOrder(null);
+                    }
+                }
             } catch (e) {
-                console.error("Error loading order", e);
+                console.error("Error loading order from Firestore:", e);
+                // Last ditch effort: localStorage
+                const allOrders = JSON.parse(localStorage.getItem('ambre_orders') || '[]');
+                setOrder(allOrders.find(o => o.id === id) || null);
             } finally {
                 setLoading(false);
             }

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { Package, Truck, CheckCircle, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/src/context/AuthContext';
+import { db } from '@/src/config/firebase';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 
 export default function OrderHistoryPage() {
     const [orders, setOrders] = useState([]);
@@ -11,34 +13,40 @@ export default function OrderHistoryPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Load orders from local storage
-        const loadOrders = () => {
+        const loadOrders = async () => {
+            setLoading(true);
             try {
-                const allOrders = JSON.parse(localStorage.getItem('ambre_orders') || '[]');
+                let allOrders = [];
 
-                // If user is logged in, filter by their email/phone
-                // For demo purposes (since auth might be simple), we show all if no user filter rule is strict
-                // But ideally: 
+                // 1. Try fetching from Firestore if user email exists
                 if (user && user.email) {
-                    const userEmailLower = user.email.toLowerCase();
-                    const userOrders = allOrders.filter(o =>
-                        (o.customer?.email && o.customer.email.toLowerCase() === userEmailLower) ||
-                        (o.customer?.phone && o.customer.phone === user.phone)
+                    const q = query(
+                        collection(db, "orders"),
+                        where("customer.email", "==", user.email),
+                        orderBy("date", "desc")
                     );
-
-                    // Fallback: If no user-specific orders found, but there are total orders, 
-                    // maybe show them all or handle logic differently for better UX
-                    if (userOrders.length > 0) {
-                        setOrders(userOrders);
-                    } else {
-                        setOrders(allOrders);
-                    }
-                } else {
-                    // If guest, show all local device history
-                    setOrders(allOrders);
+                    const querySnapshot = await getDocs(q);
+                    allOrders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 }
+
+                // 2. If no cloud orders or no user, fallback to localStorage
+                if (allOrders.length === 0) {
+                    const localRaw = localStorage.getItem('ambre_orders');
+                    if (localRaw) {
+                        allOrders = JSON.parse(localRaw);
+                        if (!Array.isArray(allOrders)) allOrders = [allOrders];
+                    }
+                }
+
+                setOrders(allOrders);
             } catch (e) {
-                console.error("Error loading orders", e);
+                console.error("Error loading orders from Firestore:", e);
+                // Last ditch effort: localStorage only
+                const localRaw = localStorage.getItem('ambre_orders');
+                if (localRaw) {
+                    const loaded = JSON.parse(localRaw);
+                    setOrders(Array.isArray(loaded) ? loaded : [loaded]);
+                }
             } finally {
                 setLoading(false);
             }

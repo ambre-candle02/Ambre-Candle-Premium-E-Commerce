@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/src/context/CartContext';
-import { ShieldCheck, Truck, CreditCard, Lock, ArrowLeft, ArrowRight, MapPin } from 'lucide-react';
+import { Truck, ShieldCheck, CreditCard, Lock, ArrowLeft, ArrowRight, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { db } from '@/src/config/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function CheckoutPage() {
     const { cart, subtotal, clearCart } = useCart();
@@ -181,6 +183,15 @@ export default function CheckoutPage() {
 
         // Save last order separately for tracking page reference
         localStorage.setItem('ambre_last_order', JSON.stringify(orderData));
+
+        // 3. Save to Firestore (Real-world Persistence)
+        try {
+            await setDoc(doc(db, "orders", orderData.id), orderData);
+        } catch (error) {
+            console.error("Firestore order save error:", error);
+            // Fallback is already handled by localStorage, 
+            // but we might want to log this to a monitoring service
+        }
 
         // Simulate API Processing
         setTimeout(() => {
