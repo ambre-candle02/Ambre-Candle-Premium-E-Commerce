@@ -132,47 +132,38 @@ export default function AdminDashboard() {
 
                 {/* Orders Table Section */}
                 <div className="admin-table-section">
-                    <div className="admin-table-header" style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', margin: 0 }}>Recent Orders</h3>
-                        <div className="admin-search-wrapper" style={{ display: 'flex', gap: '10px' }}>
-                            <div style={{ position: 'relative', width: '100%' }}>
-                                <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#d4af37' }} />
+                    <div className="admin-table-header-v2">
+                        <h3>Recent Orders</h3>
+                        <div className="admin-search-wrapper-v2">
+                            <div className="admin-search-input-container">
+                                <Search size={18} className="admin-search-icon" />
                                 <input
-                                    className="admin-search-input"
+                                    className="admin-search-input-v2"
                                     type="text"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     placeholder="Search orders..."
-                                    style={{
-                                        padding: '10px 10px 10px 40px',
-                                        borderRadius: '50px',
-                                        fontSize: '0.9rem',
-                                        outline: 'none',
-                                        width: '250px',
-                                        color: '#333',
-                                        border: '1px solid #d4af37'
-                                    }}
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '900px' }}>
-                            <thead style={{ background: '#fcfcfc', borderBottom: '1px solid #eee' }}>
-                                <tr style={{ textAlign: 'left', color: '#666', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                    <th style={{ padding: '20px 30px' }}>Order ID</th>
-                                    <th style={{ padding: '20px 30px' }}>Customer</th>
-                                    <th style={{ padding: '20px 30px' }}>Date</th>
-                                    <th style={{ padding: '20px 30px' }}>Total</th>
-                                    <th style={{ padding: '20px 30px' }}>Status</th>
-                                    <th style={{ padding: '20px 30px' }}>Action</th>
+                    <div className="admin-table-scroll-container">
+                        <table className="admin-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th style={{ textAlign: 'right' }}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredOrders.length === 0 ? (
                                     <tr>
-                                        <td colSpan="6" style={{ padding: '60px', textAlign: 'center', color: '#999' }}>
+                                        <td colSpan="6" className="admin-table-empty">
                                             {orders.length === 0 ? "No orders found." : `No orders found matching "${searchTerm}".`}
                                         </td>
                                     </tr>
@@ -183,45 +174,40 @@ export default function AdminDashboard() {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: i * 0.05 }}
-                                            style={{ borderBottom: '1px solid #f9f9f9' }}
+                                            className="admin-table-row"
                                             whileHover={{ backgroundColor: '#fafafa' }}
                                         >
-                                            <td style={{ padding: '20px 30px', fontWeight: '600' }}>#{order.id}</td>
-                                            <td style={{ padding: '20px 30px' }}>
-                                                <div style={{ fontWeight: '600', color: '#111' }}>{order.customer?.firstName} {order.customer?.lastName}</div>
-                                                <div style={{ fontSize: '0.85rem', color: '#888' }}>{order.customer?.email}</div>
+                                            <td className="admin-td-id">#{order.id}</td>
+                                            <td className="admin-td-customer">
+                                                <div className="customer-name">{order.customer?.firstName} {order.customer?.lastName}</div>
+                                                <div className="customer-email">{order.customer?.email}</div>
                                             </td>
-                                            <td style={{ padding: '20px 30px', color: '#555' }}>
-                                                {new Date(order.date).toLocaleDateString()}
-                                                <div style={{ fontSize: '0.8rem', color: '#aaa' }}>{new Date(order.date).toLocaleTimeString()}</div>
+                                            <td className="admin-td-date">
+                                                <div className="date-main">{new Date(order.date).toLocaleDateString()}</div>
+                                                <div className="date-sub">{new Date(order.date).toLocaleTimeString()}</div>
                                             </td>
-                                            <td style={{ padding: '20px 30px', fontWeight: 'bold' }}>{formatCurrency(order.total)}</td>
-                                            <td style={{ padding: '20px 30px' }}>
-                                                <span style={{
-                                                    padding: '6px 14px',
-                                                    borderRadius: '50px',
-                                                    fontSize: '0.8rem',
-                                                    fontWeight: '600',
+                                            <td className="admin-td-total">{formatCurrency(order.total)}</td>
+                                            <td className="admin-td-status">
+                                                <span className="status-badge" style={{
                                                     background: getStatusColor(order.status).bg,
                                                     color: getStatusColor(order.status).text
                                                 }}>
                                                     {order.status || 'Pending'}
                                                 </span>
                                             </td>
-                                            <td style={{ padding: '20px 30px' }}>
+                                            <td className="admin-td-action">
                                                 <motion.button
                                                     onClick={() => setSelectedOrder(order)}
-                                                    className="admin-table-btn"
-                                                    style={{ ...actionButtonStyle, padding: '8px 15px', fontSize: '0.8rem', transition: 'all 0.3s ease' }}
+                                                    className="admin-view-btn"
                                                     whileHover={{
                                                         background: '#d4af37',
-                                                        color: '#fff',
+                                                        color: '#1a1a1a',
                                                         borderColor: '#d4af37',
                                                         boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)'
                                                     }}
                                                     whileTap={{ scale: 0.98 }}
                                                 >
-                                                    View Details
+                                                    <Eye size={16} /> View
                                                 </motion.button>
                                             </td>
                                         </motion.tr>

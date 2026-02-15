@@ -90,7 +90,8 @@
 }
 
 .wishlist-img-wrapper {
-    height: 280px;
+    height: 220px;
+    /* Standardized to match Shop/Categories aesthetic */
     overflow: hidden;
     position: relative;
 }
