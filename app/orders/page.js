@@ -96,10 +96,10 @@ export default function OrderHistoryPage() {
                                         </div>
                                         <div style={{ flex: 1 }}>
                                             <h4 style={{ margin: '0 0 5px', fontSize: '1.1rem', color: '#1a1a1a', fontWeight: '500' }}>{item.name}</h4>
-                                            <p style={{ margin: 0, fontSize: '0.9rem', color: '#555' }}>Qty: {item.quantity} × Rs. {item.price}</p>
+                                            <p style={{ margin: 0, fontSize: '0.9rem', color: '#555' }}>Qty: {item.quantity} × <span className="currency-symbol">₹</span>{item.price}</p>
                                         </div>
                                         <div style={{ fontWeight: '700', fontSize: '1.2rem', color: '#1a1a1a' }}>
-                                            Rs. {item.price * item.quantity}
+                                            <span className="currency-symbol">₹</span>{item.price * item.quantity}
                                         </div>
                                     </div>
                                 ))}
@@ -108,7 +108,7 @@ export default function OrderHistoryPage() {
                             {/* Footer */}
                             <div style={{ padding: '15px 25px', borderTop: '1px solid rgba(212, 175, 55, 0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(212, 175, 55, 0.08)' }}>
                                 <div style={{ fontSize: '1.1rem', color: '#1a1a1a' }}>
-                                    <strong>Total: <span style={{ color: '#b45d06', fontWeight: '800' }}>Rs. {order.total}</span></strong>
+                                    <strong>Total: <span style={{ color: '#b45d06', fontWeight: '800' }}><span className="currency-symbol">₹</span>{order.total}</span></strong>
                                 </div>
                                 <span style={{ color: '#b45d06', fontWeight: 'bold', fontSize: '0.95rem', letterSpacing: '1px', textTransform: 'uppercase', textDecoration: 'underline' }}>
                                     View Details &gt;

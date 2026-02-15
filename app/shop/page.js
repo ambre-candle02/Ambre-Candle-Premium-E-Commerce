@@ -6,370 +6,43 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
-import { Heart, Search, X, ShoppingBag, Check, Filter } from 'lucide-react';
+import { PRODUCTS } from '@/src/config/products';
+import { Heart, X, ShoppingBag, Check, Eye, Sparkles, LayoutGrid, IndianRupee } from 'lucide-react';
+import SafeImage from '@/src/components/SafeImage';
 import '@/src/styles/Shop.css';
+import '@/src/styles/Categories.css';
 
-const products = [
-    {
-        id: 801,
-        name: 'Bouquet candle',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 250,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/b97213b8-3e2f-4858-8f85-684ded0f7ecf_3294eca4-a32a-4bd7-9a47-7d94dcae5102.jpg?v=1761578738',
-        desc: 'Intricately sculpted floral bouquet candle hand-poured with premium soy wax.'
-    },
-    {
-        id: 802,
-        name: 'Bubble candle',
-        productType: 'Pillar Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Everyday',
-        price: 120,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485',
-        desc: 'Minimalist aesthetic bubble pillar candle, perfect for home decor.'
-    },
-    {
-        id: 803,
-        name: 'Daisy candle (Set of 4)',
-        productType: 'Hampers | Combo',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 100,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/WhatsAppImage2025-10-07at11.34.53AM_1.jpg?v=1759819864',
-        desc: 'Set of 4 delicate daisy-shaped candles, perfect for gifting.'
-    },
-    {
-        id: 804,
-        name: 'Daisy jar candle',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 200,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/a96c2a84-b8d9-4f81-8634-828506ac3fe9.jpg?v=1760269864',
-        desc: 'Elegant jar topped with a daisy motif and calming fragrance.'
-    },
-    {
-        id: 805,
-        name: 'Flower Heart (Set of 2)',
-        productType: 'Hampers | Combo',
-        scentFamily: 'Floral',
-        occasion: 'Valentines',
-        price: 120,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
-        desc: 'Beautiful heart-shaped floral candles, ideal for romantic settings.'
-    },
-    {
-        id: 806,
-        name: 'Flower Urli Candle',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 350,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634',
-        desc: 'Traditional metal urli with floating floral candles.'
-    },
-    {
-        id: 807,
-        name: 'Sandalwood Urli',
-        productType: 'Urli Candle',
-        scentFamily: 'Woody',
-        occasion: 'Evenings',
-        price: 350,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/185dcfa6-6cab-4306-bd57-b27a38c77d35.jpg?v=1760275359',
-        desc: 'Rich sandalwood scented urli candle for deep relaxation.'
-    },
-    {
-        id: 808,
-        name: 'Ladoo candle (pack of 4)',
-        productType: 'Hampers | Combo',
-        scentFamily: 'Gourmand',
-        occasion: 'Diwali',
-        price: 150,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529',
-        desc: 'Hyper-realistic ladoo-shaped festive candles with cardamom scent.'
-    },
-    {
-        id: 809,
-        name: 'Lotus Candle (Set of 2)',
-        productType: 'Hampers | Combo',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 500,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/276bee9d-72cc-4fc4-affa-588cc5772cf2.jpg?v=1760193469',
-        desc: 'Premium twin lotus designs for auspicious occasions.'
-    },
-    {
-        id: 810,
-        name: 'Lotus Urli (Small)',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 250,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/c7f9a190-a257-4656-b9ba-ac55e896c465.jpg?v=1760272062',
-        desc: 'Compact lotus urli for elegant table settings.'
-    },
-    {
-        id: 811,
-        name: 'Lotus Urli (Large)',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 399,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/dd00ec79-d22f-4a5c-a03f-8115101b3d7a.jpg?v=1760275135',
-        desc: 'Grand lotus urli centerpiece for festive decor.'
-    },
-    {
-        id: 812,
-        name: 'Mini Bubble Candle',
-        productType: 'Pillar Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Everyday',
-        price: 130,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/7eb94026-cffe-44ba-93cf-3f1dff92e08c.jpg?v=1760297002',
-        desc: 'Cute mini bubble candle, perfect for favors and small spaces.'
-    },
-    {
-        id: 813,
-        name: 'Ocean Jar Candle',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Bath Time',
-        price: 299,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/c5bddc45-0e6a-4415-8666-a2ce7e37b70e.png?v=1760273973',
-        desc: 'Refreshing ocean mist fragrance ensuring a spa-like experience.'
-    },
-    {
-        id: 814,
-        name: 'Amber Sunflower',
-        productType: 'Urli Candle',
-        scentFamily: 'Woody',
-        occasion: 'Evenings',
-        price: 320,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/9e692ddb-43fe-48d3-b869-fe6fcb9203a7.png?v=1761584004',
-        desc: 'Warm amber warmth combined with a unique sunflower design.'
-    },
-    {
-        id: 815,
-        name: 'Peacock Urli Candle',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 299,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/f9b6153e-2773-4b06-93d0-d96f33784619.jpg?v=1761584280',
-        desc: 'Intricately designed peacock urli candle for traditional settings.'
-    },
-    {
-        id: 816,
-        name: 'Peacock Urli (Spice)',
-        productType: 'Urli Candle',
-        scentFamily: 'Spicy',
-        occasion: 'Diwali',
-        price: 399,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/332be99a-2ead-4f6c-b148-e800e9394104.jpg?v=1761584422',
-        desc: 'A premium spicy aromatic candle with cinnamon notes.'
-    },
-    {
-        id: 817,
-        name: 'Chamomile & Lavender Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Bed Time',
-        price: 200,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/a96c2a84-b8d9-4f81-8634-828506ac3fe9.jpg?v=1760269864',
-        desc: 'Soothing chamomile and lavender notes for a peaceful sleep.'
-    },
-    {
-        id: 818,
-        name: 'Rose Garden Set',
-        productType: 'Hampers | Combo',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 350,
-        image: 'https://www.ambrecandle.com/cdn/shop/files/8edaaddf-1693-4475-aaf9-5464343fd7d4.jpg?v=1760274931',
-        desc: 'A romantic collection of rose-infused floral candles.'
-    },
-    {
-        id: 819,
-        name: 'Peony candle',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 130,
-        image: '/images/new_arrivals/peony_candle.jpg',
-        desc: 'Beautifully sculpted peony flower candle.'
-    },
-    {
-        id: 820,
-        name: 'Rasmalai candle',
-        productType: 'Cake / Dessert Candle',
-        scentFamily: 'Gourmand',
-        occasion: 'Diwali',
-        price: 120,
-        image: '/images/new_arrivals/rasmalai_candle.jpg',
-        desc: 'Sweet and delightful Rasmalai shaped candle.'
-    },
-    {
-        id: 821,
-        name: 'Rose (set of 2)',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Evenings',
-        price: 120,
-        image: '/images/new_arrivals/rose__set_of_2_.jpg',
-        desc: 'Pair of elegant rose shaped candles.'
-    },
-    {
-        id: 822,
-        name: 'Rose pillar candle',
-        productType: 'Pillar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Evenings',
-        price: 150,
-        image: '/images/new_arrivals/rose_pillar_candle.jpg',
-        desc: 'Classic pillar candle with rose engravings.'
-    },
-    {
-        id: 823,
-        name: 'Snake pillar candle',
-        productType: 'Figure Candle',
-        scentFamily: 'Unscented',
-        occasion: 'Everyday',
-        price: 199,
-        image: '/images/new_arrivals/snake_pillar_candle.jpg',
-        desc: 'Unique snake design pillar candle.'
-    },
-    {
-        id: 824,
-        name: 'Strip pillar candle (set of2)',
-        productType: 'Pillar Candle',
-        scentFamily: 'Unscented',
-        occasion: 'Everyday',
-        price: 299,
-        image: '/images/new_arrivals/strip_pillar_candle__set_of2_.jpg',
-        desc: 'Modern striped pillar candles (Set of 2).'
-    },
-    {
-        id: 825,
-        name: 'Sunflower urli candle',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 150,
-        image: '/images/new_arrivals/sunflower_urli_candle.jpg',
-        desc: 'Festive sunflower shaped urli candle.'
-    },
-    {
-        id: 826,
-        name: 'Sunflower urli candle (6.5inch)',
-        productType: 'Urli Candle',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 400,
-        image: '/images/new_arrivals/sunflower_urli_candle__6_5inch_.jpg',
-        desc: 'Large statement sunflower urli candle (6.5 inch).'
-    },
-    {
-        id: 827,
-        name: 'Teddy bear scented candles',
-        productType: 'Figure Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Everyday',
-        price: 119,
-        image: '/images/new_arrivals/teddy_bear_scented_candles.jpg',
-        desc: 'Adorable teddy bear scented candle.'
-    },
-    {
-        id: 828,
-        name: 'Tulip candle',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 200,
-        image: '/images/new_arrivals/tulip_candle.jpg',
-        desc: 'Elegant tulip shaped candle.'
-    }
-];
+const products = PRODUCTS;
 
-const productCategories = [
-    'All',
-    'Baby Shower', 'Bouquet Candle', 'Cake / Dessert Candle', 'Christmas', 'Coconut Shell Candle', 'Concrete Base Candle', 'Diwali', 'Figure Candle', 'Glass Jar Candle', 'Hampers | Combo', 'Halloween | Fall', 'Pillar Candle', 'Rakhi', 'Tealight', 'Tin Jar Candle', 'Urli Candle', 'Valentines', 'Wax Melts', 'Wax Sachet', 'Wooden Base Candle'
-];
+import { PRODUCT_CATEGORIES } from '@/src/config/constants';
 
-const AddToCartButton = ({ product }) => {
-    const { addToCart } = useCart();
-    const [added, setAdded] = useState(false);
-
-    const handleClick = () => {
-        addToCart({ ...product, quantity: 1 });
-        setAdded(true);
-        setTimeout(() => setAdded(false), 2000);
-    };
-
-    return (
-        <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={handleClick}
-            style={{
-                background: added ? '#4CAF50' : 'var(--color-accent)',
-                color: '#fff',
-                padding: '10px',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'background 0.3s ease',
-                width: '36px',
-                height: '36px'
-            }}
-        >
-            <AnimatePresence mode="wait">
-                {added ? (
-                    <motion.div
-                        key="check"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                    >
-                        <Check size={16} />
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="bag"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                    >
-                        <ShoppingBag size={16} />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.button>
-    );
-};
+const productCategories = PRODUCT_CATEGORIES;
 
 function ShopContent() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
-    const [sortBy, setSortBy] = useState('Featured');
-    const [activeCategory, setActiveCategory] = useState('All');
+
+    const [activeCategory, setActiveCategory] = useState(null);
     const [priceRange, setPriceRange] = useState([0, 2000]);
-    const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [sortBy, setSortBy] = useState('Featured');
     const [searchQuery, setSearchQuery] = useState('');
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [addedProductId, setAddedProductId] = useState(null);
 
-    const searchParams = useSearchParams();
-
-    // Get search query from URL
     useEffect(() => {
         setIsMounted(true);
+        const cat = searchParams.get('category');
+        if (cat) {
+            setActiveCategory(cat);
+        }
         const search = searchParams.get('search');
         if (search) {
             setSearchQuery(search);
+            if (!cat) setActiveCategory('All'); // Show search results under 'All' if no cat
         }
     }, [searchParams]);
 
@@ -398,237 +71,271 @@ function ShopContent() {
         return 0;
     });
 
+
+
     if (!isMounted) return null;
 
     return (
-        <div className="ambre-boutique-shop section" style={{ background: 'var(--color-bg-primary)', padding: '110px 0 80px' }}>
-            <div className="container">
-                <header className="boutique-header" style={{ marginBottom: '60px', textAlign: 'center' }}>
-                    <div className="bread-v5" style={{ fontSize: '0.75rem', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '15px', fontWeight: '800' }}>Collection / All Products</div>
-                    <h1 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text-primary)' }}>Our Collection</h1>
-                </header>
+        <div className="ambre-boutique-shop section" style={{ background: '#fdfbf7', padding: '100px 0 80px' }}>
 
-                <div className="shop-layout" style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '50px' }}>
 
-                    {/* Filter Sidebar with Mobile Support */}
-                    <aside className={`shop-sidebar ${isFilterOpen ? 'active' : ''}`}>
-                        <div className="mobile-filter-header" style={{ display: 'none', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '15px', borderBottom: '1px solid #eee' }}>
-                            <h3 style={{ margin: 0 }}>Filters</h3>
-                            <button onClick={() => setIsFilterOpen(false)} style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
+            <div className="sidebar-shop-container">
+                {/* LEFT SIDE: Artisan Sidebar */}
+                <aside className={`shop-sidebar ${isFilterOpen ? 'active' : ''}`}>
+                    <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            marginBottom: '20px',
+                            fontSize: '0.75rem',
+                            letterSpacing: '4px',
+                            color: '#d4af37',
+                            fontWeight: '700'
+                        }}>
+                            <Sparkles size={16} />
+                            <span>AMBRE BOUTIQUE</span>
                         </div>
 
-                        <div className="filter-group" style={{ marginBottom: '40px' }}>
-                            <h3 style={{ fontSize: '0.9rem', marginBottom: '25px', borderBottom: '1px solid var(--color-border)', paddingBottom: '15px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '800', color: '#d4af37' }}>Product Category</h3>
-                            <ul style={{ listStyle: 'none', padding: 0 }}>
-                                {productCategories.map(cat => (
-                                    <li
-                                        key={cat}
-                                        className={activeCategory === cat ? 'active' : ''}
-                                        onClick={() => { setActiveCategory(cat); setIsFilterOpen(false); }}
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.4rem', color: '#fff', marginBottom: '5px', fontWeight: '300', letterSpacing: '2px' }}>Artisan</h2>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', color: '#fff', marginBottom: '25px', fontWeight: '300', opacity: 0.8, letterSpacing: '5px' }}>Selection</h2>
+
+                        <div style={{ width: '50px', height: '2px', background: '#d4af37', margin: '0 auto', boxShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}></div>
+                    </div>
+
+                    <div className="sidebar-section">
+                        <h3 className="section-subtitle">Collections</h3>
+                        <nav className="sidebar-nav">
+                            {/* --- New Gallery Home Button --- */}
+                            <button
+                                onClick={() => { setActiveCategory(null); router.push('/shop'); }}
+                                className={`sidebar-item ${!activeCategory ? 'active' : ''}`}
+                                style={{ marginBottom: '20px', borderStyle: 'dashed' }}
+                            >
+                                <LayoutGrid size={18} style={{ marginRight: '10px' }} />
+                                <span>Gallery Showcase</span>
+                            </button>
+
+                            <div style={{ opacity: 0.5, fontSize: '0.7rem', letterSpacing: '2px', marginBottom: '15px', paddingLeft: '20px' }}>CATEGORIES</div>
+
+                            {productCategories.map((cat) => (
+                                <Link
+                                    key={cat}
+                                    href={`/shop?category=${encodeURIComponent(cat)}`}
+                                    className={`sidebar-item ${activeCategory === cat ? 'active' : ''}`}>
+                                    <span>{cat}</span>
+                                    {activeCategory === cat && <Check size={14} />}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
+
+                    <div className="sidebar-section">
+                        <h3 className="section-subtitle"><IndianRupee size={16} /> Price Range</h3>
+                        <div className="price-slider-container">
+                            <div className="price-labels" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                <span style={{ color: '#999', fontSize: '0.85rem' }}>₹0</span>
+                                <span style={{ color: '#d4af37', fontSize: '0.9rem', fontWeight: '700' }}>Up to ₹{priceRange[1]}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0"
+                                max="2000"
+                                step="50"
+                                value={priceRange[1]}
+                                onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
+                                className="price-slider"
+                                style={{
+                                    width: '100%',
+                                    height: '6px',
+                                    borderRadius: '10px',
+                                    background: `linear-gradient(to right, #d4af37 0%, #d4af37 ${(priceRange[1] / 2000) * 100}%, rgba(255,255,255,0.1) ${(priceRange[1] / 2000) * 100}%, rgba(255,255,255,0.1) 100%)`,
+                                    outline: 'none',
+                                    appearance: 'none',
+                                    WebkitAppearance: 'none',
+                                    cursor: 'pointer'
+                                }} />
+                        </div>
+                    </div>
+
+                    {(activeCategory !== 'All' || priceRange[1] !== 2000) && (
+                        <button
+                            onClick={() => { setActiveCategory('All'); setPriceRange([0, 2000]); }}
+                            className="sidebar-item"
+                            style={{ marginTop: '30px', justifyContent: 'center', background: 'rgba(212, 175, 55, 0.1)', borderColor: '#d4af37', color: '#d4af37' }}
+                        >
+                            Clear Filters
+                        </button>
+                    )}
+                </aside>
+                {/* RIGHT SIDE: Hero + Products */}
+                {/* --- RIGHT CONTENT AREA: Hero vs Products --- */}
+                <AnimatePresence mode="wait">
+                    {!activeCategory ? (
+                        <motion.div
+                            key="hero-view"
+                            className="shop-gallery-view"
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.02, filter: 'blur(10px)' }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <div className="shop-top-hero">
+                                <div className="hero-visual">
+                                    <SafeImage
+                                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770899767/ambre-candles/Favourites/mnszqowrujfkt3qhbqva.jpg"
+                                        alt="Ambre Premium Candles"
+                                        priority
+                                    />
+                                    <div className="hero-overlay"></div>
+                                </div>
+                                <div className="hero-text-content">
+                                    <div className="boutique-label">AMBRE LUXE SELECTION</div>
+                                    <h1 className="hero-main-title">Artisanal Gallery</h1>
+                                    <p className="hero-subtext">Welcome to our sensory showcase. Select a category from the sidebar to explore our hand-poured collections.</p>
+                                    <button
+                                        className="btn-primary"
+                                        style={{ marginTop: '30px' }}
+                                        onClick={() => setActiveCategory('All')}
                                     >
-                                        {cat}
-                                        {activeCategory === cat && <Check size={16} strokeWidth={3} />}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="filter-group" style={{ marginBottom: '30px' }}>
-                            <h3 style={{ fontSize: '1.1rem', marginBottom: '15px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>Price Range</h3>
-                            <div style={{ padding: '10px 5px' }}>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="2000"
-                                    value={priceRange[1]}
-                                    onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-                                    className="price-slider"
-                                    style={{ width: '100%' }}
-                                />
-                                <div className="price-labels">
-                                    <span>Rs. 0</span>
-                                    <span>Rs. {priceRange[1]}</span>
+                                        Explore All Products
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-
-                        {(activeCategory !== 'All' || priceRange[1] !== 2000) && (
-                            <button
-                                onClick={() => { setActiveCategory('All'); setPriceRange([0, 2000]); }}
-                                className="btn-clear-filters"
-                            >
-                                Clear All Filters
-                            </button>
-                        )}
-                    </aside>
-
-                    <div className="shop-main-content">
-                        <div className="shop-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingBottom: '20px', borderBottom: '1px solid #eee', flexWrap: 'wrap', gap: '15px' }}>
-
-                            {/* Mobile Filter Toggle */}
-                            <button
-                                className="mobile-filter-btn"
-                                onClick={() => setIsFilterOpen(true)}
-                                style={{
-                                    /* display: 'none',  handled by CSS media query */
-                                    padding: '8px 16px', border: '1px solid #ddd', borderRadius: '5px', background: '#fff', fontSize: '0.9rem', alignItems: 'center', gap: '8px'
-                                }}
-                            >
-                                <span style={{ fontSize: '1.2rem' }}>≡</span> Filters
-                            </button>
-
-                            <span style={{ color: '#333', fontSize: '0.9rem', fontWeight: '600' }}>Showing {sortedProducts.length} results</span>
-
-                            <div className="sort-wrapper">
-                                <select
-                                    value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
-                                    style={{ padding: '8px 15px', borderRadius: '5px', border: '1px solid #eee', outline: 'none', background: '#fff' }}
-                                >
-                                    <option value="Featured">Featured</option>
-                                    <option value="Bestsellers">Bestsellers</option>
-                                    <option value="Newest">Newest</option>
-                                    <option value="Price: Low-High">Price: Low to High</option>
-                                    <option value="Price: High-Low">Price: High to Low</option>
-                                </select>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="product-view"
+                            className="shop-product-focus-view"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <div className="compact-category-header">
+                                <span className="browsing-prefix">Browsing Collection</span>
+                                <h1 className="active-cat-name">
+                                    {activeCategory === 'All' ? 'Artisan Selection' : activeCategory}
+                                </h1>
+                                <div className="active-accent-line"></div>
                             </div>
-                        </div>
 
-                        {sortedProducts.length === 0 && (
-                            <div className="no-results" style={{ textAlign: 'center', padding: '60px 20px', width: '100%', gridColumn: '1 / -1' }}>
-                                <div style={{ fontSize: '4rem', marginBottom: '20px' }}>🔍</div>
-                                <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>No matches found</h3>
-                                <p style={{ color: '#666', marginBottom: '30px' }}>Try adjusting your search or filter to find what you're looking for.</p>
-                                <button
-                                    onClick={() => {
-                                        setSearchQuery('');
-                                        setActiveCategory('All');
-                                        setPriceRange([0, 2000]);
-                                        if (typeof window !== 'undefined') {
-                                            const url = new URL(window.location);
-                                            url.search = '';
-                                            window.history.pushState({}, '', url);
-                                        }
-                                    }}
-                                    className="btn-clear-filters"
-                                >
-                                    Clear All Filters
-                                </button>
-                            </div>
-                        )}
-
-                        {sortedProducts.length > 0 && (
-                            <div className="product-wall">
-                                <AnimatePresence mode='popLayout'>
+                            {sortedProducts.length > 0 ? (
+                                <div className="product-wall">
                                     {sortedProducts.map((p, i) => (
                                         <motion.div
-                                            layout
                                             key={p.id}
                                             className="luxury-card"
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.9 }}
-                                            transition={{ duration: 0.4 }}
+                                            transition={{ duration: 0.4, delay: i * 0.05 }}
                                         >
                                             <div className="unit-visual">
-                                                {p.bestseller && (
-                                                    <div style={{ position: 'absolute', top: '15px', left: '15px', background: 'var(--color-accent)', color: '#fff', padding: '4px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 'bold', zIndex: 2 }}>
-                                                        Bestseller
-                                                    </div>
-                                                )}
-                                                <Link href={`/product/${p.id}`} style={{ position: 'relative', display: 'block', width: '100%', height: '100%' }}>
-                                                    <Image
-                                                        src={p.image}
-                                                        alt={p.name}
-                                                        fill
-                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        style={{
-                                                            objectFit: 'cover'
-                                                        }}
-                                                    />
+                                                <Link href={`/product/${p.id}`} className="unit-link">
+                                                    <SafeImage src={p.image} alt={p.name} />
                                                 </Link>
-                                                <div className="unit-overlay" style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px', display: 'flex', gap: '10px' }}>
+                                                <div className="unit-overlay">
                                                     <button
-                                                        onClick={() => setQuickViewProduct(p)}
-                                                        style={{ flex: 1, background: '#fff', padding: '10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                                                        className="btn-quickview-shop"
+                                                        onClick={(e) => { e.preventDefault(); setQuickViewProduct(p); }}
                                                     >
-                                                        <Search size={14} /> Quick View
+                                                        <Eye size={22} strokeWidth={1.5} />
                                                     </button>
-                                                    <AddToCartButton product={p} />
+                                                    <button
+                                                        className={`btn-add-cart-shop ${addedProductId === p.id ? 'added' : ''}`}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            addToCart({ ...p, quantity: 1 });
+                                                            setAddedProductId(p.id);
+                                                            setTimeout(() => setAddedProductId(null), 2000);
+                                                        }}
+                                                    >
+                                                        {addedProductId === p.id ? <Check size={18} /> : <ShoppingBag size={18} />}
+                                                    </button>
                                                 </div>
                                                 <button
-                                                    style={{ position: 'absolute', top: '15px', right: '15px', background: '#fff', padding: '8px', borderRadius: '50%', color: isInWishlist(p.id) ? 'var(--color-accent)' : '#1a1a1a' }}
-                                                    onClick={() => toggleWishlist(p)}
+                                                    className="btn-wishlist-shop"
+                                                    onClick={(e) => { e.preventDefault(); toggleWishlist(p); }}
                                                 >
-                                                    <Heart size={18} fill={isInWishlist(p.id) ? "var(--color-accent)" : "none"} />
+                                                    <Heart
+                                                        size={18}
+                                                        fill={isInWishlist(p.id) ? "#d4af37" : "none"}
+                                                        color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"}
+                                                    />
                                                 </button>
                                             </div>
                                             <div className="unit-meta">
                                                 <h3>{p.name}</h3>
-                                                <p>Rs. {p.price.toFixed(2)}</p>
+                                                <p><span className="currency-symbol">₹</span>{p.price}</p>
                                             </div>
                                         </motion.div>
                                     ))}
-                                </AnimatePresence>
-                            </div>
-                        )}
-                    </div>
-                </div >
+                                </div>
+                            ) : (
+                                <div className="no-products-wrapper">
+                                    <h3 style={{ fontWeight: '300', color: '#666' }}>No products found in this selection.</h3>
+                                    <button
+                                        onClick={() => { setActiveCategory(null); router.push('/shop'); }}
+                                        className="no-products-btn"
+                                    >
+                                        Back to Gallery
+                                    </button>
+                                </div>
+                            )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Quick View Modal */}
                 <AnimatePresence>
                     {quickViewProduct && (
-                        <div className="quickview-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', backdropFilter: 'blur(5px)' }}>
+                        <div className="quickview-overlay" onClick={() => setQuickViewProduct(null)}>
                             <motion.div
                                 className="qv-modal"
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                exit={{ scale: 0.9, opacity: 0 }}
-                                style={{ background: '#fff', width: '100%', maxWidth: '900px', borderRadius: '25px', overflow: 'hidden', position: 'relative' }}
+                                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                                onClick={(e) => e.stopPropagation()}
                             >
                                 <button
-                                    style={{ position: 'absolute', top: '20px', right: '20px', background: '#f5f5f5', padding: '8px', borderRadius: '50%', zIndex: 2 }}
+                                    className="qv-close-btn"
                                     onClick={() => setQuickViewProduct(null)}
                                 >
                                     <X size={20} />
                                 </button>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-                                    <div style={{ position: 'relative', height: '500px' }}>
-                                        <Image
-                                            src={quickViewProduct.image}
-                                            alt={quickViewProduct.name}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                            style={{ objectFit: 'cover' }}
-                                        />
+                                <div className="qv-image-side">
+                                    <SafeImage src={quickViewProduct.image} alt={quickViewProduct.name} />
+                                </div>
+                                <div className="qv-content">
+                                    <span className="qv-category">{quickViewProduct.productType}</span>
+                                    <h2 className="qv-title">{quickViewProduct.name}</h2>
+                                    <div className="qv-price">
+                                        <span className="currency-symbol">₹</span>{quickViewProduct.price}
                                     </div>
-                                    <div style={{ padding: '50px' }}>
-                                        <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>{quickViewProduct.productType}</span>
-                                        <h2 style={{ fontSize: '2.5rem', margin: '15px 0' }}>{quickViewProduct.name}</h2>
-                                        <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px' }}>Rs. {quickViewProduct.price.toFixed(2)}</p>
-                                        <p style={{ color: '#666', lineHeight: '1.8', marginBottom: '40px' }}>{quickViewProduct.desc}</p>
-                                        <div style={{ display: 'flex', gap: '15px' }}>
-                                            <button
-                                                className="btn-primary"
-                                                style={{ flex: 1, height: '55px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
-                                                onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
-                                            >
-                                                <ShoppingBag size={18} /> Add to Cart
-                                            </button>
-                                        </div>
-                                        <Link
-                                            href={`/product/${quickViewProduct.id}`}
-                                            style={{ display: 'block', textAlign: 'center', marginTop: '20px', color: '#999', textDecoration: 'underline', fontSize: '0.9rem' }}
-                                            onClick={() => setQuickViewProduct(null)}
+                                    <p className="qv-desc">{quickViewProduct.desc}</p>
+
+                                    <div className="qv-actions">
+                                        <button
+                                            className="btn-primary"
+                                            style={{ flex: 1, height: '60px' }}
+                                            onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
                                         >
-                                            View Full Details
-                                        </Link>
+                                            <ShoppingBag size={20} /> Add to Cart
+                                        </button>
                                     </div>
+
+                                    <Link
+                                        href={`/product/${quickViewProduct.id}`}
+                                        className="qv-view-details"
+                                        onClick={() => setQuickViewProduct(null)}
+                                    >
+                                        View Full Product Details
+                                    </Link>
                                 </div>
                             </motion.div>
                         </div>
-                    )
-                    }
+                    )}
                 </AnimatePresence>
             </div>
         </div>
@@ -638,14 +345,7 @@ function ShopContent() {
 export default function Shop() {
     return (
         <Suspense fallback={
-            <div style={{
-                minHeight: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#fdfbf7',
-                fontFamily: 'serif'
-            }}>
+            <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fdfbf7' }}>
                 <div style={{ textAlign: 'center' }}>
                     <div style={{ fontSize: '1.2rem', color: '#d4af37', letterSpacing: '4px' }}>AMBRE BOUTIQUE</div>
                     <div style={{ fontSize: '0.8rem', color: '#999', marginTop: '10px' }}>Loading Collection...</div>

@@ -123,6 +123,10 @@
     border: none !important;
 }
 
+.cart-btn:hover {
+    color: #d4af37 !important;
+}
+
 .cart-badge {
     position: absolute;
     top: 2px;

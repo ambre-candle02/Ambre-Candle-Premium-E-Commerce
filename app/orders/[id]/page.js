@@ -103,15 +103,15 @@ export default function OrderDetailPage() {
                                     </div>
                                     <div>
                                         <div style={{ fontWeight: '600', marginBottom: '4px', color: '#1a1a1a' }}>{item.name}</div>
-                                        <div style={{ fontSize: '0.9rem', color: '#444' }}>Qty: <span style={{ fontWeight: '600' }}>{item.quantity}</span> | Price: <span style={{ fontWeight: '600' }}>Rs. {item.price}</span></div>
-                                        <div style={{ fontWeight: '700', marginTop: '4px', color: '#b45d06' }}>Rs. {item.price * item.quantity}</div>
+                                        <div style={{ fontSize: '0.9rem', color: '#444' }}>Qty: <span style={{ fontWeight: '600' }}>{item.quantity}</span> | Price: <span style={{ fontWeight: '600' }}><span className="currency-symbol">₹</span>{item.price}</span></div>
+                                        <div style={{ fontWeight: '700', marginTop: '4px', color: '#b45d06' }}><span className="currency-symbol">₹</span>{item.price * item.quantity}</div>
                                     </div>
                                 </div>
                             ))}
                         </div>
                         <div style={{ borderTop: '2px solid rgba(212, 175, 55, 0.2)', paddingTop: '15px', marginTop: '15px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem' }}>
                             <span style={{ color: '#1a1a1a' }}>Total Amount</span>
-                            <span style={{ color: '#b45d06', fontWeight: '800' }}>Rs. {order.total}</span>
+                            <span style={{ color: '#b45d06', fontWeight: '800' }}><span className="currency-symbol">₹</span>{order.total}</span>
                         </div>
                     </div>
 

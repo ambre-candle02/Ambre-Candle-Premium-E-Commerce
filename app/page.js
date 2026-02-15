@@ -3,23 +3,24 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
+import { Heart, Eye, ShoppingBag } from 'lucide-react';
 
 
 const categorybanners = [
     {
         title: 'Signature Hampers',
         img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840787/ambre-candles/Hampers_%7C_Combo/lxpbksaxenyc77vrmatf.jpg',
-        path: '/categories/Hampers%20|%20Combo'
+        path: '/categories/Hampers | Combo'
     },
     {
         title: 'Luxury Glass Jars',
         img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg',
-        path: '/categories/Glass%20Jar%20Candle'
+        path: '/categories/Glass Jar Candle'
     },
     {
         title: 'Artisan Bouquets',
         img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831575/ambre-candles/Bouquet%20Candle/vjq28br0vds2dh0va5np.jpg',
-        path: '/categories/Bouquet%20Candle'
+        path: '/categories/Bouquet Candle'
     },
     {
         title: 'Festive Series',
@@ -30,9 +31,9 @@ const categorybanners = [
 
 const microGallery = [
     { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841203/ambre-candles/Glass_Jar_Candle/kbyef5tbqfaixxiqojfa.jpg', title: 'Lotus Series', path: '/shop?search=Lotus' },
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842058/ambre-candles/Pillar_Candle/gxxf6o9neqvvmvvwnckz.jpg', title: 'Artisan Pillars', path: '/categories/Pillar%20Candle' },
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836239/ambre-candles/Cake_/_Dessert_Candle/nd46v75p3uov7o68pkhy.jpg', title: 'Dessert Series', path: '/categories/Cake%20/%20Dessert%20Candle' },
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841790/ambre-candles/Ladoo_Candle/yzjn0157ps4dxxluxiut.jpg', title: 'Daily Rituals', path: '/categories/Ladoo%20Candle' }
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842058/ambre-candles/Pillar_Candle/gxxf6o9neqvvmvvwnckz.jpg', title: 'Artisan Pillars', path: '/categories/Pillar Candle' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836239/ambre-candles/Cake_/_Dessert_Candle/nd46v75p3uov7o68pkhy.jpg', title: 'Dessert Series', path: '/categories/Cake / Dessert Candle' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841790/ambre-candles/Ladoo_Candle/yzjn0157ps4dxxluxiut.jpg', title: 'Daily Rituals', path: '/categories/Ladoo Candle' }
 ];
 
 const bestSellers = [
@@ -254,29 +255,41 @@ export default function Home() {
                 <div className="misa-products-grid">
                     {bestSellers.map((product, i) => (
                         <motion.div key={product.id} className="misa-product-card" whileHover="hover" initial="initial">
-                            <Link href={`/product/${product.id}`} className="misa-prod-link-wrapper">
+                            <Link href={`/product/${product.id}`} className="misa-prod-link-wrapper" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <div className="misa-prod-img-box">
                                     {(i === 0 || i === 2) && <span className="misa-badge">{i === 0 ? 'Bestseller' : 'New'}</span>}
-                                    <button className="misa-wishlist-btn" onClick={(e) => { e.preventDefault(); alert('Added to wishlist!'); }}>
-                                        ❤
+                                    <button className="misa-wishlist-btn-home" onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Added to wishlist!'); }}>
+                                        <Heart
+                                            size={18}
+                                            fill="none"
+                                            color="#1a1a1a"
+                                        />
                                     </button>
                                     <motion.div
-                                        whileHover={{ scale: 1.1 }}
+                                        whileHover={{ scale: 1.05 }}
                                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                                         style={{ position: 'relative', width: '100%', height: '100%' }}
                                     >
                                         <SafeImage src={product.image} alt="Ambre Candle Product" className="misa-prod-img" />
                                     </motion.div>
-                                    <div className="misa-quick-add">
-                                        <button onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>
-                                            Add to Cart
+                                    <div className="misa-prod-overlay">
+                                        <button
+                                            className="btn-quickview-shop"
+                                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Quick View!'); }}
+                                        >
+                                            <Eye size={22} strokeWidth={1.5} />
+                                        </button>
+                                        <button
+                                            className="btn-add-cart-shop"
+                                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Added to cart!'); }}
+                                        >
+                                            <ShoppingBag size={18} />
                                         </button>
                                     </div>
                                 </div>
                                 <div className="misa-prod-info">
-                                    <span className="misa-prod-fragrance">{product.fragrance}</span>
                                     <h3>{product.name}</h3>
-                                    <span className="misa-prod-price"><span className="currency-symbol">₹</span>{product.price}</span>
+                                    <p><span className="currency-symbol">₹</span>{product.price}</p>
                                 </div>
                             </Link>
                         </motion.div>

@@ -389,14 +389,14 @@ export default function CheckoutPage() {
                                         <div style={{ fontWeight: 'bold' }}>{item.name}</div>
                                         <div style={{ color: '#888', fontSize: '0.8rem' }}>Qty: {item.quantity}</div>
                                     </div>
-                                    <div style={{ fontWeight: 600 }}>Rs. {(item.price * item.quantity).toFixed(2)}</div>
+                                    <div style={{ fontWeight: 600 }}><span className="currency-symbol">₹</span>{(item.price * item.quantity).toFixed(2)}</div>
                                 </div>
                             ))}
                         </div>
                         <div style={{ borderTop: '2px solid #ddd', paddingTop: '20px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#888' }}>
                                 <span>Subtotal</span>
-                                <span>Rs. {subtotal.toFixed(2)}</span>
+                                <span><span className="currency-symbol">₹</span>{subtotal.toFixed(2)}</span>
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#888' }}>
                                 <span>Shipping</span>
@@ -404,7 +404,7 @@ export default function CheckoutPage() {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.4rem', marginTop: '15px' }}>
                                 <span>Total</span>
-                                <span>Rs. {subtotal.toFixed(2)}</span>
+                                <span><span className="currency-symbol">₹</span>{subtotal.toFixed(2)}</span>
                             </div>
                         </div>
                         <div style={{ marginTop: '30px', background: 'rgba(212, 100, 55, 0.05)', padding: '15px', borderRadius: '10px', display: 'flex', gap: '10px', fontSize: '0.85rem', color: '#d46437', alignItems: 'center', border: '1px solid rgba(212, 100, 55, 0.1)' }}>

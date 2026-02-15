@@ -49,7 +49,7 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
                         }}
                         className="btn-quickview"
                     >
-                        <Eye size={16} />
+                        <Eye size={22} strokeWidth={1.5} />
                     </motion.button>
 
                     <motion.button

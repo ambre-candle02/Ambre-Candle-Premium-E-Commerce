@@ -151,13 +151,13 @@ function CollectionContent() {
                                 boxShadow: '0 10px 30px rgba(0,0,0,0.15), 0 0 0 1px rgba(212,175,55,0.1)',
                                 transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                                 cursor: 'pointer',
-                                border: '2px solid transparent',
+                                border: '2px solid #d4af37', /* Permanent gold border */
                                 backgroundClip: 'padding-box',
                                 position: 'relative'
                             }}
                             whileHover={{
                                 y: -15,
-                                boxShadow: '0 25px 50px rgba(212,175,55,0.3), 0 0 0 2px #d4af37',
+                                boxShadow: '0 25px 50px rgba(212,175,55,0.3)',
                                 scale: 1.02,
                                 background: 'linear-gradient(to bottom, #fffef8 0%, #faf9f0 100%)'
                             }}
