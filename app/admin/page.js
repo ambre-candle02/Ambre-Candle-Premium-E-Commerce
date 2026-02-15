@@ -402,49 +402,49 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 };
 
 const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+    <div className="admin-modal-overlay">
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
+            className="admin-modal-backdrop"
         />
         <motion.div
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            style={{ background: '#fff', width: '100%', maxWidth: '700px', borderRadius: '24px', position: 'relative', zIndex: 1010, overflow: 'hidden', boxShadow: '0 50px 100px rgba(0,0,0,0.3)' }}
+            className="admin-modal-container"
         >
-            <div style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fafafa' }}>
+            <div className="admin-modal-header">
                 <div>
-                    <h2 style={{ fontFamily: 'var(--font-heading)', margin: 0, fontSize: '1.5rem' }}>Order #{order.id}</h2>
-                    <p style={{ margin: '5px 0 0', color: '#666', fontSize: '0.9rem' }}>Placed on {new Date(order.date).toLocaleString()}</p>
+                    <h2>Order #{order.id}</h2>
+                    <p>Placed on {new Date(order.date).toLocaleString()}</p>
                 </div>
-                <button onClick={onClose} style={{ border: 'none', background: 'transparent', fontSize: '1.5rem', cursor: 'pointer', color: '#aaa' }}>&times;</button>
+                <button onClick={onClose} className="admin-modal-close-btn">&times;</button>
             </div>
 
-            <div style={{ padding: '30px', maxHeight: '60vh', overflowY: 'auto' }}>
+            <div className="admin-modal-body">
                 <div className="admin-modal-grid-v2">
-                    <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px', border: '1px solid #d4af37' }}>
-                        <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Customer</h4>
+                    <div className="admin-modal-info-box">
+                        <h4 className="admin-modal-label">Customer</h4>
                         <p style={{ fontWeight: 'bold', margin: '0 0 5px' }}>{order.customer?.firstName} {order.customer?.lastName}</p>
                         <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.email}</p>
                         <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.phone}</p>
                     </div>
-                    <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '16px', border: '1px solid #d4af37' }}>
-                        <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Address</h4>
+                    <div className="admin-modal-info-box">
+                        <h4 className="admin-modal-label">Address</h4>
                         <p style={{ margin: '0 0 5px', color: '#333', fontSize: '0.9rem' }}>{order.customer?.address}</p>
                         <p style={{ margin: 0, color: '#333', fontSize: '0.9rem' }}>{order.customer?.city}, {order.customer?.state}</p>
                     </div>
                 </div>
 
-                <h4 style={{ margin: '0 0 15px', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: '#999' }}>Items Ordered</h4>
-                <div style={{ border: '1px solid #d4af37', borderRadius: '16px', overflow: 'hidden', marginBottom: '30px' }}>
+                <h4 className="admin-modal-label">Items Ordered</h4>
+                <div className="admin-modal-items-container">
                     {order.items?.map((item, idx) => (
-                        <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 20px', borderBottom: idx !== order.items?.length - 1 ? '1px solid #f0f0f0' : 'none', alignItems: 'center' }}>
-                            <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                                <div style={{ width: '50px', height: '50px', background: '#f0f0f0', borderRadius: '8px', overflow: 'hidden' }}>
+                        <div key={idx} className="admin-modal-item-row">
+                            <div className="admin-modal-item-info">
+                                <div className="admin-modal-item-img">
                                     <img src={item.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 </div>
                                 <div>
@@ -457,14 +457,14 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => (
                     ))}
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.1rem', fontWeight: 'bold', padding: '15px 20px', background: '#fcfcfc', borderRadius: '12px', border: '1px solid #d4af37' }}>
+                <div className="admin-modal-total-bar">
                     <span>Total Amount</span>
                     <span style={{ color: '#d4af37' }}>{formatCurrency(order.total)}</span>
                 </div>
             </div>
 
-            <div style={{ padding: '20px 30px', background: '#fafafa', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="admin-modal-footer">
+                <div className="admin-modal-status-selector">
                     <label style={{ fontSize: '0.85rem', fontWeight: '600' }}>Status:</label>
                     <StatusDropdown
                         currentStatus={order.status || 'Processing'}
@@ -477,9 +477,9 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => (
                 </div>
                 <motion.button
                     onClick={onClose}
-                    whileHover={{ background: '#d4af37', color: '#fff', boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)' }}
+                    whileHover={{ background: '#b8962d', color: '#fff', boxShadow: '0 5px 20px rgba(184, 150, 45, 0.4)' }}
                     whileTap={{ scale: 0.95 }}
-                    style={{ padding: '10px 25px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.3s' }}
+                    className="admin-modal-footer-btn"
                 >
                     Close
                 </motion.button>

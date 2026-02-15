@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
 import { Heart, Eye, ShoppingBag } from 'lucide-react';
+import { useCart } from '@/src/context/CartContext';
+import { useWishlist } from '@/src/context/WishlistContext';
 
 
 const categorybanners = [
@@ -74,13 +76,15 @@ const HERO_IMAGES = [
     'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878534/ambre-candles/Favourites/y2g2ptjsikgf7uqcgzj2.jpg'
 ];
 
-import { useCart } from '@/src/context/CartContext';
-import { useWishlist } from '@/src/context/WishlistContext';
-
 export default function Home() {
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+    const [isMounted, setIsMounted] = useState(false);
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     // Auto-rotate hero images
     useEffect(() => {
@@ -273,8 +277,8 @@ export default function Home() {
                                     >
                                         <Heart
                                             size={18}
-                                            fill={isInWishlist(product.id) ? "#d4af37" : "none"}
-                                            color={isInWishlist(product.id) ? "#d4af37" : "#1a1a1a"}
+                                            fill={isMounted && isInWishlist(product.id) ? "#d4af37" : "none"}
+                                            color={isMounted && isInWishlist(product.id) ? "#d4af37" : "#1a1a1a"}
                                         />
                                     </button>
                                     <motion.div
