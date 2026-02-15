@@ -136,28 +136,23 @@ export default function AdminLayout({ children }) {
                                 </div>
                                 <h1 className="auth-title">Welcome Back</h1>
                                 <p className="auth-subtitle">Please sign in to continue</p>
-                                <AnimatePresence>
-                                    {error && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: -10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
-                                            style={{
-                                                background: 'rgba(239, 68, 68, 0.1)',
-                                                color: '#ef4444',
-                                                padding: '12px',
-                                                borderRadius: '12px',
-                                                fontSize: '0.85rem',
-                                                textAlign: 'center',
-                                                marginTop: '15px',
-                                                border: '1px solid rgba(239, 68, 68, 0.2)',
-                                                fontWeight: '600'
-                                            }}
-                                        >
-                                            {error}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                {error && (
+                                    <div
+                                        style={{
+                                            background: 'rgba(239, 68, 68, 0.1)',
+                                            color: '#ef4444',
+                                            padding: '12px',
+                                            borderRadius: '12px',
+                                            fontSize: '0.85rem',
+                                            textAlign: 'center',
+                                            marginTop: '15px',
+                                            border: '1px solid rgba(239, 68, 68, 0.2)',
+                                            fontWeight: '600'
+                                        }}
+                                    >
+                                        {error}
+                                    </div>
+                                )}
                             </div>
 
                             <form onSubmit={handleLogin}>

@@ -401,92 +401,155 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
     );
 };
 
-const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => (
-    <div className="admin-modal-overlay">
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="admin-modal-backdrop"
-        />
-        <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            className="admin-modal-container"
-        >
-            <div className="admin-modal-header">
-                <div>
-                    <h2>Order #{order.id}</h2>
-                    <p>Placed on {new Date(order.date).toLocaleString()}</p>
-                </div>
-                <button onClick={onClose} className="admin-modal-close-btn">&times;</button>
-            </div>
+const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
+    const [trackingID, setTrackingID] = useState(order.trackingID || '');
+    const [isSaving, setIsSaving] = useState(false);
+    const [notified, setNotified] = useState(false);
 
-            <div className="admin-modal-body">
-                <div className="admin-modal-grid-v2">
-                    <div className="admin-modal-info-box">
-                        <h4 className="admin-modal-label">Customer</h4>
-                        <p style={{ fontWeight: 'bold', margin: '0 0 5px' }}>{order.customer?.firstName} {order.customer?.lastName}</p>
-                        <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.email}</p>
-                        <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.phone}</p>
+    const handleSaveTracking = () => {
+        setIsSaving(true);
+        // Simulate API call to email service
+        setTimeout(() => {
+            const updatedOrders = orders.map(o => o.id === order.id ? { ...o, trackingID: trackingID } : o);
+            setOrders(updatedOrders);
+            localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+            setIsSaving(false);
+            setNotified(true);
+            setTimeout(() => setNotified(false), 3000);
+        }, 800);
+    };
+
+    return (
+        <div className="admin-modal-overlay">
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={onClose}
+                className="admin-modal-backdrop"
+            />
+            <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                className="admin-modal-container"
+            >
+                <div className="admin-modal-header">
+                    <div>
+                        <h2>Order #{order.id}</h2>
+                        <p>Placed on {new Date(order.date).toLocaleString()}</p>
                     </div>
-                    <div className="admin-modal-info-box">
-                        <h4 className="admin-modal-label">Address</h4>
-                        <p style={{ margin: '0 0 5px', color: '#333', fontSize: '0.9rem' }}>{order.customer?.address}</p>
-                        <p style={{ margin: 0, color: '#333', fontSize: '0.9rem' }}>{order.customer?.city}, {order.customer?.state}</p>
-                    </div>
+                    <button onClick={onClose} className="admin-modal-close-btn">&times;</button>
                 </div>
 
-                <h4 className="admin-modal-label">Items Ordered</h4>
-                <div className="admin-modal-items-container">
-                    {order.items?.map((item, idx) => (
-                        <div key={idx} className="admin-modal-item-row">
-                            <div className="admin-modal-item-info">
-                                <div className="admin-modal-item-img">
-                                    <img src={item.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                </div>
-                                <div>
-                                    <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.name}</div>
-                                    <div style={{ fontSize: '0.8rem', color: '#888' }}>Qty: {item.quantity}</div>
-                                </div>
-                            </div>
-                            <div style={{ fontWeight: '600' }}>{formatCurrency(item.price * item.quantity)}</div>
+                <div className="admin-modal-body">
+                    <div className="admin-modal-grid-v2">
+                        <div className="admin-modal-info-box">
+                            <h4 className="admin-modal-label">Customer</h4>
+                            <p style={{ fontWeight: 'bold', margin: '0 0 5px' }}>{order.customer?.firstName} {order.customer?.lastName}</p>
+                            <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.email}</p>
+                            <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>{order.customer?.phone}</p>
                         </div>
-                    ))}
+                        <div className="admin-modal-info-box">
+                            <h4 className="admin-modal-label">Address</h4>
+                            <p style={{ margin: '0 0 5px', color: '#333', fontSize: '0.9rem' }}>{order.customer?.address}</p>
+                            <p style={{ margin: 0, color: '#333', fontSize: '0.9rem' }}>{order.customer?.city}, {order.customer?.state}</p>
+                        </div>
+                    </div>
+
+                    {/* Logistics Section */}
+                    <div className="admin-modal-logistics-box">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                            <h4 className="admin-modal-label" style={{ margin: 0 }}>Logistics & Tracking</h4>
+                            <AnimatePresence>
+                                {notified && (
+                                    <motion.span
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        style={{ fontSize: '0.75rem', color: '#166534', background: '#dcfce7', padding: '4px 10px', borderRadius: '20px', fontWeight: 'bold' }}
+                                    >
+                                        ✓ Customer Notified
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        <div className="admin-tracking-input-wrapper">
+                            <div style={{ flex: 1 }}>
+                                <label style={{ display: 'block', fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', marginBottom: '5px', fontWeight: 'bold' }}>AWB / Tracking Number</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Tracking ID (e.g. DEL-7788)"
+                                    value={trackingID}
+                                    onChange={(e) => setTrackingID(e.target.value)}
+                                    className="admin-tracking-input"
+                                />
+                            </div>
+                            <button
+                                onClick={handleSaveTracking}
+                                disabled={isSaving}
+                                className="admin-tracking-save-btn"
+                            >
+                                {isSaving ? 'Saving...' : 'Save & Notify'}
+                            </button>
+                        </div>
+                        {order.trackingID && (
+                            <div style={{ marginTop: '10px', fontSize: '0.8rem', color: '#666' }}>
+                                <span>Track on: </span>
+                                <a href={`https://www.delhivery.com/track/package/${order.trackingID}`} target="_blank" rel="noreferrer" style={{ color: '#d4af37', fontWeight: 'bold', textDecoration: 'none' }}>Delhivery Global Tracking ↗</a>
+                            </div>
+                        )}
+                    </div>
+
+                    <h4 className="admin-modal-label">Items Ordered</h4>
+                    <div className="admin-modal-items-container">
+                        {order.items?.map((item, idx) => (
+                            <div key={idx} className="admin-modal-item-row">
+                                <div className="admin-modal-item-info">
+                                    <div className="admin-modal-item-img">
+                                        <img src={item.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    </div>
+                                    <div>
+                                        <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.name}</div>
+                                        <div style={{ fontSize: '0.8rem', color: '#888' }}>Qty: {item.quantity}</div>
+                                    </div>
+                                </div>
+                                <div style={{ fontWeight: '600' }}>{formatCurrency(item.price * item.quantity)}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="admin-modal-total-bar">
+                        <span>Total Amount</span>
+                        <span style={{ color: '#d4af37' }}>{formatCurrency(order.total)}</span>
+                    </div>
                 </div>
 
-                <div className="admin-modal-total-bar">
-                    <span>Total Amount</span>
-                    <span style={{ color: '#d4af37' }}>{formatCurrency(order.total)}</span>
+                <div className="admin-modal-footer">
+                    <div className="admin-modal-status-selector">
+                        <label style={{ fontSize: '0.85rem', fontWeight: '600' }}>Status:</label>
+                        <StatusDropdown
+                            currentStatus={order.status || 'Processing'}
+                            onStatusChange={(newStatus) => {
+                                const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
+                                setOrders(updatedOrders);
+                                localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+                            }}
+                        />
+                    </div>
+                    <motion.button
+                        onClick={onClose}
+                        whileHover={{ background: '#b8962d', color: '#fff', boxShadow: '0 5px 20px rgba(184, 150, 45, 0.4)' }}
+                        whileTap={{ scale: 0.95 }}
+                        className="admin-modal-footer-btn"
+                    >
+                        Close
+                    </motion.button>
                 </div>
-            </div>
-
-            <div className="admin-modal-footer">
-                <div className="admin-modal-status-selector">
-                    <label style={{ fontSize: '0.85rem', fontWeight: '600' }}>Status:</label>
-                    <StatusDropdown
-                        currentStatus={order.status || 'Processing'}
-                        onStatusChange={(newStatus) => {
-                            const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
-                            setOrders(updatedOrders);
-                            localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
-                        }}
-                    />
-                </div>
-                <motion.button
-                    onClick={onClose}
-                    whileHover={{ background: '#b8962d', color: '#fff', boxShadow: '0 5px 20px rgba(184, 150, 45, 0.4)' }}
-                    whileTap={{ scale: 0.95 }}
-                    className="admin-modal-footer-btn"
-                >
-                    Close
-                </motion.button>
-            </div>
-        </motion.div>
-    </div>
-);
+            </motion.div>
+        </div>
+    );
+};
 
 const actionButtonStyle = {
     padding: '10px 20px',
