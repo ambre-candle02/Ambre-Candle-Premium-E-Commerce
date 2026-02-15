@@ -4,10 +4,10 @@
     display: flex;
     min-height: 100vh;
     background: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: var(--font-primary, sans-serif);
-    padding-top: 110px;
-    /* Sufficient clearance for sticky navbar */
+    padding-top: 80px;
+    /* Reduced from 110px to prevent being 'stuck' behind navbar */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
 }
@@ -28,14 +28,14 @@
 .auth-visual-image {
     width: 100%;
     max-width: 400px;
-    /* Adjust size */
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
     transform: translateY(0);
-    animation: floatVisual 6s ease-in-out infinite;
     z-index: 2;
 }
+
+/* Removed floating animation for performance */
 
 .auth-visual-text {
     margin-top: 2rem;

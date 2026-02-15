@@ -28,6 +28,7 @@ export default function AdminLayout({ children }) {
     const [mounted, setMounted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const pathname = usePathname();
     const router = useRouter();
@@ -40,9 +41,14 @@ export default function AdminLayout({ children }) {
         }
     }, []);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         setError('');
+
+        // Simulate minor delay for smoother transition feedback
+        await new Promise(resolve => setTimeout(resolve, 800));
+
         const u = username.toLowerCase().trim();
         const p = password.trim();
 
@@ -52,6 +58,7 @@ export default function AdminLayout({ children }) {
         } else {
             setError('Invalid credentials. Please contact the administrator.');
         }
+        setIsLoading(false);
     };
 
     const handleLogout = () => {
@@ -194,12 +201,27 @@ export default function AdminLayout({ children }) {
                                 <motion.button
                                     type="submit"
                                     className="btn-modern"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', width: '100%' }}
+                                    disabled={isLoading}
+                                    whileHover={!isLoading ? { scale: 1.02 } : {}}
+                                    whileTap={!isLoading ? { scale: 0.98 } : {}}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '10px',
+                                        width: '100%',
+                                        cursor: isLoading ? 'not-allowed' : 'pointer',
+                                        opacity: isLoading ? 0.7 : 1
+                                    }}
                                 >
-                                    Authenticate Access
-                                    <ArrowRight size={20} />
+                                    {isLoading ? (
+                                        <div className="loading-spinner-sm"></div>
+                                    ) : (
+                                        <>
+                                            Authenticate Access
+                                            <ArrowRight size={20} />
+                                        </>
+                                    )}
                                 </motion.button>
 
                                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
