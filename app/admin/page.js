@@ -417,11 +417,13 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
     const handleSaveTracking = async () => {
         setIsSaving(true);
         try {
-            // Update Firestore
+            // Update Firestore (Using setDoc with merge:true to be resilient if doc doesn't exist)
             const orderRef = doc(db, "orders", order.id.toString());
-            await updateDoc(orderRef, {
+            await setDoc(orderRef, {
+                ...order,
+                id: order.id.toString(),
                 trackingID: trackingID
-            });
+            }, { merge: true });
 
             // Update Local State
             const updatedOrders = orders.map(o => o.id === order.id ? { ...o, trackingID: trackingID } : o);
@@ -441,8 +443,8 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
             setNotified(true);
             setTimeout(() => setNotified(false), 3000);
         } catch (error) {
-            console.error("Error saving tracking info:", error);
-            alert("Failed to save to cloud, but updated locally.");
+            console.error("Cloud Save Error:", error);
+            alert(`Failed to save to cloud: ${error.message}. Local update successful.`);
         } finally {
             setIsSaving(false);
         }
@@ -562,7 +564,11 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
                             onStatusChange={async (newStatus) => {
                                 try {
                                     const orderRef = doc(db, "orders", order.id.toString());
-                                    await updateDoc(orderRef, { status: newStatus });
+                                    await setDoc(orderRef, {
+                                        ...order,
+                                        id: order.id.toString(),
+                                        status: newStatus
+                                    }, { merge: true });
 
                                     const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
                                     setOrders(updatedOrders);
@@ -580,7 +586,7 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
                                         });
                                     }
                                 } catch (error) {
-                                    console.error("Error updating status:", error);
+                                    console.error("Cloud Status Update Error:", error);
                                 }
                             }}
                         />
