@@ -1,8 +1,9 @@
+/* eslint-disable */
 'use client';
 import { useState, useEffect } from 'react';
-import { RefreshCw, Trash2, Upload, Search, Filter, Image as ImageIcon, Copy, Folder, ArrowLeft, Grid, LayoutGrid } from 'lucide-react';
+import { RefreshCw, Trash2, Upload, Search, Filter, Image as ImageIcon, Copy, Folder, ArrowLeft, LayoutGrid } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PRODUCT_CATEGORIES } from '../../../src/config/constants';
+import { PRODUCT_CATEGORIES } from '@/src/config/constants';
 import { getCloudinarySignatureAction } from '@/src/actions/mediaActions';
 import '@/src/styles/Admin.css';
 

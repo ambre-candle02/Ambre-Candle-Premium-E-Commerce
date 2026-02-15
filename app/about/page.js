@@ -235,10 +235,10 @@ export default function AboutPage() {
                         >
                             <h4 style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '16px', fontSize: '0.875rem' }}>Our Philosophy</h4>
                             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', color: '#1b1f1c', marginBottom: '32px', lineHeight: '1.1' }}>
-                                More Than Just <br /> <i style={{ color: '#9ca3af' }}>Wax & Wick.</i>
+                                More Than Just <br /> <i style={{ color: '#9ca3af' }}>Wax &amp; Wick.</i>
                             </h2>
                             <p style={{ color: '#4b5563', fontSize: '1.125rem', marginBottom: '24px', lineHeight: '1.7' }}>
-                                At Ambre Candle, we believe that a candle is more than just a source of light—it's a catalyst for atmosphere, a vessel for memory, and a ritual of self-care.
+                                At Ambre Candle, we believe that a candle is more than just a source of light&mdash;it&apos;s a catalyst for atmosphere, a vessel for memory, and a ritual of self-care.
                             </p>
                             <p style={{ color: '#4b5563', fontSize: '1.125rem', marginBottom: '40px', lineHeight: '1.7' }}>
                                 Our journey began with a simple obsession: to create the perfect burn. Using only 100% natural soy wax and ethically sourced fragrance oils, we hand-pour every single candle in small batches to ensure perfection.
