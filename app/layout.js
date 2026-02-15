@@ -1,4 +1,4 @@
-// Rebuild Trigger
+// Update Trigger: Syncing latest mobile & admin fixes
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "@/src/styles/Navbar.css";
