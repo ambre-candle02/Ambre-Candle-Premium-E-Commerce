@@ -414,7 +414,7 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
     const [isSaving, setIsSaving] = useState(false);
     const [notified, setNotified] = useState(false);
 
-    const handleSaveTracking = () => {
+    const handleSaveTracking = async () => {
         setIsSaving(true);
         try {
             // Update Firestore
@@ -427,6 +427,16 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
             const updatedOrders = orders.map(o => o.id === order.id ? { ...o, trackingID: trackingID } : o);
             setOrders(updatedOrders);
             localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+
+            // 4. Send Tracking Email (Nodemailer)
+            await fetch('/api/orders/confirmation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    order: { ...order, trackingID: trackingID },
+                    type: 'tracking'
+                })
+            });
 
             setNotified(true);
             setTimeout(() => setNotified(false), 3000);
@@ -557,6 +567,18 @@ const OrderModal = ({ order, onClose, formatCurrency, orders, setOrders }) => {
                                     const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: newStatus } : o);
                                     setOrders(updatedOrders);
                                     localStorage.setItem('ambre_orders', JSON.stringify(updatedOrders));
+
+                                    // Send Notification if Shipped
+                                    if (newStatus === 'Shipped') {
+                                        await fetch('/api/orders/confirmation', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({
+                                                order: { ...order, status: newStatus },
+                                                type: 'tracking'
+                                            })
+                                        });
+                                    }
                                 } catch (error) {
                                     console.error("Error updating status:", error);
                                 }

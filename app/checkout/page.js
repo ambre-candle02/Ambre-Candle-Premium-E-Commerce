@@ -13,6 +13,7 @@ export default function CheckoutPage() {
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [loadingLocation, setLoadingLocation] = useState(false);
+    const [paymentMethod, setPaymentMethod] = useState('cod'); // 'cod', 'upi', 'card'
 
     // Form State
     const [formData, setFormData] = useState({
@@ -184,24 +185,97 @@ export default function CheckoutPage() {
         // Save last order separately for tracking page reference
         localStorage.setItem('ambre_last_order', JSON.stringify(orderData));
 
+        // Handle Online Payment if selected
+        if (paymentMethod !== 'cod') {
+            try {
+                // 1. Create a Razorpay Order through our API
+                const res = await fetch('/api/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: subtotal })
+                });
+                const razorData = await res.json();
+
+                if (!res.ok) throw new Error(razorData.message || "Payment setup failed");
+
+                // 2. Open Razorpay Modal
+                const options = {
+                    key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                    amount: razorData.amount,
+                    currency: razorData.currency,
+                    name: "Ambre Candle",
+                    description: "Handcrafted Artisan Candles",
+                    image: "/logo.png",
+                    order_id: razorData.id,
+                    handler: async function (response) {
+                        // Payment Success!
+                        const finalOrder = {
+                            ...orderData,
+                            paymentDetails: {
+                                razorpay_id: response.razorpay_payment_id,
+                                razorpay_order_id: response.razorpay_order_id,
+                                method: paymentMethod
+                            },
+                            status: 'Paid & Processing'
+                        };
+                        await finalizeOrder(finalOrder);
+                    },
+                    prefill: {
+                        name: `${formData.firstName} ${formData.lastName}`,
+                        email: formData.email,
+                        contact: formData.phone
+                    },
+                    theme: { color: "#d4af37" },
+                    modal: {
+                        ondismiss: function () {
+                            setLoading(false);
+                        }
+                    }
+                };
+
+                const rzp = new window.Razorpay(options);
+                rzp.open();
+                return; // Wait for handler
+            } catch (error) {
+                console.error("Payment error:", error);
+                alert("Online payment failed. You can use Cash on Delivery.");
+                setLoading(false);
+                return;
+            }
+        }
+
+        // Proceed with Regular COD Flow
+        await finalizeOrder(orderData);
+    };
+
+    const finalizeOrder = async (orderData) => {
         // 3. Save to Firestore (Real-world Persistence)
         try {
             await setDoc(doc(db, "orders", orderData.id), orderData);
+
+            // 4. Send Confirmation Email (Nodemailer)
+            await fetch('/api/orders/confirmation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ order: orderData, type: 'confirmation' })
+            });
+
         } catch (error) {
             console.error("Firestore order save error:", error);
-            // Fallback is already handled by localStorage, 
-            // but we might want to log this to a monitoring service
+            // Fallback is already handled by localStorage
         }
 
         // Simulate API Processing
         setTimeout(() => {
             clearCart();
             router.push('/orders');
-        }, 2000);
+        }, 1500);
     };
 
     return (
         <div className="checkout-page section">
+            {/* Razorpay Script */}
+            <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
             <div className="container" style={{ maxWidth: '1100px' }}>
                 <div className="checkout-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
                     <h1 style={{ fontSize: '2.5rem', fontFamily: 'serif' }}>Secure Checkout</h1>
@@ -357,16 +431,16 @@ export default function CheckoutPage() {
 
                                 <div className="payment-options" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                     {/* Payment Options */}
-                                    <label style={paymentOptionStyle}>
-                                        <input type="radio" name="payment" />
+                                    <label style={{ ...paymentOptionStyle, border: paymentMethod === 'upi' ? '2px solid #d4af37' : '1px solid #ddd' }}>
+                                        <input type="radio" name="payment" onChange={() => setPaymentMethod('upi')} checked={paymentMethod === 'upi'} />
                                         <span>UPI / GPay / PhonePe (Recommended)</span>
                                     </label>
-                                    <label style={paymentOptionStyle}>
-                                        <input type="radio" name="payment" />
+                                    <label style={{ ...paymentOptionStyle, border: paymentMethod === 'card' ? '2px solid #d4af37' : '1px solid #ddd' }}>
+                                        <input type="radio" name="payment" onChange={() => setPaymentMethod('card')} checked={paymentMethod === 'card'} />
                                         <span>Credit / Debit Card</span>
                                     </label>
-                                    <label style={paymentOptionStyle}>
-                                        <input type="radio" name="payment" defaultChecked />
+                                    <label style={{ ...paymentOptionStyle, border: paymentMethod === 'cod' ? '2px solid #d4af37' : '1px solid #ddd' }}>
+                                        <input type="radio" name="payment" onChange={() => setPaymentMethod('cod')} checked={paymentMethod === 'cod'} />
                                         <span style={{ fontWeight: 'bold', color: '#d4af37' }}>Cash on Delivery (Available)</span>
                                     </label>
                                 </div>
