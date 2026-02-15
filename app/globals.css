@@ -37,7 +37,7 @@
 
   /* Header & Navigation */
   --header-height: 85px;
-  --header-height-mobile: 70px;
+  --header-height-mobile: 75px;
 
   /* Transitions */
   --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);

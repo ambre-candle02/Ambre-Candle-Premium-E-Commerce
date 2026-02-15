@@ -70,7 +70,7 @@ function CategoriesContent({ children }) {
     );
 
     return (
-        <div className="ambre-boutique-shop section" style={{ background: '#fdfbf7', padding: '120px 30px 80px' }}>
+        <div className="ambre-boutique-shop section categories-layout-wrapper" style={{ background: '#fdfbf7' }}>
             <div className="category-container-full">
                 {/* Main Content - No Sidebar */}
                 <main className="category-main-content">

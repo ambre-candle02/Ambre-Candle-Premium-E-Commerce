@@ -278,4 +278,29 @@
     .checkout-page {
         padding-top: calc(var(--header-height-mobile) + 30px) !important;
     }
+
+    /* Override inline grid style for mobile */
+    .checkout-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .checkout-form-area {
+        width: 100% !important;
+        min-width: 0 !important;
+        /* Allow flex item to shrink below content size */
+        order: 2;
+    }
+
+    .order-summary-side {
+        order: 1;
+        width: 100%;
+    }
+
+    /* Reduce container padding slightly if needed */
+    .section.container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 }

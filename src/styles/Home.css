@@ -328,8 +328,13 @@
 
 @media (max-width: 480px) {
     .misa-categories-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .misa-cat-img-wrapper {
+        height: 160px !important;
     }
 }
 
@@ -403,8 +408,10 @@
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #999;
-    border-bottom: 1px solid transparent;
+    color: #d4af37;
+    /* Text Gold as requested */
+    border-bottom: 1px solid #d4af37;
+    /* Gold Line as requested */
     padding-bottom: 3px;
     transition: color 0.3s ease, border-bottom-color 0.3s ease, letter-spacing 0.3s ease;
 }
@@ -480,8 +487,54 @@
 
 @media (max-width: 480px) {
     .misa-products-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 10px;
+        /* Reduced side padding */
+        gap: 10px;
+        /* Tighter gap */
+    }
+
+    .misa-prod-img-box {
+        height: 160px !important;
+        aspect-ratio: auto !important;
+    }
+
+    /* Mobile Interaction Buttons */
+    .misa-prod-overlay .btn-quickview-shop {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        bottom: 10px !important;
+        left: 10px !important;
+    }
+
+    .misa-prod-overlay .btn-quickview-shop svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .misa-prod-overlay .btn-add-cart-shop {
+        width: 32px !important;
+        height: 32px !important;
+        bottom: 10px !important;
+        right: 10px !important;
+    }
+
+    .misa-prod-overlay .btn-add-cart-shop svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .misa-wishlist-btn-home {
+        width: 32px !important;
+        height: 32px !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .misa-wishlist-btn-home svg {
+        width: 16px !important;
+        height: 16px !important;
     }
 }
 
@@ -940,6 +993,26 @@
     font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (max-width: 500px) {
+    .misa-modern-form {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .misa-modern-input {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .misa-modern-btn {
+        width: 100%;
+        padding: 15px;
+    }
 }
 
 .misa-modern-btn:hover {

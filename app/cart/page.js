@@ -154,37 +154,37 @@ export default function CartPage() {
                             </button>
                         </Link>
                     </motion.div>
-                </div>
 
-                {/* Complete Your Collection - Gallery Format */}
-                <div className="cart-extra-sections">
-                    <div className="section-header-elite">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            Complete Your Collection
-                        </motion.h2>
-                        <div className="section-accent-line"></div>
-                    </div>
+                    {/* Complete Your Collection - Gallery Format */}
+                    <div className="cart-extra-sections">
+                        <div className="section-header-elite">
+                            <motion.h2
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 1 }}
+                            >
+                                Complete Your Collection
+                            </motion.h2>
+                            <div className="section-accent-line"></div>
+                        </div>
 
-                    <div className="cart-collection-grid">
-                        {[
-                            { title: 'The Hampers', path: '/categories/Hampers%20|%20Combo', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840787/ambre-candles/Hampers_%7C_Combo/lxpbksaxenyc77vrmatf.jpg' },
-                            { title: 'The Glass Jars', path: '/categories/Glass%20Jar%20Candle', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg' },
-                            { title: 'The Bouquets', path: '/categories/Bouquet%20Candle', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831575/ambre-candles/Bouquet%20Candle/vjq28br0vds2dh0va5np.jpg' },
-                            { title: 'The Festive', path: '/categories/Diwali', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg' }
-                        ].map((cat, idx) => (
-                            <Link key={idx} href={cat.path} className="cart-cat-card" style={{ textDecoration: 'none' }}>
-                                <motion.div whileHover={{ y: -10 }}>
-                                    <div className="cat-image-wrap">
-                                        <SafeImage src={cat.img} alt={cat.title} />
-                                    </div>
-                                    <h3>{cat.title}</h3>
-                                </motion.div>
-                            </Link>
-                        ))}
+                        <div className="cart-collection-grid">
+                            {[
+                                { title: 'The Hampers', path: '/categories/Hampers%20|%20Combo', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840787/ambre-candles/Hampers_%7C_Combo/lxpbksaxenyc77vrmatf.jpg' },
+                                { title: 'The Glass Jars', path: '/categories/Glass%20Jar%20Candle', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg' },
+                                { title: 'The Bouquets', path: '/categories/Bouquet%20Candle', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831575/ambre-candles/Bouquet%20Candle/vjq28br0vds2dh0va5np.jpg' },
+                                { title: 'The Festive', path: '/categories/Diwali', img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg' }
+                            ].map((cat, idx) => (
+                                <Link key={idx} href={cat.path} className="cart-cat-card" style={{ textDecoration: 'none' }}>
+                                    <motion.div whileHover={{ y: -10 }}>
+                                        <div className="cat-image-wrap">
+                                            <SafeImage src={cat.img} alt={cat.title} />
+                                        </div>
+                                        <h3>{cat.title}</h3>
+                                    </motion.div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

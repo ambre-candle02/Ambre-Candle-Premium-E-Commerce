@@ -312,11 +312,23 @@
 
     .contact-info-card,
     .contact-form-card {
-        padding: 30px 20px;
-        width: 96%;
-        /* Leave room for shadow/border */
+        padding: 30px 15px;
+        /* Reduced side padding */
+        width: 100%;
+        /* Full width */
         margin: 0 auto;
         box-sizing: border-box;
+        border-radius: 20px;
+        /* Slightly less rounded for full width feel */
+    }
+
+    /* REORDER SECTIONS: Form First, Info Second */
+    .contact-form-card {
+        order: 1;
+    }
+
+    .contact-info-card {
+        order: 2;
     }
 
     .contact-info-title,

@@ -4,16 +4,14 @@
     width: 100%;
 }
 
+.categories-layout-wrapper {
+    padding: 120px 30px 80px;
+    /* Original Desktop Padding */
+}
+
 .categories-hero-container {
     padding: 0;
     margin-top: 40px;
-}
-
-.categories-hero-card {
-    position: relative;
-    width: 100%;
-    padding: 40px 60px !important;
-    justify-content: center !important;
 }
 
 .categories-hero-card {
@@ -287,6 +285,12 @@
 
 /* Mobile (< 768px) */
 @media (max-width: 768px) {
+
+    .categories-layout-wrapper {
+        padding: 0 !important;
+        /* Eliminate wrapper padding on mobile */
+    }
+
     .category-results-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -297,7 +301,14 @@
     }
 
     .categories-hero-container {
-        margin-top: 10px;
+        margin-top: 0 !important;
+        /* Remove extra margin */
+        padding: 0 !important;
+    }
+
+    .category-products-container {
+        padding-top: 5px !important;
+        /* Extreme Reduction */
     }
 
     .categories-hero-card {
@@ -379,13 +390,301 @@
 }
 
 @media (max-width: 768px) {
+    .category-container-full {
+        padding: 0 10px !important;
+        /* Reduced side gap */
+    }
+
     .category-results-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        /* Slightly tighter gap */
+        padding: 0 0 15px 0 !important;
+        /* Remove Top Padding */
+    }
+
+    .card-img-wrapper {
+        height: 160px !important;
+        /* Reduced height */
+    }
+
+    /* Mobile Text Sizing */
+    .card-title {
+        font-size: 0.9rem !important;
+        height: 2.4rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    .card-price {
+        font-size: 1.1rem !important;
+    }
+
+    .card-content {
+        padding: 12px 5px !important;
+    }
+
+    /* Mobile Interaction Buttons */
+    .category-wishlist-btn {
+        width: 32px !important;
+        height: 32px !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .category-wishlist-btn svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .btn-quickview {
+        width: 32px !important;
+        height: 32px !important;
+        bottom: 10px !important;
+        left: 10px !important;
+        border-radius: 50% !important;
+    }
+
+    .btn-quickview span {
+        display: none !important;
+    }
+
+    .btn-quickview svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .btn-add-cart {
+        width: 32px !important;
+        height: 32px !important;
+        bottom: 10px !important;
+        right: 10px !important;
+    }
+
+    .btn-add-cart svg {
+        width: 16px !important;
+        height: 16px !important;
     }
 }
 
 @media (max-width: 480px) {
     .category-results-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   QUICK VIEW MODAL STYLES (Refined for Shape & Gold Border)
+   ======================================== */
+
+.quickview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    /* More breathing room for desktop */
+}
+
+.qv-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    min-height: 500px;
+    max-height: 90vh;
+    /* Prevent laptop cutoff */
+    border-radius: 30px;
+    /* Softer shape */
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+    border: 3px solid #d4af37;
+    /* REQUIRED GOLD BORDER */
+}
+
+.qv-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #d4af37;
+    /* Gold border for close btn too */
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: #1a1a1a;
+}
+
+.qv-close-btn:hover {
+    background: #d4af37;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.qv-image-side {
+    flex: 1;
+    background: #f4f4f4;
+    position: relative;
+    /* height: 100%; Removed fixed height for flexibility */
+}
+
+.qv-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qv-content {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.qv-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #d4af37;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.qv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.qv-price {
+    font-size: 2rem;
+    color: #1a1a1a;
+    font-weight: 300;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.qv-desc {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    font-size: 1rem;
+}
+
+.qv-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.qv-view-details {
+    text-align: center;
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Mobile Quick View (Halka/Compact Style) */
+@media (max-width: 900px) {
+    .quickview-overlay {
+        align-items: flex-start;
+        /* Move to top (Header ke pass) */
+        padding: 95px 20px 20px;
+        /* 95px top padding = Below Header */
+    }
+
+    .qv-modal {
+        flex-direction: column;
+        height: auto;
+        /* Allow auto height */
+        max-height: 80vh;
+        /* Reduce slightly to avoid bottom cutoff */
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px;
+        /* All round corners since it's floating now */
+        margin: 0;
+        border: 3px solid #d4af37;
+        /* Full border */
+    }
+
+    .qv-image-side {
+        height: 140px;
+        /* Reduced from 180px - "hlka height km long lg rha" */
+        flex: none;
+        padding: 15px;
+        /* Add padding to prevent edge touching */
+        background: #fff;
+        /* White bg for clean look with contain */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .qv-image-side img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain !important;
+        /* SHOW FULL IMAGE - NO CUTTING */
+        border-radius: 12px;
+        /* Smooth corners for image */
+    }
+
+    .qv-content {
+        padding: 25px 20px 40px;
+        justify-content: flex-start;
+        overflow-y: auto;
+        /* Scrollable content */
+        flex: 1;
+    }
+
+    .qv-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .qv-price {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .qv-desc {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .qv-close-btn {
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid #d4af37;
     }
 }

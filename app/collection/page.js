@@ -163,7 +163,7 @@ function CollectionContent() {
                             }}
                         >
                             {/* Image */}
-                            <div style={{ position: 'relative', height: '180px', width: '100%', overflow: 'hidden' }}>
+                            <div className="product-image-container" style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
                                 <Link href={`/product/${product.id}`}>
                                     <SafeImage
                                         src={product.image}

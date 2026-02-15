@@ -74,8 +74,13 @@ const HERO_IMAGES = [
     'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878534/ambre-candles/Favourites/y2g2ptjsikgf7uqcgzj2.jpg'
 ];
 
+import { useCart } from '@/src/context/CartContext';
+import { useWishlist } from '@/src/context/WishlistContext';
+
 export default function Home() {
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
     // Auto-rotate hero images
     useEffect(() => {
@@ -258,11 +263,18 @@ export default function Home() {
                             <Link href={`/product/${product.id}`} className="misa-prod-link-wrapper" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <div className="misa-prod-img-box">
                                     {(i === 0 || i === 2) && <span className="misa-badge">{i === 0 ? 'Bestseller' : 'New'}</span>}
-                                    <button className="misa-wishlist-btn-home" onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Added to wishlist!'); }}>
+                                    <button
+                                        className="misa-wishlist-btn-home"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            toggleWishlist(product);
+                                        }}
+                                    >
                                         <Heart
                                             size={18}
-                                            fill="none"
-                                            color="#1a1a1a"
+                                            fill={isInWishlist(product.id) ? "#d4af37" : "none"}
+                                            color={isInWishlist(product.id) ? "#d4af37" : "#1a1a1a"}
                                         />
                                     </button>
                                     <motion.div
@@ -275,13 +287,22 @@ export default function Home() {
                                     <div className="misa-prod-overlay">
                                         <button
                                             className="btn-quickview-shop"
-                                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Quick View!'); }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                // Functionality to be added later or redirect
+                                                window.location.href = `/product/${product.id}`;
+                                            }}
                                         >
                                             <Eye size={22} strokeWidth={1.5} />
                                         </button>
                                         <button
                                             className="btn-add-cart-shop"
-                                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); alert('Added to cart!'); }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                addToCart({ ...product, quantity: 1 });
+                                            }}
                                         >
                                             <ShoppingBag size={18} />
                                         </button>
