@@ -182,8 +182,8 @@ export default function AdminDashboard() {
                     <div className="admin-table-header-v2">
                         <h3>Recent Orders</h3>
                         <div className="admin-search-wrapper-v2">
-                            <div className="admin-search-input-container">
-                                <Search size={18} className="admin-search-icon" />
+                            <div className="admin-search-input-container" style={{ border: '1px solid #d4af37' }}>
+                                <Search size={18} className="admin-search-icon" style={{ color: '#d4af37' }} />
                                 <input
                                     className="admin-search-input-v2"
                                     type="text"
@@ -247,9 +247,10 @@ export default function AdminDashboard() {
                                                     <motion.button
                                                         onClick={() => setSelectedOrder(order)}
                                                         className="admin-view-btn"
-                                                        whileHover={{ scale: 1.05 }}
+                                                        whileHover={{ scale: 1.05, background: '#d4af37', color: '#fff' }}
                                                         whileTap={{ scale: 0.95 }}
                                                         title="View Details"
+                                                        style={{ border: '1px solid #d4af37', color: '#d4af37' }}
                                                     >
                                                         <Eye size={16} />
                                                     </motion.button>
@@ -269,8 +270,8 @@ export default function AdminDashboard() {
                                                             }
                                                         }}
                                                         className="admin-view-btn"
-                                                        style={{ background: '#f3f4f6', color: '#6b7280', borderColor: '#e5e7eb' }}
-                                                        whileHover={{ scale: 1.05, background: '#e5e7eb' }}
+                                                        style={{ background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
+                                                        whileHover={{ scale: 1.05, background: '#dc2626', color: '#fff' }}
                                                         whileTap={{ scale: 0.95 }}
                                                         title="Hide from Dashboard"
                                                     >
