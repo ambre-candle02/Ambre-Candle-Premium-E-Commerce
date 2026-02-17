@@ -190,7 +190,7 @@ export default function Home() {
                 </div>
                 <div className="misa-trust-item">
                     <span>🚚</span>
-                    <p>Free Shipping on ₹999+</p>
+                    <p>free shipping above ₹999+</p>
                 </div>
             </div>
 
