@@ -896,6 +896,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 25px;
+    gap: 20px;
 }
 
 .admin-modal-logistics-box {
