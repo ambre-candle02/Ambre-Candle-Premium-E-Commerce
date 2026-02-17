@@ -5,6 +5,7 @@ import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/src/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import '@/src/styles/AuthModern.css';
 
 export default function LoginPage() {
@@ -55,15 +56,22 @@ export default function LoginPage() {
                 <div className="auth-circle-decor circle-1"></div>
                 <div className="auth-circle-decor circle-2"></div>
 
-                <motion.img
-                    src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
-                    alt="Ambre Lux Collection"
-                    className="auth-visual-image"
+                <motion.div
+                    className="auth-visual-wrapper"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', objectFit: 'cover', height: '100%', width: '100%', border: '2px solid #d4af37' }}
-                />
+                    style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
+                >
+                    <Image
+                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
+                        alt="Ambre Lux Collection"
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        style={{ objectFit: 'cover' }}
+                    />
+                </motion.div>
 
                 <motion.div
                     className="auth-visual-text"

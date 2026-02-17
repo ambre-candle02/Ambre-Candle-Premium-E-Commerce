@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/src/context/CartContext';
+import { useAuth } from '@/src/context/AuthContext';
 import { Truck, ShieldCheck, CreditCard, Lock, ArrowLeft, ArrowRight, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { db } from '@/src/config/firebase';
@@ -9,6 +10,7 @@ import { doc, setDoc } from 'firebase/firestore';
 
 export default function CheckoutPage() {
     const { cart, subtotal, clearCart } = useCart();
+    const { user } = useAuth();
     const router = useRouter();
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -164,6 +166,7 @@ export default function CheckoutPage() {
         const orderData = {
             id: "ORD-" + Math.floor(100000 + Math.random() * 900000),
             date: new Date().toLocaleDateString(),
+            userId: user ? user.uid : 'guest', // Security Tag
             customer: formData,
             items: cart,
             total: subtotal,

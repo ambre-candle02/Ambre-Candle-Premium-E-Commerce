@@ -18,35 +18,53 @@ export default function OrderHistoryPage() {
             try {
                 let allOrders = [];
 
-                // 1. Try fetching from Firestore if user email exists
-                if (user && user.email) {
+                // 1. Try fetching from Firestore if user is logged in
+                if (user) {
+                    // Firestore Query: Match userId
+                    // Note: Removed orderBy("date", "desc") to avoid needing a composite index for now.
+                    // We will sort client-side.
                     const q = query(
                         collection(db, "orders"),
-                        where("customer.email", "==", user.email),
-                        orderBy("date", "desc")
+                        where("userId", "==", user.uid)
                     );
                     const querySnapshot = await getDocs(q);
-                    allOrders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    const firestoreOrders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                    allOrders = [...firestoreOrders];
                 }
 
-                // 2. If no cloud orders or no user, fallback to localStorage
-                if (allOrders.length === 0) {
-                    const localRaw = localStorage.getItem('ambre_orders');
-                    if (localRaw) {
-                        allOrders = JSON.parse(localRaw);
-                        if (!Array.isArray(allOrders)) allOrders = [allOrders];
-                    }
+                // 2. Fetch from Local Storage and Filter
+                const localRaw = localStorage.getItem('ambre_orders');
+                if (localRaw) {
+                    let localOrders = JSON.parse(localRaw);
+                    if (!Array.isArray(localOrders)) localOrders = [localOrders];
+
+                    // STRICT FILTER: 
+                    // If logged in -> only show local orders matching user.uid
+                    // If guest -> only show local orders where userId is 'guest' (or missing for legacy, but 'guest' is safer)
+
+                    const filteredLocal = localOrders.filter(o => {
+                        if (user) return o.userId === user.uid;
+                        return o.userId === 'guest' || !o.userId; // Show guest orders to guests
+                    });
+
+                    // Merge avoiding duplicates (prefer Firestore version)
+                    const existingIds = new Set(allOrders.map(o => o.id));
+                    filteredLocal.forEach(lo => {
+                        if (!existingIds.has(lo.id)) {
+                            allOrders.push(lo);
+                        }
+                    });
                 }
+
+                // Sort merged orders by date (optional, but good for UX)
+                allOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 setOrders(allOrders);
             } catch (e) {
-                console.error("Error loading orders from Firestore:", e);
-                // Last ditch effort: localStorage only
-                const localRaw = localStorage.getItem('ambre_orders');
-                if (localRaw) {
-                    const loaded = JSON.parse(localRaw);
-                    setOrders(Array.isArray(loaded) ? loaded : [loaded]);
-                }
+                console.error("Error loading orders:", e);
+                // Fallback: Show nothing securely rather than showing everything
+                setOrders([]);
             } finally {
                 setLoading(false);
             }
