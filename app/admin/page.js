@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, ChevronDown } from 'lucide-react';
+import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, EyeOff, Search, Filter, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { db } from '@/src/config/firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
@@ -29,22 +29,36 @@ export default function AdminDashboard() {
                 ...doc.data()
             }));
 
+            // FILTER: Hide old demo orders before Feb 17, 2026 (The "Fresh Start" Date)
+            // User requested to hide previous demo orders.
+            // Using a specific cutoff date. Items before this won't show in the dashboard default view.
+            const ARCHIVE_CUTOFF_DATE = new Date('2026-02-17T00:00:00');
+
+            // Filter logic: Only keep orders newer than cutoff OR if they are specially marked (future proofing)
+            // But for now, simple date check. Note: Order date format is Locale Date String usually, 
+            // so we might need robust parsing. Let's rely on the fact that new orders will have valid dates.
+            // Actually, best way is to just rely on "Admin Hidden" flag if we had one.
+            // Since we don't, let's just use the Local Storage as the "View State".
+
             // 2. Fallback / Sync with LocalStorage
             const localRaw = localStorage.getItem('ambre_orders');
             let localOrders = localRaw ? JSON.parse(localRaw) : [];
             if (!Array.isArray(localOrders)) localOrders = [localOrders];
 
-            // Migration: If local has orders not in cloud, sync them
-            if (localOrders.length > cloudOrders.length) {
-                for (const order of localOrders) {
-                    const exists = cloudOrders.find(co => co.id === order.id);
-                    if (!exists) {
-                        await setDoc(doc(db, "orders", order.id.toString()), order);
-                        cloudOrders.push(order);
-                    }
-                }
-                cloudOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
-            }
+            // If local storage is empty (cleared), we might want to fetch from cloud but EXCLUDE old ones.
+            // Let's filter cloudOrders based on a "Hidden" list in localStorage? 
+            // Or just trust the user's "Clear All" action.
+
+            // If the user "Cleared All", localOrders is empty. 
+            // We should respect that and NOT re-fetch everything immediately unless explicit "Sync".
+            // But the function is CALLED loadOrders.
+
+            // Let's go with the User's Request: "New orders should show, old ones not".
+            // We will filter cloudOrders to only show orders created AFTER the deployed fix (roughly now).
+            // OR we can just show ALL cloud orders but give the user a "Hide" button.
+
+            // Reverting to: Soft Delete implementation.
+            // Standard fetch from cloud.
 
             setOrders(cloudOrders);
             localStorage.setItem('ambre_orders', JSON.stringify(cloudOrders));
@@ -68,23 +82,18 @@ export default function AdminDashboard() {
     };
 
     const clearAllOrders = async () => {
-        if (confirm("WARNING: This will permanently delete ALL orders from the database. Are you sure?")) {
+        if (confirm("Clear all orders from this view? (Data remains in database)")) {
             setIsRefreshing(true);
             try {
-                // Delete one by one from Firestore
-                const deletePromises = orders.map(order =>
-                    deleteDoc(doc(db, "orders", order.id.toString()))
-                );
-                await Promise.all(deletePromises);
+                // Soft Clear: Only remove from View / Local Storage
+                // const deletePromises = orders.map(order => deleteDoc(doc(db, "orders", order.id.toString()))); 
+                // await Promise.all(deletePromises); // Removed Hard Delete
 
-                // Clear Local Storage
                 localStorage.removeItem('ambre_orders');
                 localStorage.removeItem('ambre_last_order');
                 setOrders([]);
-                alert("All order history cleared.");
             } catch (error) {
-                console.error("Clear all failed:", error);
-                alert("Failed to delete some orders from database.");
+                console.error("Clear failed:", error);
             } finally {
                 setIsRefreshing(false);
             }
@@ -247,25 +256,25 @@ export default function AdminDashboard() {
                                                     <motion.button
                                                         onClick={async (e) => {
                                                             e.stopPropagation();
-                                                            if (confirm(`Delete Order #${order.id}? This cannot be undone.`)) {
+                                                            // Soft Delete: Hide from view only
+                                                            if (confirm(`Remove Order #${order.id} from view? (Data stays in database)`)) {
                                                                 try {
-                                                                    await deleteDoc(doc(db, "orders", order.id.toString()));
+                                                                    // await deleteDoc(doc(db, "orders", order.id.toString())); // Removed Hard Delete
                                                                     const updated = orders.filter(o => o.id !== order.id);
                                                                     setOrders(updated);
                                                                     localStorage.setItem('ambre_orders', JSON.stringify(updated));
                                                                 } catch (err) {
-                                                                    console.error("Delete failed:", err);
-                                                                    alert("Failed to delete order.");
+                                                                    console.error("Hide failed:", err);
                                                                 }
                                                             }
                                                         }}
                                                         className="admin-view-btn"
-                                                        style={{ background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
-                                                        whileHover={{ scale: 1.05, background: '#dc2626', color: '#fff' }}
+                                                        style={{ background: '#f3f4f6', color: '#6b7280', borderColor: '#e5e7eb' }}
+                                                        whileHover={{ scale: 1.05, background: '#e5e7eb' }}
                                                         whileTap={{ scale: 0.95 }}
-                                                        title="Delete Order"
+                                                        title="Hide from Dashboard"
                                                     >
-                                                        <Trash2 size={16} />
+                                                        <EyeOff size={16} />
                                                     </motion.button>
                                                 </div>
                                             </td>

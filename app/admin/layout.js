@@ -17,6 +17,7 @@ import {
     EyeOff
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import '@/src/styles/Admin.css';
 import '@/src/styles/AuthModern.css';
@@ -95,10 +96,7 @@ export default function AdminLayout({ children }) {
                     </Link>
 
                     <div className="auth-left-panel admin-auth-left" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#e8e4e0', overflow: 'hidden' }}>
-                        <motion.img
-                            src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
-                            alt="Ambre Admin"
-                            className="auth-visual-image"
+                        <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1 }}
@@ -106,14 +104,26 @@ export default function AdminLayout({ children }) {
                                 width: '100%',
                                 height: '100%',
                                 maxHeight: '85vh',
-                                objectFit: 'cover',
-                                objectPosition: 'right center',
+                                position: 'relative',
                                 borderRadius: '30px',
-                                filter: 'brightness(0.75)',
+                                overflow: 'hidden',
                                 boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
                                 border: '2px solid #d4af37'
                             }}
-                        />
+                        >
+                            <Image
+                                src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
+                                alt="Ambre Admin"
+                                fill
+                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                style={{
+                                    objectFit: 'cover',
+                                    objectPosition: 'right center',
+                                    filter: 'brightness(0.75)'
+                                }}
+                            />
+                        </motion.div>
                         <motion.div
                             className="admin-auth-visual-text"
                             initial={{ opacity: 0, y: 30 }}
