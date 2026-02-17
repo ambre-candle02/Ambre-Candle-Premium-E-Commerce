@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, EyeOff, Search, Filter, ChevronDown } from 'lucide-react';
+import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Archive, Search, Filter, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { db } from '@/src/config/firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
@@ -274,7 +274,7 @@ export default function AdminDashboard() {
                                                         whileTap={{ scale: 0.95 }}
                                                         title="Hide from Dashboard"
                                                     >
-                                                        <EyeOff size={16} />
+                                                        <Archive size={16} />
                                                     </motion.button>
                                                 </div>
                                             </td>
