@@ -139,7 +139,7 @@ export default function LoginPage() {
                             <label className="auth-remember">
                                 <input type="checkbox" style={{ accentColor: '#d4af37' }} /> Remember me
                             </label>
-                            <Link href="/contact" className="auth-forgot">Forgot Password?</Link>
+                            <Link href="/forgot-password" className="auth-forgot">Forgot Password?</Link>
                         </div>
 
                         <motion.button
