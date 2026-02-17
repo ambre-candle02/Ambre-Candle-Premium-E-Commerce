@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { db } from '@/src/config/firebase';
-import { collection, getDocs, doc, setDoc, updateDoc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import '@/src/styles/Admin.css';
 
 export default function AdminDashboard() {
@@ -67,11 +67,27 @@ export default function AdminDashboard() {
         }).format(amount);
     };
 
-    const clearAllOrders = () => {
-        if (confirm("Are you sure you want to delete all order history?")) {
-            localStorage.removeItem('ambre_orders');
-            localStorage.removeItem('ambre_last_order');
-            setOrders([]);
+    const clearAllOrders = async () => {
+        if (confirm("WARNING: This will permanently delete ALL orders from the database. Are you sure?")) {
+            setIsRefreshing(true);
+            try {
+                // Delete one by one from Firestore
+                const deletePromises = orders.map(order =>
+                    deleteDoc(doc(db, "orders", order.id.toString()))
+                );
+                await Promise.all(deletePromises);
+
+                // Clear Local Storage
+                localStorage.removeItem('ambre_orders');
+                localStorage.removeItem('ambre_last_order');
+                setOrders([]);
+                alert("All order history cleared.");
+            } catch (error) {
+                console.error("Clear all failed:", error);
+                alert("Failed to delete some orders from database.");
+            } finally {
+                setIsRefreshing(false);
+            }
         }
     }
 
@@ -218,19 +234,40 @@ export default function AdminDashboard() {
                                                 </span>
                                             </td>
                                             <td className="admin-td-action">
-                                                <motion.button
-                                                    onClick={() => setSelectedOrder(order)}
-                                                    className="admin-view-btn"
-                                                    whileHover={{
-                                                        background: '#d4af37',
-                                                        color: '#1a1a1a',
-                                                        borderColor: '#d4af37',
-                                                        boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)'
-                                                    }}
-                                                    whileTap={{ scale: 0.98 }}
-                                                >
-                                                    <Eye size={16} /> View
-                                                </motion.button>
+                                                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                                                    <motion.button
+                                                        onClick={() => setSelectedOrder(order)}
+                                                        className="admin-view-btn"
+                                                        whileHover={{ scale: 1.05 }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        title="View Details"
+                                                    >
+                                                        <Eye size={16} />
+                                                    </motion.button>
+                                                    <motion.button
+                                                        onClick={async (e) => {
+                                                            e.stopPropagation();
+                                                            if (confirm(`Delete Order #${order.id}? This cannot be undone.`)) {
+                                                                try {
+                                                                    await deleteDoc(doc(db, "orders", order.id.toString()));
+                                                                    const updated = orders.filter(o => o.id !== order.id);
+                                                                    setOrders(updated);
+                                                                    localStorage.setItem('ambre_orders', JSON.stringify(updated));
+                                                                } catch (err) {
+                                                                    console.error("Delete failed:", err);
+                                                                    alert("Failed to delete order.");
+                                                                }
+                                                            }
+                                                        }}
+                                                        className="admin-view-btn"
+                                                        style={{ background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
+                                                        whileHover={{ scale: 1.05, background: '#dc2626', color: '#fff' }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        title="Delete Order"
+                                                    >
+                                                        <Trash2 size={16} />
+                                                    </motion.button>
+                                                </div>
                                             </td>
                                         </motion.tr>
                                     ))
