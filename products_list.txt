@@ -1,0 +1,125 @@
+ID: 801 | Name: Strawberry shortcake candle | Type: Cake / Dessert Candle
+ID: 829 | Name: Pure Innocence Jar | Type: Baby Shower
+ID: 830 | Name: Golden Bear Keepsake | Type: Baby Shower
+ID: 843 | Name: Festive Pastel Favor Set | Type: Baby Shower
+ID: 844 | Name: Floral Welcome Bouquet | Type: Baby Shower
+ID: 831 | Name: Luxe Eternal Floral Bouquet | Type: Bouquet Candle
+ID: 834 | Name: Pink Rose Single Bouquet | Type: Bouquet Candle
+ID: 839 | Name: Frosted christmas tree | Type: Christmas
+ID: 840 | Name: Christmas magic jar | Type: Christmas
+ID: 841 | Name: Snowflake candle | Type: Christmas
+ID: 842 | Name: Celestree jar candle | Type: Christmas
+ID: 845 | Name: Gnome santa | Type: Christmas
+ID: 846 | Name: Christmas house | Type: Christmas
+ID: 1000 | Name: Spiced Harvest Coconut Shell | Type: Coconut Shell Candle
+ID: 1001 | Name: Midnight Rose Coconut Shell | Type: Coconut Shell Candle
+ID: 1002 | Name: Zesty Citrus Coconut Shell | Type: Coconut Shell Candle
+ID: 1050 | Name: Concrete base pillar - Gold Grey | Type: Concrete Base Candle
+ID: 1051 | Name: Concrete base pillar - Teal & Pink | Type: Concrete Base Candle
+ID: 1052 | Name: Concrete base pillar - Black Gold | Type: Concrete Base Candle
+ID: 1053 | Name: Concrete soy wax candle - Multicolor Set | Type: Concrete Base Candle
+ID: 1054 | Name: Concrete soy wax candle - Premium | Type: Concrete Base Candle
+ID: 856 | Name: Prismatic Festive Tea Lights | Type: Diwali
+ID: 857 | Name: Royal Saffron Ladoo Set | Type: Ladoo Candle
+ID: 858 | Name: Tropical Glow Coconut Candle | Type: Coconut Shell Candle
+ID: 910 | Name: Sweet Arrival Jar Candle | Type: Baby Shower
+ID: 911 | Name: Tiny Footprints Keepsake | Type: Baby Shower
+ID: 912 | Name: Celebration Cupcake Jar | Type: Baby Shower
+ID: 913 | Name: Regal Flower Pot Hamper | Type: Baby Shower
+ID: 914 | Name: Floral Welcome Gift Hamper | Type: Baby Shower
+ID: 917 | Name: Angelic Cradle Art Candle | Type: Baby Shower
+ID: 919 | Name: Royal Peony & Rose Bouquet | Type: Bouquet Candle
+ID: 921 | Name: Strawberry Cheesecake candle | Type: Cake / Dessert Candle
+ID: 922 | Name: Berry Velvet Cupcake Whirl | Type: Cake / Dessert Candle
+ID: 923 | Name: Lush Strawberry Parfait | Type: Cake / Dessert Candle
+ID: 924 | Name: Petite Celebration Cake | Type: Cake / Dessert Candle
+ID: 925 | Name: Festive Radiance Cake | Type: Cake / Dessert Candle
+ID: 926 | Name: Blush Berry Mini Delight | Type: Cake / Dessert Candle
+ID: 927 | Name: Whipped Vanilla Swirl | Type: Cake / Dessert Candle
+ID: 928 | Name: Summer Berry Glaze Tart | Type: Cake / Dessert Candle
+ID: 929 | Name: Parisian Patisserie Tower | Type: Cake / Dessert Candle
+ID: 930 | Name: Golden Crisp Waffle Delight | Type: Cake / Dessert Candle
+ID: 931 | Name: Decadent Cacao Brownie | Type: Cake / Dessert Candle
+ID: 932 | Name: Madagascar Vanilla Pastry | Type: Cake / Dessert Candle
+ID: 933 | Name: Harvest Bounty Parfait | Type: Cake / Dessert Candle
+ID: 934 | Name: Crispy Glazed Donut Ring | Type: Cake / Dessert Candle
+ID: 935 | Name: Luxe Celebration Hamper | Type: Hampers | Combo
+ID: 936 | Name: Festive Joy Gift Set | Type: Hampers | Combo
+ID: 937 | Name: Artisanal Spa Combo | Type: Hampers | Combo
+ID: 938 | Name: Ambre Signature Collection | Type: Hampers | Combo
+ID: 939 | Name: Golden Hour Gift Box | Type: Hampers | Combo
+ID: 940 | Name: Tropical Bliss Combo | Type: Hampers | Combo
+ID: 941 | Name: Spooky Night Pumpkin | Type: Halloween | Fall
+ID: 942 | Name: Midnight Ghost Figurine | Type: Halloween | Fall
+ID: 943 | Name: Golden Harvest Pumpkin | Type: Halloween | Fall
+ID: 944 | Name: Mystic Autumn Leaf | Type: Halloween | Fall
+ID: 945 | Name: Enchanted Forest Pine | Type: Halloween | Fall
+ID: 946 | Name: Rustic Fall Cornucopia | Type: Halloween | Fall
+ID: 947 | Name: Ethereal Spirit Set | Type: Halloween | Fall
+ID: 948 | Name: Harvest Moon Glow | Type: Halloween | Fall
+ID: 949 | Name: Shadowy Hollow Lantern | Type: Halloween | Fall
+ID: 950 | Name: Midnight Bloom Glass Jar | Type: Glass Jar Candle
+ID: 956 | Name: Classic Motichoor Delight | Type: Ladoo Candle
+ID: 957 | Name: Artisan Besan Glow Set | Type: Ladoo Candle
+ID: 958 | Name: Golden Pista Treat Set | Type: Ladoo Candle
+ID: 959 | Name: Rose Petal Ladoo Duo | Type: Ladoo Candle
+ID: 960 | Name: Whimsical Ladoo Sampler | Type: Ladoo Candle
+ID: 973 | Name: Sacred Bond Rakhi Hamper | Type: Rakhi
+ID: 974 | Name: Eternal Sibling Glow Duo | Type: Rakhi
+ID: 975 | Name: Artisan Rakhi Celebration Jar | Type: Rakhi
+ID: 976 | Name: Festive Rakhi Sparkle Set | Type: Rakhi
+ID: 2003 | Name: Eco-Luxe Scented Candle | Type: Artisan Candle
+ID: 2004 | Name: Festive Glow Collection | Type: Diwali
+ID: 2101 | Name: Radiant Amber Jar | Type: Glass Jar Candle
+ID: 2102 | Name: Serene White Sage Jar | Type: Glass Jar Candle
+ID: 2103 | Name: Midnight Bloom Jar | Type: Glass Jar Candle
+ID: 2104 | Name: Golden Harvest Jar | Type: Glass Jar Candle
+ID: 2105 | Name: Crystal Clear Essence | Type: Glass Jar Candle
+ID: 2106 | Name: Tranquil Blue Jar | Type: Glass Jar Candle
+ID: 2107 | Name: Dawn Light Jar | Type: Glass Jar Candle
+ID: 2108 | Name: Lavender Dreams | Type: Glass Jar Candle
+ID: 2109 | Name: Mystic Greenery | Type: Glass Jar Candle
+ID: 2110 | Name: Pastel Dream Doll | Type: Doll Candle
+ID: 2111 | Name: Crimson Elegance Doll | Type: Doll Candle
+ID: 2112 | Name: Midnight Mystery Doll | Type: Doll Candle
+ID: 2113 | Name: Sunshine Joy Doll | Type: Doll Candle
+ID: 2114 | Name: Earth Tone Guardian | Type: Doll Candle
+ID: 2115 | Name: Azure Serenity Doll | Type: Doll Candle
+ID: 2116 | Name: Forest Sprite Doll | Type: Doll Candle
+ID: 2117 | Name: Blushing Beauty Doll | Type: Doll Candle
+ID: 2118 | Name: Golden Aura Doll | Type: Doll Candle
+ID: 2119 | Name: Twilight Sparkle Doll | Type: Doll Candle
+ID: 2120 | Name: Eternal Rose Heart | Type: Flower Heart Candle
+ID: 2121 | Name: Crimson Passion Heart | Type: Flower Heart Candle
+ID: 2122 | Name: Pure Blossom Heart | Type: Flower Heart Candle
+ID: 2123 | Name: Lavender Romance | Type: Flower Heart Candle
+ID: 2124 | Name: Sunset Bloom Heart | Type: Flower Heart Candle
+ID: 2125 | Name: Teal Tranquility Heart | Type: Flower Heart Candle
+ID: 2126 | Name: Opulent Spiral Pillar | Type: Pillar Candle
+ID: 2127 | Name: Antique Corinthian Column | Type: Pillar Candle
+ID: 2128 | Name: Rustic Bark Texture | Type: Pillar Candle
+ID: 2129 | Name: Geometric Hive Pillar | Type: Pillar Candle
+ID: 2130 | Name: Serpentine Wave Pillar | Type: Pillar Candle
+ID: 2131 | Name: Minimalist Ribbed Cylinder | Type: Pillar Candle
+ID: 2132 | Name: Twisted Rope Taper | Type: Pillar Candle
+ID: 2133 | Name: Vintage Lace Embossed | Type: Pillar Candle
+ID: 2134 | Name: Modern Art Totem | Type: Pillar Candle
+ID: 2135 | Name: Classic Ionic Flute | Type: Pillar Candle
+ID: 2136 | Name: Abstract Knot Pillar | Type: Pillar Candle
+ID: 2137 | Name: Bubble Cube Tower | Type: Pillar Candle
+ID: 2138 | Name: Crystal Facet Pillar | Type: Pillar Candle
+ID: 2139 | Name: Swirling Marble Pillar | Type: Pillar Candle
+ID: 2140 | Name: Woven Lattice Pillar | Type: Pillar Candle
+ID: 2141 | Name: Grooved Zen Stone | Type: Pillar Candle
+ID: 2142 | Name: Archway Statement Candle | Type: Pillar Candle
+ID: 2143 | Name: Pleated Fan Pillar | Type: Pillar Candle
+ID: 2144 | Name: Diagonal Stripe Block | Type: Pillar Candle
+ID: 2145 | Name: Enchanted Garden Trio | Type: Bouquet Candle
+ID: 2146 | Name: Blushing Petal Pot | Type: Bouquet Candle
+ID: 2147 | Name: Vintage Rose Collection | Type: Bouquet Candle
+ID: 2148 | Name: Succulent Dream Vase | Type: Bouquet Candle
+ID: 2149 | Name: Creamy Floral Pot | Type: Bouquet Candle
+ID: 2150 | Name: Single Peach Rose | Type: Bouquet Candle
+ID: 2151 | Name: Single Lilac Rose | Type: Bouquet Candle
+ID: 2152 | Name: Pastel Flora Mini Pot | Type: Bouquet Candle
+ID: 2153 | Name: Vibrant Bloom Cup | Type: Bouquet Candle

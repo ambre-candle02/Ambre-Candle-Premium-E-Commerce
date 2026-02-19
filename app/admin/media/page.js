@@ -17,16 +17,52 @@ export default function MediaLibrary() {
 
     useEffect(() => {
         setMounted(true);
+
+        // Anti-gravity: Auto-cleanup of old deleted "Glass Jar Candle" images
+        const BANNED_URLS = [
+
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841190/ambre-candles/Glass_Jar_Candle/ixav3l7sm2un33okblls.jpg',
+
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841196/ambre-candles/Glass_Jar_Candle/chz8ggyalvo9oog5l1wq.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841198/ambre-candles/Glass_Jar_Candle/o2nmsqyon5oivoheby9n.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841200/ambre-candles/Glass_Jar_Candle/esb2rdnbcrlnnjg3jcfl.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841203/ambre-candles/Glass_Jar_Candle/kbyef5tbqfaixxiqojfa.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881876/ambre-candles/Favourites/avf2saud9glrbz70wtjh.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841199/ambre-candles/Glass_Jar_Candle/twjoqjhf8nsom8n46eri.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840521/ambre-candles/Figure_Candle/atygqmtuacchwgy6bntd.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840522/ambre-candles/Figure_Candle/b2oqplxpaqlwvx84ghjk.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840523/ambre-candles/Figure_Candle/rcstrodzcfuql7rdj2cv.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840524/ambre-candles/Figure_Candle/ygemcuaibd5cilfy4cyu.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840525/ambre-candles/Figure_Candle/gdflao7wqbg4cwhwgxsf.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840526/ambre-candles/Figure_Candle/hjdz7uanowirmxfsf6si.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840528/ambre-candles/Figure_Candle/rt4b7ant3bgphnhdkw4n.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840529/ambre-candles/Figure_Candle/bdwvatd0os60ewhnzgrd.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840530/ambre-candles/Figure_Candle/uv4rrqo7cauk3tfbzero.jpg',
+            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840531/ambre-candles/Figure_Candle/v3lidy5a2dgnxor2zcd6.jpg'
+        ];
+
+        const processMediaList = (list) => {
+            return list.filter(item => !BANNED_URLS.includes(item.url));
+        };
+
         const savedMedia = localStorage.getItem('ambre_media_v2');
         if (savedMedia) {
-            setMediaList(JSON.parse(savedMedia));
+            const list = JSON.parse(savedMedia);
+            const cleanList = processMediaList(list);
+            setMediaList(cleanList);
+            // Update storage if we filtered anything
+            if (cleanList.length !== list.length) {
+                localStorage.setItem('ambre_media_v2', JSON.stringify(cleanList));
+            }
         } else {
             const oldUrls = localStorage.getItem('ambre_uploaded_images');
             if (oldUrls) {
                 // Legacy migration
                 const legacy = JSON.parse(oldUrls).map(url => ({ url, public_id: null, category: 'All' }));
-                setMediaList(legacy);
-                localStorage.setItem('ambre_media_v2', JSON.stringify(legacy));
+                const cleanLegacy = processMediaList(legacy);
+                setMediaList(cleanLegacy);
+                localStorage.setItem('ambre_media_v2', JSON.stringify(cleanLegacy));
             }
         }
     }, []);
@@ -251,8 +287,8 @@ export default function MediaLibrary() {
                                 <ArrowLeft size={24} />
                             </motion.button>
                             <div>
-                                <p style={{ color: '#d4af37', fontSize: '1rem', marginBottom: '2px', fontWeight: '500', opacity: 0.7 }}>Folder</p>
-                                <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3.5rem', margin: 0, color: '#1a1a1a', lineHeight: 1 }}>{currentCategory}</h1>
+                                <p style={{ color: '#d4af37', fontSize: '0.85rem', marginBottom: '4px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Folder View</p>
+                                <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.2rem', margin: 0, color: '#1a1a1a', lineHeight: 1.1 }}>{currentCategory}</h1>
                             </div>
                         </div>
 

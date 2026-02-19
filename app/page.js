@@ -32,40 +32,40 @@ const categorybanners = [
 ];
 
 const microGallery = [
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841203/ambre-candles/Glass_Jar_Candle/kbyef5tbqfaixxiqojfa.jpg', title: 'Lotus Series', path: '/shop?search=Lotus' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484848/ambre-candles/Diwali/szg7vbr9wxn2vhvjfm6d.jpg', title: 'Lotus Series', path: '/shop?search=Lotus' },
     { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842058/ambre-candles/Pillar_Candle/gxxf6o9neqvvmvvwnckz.jpg', title: 'Artisan Pillars', path: '/categories/Pillar Candle' },
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836239/ambre-candles/Cake_/_Dessert_Candle/nd46v75p3uov7o68pkhy.jpg', title: 'Dessert Series', path: '/categories/Cake / Dessert Candle' },
-    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841790/ambre-candles/Ladoo_Candle/yzjn0157ps4dxxluxiut.jpg', title: 'Daily Rituals', path: '/categories/Ladoo Candle' }
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486568/ambre-candles/Cake_/_Dessert_Candle/bt92a3ebit58u1b90vq2.jpg', title: 'Dessert Series', path: '/categories/Cake / Dessert Candle' },
+    { img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771487254/ambre-candles/Rakhi/dd1pmhgcvwbpaxmxxufx.jpg', title: 'Rakhi Special', path: '/categories/Rakhi' }
 ];
 
 const bestSellers = [
     {
-        id: 2001,
-        name: 'Sculpted Pillar Series',
-        fragrance: 'Minimalist',
-        price: 280,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881874/ambre-candles/Favourites/tbe1noasbw0ww9zt0ypk.jpg'
+        id: 2184,
+        name: 'Amber Glow Jar',
+        fragrance: 'Spiced Amber',
+        price: 349,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486016/ambre-candles/Glass_Jar_Candle/yr5hc3pv0tbcc33w33jm.jpg'
     },
     {
-        id: 2002,
-        name: 'Premium Glass Essence',
-        fragrance: 'Signature Blend',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881876/ambre-candles/Favourites/avf2saud9glrbz70wtjh.jpg'
+        id: 2196,
+        name: 'Sacred Bond Rakhi Candle',
+        fragrance: 'Sandalwood & Turmeric',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771487254/ambre-candles/Rakhi/dd1pmhgcvwbpaxmxxufx.jpg'
     },
     {
-        id: 2003,
-        name: 'Eco-Luxe Scented Candle',
-        fragrance: 'Clean Burning',
-        price: 320,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881877/ambre-candles/Favourites/mffy3sldgxnfjj2cizte.jpg'
+        id: 2195,
+        name: 'Love\'s Blossom Heart',
+        fragrance: 'Rose & Vanilla',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486802/ambre-candles/Flower_Heart_Candle/x8sgi7p6uztvybgddgok.jpg'
     },
     {
-        id: 2004,
-        name: 'Festive Glow Collection',
-        fragrance: 'Heritage Spice',
-        price: 450,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837011/ambre-candles/Diwali/qd1oi1jxl44g0fiu9dny.jpg'
+        id: 2193,
+        name: 'Delicate Floral Pot',
+        fragrance: 'Spring Garden',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486422/ambre-candles/Bouquet_Candle/bqbbscevgxs5b6ad2yex.jpg'
     }
 ];
 const HERO_IMAGES = [

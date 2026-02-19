@@ -9,62 +9,10 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836237/ambre-candles/Cake_/_Dessert_Candle/p7s3njgvmgtppjsk4t0k.jpg',
         desc: 'Delightful strawberry shortcake candle.'
     },
-    {
-        id: 802,
-        name: 'Artisan Teddy Bear Figurine',
-        productType: 'Figure Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Everyday',
-        price: 150,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840521/ambre-candles/Figure_Candle/atygqmtuacchwgy6bntd.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840521/ambre-candles/Figure_Candle/atygqmtuacchwgy6bntd.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840522/ambre-candles/Figure_Candle/b2oqplxpaqlwvx84ghjk.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840523/ambre-candles/Figure_Candle/rcstrodzcfuql7rdj2cv.jpg'
-        ],
-        desc: 'Adorable hand-sculpted teddy bear candle with intricate fur texture. A charming decorative piece that brings warmth to any room.'
-    },
-    {
-        id: 803,
-        name: 'Serene Angelic Figurine',
-        productType: 'Figure Candle',
-        scentFamily: 'Fresh',
-        occasion: 'All Occasions',
-        price: 199,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840524/ambre-candles/Figure_Candle/ygemcuaibd5cilfy4cyu.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840524/ambre-candles/Figure_Candle/ygemcuaibd5cilfy4cyu.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840525/ambre-candles/Figure_Candle/gdflao7wqbg4cwhwgxsf.jpg'
-        ],
-        desc: 'Elegant angel figure candle sculpted with graceful details. Perfect for spiritual decor or as a thoughtful gift.'
-    },
-    {
-        id: 804,
-        name: 'Artistic Sculpture Figure',
-        productType: 'Figure Candle',
-        scentFamily: 'Unscented',
-        occasion: 'All Occasions',
-        price: 249,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840526/ambre-candles/Figure_Candle/hjdz7uanowirmxfsf6si.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840526/ambre-candles/Figure_Candle/hjdz7uanowirmxfsf6si.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840528/ambre-candles/Figure_Candle/rt4b7ant3bgphnhdkw4n.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840529/ambre-candles/Figure_Candle/bdwvatd0os60ewhnzgrd.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840530/ambre-candles/Figure_Candle/uv4rrqo7cauk3tfbzero.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770840531/ambre-candles/Figure_Candle/v3lidy5a2dgnxor2zcd6.jpg'
-        ],
-        desc: 'Sophisticated contemporary figure candle set with minimalist lines. Adds a modern artistic touch to your home aesthetic.'
-    },
-    {
-        id: 828,
-        name: 'Graceful Tulip Bloom',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 149,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831574/ambre-candles/Bouquet%20Candle/ipte4jq8wqgdsuzcrvrw.jpg',
-        desc: 'Elegant tulip shaped candle meticulously crafted to mirror a real blossom.'
-    },
+
+
+
+
     {
         id: 829,
         name: 'Pure Innocence Jar',
@@ -125,26 +73,8 @@ export const PRODUCTS = [
         ],
         desc: 'Stunning flower bouquet candle options. Each candle priced at ₹499. Available in multiple beautiful color combinations.'
     },
-    {
-        id: 832,
-        name: 'Verdant Muse Sculpted Vase',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Fresh & Fruity',
-        occasion: 'Everyday',
-        price: 449,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831581/ambre-candles/Bouquet%20Candle/uwao6datjnf9iehqggsm.jpg',
-        desc: 'Beautiful succulent-themed lady vase bouquet candle with green and yellow floral accents.'
-    },
-    {
-        id: 833,
-        name: 'Celestial Aura Sculpted Vase',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 449,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831582/ambre-candles/Bouquet%20Candle/vbfito0z0ee2usj1wqf5.jpg',
-        desc: 'Elegant lady vase bouquet candle with blue, pink, and purple succulent flowers.'
-    },
+
+
     {
         id: 834,
         name: 'Pink Rose Single Bouquet',
@@ -155,48 +85,8 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831583/ambre-candles/Bouquet%20Candle/aa3xcj6v8m7x4xlou87k.jpg',
         desc: 'Charming single pink rose bouquet candle wrapped in classic brown paper.'
     },
-    {
-        id: 835,
-        name: 'Tulip rose vase bouquet',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 200,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831585/ambre-candles/Bouquet%20Candle/puyem15cj3v8k4hmocqa.jpg',
-        desc: 'Beautiful tulip and rose vase bouquet candle with pink and yellow flowers.'
-    },
-    {
-        id: 837,
-        name: '3 flower vase bouquet',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 350,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831588/ambre-candles/Bouquet%20Candle/ln0ajhfq6p8dj2soi2tf.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831588/ambre-candles/Bouquet%20Candle/ln0ajhfq6p8dj2soi2tf.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831589/ambre-candles/Bouquet%20Candle/znpasvx6pbagzigj99dy.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831591/ambre-candles/Bouquet%20Candle/vfiyeqkfbleqmxwgl4vn.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831592/ambre-candles/Bouquet%20Candle/hzr14bebqopuq9qa2isz.jpg'
-        ],
-        desc: 'Beautiful set of 3 flower vase bouquet candles. Featuring vibrant colors and delicate floral designs, perfect for home decor.'
-    },
-    {
-        id: 838,
-        name: 'Single flower bouquet',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 99,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831594/ambre-candles/Bouquet%20Candle/srn308cwjmbdntrea2mc.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831594/ambre-candles/Bouquet%20Candle/srn308cwjmbdntrea2mc.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831596/ambre-candles/Bouquet%20Candle/gacnxfg3bnbr6szp1foc.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831598/ambre-candles/Bouquet%20Candle/vibh8gag7t0kmddurkhf.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831599/ambre-candles/Bouquet%20Candle/oimzdjxckusyttbxzjz8.jpg'
-        ],
-        desc: 'Elegant single flower bouquet candle wrapped in classic brown paper. Available in multiple beautiful colors like pink, orange, and purple.'
-    },
+
+
     {
         id: 839,
         name: 'Frosted christmas tree',
@@ -405,87 +295,12 @@ export const PRODUCTS = [
         ],
         desc: 'Premium concrete soy wax candles with decorative gold and silver accents. Available in cream and pink colors. Perfect for gifting.'
     },
-    {
-        id: 850,
-        name: 'Om Shadow Diya',
-        productType: 'Diwali',
-        scentFamily: 'Fresh',
-        occasion: 'Diwali',
-        price: 220,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836994/ambre-candles/Diwali/gvv9bvhh0sfl3grkyb8v.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836994/ambre-candles/Diwali/gvv9bvhh0sfl3grkyb8v.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836997/ambre-candles/Diwali/rvjzkjjg7ystidn6gfii.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836998/ambre-candles/Diwali/eyn6p0x7p74gjvzbanoa.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836999/ambre-candles/Diwali/jc9e5nwwljzi62t2wgvc.jpg'
-        ],
-        desc: 'Exquisite copper-toned tea light holder that casts a beautiful Om shadow, creating a spiritual and serene ambiance.'
-    },
-    {
-        id: 851,
-        name: 'Shubh Labh Diya',
-        productType: 'Diwali',
-        scentFamily: 'Fresh',
-        occasion: 'Diwali',
-        price: 225,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837000/ambre-candles/Diwali/x39ca8xdb0snbvtwl0hv.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837000/ambre-candles/Diwali/x39ca8xdb0snbvtwl0hv.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837002/ambre-candles/Diwali/hffv1gbpxzvirybboo6q.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837003/ambre-candles/Diwali/y9bn4aebqkfvyczcvgb5.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837004/ambre-candles/Diwali/tu0pkwmlnkyeromt2cef.jpg'
-        ],
-        desc: 'Traditional Diwali diya featuring Shubh Labh motifs, perfect for welcoming prosperity and good fortune into your home.'
-    },
-    {
-        id: 852,
-        name: 'Ganesha Shadow Diya',
-        productType: 'Diwali',
-        scentFamily: 'Fresh',
-        occasion: 'Diwali',
-        price: 230,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837005/ambre-candles/Diwali/b5b8t5zgletbka9xicuk.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837005/ambre-candles/Diwali/b5b8t5zgletbka9xicuk.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837006/ambre-candles/Diwali/vdpv36zctzuzlh1w7xoi.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837007/ambre-candles/Diwali/uwkkzjkuglmngfwa2nmq.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837008/ambre-candles/Diwali/eusio2mwdmcmszrdgwuy.jpg'
-        ],
-        desc: 'Elegant metallic tea light holder that projects a divine Ganesha shadow, ideal for festivals and spiritual decor.'
-    },
 
-    {
-        id: 854,
-        name: 'Leaf Rose Diya',
-        productType: 'Diwali',
-        scentFamily: 'Floral',
-        occasion: 'Diwali',
-        price: 250,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837014/ambre-candles/Diwali/t4kq2ozi4we8esvk7ii4.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837014/ambre-candles/Diwali/t4kq2ozi4we8esvk7ii4.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837013/ambre-candles/Diwali/le8wnqakvwatdcywlc4l.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837016/ambre-candles/Diwali/eewqgqjmxbnhcahdzy6z.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837017/ambre-candles/Diwali/soy8df8lts3jpn8dfzf7.jpg'
-        ],
-        desc: 'Stunning rose-shaped candles arranged on a metallic leaf-inspired base, combining traditional lighting with floral elegance.'
-    },
-    {
-        id: 855,
-        name: 'Artisanal Matki Clay Diya',
-        productType: 'Diwali',
-        scentFamily: 'Fresh',
-        occasion: 'Diwali',
-        price: 230,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837019/ambre-candles/Diwali/zslmxndsfmgxr0edx6tu.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837019/ambre-candles/Diwali/zslmxndsfmgxr0edx6tu.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837022/ambre-candles/Diwali/pfovq4mjfqz2z2kmmalx.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837021/ambre-candles/Diwali/y5fa9mypths0msbvl2ks.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837019/ambre-candles/Diwali/w1if0gqxt2pfetegidub.jpg'
-        ],
-        desc: 'Traditional Matki-style Diwali diya set, beautifully handcrafted for festive lighting. Available in various finishes including painted and pearl designs.'
-    },
+
+
+
+
+
     {
         id: 856,
         name: 'Prismatic Festive Tea Lights',
@@ -500,20 +315,7 @@ export const PRODUCTS = [
         ],
         desc: 'A vibrant set of multi-colored tea light candles, perfect for creating a festive and joyful atmosphere during Diwali.'
     },
-    {
-        id: 857,
-        name: 'Royal Saffron Ladoo Set',
-        productType: 'Ladoo Candle',
-        scentFamily: 'Gourmand',
-        occasion: 'Diwali',
-        price: 180,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841776/ambre-candles/Ladoo_Candle/dqqerv8fcjsviyrn4wca.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841776/ambre-candles/Ladoo_Candle/dqqerv8fcjsviyrn4wca.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841778/ambre-candles/Ladoo_Candle/w3sf85vjiwkfbwwdphbk.jpg'
-        ],
-        desc: 'Exquisite saffron-colored ladoo candles that bring a touch of royalty to your festive celebrations.'
-    },
+
     {
         id: 858,
         name: 'Tropical Glow Coconut Candle',
@@ -528,62 +330,8 @@ export const PRODUCTS = [
         ],
         desc: 'Authentic coconut shell hand-poured candles. A tropical and rustic addition to any space, providing a warm, natural glow.'
     },
-    {
-        id: 861,
-        name: 'Whimsical Bubble Heart Trio',
-        productType: 'Diwali',
-        scentFamily: 'Fresh',
-        occasion: 'Diwali',
-        price: 299,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837025/ambre-candles/Diwali/u2e9ydfdho72oo5hszme.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837025/ambre-candles/Diwali/u2e9ydfdho72oo5hszme.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837026/ambre-candles/Diwali/wxo9qr3dlzz8vhndkdn7.jpg'
-        ],
-        desc: 'Trendy bubble-shaped candles in heart and round designs. Multi-colored and perfect for festive decorations or as a stylish gift.'
-    },
-    {
-        id: 901,
-        name: 'Aura of Dawn Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Fresh',
-        occasion: 'Everyday',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841189/ambre-candles/Glass_Jar_Candle/f49qe26mdn8jnthzffrc.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841189/ambre-candles/Glass_Jar_Candle/f49qe26mdn8jnthzffrc.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841190/ambre-candles/Glass_Jar_Candle/ixav3l7sm2un33okblls.jpg'
-        ],
-        desc: 'A gentle, morning-fresh fragrance that fills the room with soft light.'
-    },
-    {
-        id: 902,
-        name: 'Serenity Lavender Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841192/ambre-candles/Glass_Jar_Candle/kigkuppnsx0yl6ab0po0.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841192/ambre-candles/Glass_Jar_Candle/kigkuppnsx0yl6ab0po0.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841193/ambre-candles/Glass_Jar_Candle/icg1wglluovjud7sto4n.jpg'
-        ],
-        desc: 'Pure, calming lavender essential oils for ultimate relaxation.'
-    },
-    {
-        id: 903,
-        name: 'Mystic Garden Premium Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841195/ambre-candles/Glass_Jar_Candle/uaquaogb91vv0tttcihi.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841195/ambre-candles/Glass_Jar_Candle/uaquaogb91vv0tttcihi.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841196/ambre-candles/Glass_Jar_Candle/chz8ggyalvo9oog5l1wq.jpg'
-        ],
-        desc: 'An exotic blend of floral notes inspired by ancient temples.'
-    },
+
+
     {
         id: 910,
         name: 'Sweet Arrival Jar Candle',
@@ -652,16 +400,7 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831127/ambre-candles/Baby%20Shower/pfdyrroebtzcfpx2gtqn.jpg',
         desc: 'Beautifully detailed baby cradle candle, symbolizing a peaceful and warm welcome for the little one.'
     },
-    {
-        id: 918,
-        name: 'Passion Rose Bundle',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 150,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831601/ambre-candles/Bouquet%20Candle/jhluieaoogrrmztr8z3r.jpg',
-        desc: 'A charming small bundle of elegantly sculpted red rose candles.'
-    },
+
     {
         id: 919,
         name: 'Royal Peony & Rose Bouquet',
@@ -672,22 +411,7 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831602/ambre-candles/Bouquet%20Candle/tuqa32cnahfqycmsekxq.jpg',
         desc: 'A stunning deluxe pink rose bouquet candle with intricate detailing and lifelike appearance.'
     },
-    {
-        id: 920,
-        name: 'Minimalist Floral Trio Pot',
-        productType: 'Bouquet Candle',
-        scentFamily: 'Floral',
-        occasion: 'Everyday',
-        price: 450,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831604/ambre-candles/Bouquet%20Candle/p4pms9mggnhcfzhucvqz.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831604/ambre-candles/Bouquet%20Candle/p4pms9mggnhcfzhucvqz.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831606/ambre-candles/Bouquet%20Candle/cxyzzyjuqxaeisonhbtw.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770838086/ambre-candles/Bouquet_Candle/z7jsk0lfkmpnaqotloar.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770838087/ambre-candles/Bouquet_Candle/eex6qm4uosiwgf0icysq.jpg'
-        ],
-        desc: 'A elegant trio of assorted flower candles presented in a minimal white pot.'
-    },
+
     {
         id: 921,
         name: 'Strawberry Cheesecake candle',
@@ -999,56 +723,11 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841197/ambre-candles/Glass_Jar_Candle/rbfciwqgyi5fonnz6ewu.jpg',
         desc: 'A deep, mysterious floral scent that emerges as the evening settles.'
     },
-    {
-        id: 951,
-        name: 'Coastal Breeze Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Fresh',
-        occasion: 'Everyday',
-        price: 399,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841198/ambre-candles/Glass_Jar_Candle/o2nmsqyon5oivoheby9n.jpg',
-        desc: 'The invigorating scent of ocean air and salt-sprayed wood.'
-    },
-    {
-        id: 952,
-        name: 'Velvet Vanilla Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Gourmand',
-        occasion: 'Cozy Night',
-        price: 420,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841199/ambre-candles/Glass_Jar_Candle/twjoqjhf8nsom8n46eri.jpg',
-        desc: 'Rich, smooth vanilla notes that create a warm and comforting embrace.'
-    },
-    {
-        id: 953,
-        name: 'Citrus Orchard Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Citrus',
-        occasion: 'Morning',
-        price: 380,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841200/ambre-candles/Glass_Jar_Candle/esb2rdnbcrlnnjg3jcfl.jpg',
-        desc: 'A bright and zesty blend of sun-ripened citrus fruits.'
-    },
-    {
-        id: 954,
-        name: 'Amber Woods Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Woody',
-        occasion: 'Evening',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841201/ambre-candles/Glass_Jar_Candle/niww0h7vjrk9dxnnynrb.jpg',
-        desc: 'Warm amber paired with deep cedarwood for a sophisticated aroma.'
-    },
-    {
-        id: 955,
-        name: 'Lotus Petal Glass Jar',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Floral',
-        occasion: 'Relaxation',
-        price: 440,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841203/ambre-candles/Glass_Jar_Candle/kbyef5tbqfaixxiqojfa.jpg',
-        desc: 'Delicate lotus blossoms providing a serene and tranquil environment.'
-    },
+
+
+
+
+
     {
         id: 956,
         name: 'Classic Motichoor Delight',
@@ -1063,20 +742,7 @@ export const PRODUCTS = [
         ],
         desc: 'Hyper-realistic motichoor ladoo candles, perfectly textured and scented for a sweet festive vibe.'
     },
-    {
-        id: 957,
-        name: 'Artisan Besan Glow Set',
-        productType: 'Ladoo Candle',
-        scentFamily: 'Gourmand',
-        occasion: 'Diwali',
-        price: 160,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841783/ambre-candles/Ladoo_Candle/gunstzctpru71twckwss.jpg',
-        images: [
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841783/ambre-candles/Ladoo_Candle/gunstzctpru71twckwss.jpg',
-            'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841782/ambre-candles/Ladoo_Candle/haoluvhwv2gzro2t3hvi.jpg'
-        ],
-        desc: 'Hand-crafted besan-style ladoo candles that offer a warm, golden glow and a sweet scent.'
-    },
+
     {
         id: 958,
         name: 'Golden Pista Treat Set',
@@ -1119,126 +785,7 @@ export const PRODUCTS = [
         ],
         desc: 'An assortment of our best-selling ladoo candles in one charming samper set.'
     },
-    {
-        id: 961,
-        name: 'Whimsical Ribbed Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Fresh',
-        occasion: 'Everyday',
-        price: 199,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842044/ambre-candles/Pillar_Candle/slgu0v6pe4ew6efjrajc.jpg',
-        desc: 'A stylish ribbed pillar candle that adds a modern, architectural touch to any room.'
-    },
-    {
-        id: 962,
-        name: 'Classic Ivory Textured Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Pure Vanilla',
-        occasion: 'Everyday',
-        price: 250,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842045/ambre-candles/Pillar_Candle/tyo6ajsgpqyvuaitzunz.jpg',
-        desc: 'Timeless ivory pillar with a subtle texture, offering a warm and steady glow.'
-    },
-    {
-        id: 963,
-        name: 'Golden Honeycomb Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Wild Honey',
-        occasion: 'Everyday',
-        price: 220,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842046/ambre-candles/Pillar_Candle/ephwkjcb74pxlp1k5iyb.jpg',
-        desc: 'Beautifully detailed honeycomb pattern pillar, radiating a soft and sweet aroma.'
-    },
-    {
-        id: 964,
-        name: 'Celestial Star Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Midnight Jasmine',
-        occasion: 'Celebrations',
-        price: 180,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842050/ambre-candles/Pillar_Candle/mlmb9lxkgftb0fd4w0xl.jpg',
-        desc: 'A star-shaped pillar candle that brings a magical celestial vibe to your evening.'
-    },
-    {
-        id: 965,
-        name: 'Modern Architectural Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Cool Linen',
-        occasion: 'Everyday',
-        price: 280,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842049/ambre-candles/Pillar_Candle/x0lgt4cvz5usflq580u3.jpg',
-        desc: 'Bold and geometric, this pillar is a statement piece for the contemporary home.'
-    },
-    {
-        id: 966,
-        name: 'Serene Pastel Pillar Trio',
-        productType: 'Pillar Candle',
-        scentFamily: 'Morning Dew',
-        occasion: 'Everyday',
-        price: 350,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842048/ambre-candles/Pillar_Candle/lzkffisnidrniky2ed19.jpg',
-        desc: 'A calming set of three pastel-hued pillar candles, perfect for creating a peaceful sanctuary.'
-    },
-    {
-        id: 967,
-        name: 'Aura Bubble Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Fresh Cotton',
-        occasion: 'Everyday',
-        price: 240,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842051/ambre-candles/Pillar_Candle/onk8tyahusfuodupiy7y.jpg',
-        desc: 'Trendy bubble pillar design that adds a playful yet sophisticated element to your decor.'
-    },
-    {
-        id: 968,
-        name: 'Elegant Fluted Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Sandalwood',
-        occasion: 'Evenings',
-        price: 210,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842052/ambre-candles/Pillar_Candle/efwdtaucmombhsjgsnzd.jpg',
-        desc: 'Graceful fluted details give this pillar an elegant, classical appearance.'
-    },
-    {
-        id: 969,
-        name: 'Mystic Gradient Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Deep Amber',
-        occasion: 'Relaxation',
-        price: 260,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842055/ambre-candles/Pillar_Candle/wtpfrb9231tt09libabc.jpg',
-        desc: 'Striking gradient color pillar that creates a mesmerizing effect as it burns.'
-    },
-    {
-        id: 970,
-        name: 'Regal Embossed Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Royal Rose',
-        occasion: 'Special Occasions',
-        price: 299,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842057/ambre-candles/Pillar_Candle/ysyftf6qppef4jmbiuk8.jpg',
-        desc: 'Finely embossed with intricate patterns, this pillar exalts any table setting.'
-    },
-    {
-        id: 971,
-        name: 'Artisan Sculpted Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Cedarwood',
-        occasion: 'Everyday',
-        price: 150,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842058/ambre-candles/Pillar_Candle/gxxf6o9neqvvmvvwnckz.jpg',
-        desc: 'Hand-sculpted artisan pillar candle with unique, organic flowing lines.'
-    },
-    {
-        id: 972,
-        name: 'Radiant Sun Pillar',
-        productType: 'Pillar Candle',
-        scentFamily: 'Bright Citrus',
-        occasion: 'Everyday',
-        price: 170,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842059/ambre-candles/Pillar_Candle/nggziregjpjdoesgkt40.jpg',
-        desc: 'Energizing sun-inspired pillar candle to bring light and cheer to your space.'
-    },
+
     {
         id: 973,
         name: 'Sacred Bond Rakhi Hamper',
@@ -1279,26 +826,8 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770842379/ambre-candles/Rakhi/y30qkczvtvqwyh2o4oz7.jpg',
         desc: 'A vibrant set of candles to make your Raksha Bandhan festivities even more sparkling and memorable.'
     },
-    {
-        id: 2001,
-        name: 'Sculpted Pillar Series',
-        productType: 'Pillar Candle',
-        scentFamily: 'Minimalist',
-        occasion: 'Everyday Luxury',
-        price: 280,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881874/ambre-candles/Favourites/tbe1noasbw0ww9zt0ypk.jpg',
-        desc: 'Hand-sculpted artisan pillar candle with unique, organic flowing lines and a minimalist aesthetic.'
-    },
-    {
-        id: 2002,
-        name: 'Premium Glass Essence',
-        productType: 'Glass Jar Candle',
-        scentFamily: 'Signature Blend',
-        occasion: 'Special Occasions',
-        price: 499,
-        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770881876/ambre-candles/Favourites/avf2saud9glrbz70wtjh.jpg',
-        desc: 'Luxury glass jar candle with our exclusive signature blend, designed for a prestigious aromatic experience.'
-    },
+
+
     {
         id: 2003,
         name: 'Eco-Luxe Scented Candle',
@@ -1318,7 +847,966 @@ export const PRODUCTS = [
         price: 450,
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837011/ambre-candles/Diwali/qd1oi1jxl44g0fiu9dny.jpg',
         desc: 'A stunning collection of festive candles designed to bring a traditional and heritage-inspired glow to your celebrations.'
+    },
+    {
+        id: 2101,
+        name: 'Radiant Amber Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh & Woody',
+        occasion: 'Everyday',
+        price: 300,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476764/ambre-candles/Glass_Jar_Candle/tkevgajqwstgwvwp5v93.jpg',
+        desc: 'A classic amber glass jar candle providing a warm, comforting glow. Perfect for cozy evenings.'
+    },
+    {
+        id: 2102,
+        name: 'Serene White Sage Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh',
+        occasion: 'Relaxation',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476766/ambre-candles/Glass_Jar_Candle/zylucjkdxftbvwgjqhsg.jpg',
+        desc: 'Purify your space with the calming scent of white sage. Housed in a cleanly designed glass jar.'
+    },
+    {
+        id: 2103,
+        name: 'Midnight Bloom Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Floral',
+        occasion: 'Romantic',
+        price: 360,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476767/ambre-candles/Glass_Jar_Candle/xuvnnmpd3dz0eg0yvxpo.jpg',
+        desc: 'An elegant floral candle in a sophisticated jar. Ideal for creating a romantic or luxurious atmosphere.'
+    },
+    {
+        id: 2104,
+        name: 'Golden Harvest Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Warm & Spicy',
+        occasion: 'Festive',
+        price: 400,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476768/ambre-candles/Glass_Jar_Candle/d8ypvauj9iyf1rpzqagr.jpg',
+        desc: 'Rich, spicy notes captured in a premium jar. Brings the warmth of harvest season to your home.'
+    },
+    {
+        id: 2105,
+        name: 'Crystal Clear Essence',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh & Fruity',
+        occasion: 'Everyday',
+        price: 420,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476770/ambre-candles/Glass_Jar_Candle/quufpyzp0f3xbactpjgq.jpg',
+        desc: 'A crystal-clear glass jar showcasing a vibrant candle. Infuses your room with a refreshing essence.'
+    },
+    {
+        id: 2106,
+        name: 'Tranquil Blue Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh',
+        occasion: 'Relaxation',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771476771/ambre-candles/Glass_Jar_Candle/nnjpjf7zg3ag7hecjad5.jpg',
+        desc: 'A soothing blue jar candle designed to bring tranquility and peace to your personal sanctuary.'
+    },
+    {
+        id: 2107,
+        name: 'Dawn Light Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh',
+        occasion: 'Morning',
+        price: 450,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841189/ambre-candles/Glass_Jar_Candle/f49qe26mdn8jnthzffrc.jpg',
+        desc: 'A gentle, morning-fresh fragrance that fills the room with soft light.'
+    },
+    {
+        id: 2108,
+        name: 'Lavender Dreams',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Floral',
+        occasion: 'Relaxation',
+        price: 480,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841193/ambre-candles/Glass_Jar_Candle/icg1wglluovjud7sto4n.jpg',
+        desc: 'Pure, calming lavender essential oils for ultimate relaxation.'
+    },
+    {
+        id: 2109,
+        name: 'Mystic Greenery',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Nature',
+        occasion: 'Everyday',
+        price: 500,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770841195/ambre-candles/Glass_Jar_Candle/uaquaogb91vv0tttcihi.jpg',
+        desc: 'An exotic blend of floral and green notes inspired by lush gardens.'
+    },
+    {
+        id: 2110,
+        name: 'Pastel Dream Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Sweet Vanilla',
+        occasion: 'Everyday',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479158/ambre-candles/Doll_Candle/gndgtfivvibjdksmlx6g.jpg',
+        desc: 'A charming pastel-hued doll candle that adds a touch of sweetness to any room.'
+    },
+    {
+        id: 2111,
+        name: 'Crimson Elegance Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Rose Petal',
+        occasion: 'Special Occasions',
+        price: 450,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479160/ambre-candles/Doll_Candle/dgh2mhdhjfa2tr0hopve.jpg',
+        desc: 'An elegant red doll candle symbolizing passion and grace.'
+    },
+    {
+        id: 2112,
+        name: 'Midnight Mystery Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Deep Amber',
+        occasion: 'Evening',
+        price: 420,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479161/ambre-candles/Doll_Candle/slbiaswbatwdopdzwrfz.jpg',
+        desc: 'A mysterious dark doll candle, perfect for creating an atmospheric evening vibe.'
+    },
+    {
+        id: 2113,
+        name: 'Sunshine Joy Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Citrus Zest',
+        occasion: 'Summer',
+        price: 380,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479163/ambre-candles/Doll_Candle/naemouwccx2klgq9snhb.jpg',
+        desc: 'Bright and cheerful, this yellow doll candle brings sunshine into your home.'
+    },
+    {
+        id: 2114,
+        name: 'Earth Tone Guardian',
+        productType: 'Doll Candle',
+        scentFamily: 'Sandalwood',
+        occasion: 'Relaxation',
+        price: 400,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479164/ambre-candles/Doll_Candle/ecevezpilbedgl8nhsc6.jpg',
+        desc: 'A grounding earth-toned doll candle that promotes peace and stability.'
+    },
+    {
+        id: 2115,
+        name: 'Azure Serenity Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Sea Breeze',
+        occasion: 'Relaxation',
+        price: 410,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479165/ambre-candles/Doll_Candle/jq8ff9ip4x2bppla89d4.jpg',
+        desc: 'Calming blue doll candle evocative of serene ocean waves.'
+    },
+    {
+        id: 2116,
+        name: 'Forest Sprite Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Pine & Cedar',
+        occasion: 'Winter',
+        price: 390,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479167/ambre-candles/Doll_Candle/fqg9yako5kgnoklh5wq5.jpg',
+        desc: 'A whimsical green doll candle bringing the freshness of the forest indoors.'
+    },
+    {
+        id: 2117,
+        name: 'Blushing Beauty Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Peony',
+        occasion: 'Valentine’s',
+        price: 430,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479170/ambre-candles/Doll_Candle/uborqlssqt8crfpl83bs.jpg',
+        desc: 'Soft pink doll candle, a perfect romantic gesture or cute decor piece.'
+    },
+    {
+        id: 2118,
+        name: 'Golden Aura Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Honey & Milk',
+        occasion: 'Festive',
+        price: 460,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479168/ambre-candles/Doll_Candle/uuriqodao1vvilhrhrsn.jpg',
+        desc: 'Radiant golden doll candle that adds a luxurious glow to your space.'
+    },
+    {
+        id: 2119,
+        name: 'Twilight Sparkle Doll',
+        productType: 'Doll Candle',
+        scentFamily: 'Lavender Mist',
+        occasion: 'Everyday',
+        price: 440,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771479171/ambre-candles/Doll_Candle/vkhu29p0m8teed7zulpt.jpg',
+        desc: 'A shimmering twilight-colored doll candle for a magical touch.'
+    },
+    {
+        id: 2120,
+        name: 'Eternal Rose Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Rose & Vanilla',
+        occasion: 'Valentine’s',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480533/ambre-candles/Flower_Heart_Candle/wztgae7uuyyarzvl64mk.jpg',
+        desc: 'A symbol of everlasting love, this heart candle features intricate rose details.'
+    },
+    {
+        id: 2121,
+        name: 'Crimson Passion Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Spiced Pomegranate',
+        occasion: 'Anniversary',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480534/ambre-candles/Flower_Heart_Candle/k9jvwynfgusrxirqcfst.jpg',
+        desc: 'A flourishing garden captured in a heart shape, radiating warmth and beauty.'
+    },
+    {
+        id: 2122,
+        name: 'Pure Blossom Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Jasmine & Lily',
+        occasion: 'Wedding',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480536/ambre-candles/Flower_Heart_Candle/myvr99tml41yewru6cbx.jpg',
+        desc: 'Delicate white blossoms adorn this heart candle, representing purity and grace.'
+    },
+    {
+        id: 2123,
+        name: 'Lavender Romance',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Lavender Fields',
+        occasion: 'Relaxation',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480538/ambre-candles/Flower_Heart_Candle/x7nrsd5pcdcbjz3zamnc.jpg',
+        desc: 'Soothing lavender hues and floral accents create a romantic atmosphere.'
+    },
+    {
+        id: 2124,
+        name: 'Sunset Bloom Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Citrus & Amber',
+        occasion: 'Everyday',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480540/ambre-candles/Flower_Heart_Candle/gulzyfmo5xcpkkzsp7xy.jpg',
+        desc: 'Warm sunset tones and blooming flowers make this heart candle a delightful centerpiece.'
+    },
+    {
+        id: 2125,
+        name: 'Teal Tranquility Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Ocean Mist',
+        occasion: 'Relaxation',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771480542/ambre-candles/Flower_Heart_Candle/nlfdgvltzoohadsa7xzk.jpg',
+        desc: 'Fresh and calming, this heart candle evokes the serenity of a quiet lagoon.'
+    },
+    {
+        id: 2126,
+        name: 'Opulent Spiral Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Sandalwood & Amber',
+        occasion: 'Everyday Luxury',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481662/ambre-candles/Pillar_Candle/sysltu34s4ntqihupywn.jpg',
+        desc: 'A mesmerizing spiral design that serves as both a light source and a modern art piece.'
+    },
+    {
+        id: 2127,
+        name: 'Antique Corinthian Column',
+        productType: 'Pillar Candle',
+        scentFamily: 'Classic Vanilla',
+        occasion: 'Formal Dinner',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481663/ambre-candles/Pillar_Candle/tdkchkhoj844dvlvcnq7.jpg',
+        desc: 'Inspired by classical architecture, this pillar adds a touch of historical grandeur to your decor.'
+    },
+    {
+        id: 2128,
+        name: 'Rustic Bark Texture',
+        productType: 'Pillar Candle',
+        scentFamily: 'Cedar & Pine',
+        occasion: 'Relaxation',
+        price: 250,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481665/ambre-candles/Pillar_Candle/gs2laqpkvykuykpuqtno.jpg',
+        desc: 'Bring the outdoors in with this beautifully textured candle resembling natural tree bark.'
+    },
+    {
+        id: 2129,
+        name: 'Geometric Hive Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Honey & Tobacco',
+        occasion: 'Modern Decor',
+        price: 280,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481666/ambre-candles/Pillar_Candle/m6riuzt7qzfpegpjkxil.jpg',
+        desc: 'A contemporary hexagonal pattern that creates stunning shadows when lit.'
+    },
+    {
+        id: 2130,
+        name: 'Serpentine Wave Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Ocean Breeze',
+        occasion: 'Bath Time',
+        price: 270,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481668/ambre-candles/Pillar_Candle/zco1x08kq6crkecfgfnl.jpg',
+        desc: 'Fluid, wave-like ridges give this candle a calming, flowing appearance.'
+    },
+    {
+        id: 2131,
+        name: 'Minimalist Ribbed Cylinder',
+        productType: 'Pillar Candle',
+        scentFamily: 'Fresh Linen',
+        occasion: 'Everyday',
+        price: 199,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481670/ambre-candles/Pillar_Candle/m1mq0ledoysojentir58.jpg',
+        desc: 'Clean lines and simple elegance make this the versatile choice for any room.'
+    },
+    {
+        id: 2132,
+        name: 'Twisted Rope Taper',
+        productType: 'Pillar Candle',
+        scentFamily: 'Unscented',
+        occasion: 'Dining',
+        price: 220,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481671/ambre-candles/Pillar_Candle/jvzrvtokgvgxzetwum7g.jpg',
+        desc: 'An intricate twisted rope design that adds texture and interest to your table setting.'
+    },
+    {
+        id: 2133,
+        name: 'Vintage Lace Embossed',
+        productType: 'Pillar Candle',
+        scentFamily: 'Rosewood',
+        occasion: 'Romantic',
+        price: 320,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481673/ambre-candles/Pillar_Candle/utdroyft1slgv0sdwxvq.jpg',
+        desc: 'Delicate lace patterns embossed on the surface create a soft, romantic glow.'
+    },
+    {
+        id: 2134,
+        name: 'Modern Art Totem',
+        productType: 'Pillar Candle',
+        scentFamily: 'Patchouli & Fig',
+        occasion: 'Statement Piece',
+        price: 380,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481675/ambre-candles/Pillar_Candle/vsgiekdggjo8lqvfy3r9.jpg',
+        desc: 'A bold, stacked geometric design that acts as a standalone sculpture.'
+    },
+    {
+        id: 2135,
+        name: 'Classic Ionic Flute',
+        productType: 'Pillar Candle',
+        scentFamily: 'Lavender',
+        occasion: 'Relaxation',
+        price: 260,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481677/ambre-candles/Pillar_Candle/l82601joq1xe593laabv.jpg',
+        desc: 'Traditional fluted sides reflect light beautifully, perfect for a soothing bath.'
+    },
+    {
+        id: 2136,
+        name: 'Abstract Knot Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Sage & Salt',
+        occasion: 'Coffee Table',
+        price: 310,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481679/ambre-candles/Pillar_Candle/showtxanbg7a1pzoaorm.jpg',
+        desc: 'A complex, knotted form that draws the eye and sparks conversation.'
+    },
+    {
+        id: 2137,
+        name: 'Bubble Cube Tower',
+        productType: 'Pillar Candle',
+        scentFamily: 'Sweet Pea',
+        occasion: 'Gifting',
+        price: 240,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481682/ambre-candles/Pillar_Candle/efjqbrendmdfug3pmlwu.jpg',
+        desc: 'Playful and trendy, this bubble tower is a favorite for modern interiors.'
+    },
+    {
+        id: 2138,
+        name: 'Crystal Facet Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Ice & Blue Spruce',
+        occasion: 'Winter Decor',
+        price: 330,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481684/ambre-candles/Pillar_Candle/utbpib6h0qubjbdca8v1.jpg',
+        desc: 'Sharp, angular facets mimic the look of cut crystal or ice.'
+    },
+    {
+        id: 2139,
+        name: 'Swirling Marble Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Tobacco & Oak',
+        occasion: 'Study/Office',
+        price: 290,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481685/ambre-candles/Pillar_Candle/y0wazkl1eoit5onckvep.jpg',
+        desc: 'Elegant swirling patterns reminiscent of fine marble stone.'
+    },
+    {
+        id: 2140,
+        name: 'Woven Lattice Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Bamboo & Coconut',
+        occasion: 'Summer',
+        price: 300,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481687/ambre-candles/Pillar_Candle/mw3kop0rrhoz4jemhs8h.jpg',
+        desc: 'Intricate woven detail inspired by handcrafted baskets and textiles.'
+    },
+    {
+        id: 2141,
+        name: 'Grooved Zen Stone',
+        productType: 'Pillar Candle',
+        scentFamily: 'Lemongrass',
+        occasion: 'Meditation',
+        price: 210,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481689/ambre-candles/Pillar_Candle/cvotnswmkrodkdkt7mvt.jpg',
+        desc: 'Simple, deep horizontal grooves evoke the peacefulness of a Zen garden.'
+    },
+    {
+        id: 2142,
+        name: 'Archway Statement Candle',
+        productType: 'Pillar Candle',
+        scentFamily: 'Teakwood',
+        occasion: 'Entryway',
+        price: 360,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481690/ambre-candles/Pillar_Candle/mqse6dces6kea1kawxpq.jpg',
+        desc: 'A stunning arch shape that frames the flame beautifully.'
+    },
+    {
+        id: 2143,
+        name: 'Pleated Fan Pillar',
+        productType: 'Pillar Candle',
+        scentFamily: 'Oriental Spice',
+        occasion: 'Festive',
+        price: 275,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481692/ambre-candles/Pillar_Candle/iibgwecdl5401ai7umyz.jpg',
+        desc: 'Fan-like pleats encircle this candle, creating a dynamic texture.'
+    },
+    {
+        id: 2144,
+        name: 'Diagonal Stripe Block',
+        productType: 'Pillar Candle',
+        scentFamily: 'Urban Edge',
+        occasion: 'Modern Home',
+        price: 230,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771481694/ambre-candles/Pillar_Candle/lkpti3mwwsyjz4z0cv44.jpg',
+        desc: 'Bold diagonal stripes cut across this geometric pillar for a sharp, modern look.'
+    },
+    {
+        id: 2145,
+        name: 'Enchanted Garden Trio',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Fresh & Floral',
+        occasion: 'Everyday',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771482726/ambre-candles/Bouquet_Candle/hy8aw6ia1otjz9m8lqzx.jpg',
+        desc: 'A charming trio of floral candles inspired by an enchanted garden.'
+    },
+    {
+        id: 2146,
+        name: 'Blushing Petal Pot',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Rose & Peony',
+        occasion: 'Gift',
+        price: 449,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771482728/ambre-candles/Bouquet_Candle/gva0kpf4qhjtdq3ygun1.jpg',
+        desc: 'Delicate blushing petals arranged in a beautiful pot for a romantic touch.'
+    },
+    {
+        id: 2147,
+        name: 'Vintage Rose Collection',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Vintage Rose',
+        occasion: 'Decor',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771482731/ambre-candles/Bouquet_Candle/jwiidwfoquhbw4tpa5nm.jpg',
+        desc: 'Classic vintage rose designs that bring timeless elegance to your home.'
+    },
+    {
+        id: 2148,
+        name: 'Succulent Dream Vase',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Green Tea & Aloe',
+        occasion: 'Relaxation',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771482733/ambre-candles/Bouquet_Candle/v5mlyz4xuk75lv2ggdab.jpg',
+        desc: 'A soothing succulent-themed candle arrangement in a stylish vase.'
+    },
+    {
+        id: 2149,
+        name: 'Creamy Floral Pot',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Jasmine & Lily',
+        occasion: 'Home Decor',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770838087/ambre-candles/Bouquet_Candle/eex6qm4uosiwgf0icysq.jpg',
+        desc: 'Elegant cream-colored floral arrangement in a pot, bringing a touch of serenity.'
+    },
+    {
+        id: 2150,
+        name: 'Single Peach Rose',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Sweet Rose',
+        occasion: 'Gift',
+        price: 120,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831596/ambre-candles/Bouquet%20Candle/gacnxfg3bnbr6szp1foc.jpg',
+        desc: 'A delicate single peach rose, perfect for a small gesture of affection.'
+    },
+    {
+        id: 2151,
+        name: 'Single Lilac Rose',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Lavender Rose',
+        occasion: 'Gift',
+        price: 120,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831599/ambre-candles/Bouquet%20Candle/oimzdjxckusyttbxzjz8.jpg',
+        desc: 'A beautiful single lilac rose candle, wrapped for gifting.'
+    },
+    {
+        id: 2152,
+        name: 'Pastel Flora Mini Pot',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Spring Blossom',
+        occasion: 'Everyday',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771483515/ambre-candles/Bouquet_Candle/afmo1ptgpqd4uvtspct0.jpg',
+        desc: 'Charming mini pot filled with delicate pastel flowers, perfect for brightening small spaces.'
+    },
+    {
+        id: 2153,
+        name: 'Vibrant Bloom Cup',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Wildflower',
+        occasion: 'Gift',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771483517/ambre-candles/Bouquet_Candle/xj4bom0f4ni5nxss40wk.jpg',
+        desc: 'A vibrant collection of blooming flowers in a cute cup, adding a pop of color to your decor.'
+    },
+    {
+        id: 2154,
+        name: 'Royal Golden Lantern',
+        productType: 'Diwali',
+        scentFamily: 'Festive Spice',
+        occasion: 'Diwali',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484823/ambre-candles/Diwali/hukrxbtlkbqn1m6oyvdh.jpg',
+        desc: 'A majestic golden lantern candle that casts intricate shadows, perfect for festive evenings.'
+    },
+    {
+        id: 2155,
+        name: 'Lotus Bloom Diya',
+        productType: 'Diwali',
+        scentFamily: 'Fresh Floral',
+        occasion: 'Diwali',
+        price: 249,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484848/ambre-candles/Diwali/szg7vbr9wxn2vhvjfm6d.jpg',
+        desc: 'Beautifully crafted lotus-shaped diya candle to bring purity and light to your home.'
+    },
+    {
+        id: 2156,
+        name: 'Crystal Aura Diya',
+        productType: 'Diwali',
+        scentFamily: 'Sandalwood',
+        occasion: 'Diwali',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484850/ambre-candles/Diwali/ysw98zehfldzgqqqaxu5.jpg',
+        desc: 'Elegant crystal-style diya that reflects light in mesmerizing patterns.'
+    },
+    {
+        id: 2157,
+        name: 'Golden Peacock Lamp',
+        productType: 'Diwali',
+        scentFamily: 'Jasmine',
+        occasion: 'Diwali',
+        price: 450,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484853/ambre-candles/Diwali/wa2gle3mzb1chsor2ien.jpg',
+        desc: 'A stunning peacock-inspired lamp design, symbolizing grace and beauty.'
+    },
+    {
+        id: 2158,
+        name: 'Radiant Star Lantern',
+        productType: 'Diwali',
+        scentFamily: 'Warm Amber',
+        occasion: 'Diwali',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484855/ambre-candles/Diwali/bbozukkomnt1hizcogxg.jpg',
+        desc: 'Star-shaped lantern candle that adds a celestial touch to your decor.'
+    },
+    {
+        id: 2159,
+        name: 'Vintage Brass Glow',
+        productType: 'Diwali',
+        scentFamily: 'Oud & Wood',
+        occasion: 'Diwali',
+        price: 420,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484857/ambre-candles/Diwali/j91puyl1hi5urbwfqjqj.jpg',
+        desc: 'Vintage-style brass finish candle holder for a traditional yet timeless look.'
+    },
+    {
+        id: 2160,
+        name: 'Emerald Shine Diya',
+        productType: 'Diwali',
+        scentFamily: 'Fresh Green',
+        occasion: 'Diwali',
+        price: 280,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484860/ambre-candles/Diwali/q5d2gskbtzgtjzqhs719.jpg',
+        desc: 'A vibrant emerald green diya that adds a pop of color to your Rangoli.'
+    },
+    {
+        id: 2161,
+        name: 'Ruby Red Festival Light',
+        productType: 'Diwali',
+        scentFamily: 'Rose',
+        occasion: 'Diwali',
+        price: 280,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484861/ambre-candles/Diwali/orqhsccyogcy1hk70xm1.jpg',
+        desc: 'Rich ruby red candle light to welcome prosperity and love.'
+    },
+    {
+        id: 2162,
+        name: 'Sapphire Night Diya',
+        productType: 'Diwali',
+        scentFamily: 'Ocean Breeze',
+        occasion: 'Diwali',
+        price: 280,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484863/ambre-candles/Diwali/qzoqojt6pfkvj63uiaga.jpg',
+        desc: 'Deep blue diya resembling the calmness of a clear night sky.'
+    },
+    {
+        id: 2163,
+        name: 'Festive Marigold Pot',
+        productType: 'Diwali',
+        scentFamily: 'Marigold',
+        occasion: 'Diwali',
+        price: 220,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484865/ambre-candles/Diwali/oskgxfh6oak53alrzmny.jpg',
+        desc: 'Bright marigold-colored pot candle, essential for traditional celebrations.'
+    },
+    {
+        id: 2164,
+        name: 'Silver Sparkle Diya',
+        productType: 'Diwali',
+        scentFamily: 'Cool Aqua',
+        occasion: 'Diwali',
+        price: 260,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484866/ambre-candles/Diwali/pj1zd9q8fpy0ro8fmwfc.jpg',
+        desc: 'Shimmering silver diya that adds a modern sparkle to your festive setup.'
+    },
+    {
+        id: 2165,
+        name: 'Copper Glow Vessel',
+        productType: 'Diwali',
+        scentFamily: 'Spiced Vanilla',
+        occasion: 'Diwali',
+        price: 310,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771484868/ambre-candles/Diwali/urvg09vuo45ry2sb5noo.jpg',
+        desc: 'Warm copper vessel candle radiating a cozy and inviting glow.'
+    },
+    {
+        id: 2166,
+        name: 'Om Shadow Light',
+        productType: 'Diwali',
+        scentFamily: 'Temple Incense',
+        occasion: 'Diwali',
+        price: 220,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836994/ambre-candles/Diwali/gvv9bvhh0sfl3grkyb8v.jpg',
+        desc: 'Casts a spiritual Om shadow, creating a serene and divine atmosphere.'
+    },
+    {
+        id: 2167,
+        name: 'Om Shadow Variant II',
+        productType: 'Diwali',
+        scentFamily: 'Temple Incense',
+        occasion: 'Diwali',
+        price: 220,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770836998/ambre-candles/Diwali/eyn6p0x7p74gjvzbanoa.jpg',
+        desc: 'Another beautiful variation of our Om shadow casting candle.'
+    },
+    {
+        id: 2168,
+        name: 'Shubh Labh Blessing',
+        productType: 'Diwali',
+        scentFamily: 'Sandalwood',
+        occasion: 'Diwali',
+        price: 225,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837003/ambre-candles/Diwali/y9bn4aebqkfvyczcvgb5.jpg',
+        desc: 'Traditional Shubh Labh motifs to bless your home with good fortune.'
+    },
+    {
+        id: 2169,
+        name: 'Ganesha Divine Light',
+        productType: 'Diwali',
+        scentFamily: 'Fresh Flowers',
+        occasion: 'Diwali',
+        price: 230,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837007/ambre-candles/Diwali/uwkkzjkuglmngfwa2nmq.jpg',
+        desc: 'Illuminate your space with the blessings of Lord Ganesha.'
+    },
+    {
+        id: 2170,
+        name: 'Ornate Floral Diya',
+        productType: 'Diwali',
+        scentFamily: 'Rose Water',
+        occasion: 'Diwali',
+        price: 199,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837011/ambre-candles/Diwali/qd1oi1jxl44g0fiu9dny.jpg',
+        desc: 'Intricately designed floral diya for a touch of elegance.'
+    },
+    {
+        id: 2171,
+        name: 'Petal Pattern Diya',
+        productType: 'Diwali',
+        scentFamily: 'Jasmine',
+        occasion: 'Diwali',
+        price: 199,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837012/ambre-candles/Diwali/pv7njy0hzg33frxyfgoi.jpg',
+        desc: 'Delicate petal patterns make this diya a lovely addition to your decor.'
+    },
+    {
+        id: 2172,
+        name: 'Leaf Rose Bloom',
+        productType: 'Diwali',
+        scentFamily: 'Fresh Rose',
+        occasion: 'Diwali',
+        price: 250,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837013/ambre-candles/Diwali/le8wnqakvwatdcywlc4l.jpg',
+        desc: 'Stunning rose-shaped candle on a leaf base.'
+    },
+    {
+        id: 2173,
+        name: 'Gilded Rose Leaf',
+        productType: 'Diwali',
+        scentFamily: 'Rose',
+        occasion: 'Diwali',
+        price: 250,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837015/ambre-candles/Diwali/ozgh82oeuoztwgu8lmih.jpg',
+        desc: 'A gilded version of our classic rose leaf candle.'
+    },
+    {
+        id: 2174,
+        name: 'Silver Rose Leaf',
+        productType: 'Diwali',
+        scentFamily: 'Fresh Linen',
+        occasion: 'Diwali',
+        price: 250,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837016/ambre-candles/Diwali/eewqgqjmxbnhcahdzy6z.jpg',
+        desc: 'Elegant silver finish leaf candle for a contemporary look.'
+    },
+    {
+        id: 2175,
+        name: 'Metallic Rose Cluster',
+        productType: 'Diwali',
+        scentFamily: 'Mixed Floral',
+        occasion: 'Diwali',
+        price: 260,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837017/ambre-candles/Diwali/soy8df8lts3jpn8dfzf7.jpg',
+        desc: 'A cluster of metallic roses creating a stunning centerpiece.'
+    },
+    {
+        id: 2176,
+        name: 'Matki Clay Diya',
+        productType: 'Diwali',
+        scentFamily: 'Earthen',
+        occasion: 'Diwali',
+        price: 180,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837019/ambre-candles/Diwali/w1if0gqxt2pfetegidub.jpg',
+        desc: 'Traditional Matki style diya, hand-painted for authenticity.'
+    },
+    {
+        id: 2177,
+        name: 'Decorated Matki Light',
+        productType: 'Diwali',
+        scentFamily: 'Sandalwood',
+        occasion: 'Diwali',
+        price: 180,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837021/ambre-candles/Diwali/y5fa9mypths0msbvl2ks.jpg',
+        desc: 'Beautifully decorated Matki diya with intricate patterns.'
+    },
+    {
+        id: 2178,
+        name: 'Festive Pearl Matki',
+        productType: 'Diwali',
+        scentFamily: 'Vanilla',
+        occasion: 'Diwali',
+        price: 200,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837022/ambre-candles/Diwali/pfovq4mjfqz2z2kmmalx.jpg',
+        desc: 'Matki diya adorned with pearl-like accents for a festive shine.'
+    },
+    {
+        id: 2179,
+        name: 'Colorful Matki Trio',
+        productType: 'Diwali',
+        scentFamily: 'Fragrant Musk',
+        occasion: 'Diwali',
+        price: 450,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg',
+        desc: 'A set of three colorful Matki diyas to brighten every corner.'
+    },
+    {
+        id: 2180,
+        name: 'Vibrant Patterned Matki',
+        productType: 'Diwali',
+        scentFamily: 'Patchouli',
+        occasion: 'Diwali',
+        price: 180,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837024/ambre-candles/Diwali/zosmfcgpfmddpfm88qk7.jpg',
+        desc: 'Vibrant patterns on this Matki diya make it a standalone art piece.'
+    },
+    {
+        id: 2181,
+        name: 'Whimsical Bubble Heart',
+        productType: 'Diwali',
+        scentFamily: 'Sweet Candy',
+        occasion: 'Diwali',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837025/ambre-candles/Diwali/u2e9ydfdho72oo5hszme.jpg',
+        desc: 'Trendy bubble heart candle, a modern twist on festive lighting.'
+    },
+    {
+        id: 2182,
+        name: 'Bubble Heart Duo',
+        productType: 'Diwali',
+        scentFamily: 'Berry Blast',
+        occasion: 'Diwali',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837026/ambre-candles/Diwali/wxo9qr3dlzz8vhndkdn7.jpg',
+        desc: 'A playful duo of bubble heart candles in contrasting colors.'
+    },
+    {
+        id: 2183,
+        name: 'Golden Lotus Tea Light Holder',
+        productType: 'Diwali',
+        scentFamily: 'Unscented',
+        occasion: 'Diwali',
+        price: 200,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771485440/ambre-candles/Diwali/zozpdqe8scc88anhqs2x.jpg',
+        desc: 'A beautiful golden tea light holder shaped like a lotus flower, adding elegance to your festival of lights.'
+    },
+    {
+        id: 2184,
+        name: 'Amber Glow Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Spiced Amber',
+        occasion: 'Cozy Evening',
+        price: 349,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486016/ambre-candles/Glass_Jar_Candle/yr5hc3pv0tbcc33w33jm.jpg',
+        desc: 'A warm, inviting amber-scented candle in a classic glass jar.'
+    },
+    {
+        id: 2185,
+        name: 'Mystic Saffron Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Saffron & Spice',
+        occasion: 'Relaxation',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486018/ambre-candles/Glass_Jar_Candle/n9vyyfyn5btcwulkaedq.jpg',
+        desc: 'Exotic saffron notes blended with subtle spices in an elegant glass container.'
+    },
+    {
+        id: 2186,
+        name: 'Midnight Rose Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Dark Rose',
+        occasion: 'Romantic',
+        price: 380,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486022/ambre-candles/Glass_Jar_Candle/dlh5bs96mwl73w8ouxi9.jpg',
+        desc: 'Deep, romantic rose fragrance housed in a dark glass jar for a mysterious vibe.'
+    },
+    {
+        id: 2187,
+        name: 'Vanilla Bean Glass',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'French Vanilla',
+        occasion: 'Everyday',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486025/ambre-candles/Glass_Jar_Candle/n5rmlhpycvoylehbo12q.jpg',
+        desc: 'Classic French vanilla scent that fills the room with warmth and comfort.'
+    },
+    {
+        id: 2188,
+        name: 'Ocean Breeze Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Fresh Aqua',
+        occasion: 'Refresh',
+        price: 320,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486028/ambre-candles/Glass_Jar_Candle/xoqbkeffb7ulumtbisoq.jpg',
+        desc: 'Crisp and refreshing ocean breeze scent to revitalize your space.'
+    },
+    {
+        id: 2189,
+        name: 'Forest Mist Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Pine & Eucalyptus',
+        occasion: 'Focus',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486030/ambre-candles/Glass_Jar_Candle/itzw7yzidyxg3crxdiqc.jpg',
+        desc: 'A calming blend of pine and eucalyptus that brings the outdoors inside.'
+    },
+    {
+        id: 2190,
+        name: 'Citrus Zest Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Lemon Verbena',
+        occasion: 'Morning Energy',
+        price: 310,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486032/ambre-candles/Glass_Jar_Candle/xc7zf1ezavpiivzujitr.jpg',
+        desc: 'Zesty lemon and verbena notes to energize your mornings.'
+    },
+    {
+        id: 2191,
+        name: 'Lavender Dreams Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Lavender chamomille',
+        occasion: 'Sleep',
+        price: 330,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486034/ambre-candles/Glass_Jar_Candle/tlxb2zcayrmk7fcxz3z4.jpg',
+        desc: 'Soothing lavender and chamomile blend perfect for unwinding before sleep.'
+    },
+    {
+        id: 2192,
+        name: 'Spiced Pumpkin Jar',
+        productType: 'Glass Jar Candle',
+        scentFamily: 'Pumpkin Spice',
+        occasion: 'Fall/Winter',
+        price: 360,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486037/ambre-candles/Glass_Jar_Candle/wrrwfrn92dcpj8ns1xl5.jpg',
+        desc: 'Seasonal favorite featuring warm pumpkin spice notes in a decorative jar.'
+    },
+    {
+        id: 2193,
+        name: 'Delicate Floral Pot',
+        productType: 'Bouquet Candle',
+        scentFamily: 'Spring Garden',
+        occasion: 'Everyday',
+        price: 350,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486422/ambre-candles/Bouquet_Candle/bqbbscevgxs5b6ad2yex.jpg',
+        desc: 'A charming pot filled with delicate floral candle creations, perfect for brightening any corner.'
+    },
+    {
+        id: 2194,
+        name: 'Berry Bliss Cupcake',
+        productType: 'Cake / Dessert Candle',
+        scentFamily: 'Sweet Berry',
+        occasion: 'Celebration',
+        price: 250,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486568/ambre-candles/Cake_/_Dessert_Candle/bt92a3ebit58u1b90vq2.jpg',
+        desc: 'A delightful cupcake candle topped with realistic berry frosting, perfect for sweetening up any space.'
+    },
+    {
+        id: 2195,
+        name: 'Love\'s Blossom Heart',
+        productType: 'Flower Heart Candle',
+        scentFamily: 'Rose & Vanilla',
+        occasion: 'Valentine\'s Day',
+        price: 399,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771486802/ambre-candles/Flower_Heart_Candle/x8sgi7p6uztvybgddgok.jpg',
+        desc: 'A romantic heart-shaped candle adorned with intricate rose details, radiating love and warmth.'
+    },
+    {
+        id: 2196,
+        name: 'Sacred Bond Rakhi Candle',
+        productType: 'Rakhi',
+        scentFamily: 'Sandalwood & Turmeric',
+        occasion: 'Raksha Bandhan',
+        price: 299,
+        image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771487254/ambre-candles/Rakhi/dd1pmhgcvwbpaxmxxufx.jpg',
+        desc: 'A beautifully crafted candle symbolizing the sacred bond of Raksha Bandhan, infused with traditional scents.'
     }
-
 ];
 
