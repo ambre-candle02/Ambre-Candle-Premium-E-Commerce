@@ -81,7 +81,7 @@ export const PRODUCTS = [
         productType: 'Bouquet Candle',
         scentFamily: 'Floral',
         occasion: 'Everyday',
-        price: 99,
+        price: 200,
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1770831583/ambre-candles/Bouquet%20Candle/aa3xcj6v8m7x4xlou87k.jpg',
         desc: 'Charming single pink rose bouquet candle wrapped in classic brown paper.'
     },
@@ -1808,5 +1808,146 @@ export const PRODUCTS = [
         image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771487254/ambre-candles/Rakhi/dd1pmhgcvwbpaxmxxufx.jpg',
         desc: 'A beautifully crafted candle symbolizing the sacred bond of Raksha Bandhan, infused with traditional scents.'
     }
+    },
+{
+    id: 2197,
+        name: 'Royal Heritage Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Sandalwood',
+                    occasion: 'Festive / Traditional',
+                        price: 450,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493442/ambre-candles/Urli_Candle/vmskfyn8nlhckwndoabb.jpg',
+                                desc: 'A magnificent heritage-style urli candle that radiates traditional elegance and warmth.'
+},
+{
+    id: 2198,
+        name: 'Golden Bloom Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Saffron & Rose',
+                    occasion: 'Festive / Traditional',
+                        price: 499,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493447/ambre-candles/Urli_Candle/xsduhzc8toyp6qijuthi.jpg',
+                                desc: 'Exquisite petal-shaped urli candle with a golden finish, perfect for grand celebrations.'
+},
+{
+    id: 2199,
+        name: 'Divine Light Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Jasmine Breeze',
+                    occasion: 'Festive / Traditional',
+                        price: 399,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493450/ambre-candles/Urli_Candle/kprec8kf1fn0royuncrf.jpg',
+                                desc: 'Traditional divine light urli candle designed to bring peace and prosperity to your home.'
+},
+{
+    id: 2200,
+        name: 'Antique Brass Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Marigold Delight',
+                    occasion: 'Festive / Traditional',
+                        price: 550,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493458/ambre-candles/Urli_Candle/qwekf8mjvcawhhz5rrna.jpg',
+                                desc: 'A premium antique-style brass urli candle that serves as a stunning centerpiece.'
+},
+{
+    id: 2201,
+        name: 'Majestic Petal Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Sacred Woods',
+                    occasion: 'Festive / Traditional',
+                        price: 420,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493461/ambre-candles/Urli_Candle/nwhqlfbbzweqgd8serm6.jpg',
+                                desc: 'A majestic petal-designed urli candle that captures the essence of classic Indian decor.'
+},
+{
+    id: 2202,
+        name: 'Lotus Splendor Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Night Blooming Cereus',
+                    occasion: 'Festive / Traditional',
+                        price: 599,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493463/ambre-candles/Urli_Candle/ctx5kg4rxuoyatskkfqe.jpg',
+                                desc: 'A splendid lotus-themed urli candle that adds a touch of spiritual luxury to your space.'
+},
+{
+    id: 2203,
+        name: 'Golden Aura Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Spiced Honey',
+                    occasion: 'Festive / Traditional',
+                        price: 380,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493468/ambre-candles/Urli_Candle/vp6qruvlsmsrzfr7qgdv.jpg',
+                                desc: 'A glowing golden aura urli candle that creates a warm and inviting atmosphere.'
+},
+{
+    id: 2204,
+        name: 'Classic Traditional Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Turmeric & Sandal',
+                    occasion: 'Festive / Traditional',
+                        price: 350,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493479/ambre-candles/Urli_Candle/y7f9u8wfwiszv2jvqowl.jpg',
+                                desc: 'The essential classic traditional urli candle, a must-have for every festive occasion.'
+},
+{
+    id: 2205,
+        name: 'Luxe Ornament Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Oudh Aura',
+                    occasion: 'Festive / Traditional',
+                        price: 650,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493482/ambre-candles/Urli_Candle/ugwtu2ptpcwn2k7zatq6.jpg',
+                                desc: 'A high-end luxe ornamental urli candle with intricate craftsmanship and premium finish.'
+},
+{
+    id: 2206,
+        name: 'Radiant Glow Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Mogra Bloom',
+                    occasion: 'Festive / Traditional',
+                        price: 430,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493484/ambre-candles/Urli_Candle/sgrh7cpsja1lahaqy5vd.jpg',
+                                desc: 'Experience a radiant festive glow with this beautifully designed urli candle.'
+},
+{
+    id: 2207,
+        name: 'Shimmering Brass Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Temple Incense',
+                    occasion: 'Festive / Traditional',
+                        price: 470,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493489/ambre-candles/Urli_Candle/l8uilkf9bw4qqgibvzqh.jpg',
+                                desc: 'A shimmering brass-finished urli candle that reflects the cultural richness of India.'
+},
+{
+    id: 2208,
+        name: 'Royal Sunburst Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Solar Citrus',
+                    occasion: 'Festive / Traditional',
+                        price: 520,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493492/ambre-candles/Urli_Candle/rxre4uqyy6piuchmw2pz.jpg',
+                                desc: 'A unique sunburst-patterned royal urli candle that makes a bold stylistic statement.'
+},
+{
+    id: 2209,
+        name: 'Serene Sanctuary Urli',
+            productType: 'Urli Candle',
+                scentFamily: 'Frankincense & Myrrh',
+                    occasion: 'Festive / Traditional',
+                        price: 410,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493497/ambre-candles/Urli_Candle/ec3mt7yrtl0lytafeijz.jpg',
+                                desc: 'A serene urli candle that transforms any room into a calm sanctuary of warmth.'
+},
+{
+    id: 2210,
+        name: 'Golden Petal Delight',
+            productType: 'Urli Candle',
+                scentFamily: 'Festive Florals',
+                    occasion: 'Festive / Traditional',
+                        price: 360,
+                            image: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1771493500/ambre-candles/Urli_Candle/m1uksuvrxtlbprqtpy62.jpg',
+                                desc: 'A delightful golden petal urli candle that brings a festive floral charm to your home.'
+}
 ];
 
