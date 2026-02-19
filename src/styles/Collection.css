@@ -34,9 +34,9 @@
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
 }
 
-/* Default Product Image Height */
+/* Default Product Image Height - Increased for better resolution and less zoom */
 .product-image-container {
-    height: 180px;
+    height: 280px;
 }
 
 /* --- Responsive Layouts --- */
