@@ -1,23 +1,59 @@
-'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/src/context/CartContext';
 import { Minus, Plus, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SafeImage from '@/src/components/SafeImage';
-import { PRODUCTS } from '@/src/config/products';
+import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { db } from '@/src/config/firebase';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 
 export default function ProductDetailPage() {
     const { id } = useParams();
     const { addToCart } = useCart();
     const [activeImgIndex, setActiveImgIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const products = PRODUCTS;
-    const product = products.find(p => p.id === parseInt(id));
+    useEffect(() => {
+        async function fetchProduct() {
+            try {
+                // Try fetching from Firestore first
+                const docRef = doc(db, 'products', id.toString());
+                const docSnap = await getDoc(docRef);
 
-    if (!product) return <div className="container section">Product not found</div>;
+                if (docSnap.exists()) {
+                    setProduct({ ...docSnap.data(), id: docSnap.data().id || id });
+                } else {
+                    // Fallback to static products
+                    const staticMatch = STATIC_PRODUCTS.find(p => p.id === parseInt(id));
+                    setProduct(staticMatch);
+                }
+            } catch (error) {
+                console.error("Error fetching product:", error);
+                const staticMatch = STATIC_PRODUCTS.find(p => p.id === parseInt(id));
+                setProduct(staticMatch);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProduct();
+    }, [id]);
+
+    if (loading) return (
+        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ color: '#d4af37', letterSpacing: '2px' }}>LOADING MASTERPIECE...</div>
+        </div>
+    );
+
+    if (!product) return (
+        <div className="container section" style={{ textAlign: 'center', padding: '100px' }}>
+            <h2>Product not found</h2>
+            <Link href="/collection" style={{ color: '#d4af37' }}>Return to Collection</Link>
+        </div>
+    );
 
     const mainImage = product.images ? product.images[activeImgIndex] : product.image;
 

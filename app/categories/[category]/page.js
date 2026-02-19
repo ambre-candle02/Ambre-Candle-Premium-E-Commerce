@@ -1,4 +1,3 @@
-'use client';
 import { useMemo, useState, Suspense, useEffect } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,7 +5,9 @@ import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
-import { PRODUCTS } from '@/src/config/products';
+import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import { PRODUCT_CATEGORIES } from '@/src/config/constants';
 import { Heart, ShoppingBag, Check, ArrowLeft, Eye, X } from 'lucide-react';
 import '@/src/styles/Shop.css';
@@ -95,9 +96,28 @@ function CategoryContent() {
     const { toggleWishlist, isInWishlist } = useWishlist();
     const [quickViewProduct, setQuickViewProduct] = useState(null);
     const [isMounted, setIsMounted] = useState(false);
+    const [dynamicProducts, setDynamicProducts] = useState([]);
 
     useEffect(() => {
         setIsMounted(true);
+        async function fetchProducts() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'products'));
+                const products = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.data().id || doc.id
+                }));
+                if (products.length > 0) {
+                    setDynamicProducts(products);
+                } else {
+                    setDynamicProducts(STATIC_PRODUCTS);
+                }
+            } catch (error) {
+                console.error("Firestore fetch error, falling back to static config:", error);
+                setDynamicProducts(STATIC_PRODUCTS);
+            }
+        }
+        fetchProducts();
     }, []);
 
     const categoryName = decodeURIComponent(params.category);
@@ -106,7 +126,7 @@ function CategoryContent() {
         const sort = searchParams.get('sort');
         const maxPrice = parseInt(searchParams.get('max')) || 2000;
 
-        let list = PRODUCTS.filter(p =>
+        let list = dynamicProducts.filter(p =>
             (p.productType === categoryName || (p.productType && p.productType.includes(categoryName))) &&
             p.price <= maxPrice
         );

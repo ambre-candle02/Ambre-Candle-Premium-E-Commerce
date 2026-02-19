@@ -1,4 +1,3 @@
-'use client';
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -6,17 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
-import { PRODUCTS } from '@/src/config/products';
+import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import { Heart, X, ShoppingBag, Check, Eye, Sparkles, LayoutGrid, IndianRupee } from 'lucide-react';
 import SafeImage from '@/src/components/SafeImage';
 import '@/src/styles/Shop.css';
 import '@/src/styles/Categories.css';
-
-const products = PRODUCTS;
-
-import { PRODUCT_CATEGORIES } from '@/src/config/constants';
-
-const productCategories = PRODUCT_CATEGORIES;
 
 function ShopContent() {
     const searchParams = useSearchParams();
@@ -32,6 +27,7 @@ function ShopContent() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
     const [addedProductId, setAddedProductId] = useState(null);
+    const [dynamicProducts, setDynamicProducts] = useState([]);
 
     useEffect(() => {
         setIsMounted(true);
@@ -42,11 +38,30 @@ function ShopContent() {
         const search = searchParams.get('search');
         if (search) {
             setSearchQuery(search);
-            if (!cat) setActiveCategory('All'); // Show search results under 'All' if no cat
+            if (!cat) setActiveCategory('All');
         }
+
+        async function fetchProducts() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'products'));
+                const productsData = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.data().id || doc.id
+                }));
+                if (productsData.length > 0) {
+                    setDynamicProducts(productsData);
+                } else {
+                    setDynamicProducts(STATIC_PRODUCTS);
+                }
+            } catch (error) {
+                console.error("Firestore fetch error:", error);
+                setDynamicProducts(STATIC_PRODUCTS);
+            }
+        }
+        fetchProducts();
     }, [searchParams]);
 
-    const filteredProducts = products.filter(p => {
+    const filteredProducts = dynamicProducts.filter(p => {
         const matchesCategory = activeCategory === 'All' ||
             p.scentFamily === activeCategory ||
             p.productType === activeCategory ||
@@ -62,6 +77,8 @@ function ShopContent() {
             );
         return matchesCategory && matchesPrice && matchesSearch;
     });
+
+    const productCategories = ['All', ...(['Urli Candle', 'Hampers | Combo', 'Glass Jar Candle', 'Bouquet Candle', 'Pillar Candle', 'Diwali', 'Cake / Dessert Candle', 'Doll Candle', 'Rakhi'])];
 
     const sortedProducts = [...filteredProducts].sort((a, b) => {
         if (sortBy === 'Price: Low-High') return a.price - b.price;

@@ -1,10 +1,11 @@
-'use client';
-import { useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
-import { PRODUCTS } from '@/src/config/products';
+import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import { useWishlist } from '@/src/context/WishlistContext';
 import { useCart } from '@/src/context/CartContext';
 import { Heart, ShoppingCart } from 'lucide-react';
@@ -16,10 +17,37 @@ function CollectionContent() {
     const sort = searchParams.get('sort');
     const { toggleWishlist, isInWishlist } = useWishlist();
     const { addToCart } = useCart();
+    const [dynamicProducts, setDynamicProducts] = useState([]);
+    const [isSyncing, setIsSyncing] = useState(true);
+
+    // Fetch products from Firestore
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'products'));
+                const products = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.data().id || doc.id // Handle both numeric string and actual doc IDs
+                }));
+
+                if (products.length > 0) {
+                    setDynamicProducts(products);
+                } else {
+                    setDynamicProducts(STATIC_PRODUCTS);
+                }
+            } catch (error) {
+                console.error("Firestore fetch error, falling back to static config:", error);
+                setDynamicProducts(STATIC_PRODUCTS);
+            } finally {
+                setIsSyncing(false);
+            }
+        }
+        fetchProducts();
+    }, []);
 
     const filteredProducts = useMemo(() => {
         const maxPrice = parseInt(searchParams.get('max')) || 2000;
-        let list = [...PRODUCTS].filter(p => p.price <= maxPrice);
+        let list = [...dynamicProducts].filter(p => p.price <= maxPrice);
 
         if (sort === 'price-low') {
             list.sort((a, b) => a.price - b.price);
@@ -27,7 +55,7 @@ function CollectionContent() {
             list.sort((a, b) => b.price - a.price);
         }
         return list;
-    }, [sort, searchParams]);
+    }, [sort, searchParams, dynamicProducts]);
 
     return (
         <div style={{
