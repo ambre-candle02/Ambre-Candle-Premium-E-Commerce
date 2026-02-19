@@ -64,7 +64,7 @@
     grid-template-areas:
         "title actions"
         "kpis kpis"
-        "media media"
+        "tools tools"
         "table table";
     gap: 30px;
     align-items: end;
@@ -92,6 +92,79 @@
     margin-bottom: 50px;
 }
 
+.admin-tools-section {
+    grid-area: tools;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    border: 2px solid #d4af37;
+    margin-bottom: 20px;
+}
+
+.admin-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.admin-tool-card {
+    padding: 24px;
+    background: #fafafa;
+    border-radius: 16px;
+    border: 1.5px solid #f0f0f0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-tool-card:hover {
+    border-color: #d4af37;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px);
+}
+
+.admin-tool-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-tool-card p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.admin-btn-tool {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.admin-btn-plus {
+    background: #d4af37;
+    color: #fff;
+}
+
+.admin-btn-sync {
+    background: #10b981;
+    color: #fff;
+}
+
+.admin-btn-tool:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
 .admin-media-section {
     grid-area: media;
     background: #fff;
@@ -108,7 +181,7 @@
     border-radius: 24px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    border: 1px solid #eee;
+    border: 2px solid #d4af37;
     margin-bottom: 50px;
 }
 
@@ -138,6 +211,9 @@
 .admin-search-input-container {
     position: relative;
     width: 280px;
+    border: 2px solid #d4af37;
+    border-radius: 50px;
+    overflow: hidden;
 }
 
 .admin-search-icon {
@@ -1237,15 +1313,19 @@
         margin-bottom: 5px;
     }
 
-    /* Refined Mobile Header for Table */
+    .admin-table-header-v2,
     .admin-table-header {
         flex-direction: column;
-        gap: 15px;
-        align-items: flex-start !important;
+        gap: 20px;
+        align-items: stretch !important;
         padding: 20px !important;
+        text-align: center;
     }
 
+    .admin-search-wrapper-v2,
     .admin-search-wrapper,
+    .admin-search-input-container,
+    .admin-search-input-v2,
     .admin-search-input {
         width: 100% !important;
     }

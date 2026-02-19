@@ -6,6 +6,8 @@ import SafeImage from '@/src/components/SafeImage';
 import { Heart, Eye, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs, query, limit } from 'firebase/firestore';
 
 
 const categorybanners = [
@@ -79,11 +81,28 @@ const HERO_IMAGES = [
 export default function Home() {
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
     const [isMounted, setIsMounted] = useState(false);
+    const [dynamicBestsellers, setDynamicBestsellers] = useState(bestSellers);
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
 
     useEffect(() => {
         setIsMounted(true);
+        async function fetchBestsellers() {
+            try {
+                const q = query(collection(db, 'products'), limit(4));
+                const querySnapshot = await getDocs(q);
+                const products = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.data().id || doc.id
+                }));
+                if (products.length > 0) {
+                    setDynamicBestsellers(products);
+                }
+            } catch (error) {
+                console.error("Home fetch error:", error);
+            }
+        }
+        fetchBestsellers();
     }, []);
 
     // Auto-rotate hero images
@@ -262,7 +281,7 @@ export default function Home() {
                     <h2>Our Bestsellers</h2>
                 </div>
                 <div className="misa-products-grid">
-                    {bestSellers.map((product, i) => (
+                    {dynamicBestsellers.map((product, i) => (
                         <motion.div key={product.id} className="misa-product-card" whileHover="hover" initial="initial">
                             <Link href={`/product/${product.id}`} className="misa-prod-link-wrapper" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <div className="misa-prod-img-box">

@@ -195,8 +195,8 @@
     border-radius: 40px !important;
     padding: 50px 30px !important;
     color: #fff !important;
-    height: 580px !important;
-    min-height: 580px !important;
+    height: 650px !important;
+    /* Adjusted for more categories but still compact */
     position: relative !important;
     top: 0 !important;
     margin-top: -40px !important;
@@ -207,27 +207,27 @@
         0 0 50px rgba(212, 175, 55, 0.2) !important;
     z-index: 50 !important;
     overflow-y: auto !important;
-    scrollbar-width: none !important;
+    scrollbar-width: thin !important;
     /* Firefox */
-    -ms-overflow-style: none !important;
-    /* IE and Edge */
+    scrollbar-color: rgba(212, 175, 55, 0.3) transparent !important;
     backdrop-filter: blur(10px) !important;
 }
 
 /* Removed extra curve line (pseudo-element) as it caused visual clutter */
 
-/* Custom Scrollbar for Sidebar - Hidden */
+/* Custom Scrollbar for Sidebar - Subtle Gold */
 .shop-sidebar::-webkit-scrollbar {
-    width: 0;
-    display: none;
+    width: 4px;
+    display: block;
 }
 
 .shop-sidebar::-webkit-scrollbar-track {
-    display: none;
+    background: transparent;
 }
 
 .shop-sidebar::-webkit-scrollbar-thumb {
-    display: none;
+    background: rgba(212, 175, 55, 0.4);
+    border-radius: 10px;
 }
 
 .sidebar-section {
@@ -347,9 +347,10 @@
     padding: 8px;
     /* Slightly reduced padding */
     border: 2px solid #d4af37;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .luxury-card:hover {
@@ -370,7 +371,7 @@
 }
 
 .unit-visual img {
-    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
 }
 
 .luxury-card:hover .unit-visual img {
@@ -526,7 +527,9 @@
     .shop-sidebar {
         position: relative !important;
         top: 0 !important;
-        max-height: none !important;
+        height: 500px !important;
+        /* Forced compact height for mobile */
+        max-height: 500px !important;
         order: 2 !important;
         margin-top: -20px !important;
         /* Reduced from -100px so it doesn't overlap products */
@@ -534,6 +537,7 @@
         padding: 10px 20px 30px !important;
         /* Minimal top padding */
         z-index: 5 !important;
+        overflow-y: auto !important;
     }
 
     /* Ensure Main Content comes first */

@@ -6,11 +6,11 @@ export async function POST(req) {
         const { order, type } = await req.json();
 
         if (!order || !order.customer || !order.customer.email) {
-            console.log("Email API Error: Invalid order data received");
+
             return NextResponse.json({ message: 'Invalid order data' }, { status: 400 });
         }
 
-        console.log(`Attempting to send email to: ${order.customer.email}`);
+
 
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
             console.error("Email API Error: EMAIL_USER or EMAIL_PASS environment variables are missing");
@@ -28,7 +28,7 @@ export async function POST(req) {
         // Test the connection
         try {
             await transporter.verify();
-            console.log("Nodemailer: Server is ready to take our messages");
+
         } catch (verifyError) {
             console.error("Nodemailer Verify Error:", verifyError);
             throw verifyError;

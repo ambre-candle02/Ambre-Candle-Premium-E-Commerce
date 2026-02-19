@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';

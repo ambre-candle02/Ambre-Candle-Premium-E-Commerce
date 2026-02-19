@@ -1,3 +1,4 @@
+'use client';
 import { useMemo, useState, Suspense, useEffect } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';

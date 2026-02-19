@@ -14,7 +14,8 @@ import {
     Menu,
     X,
     Eye,
-    EyeOff
+    EyeOff,
+    Sparkles
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -346,6 +347,31 @@ export default function AdminLayout({ children }) {
                                 >
                                     <ImageIcon size={20} color={pathname === '/admin/media' ? '#d4af37' : '#888'} />
                                     <span>Media Library</span>
+                                </motion.div>
+                            </Link>
+                        </li>
+                        <li style={{ marginBottom: '10px' }}>
+                            <Link href="/admin/inventory" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
+                                <motion.div
+                                    whileHover={{
+                                        background: 'rgba(212, 175, 55, 0.15)',
+                                        color: '#fff'
+                                    }}
+                                    className={`nav-item ${pathname === '/admin/inventory' ? 'active' : ''}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        padding: '12px 20px',
+                                        borderRadius: '12px',
+                                        color: pathname === '/admin/inventory' ? '#fff' : '#888',
+                                        background: pathname === '/admin/inventory' ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <Sparkles size={20} color={pathname === '/admin/inventory' ? '#d4af37' : '#888'} />
+                                    <span>Inventory Hub</span>
                                 </motion.div>
                             </Link>
                         </li>

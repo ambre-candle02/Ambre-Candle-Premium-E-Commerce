@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -6,6 +7,7 @@ import Image from 'next/image';
 import { useCart } from '@/src/context/CartContext';
 import { useWishlist } from '@/src/context/WishlistContext';
 import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { PRODUCT_CATEGORIES } from '@/src/config/constants';
 import { db } from '@/src/config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { Heart, X, ShoppingBag, Check, Eye, Sparkles, LayoutGrid, IndianRupee } from 'lucide-react';
@@ -78,7 +80,7 @@ function ShopContent() {
         return matchesCategory && matchesPrice && matchesSearch;
     });
 
-    const productCategories = ['All', ...(['Urli Candle', 'Hampers | Combo', 'Glass Jar Candle', 'Bouquet Candle', 'Pillar Candle', 'Diwali', 'Cake / Dessert Candle', 'Doll Candle', 'Rakhi'])];
+    const productCategories = PRODUCT_CATEGORIES;
 
     const sortedProducts = [...filteredProducts].sort((a, b) => {
         if (sortBy === 'Price: Low-High') return a.price - b.price;

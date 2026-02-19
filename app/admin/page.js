@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Archive, Search, Filter, ChevronDown } from 'lucide-react';
+import { Package, Truck, CheckCircle, DollarSign, Users, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Archive, Search, Filter, ChevronDown, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { db } from '@/src/config/firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import '@/src/styles/Admin.css';
@@ -11,6 +12,7 @@ export default function AdminDashboard() {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [mounted, setMounted] = useState(false);
+    const router = useRouter();
 
     const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -139,6 +141,8 @@ export default function AdminDashboard() {
                     />
                 </div>
 
+
+
                 <div className="admin-header-v2">
                     <div className="admin-header-title">
                         <span>Management</span>
@@ -182,7 +186,7 @@ export default function AdminDashboard() {
                     <div className="admin-table-header-v2">
                         <h3>Recent Orders</h3>
                         <div className="admin-search-wrapper-v2">
-                            <div className="admin-search-input-container" style={{ border: '1px solid #d4af37' }}>
+                            <div className="admin-search-input-container">
                                 <Search size={18} className="admin-search-icon" style={{ color: '#d4af37' }} />
                                 <input
                                     className="admin-search-input-v2"
@@ -310,7 +314,7 @@ const StatCard = ({ title, value, icon, trend }) => (
             flexDirection: 'column',
             gap: '20px',
             color: '#fff',
-            border: '1px solid rgba(212, 175, 55, 0.1)',
+            border: '2px solid #d4af37',
             position: 'relative',
             overflow: 'hidden'
         }}
