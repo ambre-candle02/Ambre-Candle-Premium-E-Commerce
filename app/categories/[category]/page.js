@@ -35,11 +35,17 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
             transition={{ duration: 0.6, delay: i * 0.1 }}
         >
             <div className="card-img-wrapper">
-                <Link href={`/product/${p.id}`}>
+                <Link href={`/product/${p.id}`} style={{ position: 'relative', display: 'block', height: '100%' }}>
                     <SafeImage
                         src={p.image}
                         alt={p.name}
                     />
+                    {p.status === 'out_of_stock' && (
+                        <div style={{ position: 'absolute', top: 10, left: 10, background: '#ef4444', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.7rem', zIndex: 10 }}>OUT OF STOCK</div>
+                    )}
+                    {p.status === 'coming_soon' && (
+                        <div style={{ position: 'absolute', top: 10, left: 10, background: '#10b981', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.7rem', zIndex: 10 }}>COMING SOON</div>
+                    )}
                 </Link>
 
                 <div className="shop-card-overlay">
@@ -57,6 +63,11 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         className={`btn-add-cart ${added ? 'added' : ''}`}
+                        disabled={p.status === 'out_of_stock' || p.status === 'coming_soon'}
+                        style={{
+                            opacity: (p.status === 'out_of_stock' || p.status === 'coming_soon') ? 0.5 : 1,
+                            cursor: (p.status === 'out_of_stock' || p.status === 'coming_soon') ? 'not-allowed' : 'pointer'
+                        }}
                         onClick={handleAddToCart}
                     >
                         {added ? <Check size={18} /> : <ShoppingBag size={18} />}
@@ -185,8 +196,14 @@ function CategoryContent() {
                             >
                                 <X size={20} />
                             </button>
-                            <div className="qv-image-side">
+                            <div className="qv-image-side" style={{ position: 'relative' }}>
                                 <SafeImage src={quickViewProduct.image} alt={quickViewProduct.name} />
+                                {quickViewProduct.status === 'out_of_stock' && (
+                                    <div style={{ position: 'absolute', top: 20, right: 20, background: '#ef4444', color: '#fff', padding: '6px 12px', borderRadius: '20px', fontWeight: '600', fontSize: '0.8rem', zIndex: 10 }}>OUT OF STOCK</div>
+                                )}
+                                {quickViewProduct.status === 'coming_soon' && (
+                                    <div style={{ position: 'absolute', top: 20, right: 20, background: '#10b981', color: '#fff', padding: '6px 12px', borderRadius: '20px', fontWeight: '600', fontSize: '0.8rem', zIndex: 10 }}>COMING SOON</div>
+                                )}
                             </div>
                             <div className="qv-content">
                                 <span className="qv-category">{quickViewProduct.productType}</span>
@@ -199,10 +216,21 @@ function CategoryContent() {
                                 <div className="qv-actions">
                                     <button
                                         className="btn-primary"
-                                        style={{ flex: 1, height: '60px' }}
+                                        disabled={quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon'}
+                                        style={{
+                                            flex: 1,
+                                            height: '60px',
+                                            opacity: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? 0.6 : 1,
+                                            cursor: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? 'not-allowed' : 'pointer',
+                                            background: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? '#888' : ''
+                                        }}
                                         onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
                                     >
-                                        <ShoppingBag size={20} /> Add to Cart
+                                        {(quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? (
+                                            <>{quickViewProduct.status === 'out_of_stock' ? 'OUT OF STOCK' : 'COMING SOON'}</>
+                                        ) : (
+                                            <><ShoppingBag size={20} /> Add to Cart</>
+                                        )}
                                     </button>
                                 </div>
 

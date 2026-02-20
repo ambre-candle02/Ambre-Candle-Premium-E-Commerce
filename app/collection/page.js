@@ -193,7 +193,7 @@ function CollectionContent() {
                         >
                             {/* Image */}
                             <div className="product-image-container" style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-                                <Link href={`/product/${product.id}`}>
+                                <Link href={`/product/${product.id}`} style={{ position: 'relative', display: 'block', height: '100%' }}>
                                     <SafeImage
                                         src={product.image}
                                         alt={product.name}
@@ -204,6 +204,12 @@ function CollectionContent() {
                                             transition: 'transform 0.5s ease'
                                         }}
                                     />
+                                    {product.status === 'out_of_stock' && (
+                                        <div style={{ position: 'absolute', top: 15, left: 15, background: '#ef4444', color: '#fff', padding: '6px 12px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.75rem', zIndex: 10 }}>OUT OF STOCK</div>
+                                    )}
+                                    {product.status === 'coming_soon' && (
+                                        <div style={{ position: 'absolute', top: 15, left: 15, background: '#10b981', color: '#fff', padding: '6px 12px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.75rem', zIndex: 10 }}>COMING SOON</div>
+                                    )}
                                 </Link>
 
                                 {/* Wishlist Button */}
@@ -244,22 +250,24 @@ function CollectionContent() {
                                         addToCart({ ...product, quantity: 1 });
                                     }}
                                     className="cart-add-btn"
+                                    disabled={product.status === 'out_of_stock' || product.status === 'coming_soon'}
                                     style={{
                                         position: 'absolute',
                                         bottom: '15px',
                                         right: '15px',
-                                        background: '#d4af37',
+                                        background: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? '#888' : '#d4af37',
                                         borderRadius: '50%',
                                         width: '45px',
                                         height: '45px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        cursor: 'pointer',
+                                        cursor: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 'not-allowed' : 'pointer',
                                         color: '#fff',
-                                        boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                                        boxShadow: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 'none' : '0 4px 15px rgba(212, 175, 55, 0.4)',
                                         transition: 'all 0.3s ease',
-                                        zIndex: 2
+                                        zIndex: 2,
+                                        opacity: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 0.7 : 1
                                     }}
                                 >
                                     <ShoppingCart size={20} />

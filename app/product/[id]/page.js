@@ -74,8 +74,14 @@ export default function ProductDetailPage() {
                         transition={{ duration: 1.2, ease: [0.165, 0.84, 0.44, 1] }}
                         key={activeImgIndex} // Re-animate on change
                     >
-                        <div className="main-visual-container">
+                        <div className="main-visual-container" style={{ position: 'relative' }}>
                             <SafeImage src={mainImage} alt={product.name} />
+                            {product.status === 'out_of_stock' && (
+                                <div style={{ position: 'absolute', top: 20, right: 20, background: '#ef4444', color: '#fff', padding: '8px 16px', borderRadius: '30px', fontWeight: '600', fontSize: '0.85rem', letterSpacing: '1px', zIndex: 10, boxShadow: '0 4px 15px rgba(239, 68, 68, 0.4)' }}>OUT OF STOCK</div>
+                            )}
+                            {product.status === 'coming_soon' && (
+                                <div style={{ position: 'absolute', top: 20, right: 20, background: '#10b981', color: '#fff', padding: '8px 16px', borderRadius: '30px', fontWeight: '600', fontSize: '0.85rem', letterSpacing: '1px', zIndex: 10, boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)' }}>COMING SOON</div>
+                            )}
                         </div>
 
                     </motion.div>
@@ -106,12 +112,21 @@ export default function ProductDetailPage() {
 
                         <div className="p-actions-v6">
                             <div className="qty-pill-v6">
-                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus size={18} /></button>
+                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={product.status === 'out_of_stock' || product.status === 'coming_soon'}><Minus size={18} /></button>
                                 <span>{quantity}</span>
-                                <button onClick={() => setQuantity(quantity + 1)}><Plus size={18} /></button>
+                                <button onClick={() => setQuantity(quantity + 1)} disabled={product.status === 'out_of_stock' || product.status === 'coming_soon'}><Plus size={18} /></button>
                             </div>
-                            <button className="add-btn-v6" onClick={() => addToCart({ ...product, quantity })}>
-                                ADD TO CART
+                            <button
+                                className="add-btn-v6"
+                                onClick={() => addToCart({ ...product, quantity })}
+                                disabled={product.status === 'out_of_stock' || product.status === 'coming_soon'}
+                                style={{
+                                    opacity: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 0.6 : 1,
+                                    cursor: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 'not-allowed' : 'pointer',
+                                    background: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? '#888' : ''
+                                }}
+                            >
+                                {product.status === 'out_of_stock' ? 'OUT OF STOCK' : product.status === 'coming_soon' ? 'COMING SOON' : 'ADD TO CART'}
                             </button>
                         </div>
 

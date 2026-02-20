@@ -375,6 +375,31 @@ export default function AdminLayout({ children }) {
                                 </motion.div>
                             </Link>
                         </li>
+                        <li style={{ marginBottom: '10px' }}>
+                            <Link href="/admin/products" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
+                                <motion.div
+                                    whileHover={{
+                                        background: 'rgba(239, 68, 68, 0.15)',
+                                        color: '#fff'
+                                    }}
+                                    className={`nav-item ${pathname === '/admin/products' ? 'active' : ''}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        padding: '12px 20px',
+                                        borderRadius: '12px',
+                                        color: pathname === '/admin/products' ? '#ef4444' : '#888',
+                                        background: pathname === '/admin/products' ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <ShoppingBag size={20} color={pathname === '/admin/products' ? '#ef4444' : '#888'} />
+                                    <span>Product Manager</span>
+                                </motion.div>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
 

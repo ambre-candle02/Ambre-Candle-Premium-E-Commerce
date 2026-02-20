@@ -1364,3 +1364,42 @@
         font-weight: 600;
     }
 }
+
+/* --- Admin Catalog Responsive Table --- */
+@media (max-width: 768px) {
+    .admin-catalog-table thead {
+        display: none;
+    }
+
+    .admin-catalog-table,
+    .admin-catalog-table tbody,
+    .admin-catalog-table tr,
+    .admin-catalog-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .admin-catalog-table tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #d4af37;
+        padding-bottom: 15px;
+    }
+
+    .admin-catalog-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px !important;
+        text-align: right;
+    }
+
+    .admin-catalog-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #888;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-right: 15px;
+        text-align: left;
+    }
+}

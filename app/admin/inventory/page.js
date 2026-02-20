@@ -62,6 +62,28 @@ export default function InventoryHubPage() {
                         Run Migration <ArrowRight size={16} />
                     </button>
                 </motion.div>
+
+                <motion.div
+                    className="admin-tool-card"
+                    style={{ padding: '30px', background: '#fff', borderRadius: '24px', border: '2px solid #ef4444' }}
+                    onClick={() => router.push('/admin/products')}
+                    whileHover={{ y: -5, boxShadow: '0 15px 30px rgba(0,0,0,0.05)' }}
+                >
+                    <div style={{
+                        width: '50px', height: '50px', background: 'rgba(239, 68, 68, 0.1)',
+                        borderRadius: '15px', display: 'flex', alignItems: 'center',
+                        justifyContent: 'center', color: '#ef4444', marginBottom: '20px'
+                    }}>
+                        <Package size={28} />
+                    </div>
+                    <h2 style={{ fontSize: '1.4rem', marginBottom: '10px' }}>Product Manager</h2>
+                    <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: '1.5', marginBottom: '25px' }}>
+                        Manage products currently live on the site. Search and remove products from the database instantly.
+                    </p>
+                    <button className="admin-btn-tool" style={{ width: '100%', padding: '14px', borderRadius: '12px', fontSize: '0.95rem', background: '#ef4444', color: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                        Manage Products <ArrowRight size={16} />
+                    </button>
+                </motion.div>
             </div>
 
             {/* Status Info Section */}
