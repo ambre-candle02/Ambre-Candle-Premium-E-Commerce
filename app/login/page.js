@@ -32,7 +32,7 @@ export default function LoginPage() {
             // Priority 1: Try admin login first (server action validates credentials securely)
             const res = await loginAdmin(formData.email, formData.password);
             if (res.success) {
-                localStorage.setItem('ambre_admin_session', 'true');
+                sessionStorage.setItem('ambre_admin_session', 'active');
                 const { toast } = await import('react-hot-toast');
                 toast.success("Welcome, Administrator! 🛡️");
                 router.push('/admin');
