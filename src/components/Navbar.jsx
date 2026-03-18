@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ShoppingBag, Search, Menu, X, User, Heart, Package, Mail, Phone, Instagram, Facebook } from 'lucide-react';
@@ -24,6 +24,7 @@ const Navbar = () => {
 
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
     const router = useRouter();
 
     const pathname = usePathname();
@@ -42,8 +43,20 @@ const Navbar = () => {
         setIsMobileMenuOpen(false);
         setIsUserMenuOpen(false);
 
+        const handleClickOutside = (event) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+                setIsUserMenuOpen(false);
+            }
+        };
+
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
     }, [pathname]);
 
     const navLinks = useMemo(() => [
@@ -125,6 +138,7 @@ const Navbar = () => {
 
                     {isMounted && user ? (
                         <div 
+                            ref={userMenuRef}
                             className={`user-profile-menu-wrapper ${isUserMenuOpen ? 'mobile-active' : ''}`}
                             suppressHydrationWarning
                             onClick={() => {
