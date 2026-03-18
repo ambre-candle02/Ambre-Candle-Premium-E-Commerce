@@ -73,7 +73,23 @@ export default function AboutPage() {
 
                 <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
                     <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-                        <motion.span variants={fadeInUp} className="philosophy-tag" style={{ color: '#d4af37', border: '1px solid rgba(212,175,55,0.3)', background: 'rgba(212,175,55,0.1)', padding: '8px 24px', borderRadius: '50px', display: 'inline-block', marginTop: '30px', marginBottom: '30px' }}>
+                        <motion.span variants={fadeInUp} className="philosophy-tag" style={{ 
+                            color: '#e8ca6b', 
+                            border: '1px solid rgba(212, 175, 55, 0.8)', 
+                            background: 'rgba(0, 0, 0, 0.65)', 
+                            padding: '10px 24px', 
+                            borderRadius: '12px', 
+                            display: 'inline-flex', 
+                            alignItems: 'center',
+                            marginTop: '30px', 
+                            marginBottom: '30px',
+                            backdropFilter: 'blur(20px)',
+                            WebkitBackdropFilter: 'blur(20px)',
+                            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.8)',
+                            fontWeight: '800',
+                            letterSpacing: '3px',
+                            fontSize: '0.75rem'
+                        }}>
                             Est. 2024
                         </motion.span>
                         <motion.h1 variants={fadeInUp} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(3rem, 5vw, 6rem)', color: '#fff', marginBottom: '30px', lineHeight: '1.1' }}>

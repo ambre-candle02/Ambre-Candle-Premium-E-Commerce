@@ -88,7 +88,7 @@ export default function SafeImage({
                         width: '100%',
                         top: 0,
                         left: 0,
-                        opacity: isLoaded ? 1 : 0.8,
+                        opacity: 1, /* Fixed milky/white background blend bug */
                         transition: 'opacity 0.3s ease'
                     }}
                 />

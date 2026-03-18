@@ -169,10 +169,10 @@ function CollectionContent() {
         'Jar': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773646123/ambre-candles/Favourites/vkr7h30a874rgjzox5h3.jpg',
         
         // Sub-categories fallback or specific
-        'Diwali': 'https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=2000&auto=format&fit=crop',
-        'Christmas': 'https://images.unsplash.com/photo-1545048702-793eec75f20c?q=80&w=2000&auto=format&fit=crop',
-        'Halloween | Fall': 'https://images.unsplash.com/photo-1508363778367-af99300adcf4?q=80&w=2000&auto=format&fit=crop',
-        'Ladoo Candle': 'https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=2000&auto=format&fit=crop',
+        'Diwali': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773862753/ambre-candles/Favourites/hxqdpn9cg8bwz7l1wtju.png',
+        'Christmas': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773862754/ambre-candles/Favourites/xpo0vxbfxlg2yhcuc13g.png',
+        'Halloween | Fall': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773862751/ambre-candles/Favourites/adrgpopcvgolynrkxiae.png',
+        'Ladoo Candle': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773862749/ambre-candles/Favourites/pjbtrful0kzqayq8zaog.png',
         'Hampers | Combo': 'https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=2000&auto=format&fit=crop',
         'Rakhi': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773642163/ambre-candles/Favourites/ze9jaer0jkf5e0xo8mll.jpg',
         'Concrete Base Candle': 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773645517/ambre-candles/Favourites/xlnqywo8rhyl1o8chzeq.png',
