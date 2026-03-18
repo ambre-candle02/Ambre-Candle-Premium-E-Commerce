@@ -88,7 +88,7 @@ export default function ForgotPasswordPage() {
                     animate="visible"
                     variants={fadeUp}
                 >
-                    <Link href="/login" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '30px', color: '#1a1a1a', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>
+                    <Link href="/login" className="desktop-only" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '30px', color: '#1a1a1a', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>
                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #d4af37', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d4af37', paddingRight: '2px' }}>
                             <ArrowLeft size={16} style={{ marginLeft: '1px' }} />
                         </div>
