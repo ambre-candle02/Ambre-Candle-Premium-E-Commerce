@@ -32,6 +32,10 @@ export const viewport = {
 export const metadata = {
     title: "Ambre Candle | Luxury Hand-Poured Scented Candles",
     description: "Discover the elite collection of luxury hand-poured soy candles at Ambre Candle. Artisan pillars, aromatic jars, and festive gift sets for every occasion.",
+    icons: {
+        icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='20'/><text x='50' y='74' font-family='serif' font-weight='bold' font-size='75' fill='%23d4af37' text-anchor='middle'>A</text></svg>",
+        apple: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='20'/><text x='50' y='74' font-family='serif' font-weight='bold' font-size='75' fill='%23d4af37' text-anchor='middle'>A</text></svg>"
+    }
 };
 import SmoothScroll from "@/src/components/SmoothScroll";
 
