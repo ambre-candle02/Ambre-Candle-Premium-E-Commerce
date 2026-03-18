@@ -1,0 +1,31 @@
+export const PRODUCT_CATEGORIES = [
+    'All',
+    'Favourites',
+    'Baby Shower',
+    'Bouquet Candle',
+    'Cake / Dessert Candle',
+    'Christmas',
+    'Coconut Shell Candle',
+    'Concrete Base Candle',
+    'Diwali',
+    'Doll Candle',
+    'Flower Heart Candle',
+    'Glass Jar Candle',
+    'Hampers | Combo',
+    'Halloween | Fall',
+    'Ladoo Candle',
+    'Pillar Candle',
+    'Rakhi',
+    'Tealight',
+    'Tin Jar Candle',
+    'Urli Candle',
+    'Valentines',
+    'Wax Melts',
+    'Wax Sachet',
+    'Wooden Base Candle'
+];
+
+export const ADMIN_EMAILS = [
+    process.env.NEXT_PUBLIC_ADMIN_DISPLAY_EMAIL || 'admin@ambrecandle.com',
+    'chitranjanpatel471@gmail.com'
+];

@@ -1,0 +1,292 @@
+'use client';
+import { useMemo, useState, Suspense, useEffect } from 'react';
+import { useParams, useSearchParams, useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import SafeImage from '@/src/components/SafeImage';
+import { useCart } from '@/src/context/CartContext';
+import { useWishlist } from '@/src/context/WishlistContext';
+import { PRODUCTS as STATIC_PRODUCTS } from '@/src/config/products';
+import { db } from '@/src/config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { PRODUCT_CATEGORIES } from '@/src/config/constants';
+import { Heart, ShoppingBag, Check, ArrowLeft, Eye, X } from 'lucide-react';
+import '@/src/styles/Shop.css';
+import '@/src/styles/Categories.css';
+
+const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct }) => {
+    const { addToCart } = useCart();
+    const [added, setAdded] = useState(false);
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart({ ...p, quantity: 1 });
+        setAdded(true);
+        setTimeout(() => setAdded(false), 2000);
+    };
+
+    return (
+        <motion.div
+            layout
+            className="category-artisan-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+        >
+            <div className="card-img-wrapper">
+                <Link href={`/product/${p.id}`} style={{ position: 'relative', display: 'block', height: '100%' }}>
+                    <SafeImage
+                        src={p.image}
+                        alt={p.name}
+                    />
+                    {p.status === 'out_of_stock' && (
+                        <div style={{ position: 'absolute', top: 10, left: 10, background: '#ef4444', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.7rem', zIndex: 10 }}>OUT OF STOCK</div>
+                    )}
+                    {p.status === 'coming_soon' && (
+                        <div style={{ position: 'absolute', top: 10, left: 10, background: '#10b981', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.7rem', zIndex: 10 }}>COMING SOON</div>
+                    )}
+                </Link>
+
+                <div className="shop-card-overlay">
+                    <motion.button
+                        whileTap={{ scale: 0.8 }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setQuickViewProduct(p);
+                        }}
+                        className="btn-quickview"
+                    >
+                        <Eye size={22} strokeWidth={1.5} />
+                    </motion.button>
+
+                    <motion.button
+                        whileTap={{ scale: 0.9 }}
+                        className={`btn-add-cart ${added ? 'added' : ''}`}
+                        disabled={p.status === 'out_of_stock' || p.status === 'coming_soon'}
+                        style={{
+                            opacity: (p.status === 'out_of_stock' || p.status === 'coming_soon') ? 0.5 : 1,
+                            cursor: (p.status === 'out_of_stock' || p.status === 'coming_soon') ? 'not-allowed' : 'pointer'
+                        }}
+                        onClick={handleAddToCart}
+                    >
+                        {added ? <Check size={18} /> : <ShoppingBag size={18} />}
+                    </motion.button>
+                </div>
+
+                <button
+                    className="card-action-btn category-wishlist-btn"
+                    style={{
+                        background: 'rgba(255,255,255,0.8)',
+                        backdropFilter: 'blur(4px)'
+                    }}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        toggleWishlist(p);
+                    }}
+                >
+                    <Heart
+                        size={18}
+                        fill={isInWishlist(p.id) ? "#d4af37" : "none"}
+                        color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"}
+                    />
+                </button>
+            </div>
+
+            <div className="card-content">
+                <h3 className="card-title">{p.name}</h3>
+                <p className="card-price"><span className="currency-symbol">₹</span>{p.price}</p>
+            </div>
+        </motion.div>
+    );
+};
+
+function CategoryContent() {
+    const params = useParams();
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [isMounted, setIsMounted] = useState(false);
+    const [dynamicProducts, setDynamicProducts] = useState([]);
+
+    useEffect(() => {
+        setIsMounted(true);
+        async function fetchProducts() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'products'));
+                const products = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.data().id || doc.id
+                }));
+                if (products.length > 0) {
+                    setDynamicProducts(products);
+                } else {
+                    setDynamicProducts(STATIC_PRODUCTS);
+                }
+            } catch (error) {
+                console.error("Firestore fetch error, falling back to static config:", error);
+                setDynamicProducts(STATIC_PRODUCTS);
+            }
+        }
+        fetchProducts();
+    }, []);
+
+    const categoryName = decodeURIComponent(params.category);
+
+    const filteredProducts = useMemo(() => {
+        const sort = searchParams.get('sort');
+        const maxPrice = parseInt(searchParams.get('max')) || 2000;
+
+        let list = dynamicProducts.filter(p =>
+            (p.productType === categoryName || (p.productType && p.productType.includes(categoryName))) &&
+            p.price <= maxPrice
+        );
+
+        if (sort === 'price-low') {
+            list = [...list].sort((a, b) => a.price - b.price);
+        } else if (sort === 'price-high') {
+            list = [...list].sort((a, b) => b.price - a.price);
+        }
+        return list;
+    }, [categoryName, searchParams]);
+
+    // Removed hydration blank to improve perceived speed
+
+    return (
+        <div className="category-products-container" style={{ width: '100%', padding: '20px 0', minHeight: '85vh' }}>
+            <div className="container" style={{ marginBottom: '40px' }}>
+                <button
+                    onClick={() => {
+                        if (window.history.length > 2) {
+                            router.back();
+                        } else {
+                            router.push('/');
+                        }
+                    }}
+                    className="desktop-only-back-btn"
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#d4af37',
+                        fontWeight: '600',
+                        fontSize: '0.85rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '2px',
+                        cursor: 'pointer',
+                        background: 'rgba(212, 175, 55, 0.1)',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        padding: '10px 20px',
+                        borderRadius: '50px',
+                        backdropFilter: 'blur(10px)',
+                        transition: 'all 0.3s ease'
+                    }}
+                >
+                    <ArrowLeft size={16} />
+                    <span>Back</span>
+                </button>
+            </div>
+            <div className="category-results-grid">
+                <AnimatePresence mode='popLayout'>
+                    {filteredProducts.map((p, i) => (
+                        <CategoryCard
+                            key={p.id}
+                            p={p}
+                            i={i}
+                            isInWishlist={isInWishlist}
+                            toggleWishlist={toggleWishlist}
+                            setQuickViewProduct={setQuickViewProduct}
+                        />
+                    ))}
+                </AnimatePresence>
+            </div>
+
+            {filteredProducts.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '100px 0' }}>
+                    <h3>No products found in this category.</h3>
+                    <Link href="/shop" className="btn-primary" style={{ marginTop: '20px', display: 'inline-block' }}>
+                        Explore Other Categories
+                    </Link>
+                </div>
+            )}
+
+            {/* Quick View Modal */}
+            <AnimatePresence>
+                {quickViewProduct && (
+                    <div className="quickview-overlay" onClick={() => setQuickViewProduct(null)}>
+                        <motion.div
+                            className="qv-modal"
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                className="qv-close-btn"
+                                onClick={() => setQuickViewProduct(null)}
+                            >
+                                <X size={20} />
+                            </button>
+                            <div className="qv-image-side" style={{ position: 'relative' }}>
+                                <SafeImage src={quickViewProduct.image} alt={quickViewProduct.name} />
+                                {quickViewProduct.status === 'out_of_stock' && (
+                                    <div style={{ position: 'absolute', top: 20, right: 20, background: '#ef4444', color: '#fff', padding: '6px 12px', borderRadius: '20px', fontWeight: '600', fontSize: '0.8rem', zIndex: 10 }}>OUT OF STOCK</div>
+                                )}
+                                {quickViewProduct.status === 'coming_soon' && (
+                                    <div style={{ position: 'absolute', top: 20, right: 20, background: '#10b981', color: '#fff', padding: '6px 12px', borderRadius: '20px', fontWeight: '600', fontSize: '0.8rem', zIndex: 10 }}>COMING SOON</div>
+                                )}
+                            </div>
+                            <div className="qv-content">
+                                <span className="qv-category">{quickViewProduct.productType}</span>
+                                <h2 className="qv-title">{quickViewProduct.name}</h2>
+                                <div className="qv-price">
+                                    <span className="currency-symbol">₹</span>{quickViewProduct.price}
+                                </div>
+                                <p className="qv-desc">{quickViewProduct.desc}</p>
+
+                                <div className="qv-actions">
+                                    <button
+                                        className="btn-primary"
+                                        disabled={quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon'}
+                                        style={{
+                                            flex: 1,
+                                            height: '60px',
+                                            opacity: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? 0.6 : 1,
+                                            cursor: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? 'not-allowed' : 'pointer',
+                                            background: (quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? '#888' : ''
+                                        }}
+                                        onClick={() => { addToCart({ ...quickViewProduct, quantity: 1 }); setQuickViewProduct(null); }}
+                                    >
+                                        {(quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon') ? (
+                                            <>{quickViewProduct.status === 'out_of_stock' ? 'OUT OF STOCK' : 'COMING SOON'}</>
+                                        ) : (
+                                            <><ShoppingBag size={20} /> Add to Cart</>
+                                        )}
+                                    </button>
+                                </div>
+
+                                <Link
+                                    href={`/product/${quickViewProduct.id}`}
+                                    className="qv-view-details"
+                                    onClick={() => setQuickViewProduct(null)}
+                                >
+                                    View Full Product Details
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}
+
+export default function CategoryPage() {
+    return (
+        <Suspense fallback={<div>Loading Selection...</div>}>
+            <CategoryContent />
+        </Suspense>
+    );
+}

@@ -1,0 +1,822 @@
+/* --- Ambre Candle Navbar: Clean & Precise --- */
+
+:root {
+    --announcement-height: 0px;
+}
+
+.announcement-bar {
+    background: #1a1a1a;
+    color: #fff;
+    height: var(--announcement-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1200;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.announcement-container {
+    padding: 0 20px;
+}
+
+.mobile-menu-trigger {
+    display: none;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    padding: 5px;
+}
+
+.desktop-only {
+    display: flex;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    height: var(--header-height);
+    padding: 0;
+    /* Ultra-Premium Glassmorphism + Metallic Shine */
+    background: linear-gradient(135deg, rgba(223, 215, 194, 0.9) 0%, rgba(232, 225, 207, 0.85) 25%, rgba(196, 181, 149, 0.9) 50%, rgba(232, 225, 207, 0.85) 75%, rgba(223, 215, 194, 0.9) 100%);
+    background-size: 200% auto;
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Elegant thin gold line */
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(212, 175, 55, 0.3);
+    transform: translateZ(0);
+    /* overflow-x: clip was REMOVED — it clips the dropdown even with overflow-y: visible */
+    /* Shimmer animation is contained via pointer-events:none on the ::after pseudo-element */
+}
+
+/* Shimmer Highlight Effect */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: goldShimmer 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes goldShimmer {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+.scrolled {
+    background: rgba(223, 215, 194, 0.96);
+    backdrop-filter: blur(25px) saturate(200%);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(212, 175, 55, 0.3);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(212, 175, 55, 0.6); /* Slightly stronger on scroll but still elegant */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 100%;
+    position: relative;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    z-index: 10;
+}
+
+.nav-link-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mega-menu-trigger-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    position: relative;
+    z-index: 11;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #b8860b;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-action-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+}
+
+.cart-btn {
+    position: relative;
+    color: #1a1a1a !important;
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+}
+
+.cart-motion-wrapper {
+    display: block;
+    z-index: 100;
+}
+
+.cart-btn-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 8px;
+}
+
+.cart-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #d4af37;
+    color: #fff;
+    font-size: 0.6rem;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* --- LOGO STYLING --- */
+.ambre-logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.ambre-logo:active {
+    transform: scale(0.96) translateZ(0);
+}
+
+.logo-link {
+    text-decoration: none !important;
+}
+
+.logo-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-brand {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 900;
+    /* Extra dark bold as requested */
+    color: #000;
+    /* Deep dark black */
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.logo-catalog {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 4px; /* Increased for premium spacing */
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-top: 3px;
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Subtle Gold Glow */
+}
+
+.logo-est {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #555;
+    margin-top: 4px;
+    opacity: 0.7;
+}
+
+/* --- USER PROFILE DROPDOWN --- */
+.user-profile-menu-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user-profile-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid #d4af37; /* Solid Gold Edge */
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    min-width: fit-content;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.1);
+}
+
+.user-profile-menu:active {
+    transform: scale(0.9) translateZ(0);
+}
+
+.user-name-bold {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a150e;
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-profile-menu-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* The padding-bottom creates a real DOM area connecting the icon to the dropdown */
+    /* So there is literally zero physical gap for the mouse to fall through */
+    padding-bottom: 20px;
+    margin-bottom: -20px;
+}
+
+.user-profile-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none; /* Let the wrapper handle all hover, not the inner div */
+}
+
+.profile-dropdown-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    background: #fdfbf7;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #d4af37;
+    padding: 10px;
+    z-index: 10000;
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+/* Show dropdown when hovering the wrapper or toggled on mobile */
+.user-profile-menu-wrapper:hover .profile-dropdown-container,
+.user-profile-menu-wrapper.mobile-active .profile-dropdown-container {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* The invisible bridge is now handled directly via an inline React <div> in Navbar.jsx for perfect DOM event tracking */
+
+.profile-dropdown-header {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 8px;
+}
+
+.dropdown-user-name {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+}
+
+.dropdown-user-email {
+    font-size: 0.75rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.profile-dropdown-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profile-dropdown-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-dropdown-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #b8860b;
+}
+
+.logout-red {
+    color: #ff5555;
+    background: #fff5f5;
+    border: none;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.logout-red:hover {
+    color: #ff1111 !important;
+    background: #ffe5e5 !important;
+}
+
+/* --- MOBILE MENU OVERLAY STYLES --- */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+}
+
+.mobile-menu-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(300px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    background: #fdfbf7;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    overflow-y: auto;
+    scrollbar-width: none;
+    box-sizing: border-box;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.mobile-menu-content::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-nav-link {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.mobile-nav-link:hover {
+    color: #d4af37;
+    padding-left: 10px;
+}
+
+/* Mobile Search Refinement */
+.mobile-search-wrapper {
+    margin-bottom: 20px;
+}
+
+.mobile-search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(26, 26, 26, 0.05);
+    border-radius: 50px;
+    padding: 5px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px 5px;
+    font-size: 0.9rem;
+    outline: none;
+    color: #1a1a1a;
+}
+
+.mobile-search-btn {
+    background: none;
+    border: none;
+    color: #d4af37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Footer Info */
+.mobile-menu-footer {
+    margin-top: auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.mobile-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #666;
+    text-decoration: none;
+}
+
+.mobile-social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.mobile-social-links a {
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+}
+
+.mobile-social-links a:hover {
+    color: #d4af37;
+}
+
+/* --- MOBILE RESPONSIVE (<1024px) --- */
+@media (max-width: 1024px) {
+
+    .nav-links,
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-menu-trigger,
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: var(--header-height-mobile) !important;
+    }
+
+    .nav-container {
+        padding: 0 20px !important; /* Standardized 20px gap */
+    }
+
+    .logo-brand {
+        font-size: 1.5rem !important;
+        letter-spacing: -1px;
+    }
+
+    .logo-catalog {
+        font-size: 0.5rem !important;
+        letter-spacing: 2px !important;
+        margin-top: 1px !important;
+    }
+
+    .logo-est {
+        display: none;
+    }
+
+    .announcement-bar {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-actions {
+        gap: 12px !important;
+        /* Balanced for 390px */
+        padding-right: 0;
+    }
+
+    .nav-action-btn {
+        padding: 12px !important; /* Standardized 44px+ hit area for icons */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: manipulation; /* Eliminate browser tap delay */
+    }
+
+    .cart-badge {
+        top: -4px;
+        right: -4px;
+        /* Tighter on mobile to avoid overlap */
+        min-width: 16px !important;
+        height: 16px !important;
+        font-size: 0.55rem !important;
+    }
+
+    .user-profile-menu {
+        width: auto;
+        padding: 5px 10px !important;
+        gap: 6px !important;
+    }
+
+    .user-name-bold {
+        font-size: 0.4rem !important;
+        letter-spacing: 0px;
+        max-width: 45px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+    }
+
+    /* Fix Mobile Scroll Mixing & Shrinking */
+    .navbar.scrolled {
+        position: fixed !important;
+        top: 0 !important;
+        height: var(--header-height-mobile) !important;
+        /* Stop shrinking */
+        background: linear-gradient(90deg, #dfd7c2 0%, #c4b595 50%, #dfd7c2 100%) !important;
+        /* Exact same gradient as top, NO change/dimming */
+        backdrop-filter: none !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        opacity: 1 !important;
+        z-index: 2000 !important;
+        /* Extremely high to stay on top of everything */
+    }
+}
+
+/* --- SEARCH OVERLAY --- */
+.search-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1050;
+    backdrop-filter: blur(10px);
+}
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 700px;
+    background: linear-gradient(135deg, rgba(253, 251, 247, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    z-index: 1200;
+    padding: 35px 30px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25), 0 0 1px rgba(212, 175, 55, 0.3);
+    border-radius: 0 0 30px 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: none;
+    transform: translateX(-50%) translateZ(0);
+    will-change: transform, opacity;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.search-input {
+    flex: 1;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    padding: 18px 24px;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+.search-input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2), 0 0 0 4px rgba(212, 175, 55, 0.1);
+    background: #fff;
+}
+
+.search-submit-btn,
+.search-close-btn {
+    padding: 14px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-submit-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #c19b2e 100%);
+    color: #fff;
+}
+
+.search-submit-btn:hover {
+    background: linear-gradient(135deg, #c19b2e 0%, #a88a26 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.search-close-btn {
+    background: rgba(26, 26, 26, 0.05);
+    color: #666;
+}
+
+.search-close-btn:hover {
+    background: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    transform: scale(1.05);
+}
+
+/* Mobile Search Styling */
+@media (max-width: 768px) {
+    .search-overlay {
+        width: 94%;
+        /* Slightly narrower for better safe space */
+        padding: 15px 10px;
+        /* Even tighter side padding */
+        border-radius: 0 0 20px 20px;
+    }
+
+    .search-form {
+        gap: 6px;
+        /* Even smaller gap */
+    }
+
+    .search-input {
+        padding: 12px 12px;
+        /* Densely packed for narrow screens */
+        font-size: 0.9rem;
+    }
+
+    .search-submit-btn,
+    .search-close-btn {
+        padding: 12px;
+        /* Consistency */
+    }
+
+    .user-profile-menu-wrapper .profile-dropdown-container {
+        right: -8px;
+        width: 170px; /* Reduced from 190px to fix 'fully page pe khul raha' */
+        top: 105%; /* More compact clearance */
+        padding: 8px; /* Tighter padding */
+        z-index: 10001;
+    }
+
+    .profile-dropdown-header {
+        padding: 8px; /* Tighter */
+        margin-bottom: 5px;
+    }
+
+    .dropdown-user-name {
+        font-size: 0.9rem; /* Increased slightly for better visibility */
+        font-weight: 800;
+    }
+
+    .profile-dropdown-links {
+        gap: 2px;
+    }
+
+    .profile-dropdown-item {
+        padding: 8px 12px;
+        font-size: 0.85rem; /* Increased from 0.8rem */
+        font-weight: 700; /* Made slightly bolder as requested */
+    }
+
+    .logout-red {
+        padding: 8px !important;
+        margin-top: 5px;
+    }
+}

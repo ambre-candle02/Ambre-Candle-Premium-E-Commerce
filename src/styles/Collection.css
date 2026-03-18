@@ -1,0 +1,575 @@
+/* --- Ambre Collection Page: Master Gallery Styles --- */
+
+.ambre-collection-grid-master {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ambre-collection-page-root {
+    min-height: 100vh;
+}
+
+.collection-container-main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px 0px !important; /* Reduced bottom padding to zero gap with footer */
+}
+
+@media (max-width: 1200px) {
+    .collection-container-main {
+        padding: 0 20px 0px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .collection-container-main {
+        padding: 0 15px 15px !important; /* Tight margin for mobile dock visibility */
+    }
+
+    .collection-hero-container {
+        --collection-hero-min-height: 180px; 
+        --collection-hero-padding: 90px 15px 25px; /* Reduced to make hero shorter */
+        --collection-hero-mt: 0 !important; 
+    }
+
+    .collection-back-btn {
+        display: none !important; /* Remove back button on mobile as requested */
+    }
+
+    /* Fix mobile header collision for the centered badge, and keep IT ALONE centered */
+    .collection-hero-badge {
+        position: relative !important;
+        top: 0 !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-bottom: 15px !important;
+        /* Scaling down for mobile */
+        font-size: 0.65rem !important;
+        padding: 8px 18px !important;
+        letter-spacing: 2px !important;
+    }
+
+    /* Shrink the main hero text on mobile */
+    .collection-hero-container h1 {
+        font-size: 2rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .collection-hero-container p {
+        font-size: 0.95rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Restore left alignment for everything else */
+    .collection-hero-text-wrapper {
+        display: block !important;
+        text-align: left !important;
+    }
+
+    /* Filters Mobile Optimization */
+    .collection-filter-pills-container {
+        margin-top: 25px !important; /* Added minor gap as requested */
+        margin-bottom: 15px !important;
+        padding: 5px 10px !important;
+        gap: 8px !important;
+    }
+
+
+    .filter-pill {
+        padding: 6px 16px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .secondary-filter-container {
+        margin-bottom: 20px !important;
+        padding: 5px 10px !important;
+        gap: 8px !important;
+        justify-content: flex-start !important; /* Start from left for scrolling */
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .secondary-filter-pill {
+        padding: 5px 14px !important;
+        font-size: 0.7rem !important;
+        flex-shrink: 0 !important; /* Don't squash pills */
+    }
+
+    /* Product Card Mobile Adjustments */
+    .ambre-collection-page-root {
+        --collection-product-name-size: 0.85rem;
+        --collection-product-name-clamp: 2; /* Up to 2 lines */
+        --collection-product-name-height: 2.4rem; /* Fixed height for alignment */
+        --collection-btn-size: 0.7rem;
+        --collection-btn-ws: nowrap; /* Button stays on 1 line */
+        --collection-btn-padding: 6px 14px;
+    }
+}
+
+/* --- Filter Pills --- */
+.collection-filter-pills-container {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 20px; /* Reduced from 30px for a tighter fit */
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.filter-pill {
+    padding: 10px 24px;
+    border-radius: 8px; /* Slightly squared for a cleaner look */
+    background: #fdfdfd;
+    border: 1px solid #e2e8f0;
+    color: #4a5568;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.filter-pill.active {
+    background: #3b2a1a !important; /* Darker brown as requested */
+    color: #fff !important;
+    border-color: #3b2a1a !important;
+}
+
+/* Secondary Filter Bar */
+.secondary-filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    padding: 10px;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.secondary-filter-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.secondary-filter-pill {
+    padding: 8px 18px;
+    border-radius: 6px;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    color: #333;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-filter-pill:hover {
+    border-color: #4a3728;
+}
+
+.secondary-filter-pill.active {
+    background: #4a3728;
+    color: #fff;
+    border-color: #4a3728;
+}
+
+/* --- Quick View --- */
+.quick-view-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+.motion-card:hover .quick-view-overlay {
+    opacity: 1;
+}
+
+.quick-view-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #1a0f05;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border: 1px solid #eedec4; /* Soft gold border */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.motion-card:hover .quick-view-btn {
+    transform: translateY(0);
+}
+
+.quick-view-btn:hover {
+    background: #d4af37;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* --- Pagination --- */
+.collection-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px; /* Reduced from 50px */
+    padding: 10px 0 20px; /* Reduced padding */
+}
+
+.pagination-arrow {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #d4af37;
+    background: transparent;
+    color: #d4af37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-arrow:hover:not(:disabled) {
+    background: #d4af37;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.pagination-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #ccc;
+}
+
+.pagination-info {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.pagination-info .current-page {
+    color: #d4af37;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+/* --- Quick View Modal --- */
+.quick-view-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.quick-view-modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    border: 2px solid #d4af37;
+}
+
+/* Luxury Product Card Hover Effect */
+.motion-card {
+    transition: all 0.3s ease !important;
+}
+
+.motion-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15) !important;
+    border-color: #d4a857 !important;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: #ff5555;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 500px;
+}
+
+.modal-image-side {
+    background: #f9f9f9;
+    position: relative;
+}
+
+.modal-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-info-side {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-category {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1a0f05;
+}
+
+.modal-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a0f05;
+    margin-bottom: 20px;
+}
+
+.modal-desc {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-add-btn {
+    background: #1a0f05;
+    color: #fff;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-add-btn:hover {
+    background: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.modal-details-link {
+    text-align: center;
+    color: #d4af37;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    .modal-image-side {
+        height: 300px;
+    }
+    .modal-info-side {
+        padding: 25px;
+    }
+}
+
+/* Add to Cart Button (Bubble) Base Styling */
+.cart-add-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #ffca1d;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.cart-add-btn:hover {
+    transform: scale(1.1);
+    background: #c19b2e;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+/* Default Product Image Height - Reduced for density and 5-column grid perfection */
+.product-image-container {
+    height: 180px;
+}
+
+/* --- Responsive Layouts --- */
+
+@media (max-width: 1440px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .collection-pagination {
+        gap: 15px;
+        margin-top: 20px;
+        padding: 10px 0;
+        flex-wrap: nowrap; /* Force single line */
+    }
+
+    .pagination-arrow {
+        width: 38px;
+        height: 38px;
+    }
+
+    .pagination-info {
+        font-size: 0.85rem;
+    }
+
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    /* Premium mobile card styling - with gold border */
+    .motion-card {
+        border: 1px solid rgba(212, 175, 55, 0.4) !important; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+        border-radius: 12px !important;
+    }
+
+    .cart-add-btn {
+        border: 2px solid #b8941f !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ambre-collection-grid-master {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .luxury-sort-dropdown:hover {
+        background: #2b1b10 !important;
+        border-color: #f1c40f !important;
+        box-shadow: 0 4px 15px rgba(212, 168, 87, 0.2);
+    }
+
+    .product-image-container {
+        height: 150px !important; /* Slightly taller for better visibility */
+    }
+
+    /* Override inline styles for mobile density */
+    .motion-card .product-info-wrap {
+        padding: 10px !important;
+    }
+
+    .motion-card h3 {
+        font-size: 0.85rem !important;
+        height: 2.4rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .motion-card p {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .motion-card a {
+        padding: 6px 15px !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* --- Ensuring No Displacement --- */
+/* This ensures the Navbar stays fixed and doesn't get caught in the grid */
+.navbar {
+    position: fixed !important;
+    z-index: 1100 !important;
+}

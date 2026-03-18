@@ -1,0 +1,621 @@
+/* Rebuild Trigger - Fix unstyled page issue */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+:root {
+  /* Boutique Forest & Linen Palette */
+  --color-bg-primary: #f7f5f0;
+  /* Warm Linen */
+  --color-bg-secondary: #ebe7de;
+  /* Stone Linen */
+  --color-text-primary: #1b1f1c;
+  /* Deep Forest Black */
+  --color-text-secondary: #4a524d;
+  /* Muted Moss */
+  --color-accent: #2d4a3e;
+  /* Premium Forest Green */
+  --color-accent-soft: #e9f0ec;
+  /* Soft Forest Tint */
+  --color-border: #d8d4cb;
+
+  /* Interactive Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(45, 74, 62, 0.1);
+  --premium-shadow: 0 15px 45px rgba(27, 31, 28, 0.05);
+  --hover-shadow: 0 25px 50px rgba(45, 74, 62, 0.12);
+  --btn-gradient: linear-gradient(135deg, #2d4a3e 0%, #1a2e26 100%);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+
+  /* Header & Navigation */
+  --header-height: 75px;
+  --header-height-mobile: 75px;
+
+  /* Transitions - Optimized for snappiness */
+  --transition-smooth: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-fast: 0.1s ease;
+  /* Quiz Page Spacing */
+  --quiz-padding-top: 150px;
+  --quiz-card-padding: 60px;
+  --quiz-item-gap: 50px;
+  --quiz-item-gap-small: 40px;
+  --concierge-grid-gap: 40px;
+  --concierge-grid-mb: 80px;
+  --concierge-assist-pt: 60px;
+  --concierge-assist-mb: 40px;
+  --concierge-assist-gap: 40px;
+  --concierge-pb: 100px;
+  --shipping-padding-top: 140px;
+  --shipping-pb: 60px;
+  --shipping-header-mb: 60px;
+  --shipping-card-padding: 40px;
+  --shipping-h1-size: clamp(2.5rem, 4vw, 3.5rem);
+  --shipping-h1-ws: normal;
+  --returns-pb: 60px;
+  --returns-btn-ws: normal;
+  --privacy-pb: 60px; /* Reduced gap for desktop */
+  --privacy-h2-size: 1.5rem;
+  --privacy-h2-ws: normal;
+  --privacy-padding-top: 120px;
+  --privacy-card-padding: 50px;
+  --privacy-header-mb: 60px;
+  --terms-padding-top: 100px; /* Reduced from 120px */
+  --terms-header-mb: 40px; /* Reduced from 60px */
+  --terms-card-padding: 50px;
+  --terms-pb: 80px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: auto !important; /* Fixed conflict with ReactLenis causing hangs */
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: var(--header-height-mobile);
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: visible;
+  width: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 0 !important; /* Fix 4: Removed extra padding since Sticky Cart is removed */
+  }
+}
+
+/* Remove html clip to preserve native scroll bouncing */
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button,
+a {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation !important; /* Forces instant 1-tap responses */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+button:active,
+a:active {
+  transform: scale(0.96) translateZ(0) !important;
+}
+
+/* Utility Classes */
+.desktop-only {
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: flex !important;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box; /* Fix 13: Ensure padding doesn't break width */
+}
+
+.btn-primary {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 16px 36px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 50px;
+  /* Boutique Pill Shape */
+  border: 1px solid #d4af37;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateZ(0);
+}
+
+.btn-primary:hover {
+  background: #d4af37;
+  color: #000;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.2);
+  border-color: #fff;
+}
+
+.btn-gold-hover:hover {
+  background: #d4af37 !important;
+  color: #1b1f1c !important;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4) !important;
+  border-color: #d4af37 !important;
+}
+
+.luxury-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 25px;
+  transition: var(--transition-smooth);
+  box-shadow: var(--premium-shadow);
+}
+
+.luxury-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--hover-shadow);
+  border-color: var(--color-accent);
+}
+
+.glass-pill {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 8px 20px;
+  box-shadow: var(--premium-shadow);
+}
+
+/* Hardware Acceleration for Smoothness */
+.smooth-motion {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 12px 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.section {
+  padding: var(--spacing-lg) 0;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-medium) forwards;
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px; /* Fix 13: Standard mobile padding */
+  }
+
+  .btn-primary {
+    padding: 14px 24px;
+    font-size: 0.8rem;
+    background: #d4af37 !important;
+    /* Force Gold on Mobile */
+    color: #1b1f1c !important;
+    /* Dark text for contrast */
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3) !important;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .section {
+    padding: var(--spacing-md) 0;
+  }
+
+  :root {
+    --quiz-padding-top: 110px; /* Moves higher on mobile */
+    --quiz-card-padding: 30px; /* Thoda kam padding */
+    --quiz-padding-bottom: 60px; /* Space added here instead of footer margin */
+    --quiz-item-gap: 25px; /* Vertical gap kam */
+    --quiz-item-gap-small: 20px;
+    --footer-newsletter-mt-mobile: 15px; /* Thoda gap wapas */
+    --concierge-grid-gap: 60px; /* Moves second box lower on mobile */
+    --concierge-grid-mb: 40px; /* Reduced gap between boxes and footer */
+    --concierge-assist-pt: 20px; /* Even tighter spacing for a compact look */
+    --concierge-assist-mb: 20px;
+    --concierge-assist-gap: 20px;
+    --concierge-pb: 40px;
+    --shipping-padding-top: 90px; /* Increased padding as requested */
+    --shipping-pb: 60px; /* Thoda gap wapas balanced look ke liye */
+    --shipping-header-mb: 30px; /* Reduced header margin */
+    --shipping-card-padding: 25px; /* Thoda kam padding card ki height kam karne ke liye */
+    --shipping-h1-size: 1.8rem; /* Chhota size taaki ek line me aaye */
+    --shipping-h1-ws: nowrap; /* Force one line */
+    --returns-pb: 40px; /* Even smaller gap for mobile */
+    --returns-btn-ws: nowrap; /* Force one line */
+    --privacy-pb: 40px; /* Reduced gap for mobile */
+    --privacy-h2-size: 1.3rem; /* Slightly smaller for mobile fit */
+    --privacy-h2-ws: nowrap; /* Force one line */
+    --privacy-padding-top: 95px; /* Adjusted as requested */
+    --privacy-card-padding: 50px; /* Restored as requested */
+    --privacy-header-mb: 30px; /* Pulls the entire section up */
+    --terms-padding-top: 90px;
+    --terms-header-mb: 30px;
+    --terms-card-padding: 30px;
+    --terms-pb: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px; /* Fix 13: Standard mobile padding */
+  }
+
+  .btn-primary {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Utility Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- ADMIN SPECIFIC CSS --- */
+/* Force Override for Search Input Styling */
+.admin-search-input {
+  border: 1px solid #ddd !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.admin-search-input:focus {
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+  outline: none !important;
+}
+
+/* Elite Currency Styling */
+.currency-symbol {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-right: 2px;
+  color: #d4af37;
+  /* Boutique Gold */
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+/* Cleanup: Hide Next.js Dev Badge to avoid confusion for users/testers */
+/* Markup Trigger - UI Polish */
+#nextjs-portal,
+.nextjs-toast-errors-parent {
+  display: none !important;
+}
+
+/* ======================== */
+/*  SmartAuthOverlay Styles */
+/* ======================== */
+.overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.auth-bottom-sheet {
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 30px 36px;
+  border-radius: 30px 30px 0 0;
+  position: relative;
+  box-shadow: 0 -10px 60px rgba(0, 0, 0, 0.15);
+}
+
+.close-sheet {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #f5f5f5;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  color: #333;
+}
+
+.close-sheet:hover {
+  background: #e0e0e0;
+}
+
+.sheet-content {
+  text-align: center;
+}
+
+.sheet-icon {
+  color: var(--color-accent);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.sheet-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.sheet-content p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sheet-btn {
+  width: 100% !important;
+  text-align: center !important;
+  padding: 16px !important;
+  border-radius: 12px !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+.sheet-footer {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* Mobile Responsive */
+@media (max-width: 500px) {
+  .auth-bottom-sheet {
+    padding: 28px 20px 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sheet-icon {
+    margin-bottom: 12px;
+  }
+
+  .sheet-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .sheet-content p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .sheet-btn {
+    padding: 13px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .sheet-footer {
+    margin-top: 14px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Back Button responsive control */
+.desktop-only-back-btn {
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+
+  .desktop-only-back-btn,
+  .hero-back-btn,
+  .cart-back-btn-wrapper,
+  .checkout-back-btn-wrapper,
+  .order-detail-back-wrapper,
+  .admin-back-btn,
+  [class*="back-btn"],
+  [class*="back-wrapper"],
+  .help-btn, /* Fix 5: Floating Help Button overlap */
+  .floating-help-btn { 
+    display: none !important;
+  }
+
+  /* Prevent floating buttons from overlapping bottom-aligned content too much */
+  .help-menu {
+    width: 280px !important;
+    max-width: 85vw !important;
+  }
+
+  .order-id-text {
+    font-size: 1.15rem !important;
+    word-break: break-all !important;
+    line-height: 1.2 !important;
+  }
+
+  .order-header-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    padding: 20px !important;
+    background: rgba(212, 175, 55, 0.12) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+    display: flex !important;
+  }
+
+  .cancel-btn-wrapper {
+    width: 100% !important;
+    margin-top: 5px;
+  }
+
+  .cancel-btn-wrapper button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+.order-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: rgba(212, 175, 55, 0.12);
+  padding: 24px 30px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
