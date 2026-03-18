@@ -82,18 +82,18 @@ export default function ForgotPasswordPage() {
 
             {/* Right Panel - Form */}
             <div className="auth-right-panel">
-                <Link href="/login" className="admin-desktop-back-btn" style={{ top: '30px', left: '30px' }}>
-                    <div className="back-btn-circle" title="Back to Login">
-                        <ArrowLeft size={24} />
-                    </div>
-                </Link>
-
                 <motion.div
                     className="auth-form-container"
                     initial="hidden"
                     animate="visible"
                     variants={fadeUp}
                 >
+                    <Link href="/login" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '30px', color: '#1a1a1a', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>
+                        <div style={{ width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #d4af37', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d4af37', paddingRight: '2px' }}>
+                            <ArrowLeft size={16} style={{ marginLeft: '1px' }} />
+                        </div>
+                        <span style={{ paddingTop: '1px' }}>Back to Login</span>
+                    </Link>
                     <div className="auth-header" style={{ textAlign: 'center' }}>
                         <div style={{
                             width: '60px', height: '60px', borderRadius: '50%',
