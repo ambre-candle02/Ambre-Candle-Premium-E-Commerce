@@ -27,14 +27,16 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-headin
 export const viewport = {
     width: 'device-width',
     initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
 };
 
 export const metadata = {
     title: "Ambre Candle | Luxury Hand-Poured Scented Candles",
     description: "Discover the elite collection of luxury hand-poured soy candles at Ambre Candle. Artisan pillars, aromatic jars, and festive gift sets for every occasion.",
     icons: {
-        icon: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_128,h_128,c_fill/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg',
-        apple: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_256,h_256,c_fill/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg'
+        icon: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_128,h_128,c_fit/v1773867035/ambre-candles/Favourites/nxssshl9qeqvv7dpfa0j.png',
+        apple: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_256,h_256,c_fit/v1773867035/ambre-candles/Favourites/nxssshl9qeqvv7dpfa0j.png'
     }
 };
 import SmoothScroll from "@/src/components/SmoothScroll";
