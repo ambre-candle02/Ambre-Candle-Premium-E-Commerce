@@ -61,7 +61,7 @@ export default function SignupPage() {
                     style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                 >
                     <Image
-                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1770878560/ambre-candles/Favourites/lngfplnzboyv4tyvll8x.jpg"
+                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773866140/ambre-candles/Favourites/s17cvyqatpp5wiouh00b.png"
                         alt="Ambre Candle Collection"
                         fill
                         priority

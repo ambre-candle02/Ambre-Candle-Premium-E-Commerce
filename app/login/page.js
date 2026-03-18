@@ -78,7 +78,7 @@ export default function LoginPage() {
                     style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                 >
                     <Image
-                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1770878558/ambre-candles/Favourites/bl89eoniobqjdyhnri2g.jpg"
+                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773865296/ambre-candles/Favourites/mq7qrzsp1yhnpyrtwinw.png"
                         alt="Ambre Lux Collection"
                         fill
                         priority

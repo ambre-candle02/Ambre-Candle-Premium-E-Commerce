@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
                     style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                 >
                     <Image
-                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1770837011/ambre-candles/Diwali/qd1oi1jxl44g0fiu9dny.jpg"
+                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773864786/ambre-candles/Favourites/cmimeaewv5t0yqqdytgh.png"
                         alt="Restoration"
                         fill
                         priority
