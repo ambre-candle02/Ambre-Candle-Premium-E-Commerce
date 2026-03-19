@@ -85,8 +85,9 @@ export async function POST(req) {
             }
         };
 
-        // Fire and forget (makes UI response instant)
-        sendEmailsInBackground();
+        // Wait for emails to be sent before returning response
+        // This ensures the serverless function doesn't terminate prematurely
+        await sendEmailsInBackground();
 
         return NextResponse.json({ message: 'Welcome to the inner circle! Subscribed successfully.' }, { status: 200 });
     } catch (error) {

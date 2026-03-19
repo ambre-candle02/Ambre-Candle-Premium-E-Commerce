@@ -95,10 +95,11 @@ export async function POST(req) {
             }
         };
 
-        // Fire and forget (makes UI response instant)
-        sendEmailsInBackground();
+        // Wait for emails to be sent before returning response
+        // This ensures the serverless function doesn't terminate prematurely
+        await sendEmailsInBackground();
 
-        return NextResponse.json({ message: 'Request processed instantly' }, { status: 200 });
+        return NextResponse.json({ message: 'Request processed' }, { status: 200 });
     } catch (error) {
         console.error('API error:', error);
         return NextResponse.json({ message: 'Error processing request' }, { status: 500 });
