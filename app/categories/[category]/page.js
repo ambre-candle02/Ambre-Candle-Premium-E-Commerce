@@ -283,6 +283,8 @@ function CategoryContent() {
 
 export default function CategoryPage() {
     return (
-        <CategoryContent />
+        <Suspense fallback={<div className="category-loading">Loading Selection...</div>}>
+            <CategoryContent />
+        </Suspense>
     );
 }

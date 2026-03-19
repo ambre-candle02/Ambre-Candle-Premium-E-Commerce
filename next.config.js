@@ -43,13 +43,6 @@ const nextConfig = {
     // Production source maps disabled for faster builds
     productionBrowserSourceMaps: false,
 
-    // Increase body size limit for large uploads
-    experimental: {
-        serverActions: {
-            bodySizeLimit: '20mb',
-        }
-    },
-
     // Security Headers
     async headers() {
         return [

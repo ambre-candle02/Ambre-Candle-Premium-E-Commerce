@@ -58,7 +58,7 @@ export default function SafeImage({
         onError: handleError,
         onClick: onClick,
         priority: priority || false,
-        onLoadingComplete: handleLoadingComplete,
+        onLoad: handleLoadingComplete,
         unoptimized: false, // Re-enable optimization for WebP/AVIF speed gains
     };
 

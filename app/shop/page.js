@@ -352,6 +352,8 @@ function ShopContent() {
 
 export default function Shop() {
     return (
-        <ShopContent />
+        <Suspense fallback={<div className="shop-loading">Loading Boutique...</div>}>
+            <ShopContent />
+        </Suspense>
     );
 }

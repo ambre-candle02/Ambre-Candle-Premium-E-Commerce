@@ -639,6 +639,8 @@ function CollectionContent() {
 
 export default function CollectionPage() {
     return (
-        <CollectionContent />
+        <Suspense fallback={<div className="collection-loading">Loading Collections...</div>}>
+            <CollectionContent />
+        </Suspense>
     );
 }
