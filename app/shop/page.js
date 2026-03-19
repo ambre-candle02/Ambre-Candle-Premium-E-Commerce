@@ -51,6 +51,11 @@ function ShopContent() {
     }, []);
 
     useEffect(() => {
+        const s = searchParams.get('search') || searchParams.get('category') || '';
+        setSearchQuery(s);
+    }, [searchParams]);
+
+    useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchQuery(searchQuery);
         }, 300); // Increased to 300ms for smoother performance
@@ -80,9 +85,19 @@ function ShopContent() {
         return dynamicProducts.filter(p => {
             const matchesPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
             const terms = debouncedSearchQuery.toLowerCase().trim().split(/\s+/).filter(t => t.length > 0);
+            
+            // Create a searchable pool of all text fields
+            const searchableText = [
+                p.name || '',
+                p.productType || '',
+                p.category || '',
+                p.scentFamily || '',
+                p.occasion || '',
+                'candle' // Add 'candle' as a global keyword for all items
+            ].join(' ').toLowerCase();
+
             const matchesSearch = terms.length === 0 || terms.every(t =>
-                p.name.toLowerCase().includes(t) ||
-                (p.productType && p.productType.toLowerCase().includes(t))
+                searchableText.includes(t)
             );
             return matchesPrice && matchesSearch;
         });
