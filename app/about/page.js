@@ -53,18 +53,20 @@ export default function AboutPage() {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '8px',
-                            color: '#ffffff',
-                            fontWeight: '700',
+                            color: '#e8ca6b',
+                            fontWeight: '800',
                             fontSize: '0.85rem',
                             textTransform: 'uppercase',
-                            letterSpacing: '2.5px',
+                            letterSpacing: '3px',
                             cursor: 'pointer',
-                            background: '#600000',
-                            border: '1.5px solid #600000',
-                            padding: '12px 24px',
+                            background: 'rgba(0, 0, 0, 0.65)',
+                            border: '1px solid rgba(212, 175, 55, 0.8)',
+                            padding: '12px 28px',
                             borderRadius: '12px',
+                            backdropFilter: 'blur(20px)',
+                            WebkitBackdropFilter: 'blur(20px)',
                             transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.8)'
                         }}
                         whileHover={{ 
                             scale: 1.05, 
