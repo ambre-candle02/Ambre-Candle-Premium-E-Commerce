@@ -106,12 +106,11 @@ export default function LoginPage() {
                     animate="visible"
                     variants={fadeUp}
                 >
-                    <Link href="/" className="desktop-only-back-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '30px', color: '#1a1a1a', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>
-                        <div style={{ width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #d4af37', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d4af37', paddingRight: '2px' }}>
-                            <ArrowLeft size={16} style={{ marginLeft: '1px' }} />
-                        </div>
-                        <span style={{ paddingTop: '1px' }}>Back to Home</span>
+                    <Link href="/" className="desktop-only-back-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '30px', color: '#d4af37', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>
+                        <ArrowLeft size={18} />
+                        <span style={{ paddingTop: '1px', color: '#1a1a1a' }}>Back to Home</span>
                     </Link>
+
                     <div className="auth-header">
                         <h1 className="auth-title">Welcome Back</h1>
                         <p className="auth-subtitle">

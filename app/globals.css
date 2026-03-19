@@ -138,21 +138,8 @@ a {
 button,
 a {
   cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-  user-select: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation !important; /* Forces instant 1-tap responses */
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-button:active,
-a:active {
-  transform: scale(0.96) translateZ(0) !important;
 }
 
 /* Utility Classes */

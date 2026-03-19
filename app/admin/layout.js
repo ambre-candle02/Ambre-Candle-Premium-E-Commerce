@@ -15,7 +15,9 @@ import {
     X,
     Eye,
     EyeOff,
-    Sparkles
+    Sparkles,
+    MessageSquare,
+    Users
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -305,6 +307,56 @@ export default function AdminLayout({ children }) {
                                 >
                                     <Sparkles size={20} color={pathname === '/admin/inventory' ? '#d4af37' : '#888'} />
                                     <span>Inventory Hub</span>
+                                </motion.div>
+                            </Link>
+                        </li>
+                        <li style={{ marginBottom: '10px' }}>
+                            <Link href="/admin/queries" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
+                                <motion.div
+                                    whileHover={{
+                                        background: 'rgba(212, 175, 55, 0.15)',
+                                        color: '#fff'
+                                    }}
+                                    className={`nav-item ${pathname === '/admin/queries' ? 'active' : ''}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        padding: '12px 20px',
+                                        borderRadius: '12px',
+                                        color: pathname === '/admin/queries' ? '#fff' : '#888',
+                                        background: pathname === '/admin/queries' ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <MessageSquare size={20} color={pathname === '/admin/queries' ? '#d4af37' : '#888'} />
+                                    <span>Support Queries</span>
+                                </motion.div>
+                            </Link>
+                        </li>
+                        <li style={{ marginBottom: '10px' }}>
+                            <Link href="/admin/subscribers" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
+                                <motion.div
+                                    whileHover={{
+                                        background: 'rgba(212, 175, 55, 0.15)',
+                                        color: '#fff'
+                                    }}
+                                    className={`nav-item ${pathname === '/admin/subscribers' ? 'active' : ''}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        padding: '12px 20px',
+                                        borderRadius: '12px',
+                                        color: pathname === '/admin/subscribers' ? '#fff' : '#888',
+                                        background: pathname === '/admin/subscribers' ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <Users size={20} color={pathname === '/admin/subscribers' ? '#d4af37' : '#888'} />
+                                    <span>Subscribers</span>
                                 </motion.div>
                             </Link>
                         </li>

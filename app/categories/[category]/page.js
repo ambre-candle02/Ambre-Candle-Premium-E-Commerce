@@ -109,7 +109,7 @@ function CategoryContent() {
     const { toggleWishlist, isInWishlist } = useWishlist();
     const [quickViewProduct, setQuickViewProduct] = useState(null);
     const [isMounted, setIsMounted] = useState(false);
-    const [dynamicProducts, setDynamicProducts] = useState([]);
+    const [dynamicProducts, setDynamicProducts] = useState(STATIC_PRODUCTS);
 
     useEffect(() => {
         setIsMounted(true);
@@ -122,12 +122,9 @@ function CategoryContent() {
                 }));
                 if (products.length > 0) {
                     setDynamicProducts(products);
-                } else {
-                    setDynamicProducts(STATIC_PRODUCTS);
                 }
             } catch (error) {
-                console.error("Firestore fetch error, falling back to static config:", error);
-                setDynamicProducts(STATIC_PRODUCTS);
+                console.error("Firestore fetch error, keeping static config:", error);
             }
         }
         fetchProducts();
@@ -137,12 +134,14 @@ function CategoryContent() {
 
     const filteredProducts = useMemo(() => {
         const sort = searchParams.get('sort');
-        const maxPrice = parseInt(searchParams.get('max')) || 2000;
+        const maxPrice = parseInt(searchParams.get('max')) || 5000;
 
-        let list = dynamicProducts.filter(p =>
-            (p.productType === categoryName || (p.productType && p.productType.includes(categoryName))) &&
-            p.price <= maxPrice
-        );
+        let list = dynamicProducts.filter(p => {
+            if (!p.productType) return false;
+            const pType = String(p.productType).toLowerCase();
+            const cName = String(categoryName).toLowerCase();
+            return (pType === cName || pType.includes(cName)) && Number(p.price) <= maxPrice;
+        });
 
         if (sort === 'price-low') {
             list = [...list].sort((a, b) => a.price - b.price);

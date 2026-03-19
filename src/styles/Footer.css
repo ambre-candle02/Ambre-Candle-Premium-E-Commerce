@@ -340,7 +340,7 @@
     .footer-logo-wrap {
         display: flex;
         justify-content: center;
-        margin-top: -10px; /* Moved slightly higher as requested */
+        margin-top: 10px; /* Moved lower to prevent overlap */
         margin-bottom: 20px;
     }
 

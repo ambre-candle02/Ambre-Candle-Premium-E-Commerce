@@ -11,6 +11,7 @@ const Footer = () => {
     const [year, setYear] = useState(2026);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [email, setEmail] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         setYear(new Date().getFullYear());
@@ -18,8 +19,9 @@ const Footer = () => {
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
-        if (!email) return;
+        if (!email || isSubmitting) return;
         
+        setIsSubmitting(true);
         try {
             const response = await fetch('/api/newsletter', {
                 method: 'POST',
@@ -33,11 +35,12 @@ const Footer = () => {
             } else {
                 const data = await response.json();
                 console.error('Newsletter Error:', data.message);
-                // Fallback to local success for UX if it's already subscribed
                 if (response.status === 200) setIsSubscribed(true);
             }
         } catch (error) {
             console.error('Newsletter Connection Error:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -80,8 +83,26 @@ const Footer = () => {
                                 required 
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                disabled={isSubmitting}
+                                style={{ opacity: isSubmitting ? 0.7 : 1 }}
                             />
-                            <button type="submit">Subscribe</button>
+                            <motion.button 
+                                type="submit"
+                                disabled={isSubmitting}
+                                whileHover={!isSubmitting ? { scale: 1.02, y: -2, boxShadow: '0 5px 15px rgba(212, 175, 55, 0.3)' } : {}}
+                                whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+                                style={{ 
+                                    opacity: isSubmitting ? 0.8 : 1,
+                                    cursor: isSubmitting ? 'wait' : 'pointer'
+                                }}
+                            >
+                                {isSubmitting ? (
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <div style={{ width: '16px', height: '16px', border: '2px solid rgba(0,0,0,0.2)', borderTop: '2px solid #000', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                                        JOINING...
+                                    </span>
+                                ) : 'SUBSCRIBE'}
+                            </motion.button>
                         </form>
                     )}
                 </div>

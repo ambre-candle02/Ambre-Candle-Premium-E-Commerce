@@ -8,65 +8,67 @@ import { useRouter } from 'next/navigation';
 const quizQuestions = [
     {
         id: 1,
-        question: "What's your ideal way to unwind after a long day?",
+        question: "What's your primary reason for buying a candle today?",
         options: [
-            { text: "Reading a book with a warm beverage", scent: "Vanilla & Amber" },
-            { text: "Taking a relaxing bath", scent: "Lavender & Eucalyptus" },
-            { text: "Meditation or yoga", scent: "Sandalwood & Jasmine" },
-            { text: "Watching movies or shows", scent: "Cinnamon & Orange" }
+            { text: "Everyday relaxation and calm ambiance", category: "Glass Jar Candle" },
+            { text: "To give as a premium gift to a loved one", category: "Hampers | Combo" },
+            { text: "For adding aesthetic beauty to my room", category: "Bouquet Candle" },
+            { text: "For an upcoming festival or celebration", category: "Diwali" }
         ]
     },
     {
         id: 2,
-        question: "Which season resonates with you the most?",
+        question: "Which of these aesthetics appeals to you the most?",
         options: [
-            { text: "Spring - Fresh & Blooming", scent: "Rose & Peony" },
-            { text: "Summer - Bright & Energetic", scent: "Citrus & Mint" },
-            { text: "Autumn - Warm & Cozy", scent: "Pumpkin Spice" },
-            { text: "Winter - Calm & Serene", scent: "Pine & Cedar" }
+            { text: "Classic, minimalist, and elegant", category: "Glass Jar Candle" },
+            { text: "Floral, romantic, and artistic", category: "Bouquet Candle" },
+            { text: "Luxurious, grand, and unboxing-focused", category: "Hampers | Combo" },
+            { text: "Bright, traditional, and colorful", category: "Diwali" }
         ]
     },
     {
         id: 3,
-        question: "What type of fragrance do you prefer?",
+        question: "How do you prefer your fragrance experience?",
         options: [
-            { text: "Floral & Sweet", scent: "Jasmine & Honey" },
-            { text: "Fresh & Clean", scent: "Ocean Breeze" },
-            { text: "Woody & Earthy", scent: "Sandalwood & Musk" },
-            { text: "Spicy & Warm", scent: "Cinnamon & Clove" }
+            { text: "A steady, long-lasting classic scent", category: "Glass Jar Candle" },
+            { text: "A mix of different complementary aromas", category: "Hampers | Combo" },
+            { text: "Sweet, blooming, and floral notes", category: "Bouquet Candle" },
+            { text: "Warm, rich, and festive spices", category: "Diwali" }
         ]
     },
     {
         id: 4,
-        question: "When do you usually light candles?",
+        question: "If you were to describe your current mood, it would be:",
         options: [
-            { text: "Morning - To start the day fresh", scent: "Lemon & Ginger" },
-            { text: "Afternoon - During work or study", scent: "Peppermint & Rosemary" },
-            { text: "Evening - To relax and unwind", scent: "Lavender & Chamomile" },
-            { text: "Night - Before bedtime", scent: "Vanilla & Tonka Bean" }
-        ]
-    },
-    {
-        id: 5,
-        question: "What's your ideal home ambiance?",
-        options: [
-            { text: "Minimalist & Modern", scent: "White Tea & Sage" },
-            { text: "Cozy & Traditional", scent: "Apple Cider & Cinnamon" },
-            { text: "Bohemian & Artistic", scent: "Patchouli & Amber" },
-            { text: "Luxurious & Elegant", scent: "Oud & Rose" }
+            { text: "Joyful and ready to celebrate", category: "Diwali" },
+            { text: "Generous and wanting to share joy", category: "Hampers | Combo" },
+            { text: "Appreciative of art and delicate beauty", category: "Bouquet Candle" },
+            { text: "Seeking peace, focus, and simplicity", category: "Glass Jar Candle" }
         ]
     }
 ];
 
-const scentRecommendations = {
-    "Vanilla & Amber": { product: "First Light", id: 901, description: "Warm and comforting, perfect for cozy evenings" },
-    "Lavender & Eucalyptus": { product: "Rich Lavender", id: 902, description: "Calming and soothing for ultimate relaxation" },
-    "Sandalwood & Jasmine": { product: "Sacred Garden", id: 903, description: "Meditative and grounding for peaceful moments" },
-    "Cinnamon & Orange": { product: "Spiced Citrus", id: 904, description: "Energizing and uplifting for vibrant spaces" },
-    "Rose & Peony": { product: "Floral Bouquet", id: 801, description: "Fresh and romantic for spring vibes" },
-    "Citrus & Mint": { product: "Summer Breeze", id: 905, description: "Refreshing and invigorating" },
-    "Pumpkin Spice": { product: "Autumn Glow", id: 906, description: "Warm and nostalgic for fall lovers" },
-    "Pine & Cedar": { product: "Winter Woods", id: 907, description: "Crisp and serene for winter nights" }
+const categoryRecommendations = {
+    "Glass Jar Candle": { 
+        title: "The Classic Glass Jars", 
+        description: "Perfect for everyday elegance and long-lasting, steady relaxation.",
+        path: "/categories/Glass Jar Candle"
+    },
+    "Bouquet Candle": { 
+        title: "The Floral Bouquet Series", 
+        description: "Beautifully carved floral aesthetics tailored for romantic and artistic decor.",
+        path: "/categories/Bouquet Candle"
+    },
+    "Hampers | Combo": { 
+        title: "The Luxury Hampers", 
+        description: "A premium unboxing experience with multiple curated scents, perfect for gifting.",
+        path: "/categories/Hampers | Combo"
+    },
+    "Diwali": { 
+        title: "The Festive Collection", 
+        description: "Bright, rich, and joyful candles crafted specifically to illuminate your celebrations.",
+        path: "/categories/Diwali"
+    }
 };
 
 export default function QuizPage() {
@@ -74,10 +76,10 @@ export default function QuizPage() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState([]);
     const [showResults, setShowResults] = useState(false);
-    const [selectedScent, setSelectedScent] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     const handleAnswer = (option) => {
-        const newAnswers = [...answers, option.scent];
+        const newAnswers = [...answers, option.category];
         setAnswers(newAnswers);
 
         if (currentQuestion < quizQuestions.length - 1) {
@@ -85,15 +87,24 @@ export default function QuizPage() {
                 setCurrentQuestion(currentQuestion + 1);
             }, 300);
         } else {
-            // Calculate most common scent preference
-            const scentCounts = {};
-            newAnswers.forEach(scent => {
-                scentCounts[scent] = (scentCounts[scent] || 0) + 1;
+            // Intelligent Category Scoring Logic
+            const categoryScores = {};
+            newAnswers.forEach(cat => {
+                categoryScores[cat] = (categoryScores[cat] || 0) + 1;
             });
-            const topScent = Object.keys(scentCounts).reduce((a, b) =>
-                scentCounts[a] > scentCounts[b] ? a : b
-            );
-            setSelectedScent(topScent);
+            
+            // Find the category with maximum points
+            let topCategory = "Glass Jar Candle"; // Smart Fallback Default
+            let maxScore = 0;
+            
+            for (const [cat, score] of Object.entries(categoryScores)) {
+                if (score > maxScore) {
+                    maxScore = score;
+                    topCategory = cat;
+                }
+            }
+
+            setSelectedCategory(topCategory);
             setTimeout(() => {
                 setShowResults(true);
             }, 300);
@@ -111,7 +122,7 @@ export default function QuizPage() {
         setCurrentQuestion(0);
         setAnswers([]);
         setShowResults(false);
-        setSelectedScent(null);
+        setSelectedCategory(null);
     };
 
     const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
@@ -264,27 +275,16 @@ export default function QuizPage() {
                         >
                             <Check size={80} color="var(--color-accent)" style={{ marginBottom: '30px' }} />
                         </motion.div>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>
-                            Your Perfect Match: <span style={{ color: 'var(--color-accent)' }}>{selectedScent}</span>
+                        <h2 style={{ fontSize: '2.5rem', margin: '0 0 20px 0', lineHeight: '1.2' }}>
+                            Your Perfect Match:<br/>
+                            <span style={{ color: 'var(--color-accent)' }}>{categoryRecommendations[selectedCategory]?.title || selectedCategory}</span>
                         </h2>
                         <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '40px', lineHeight: '1.8' }}>
-                            {scentRecommendations[selectedScent]?.description || "A unique fragrance crafted just for you"}
+                            {categoryRecommendations[selectedCategory]?.description || "A unique fragrance crafted just for you"}
                         </p>
 
-                        <div style={{ background: '#fafafa', padding: '40px', borderRadius: '20px', marginBottom: '40px' }}>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px', color: '#333' }}>
-                                Recommended Product
-                            </h3>
-                            <p style={{ fontSize: '1.8rem', fontWeight: '700', color: 'var(--color-accent)', marginBottom: '10px' }}>
-                                {scentRecommendations[selectedScent]?.product || "Signature Candle"}
-                            </p>
-                            <p style={{ fontSize: '1rem', color: '#666' }}>
-                                Handcrafted with premium ingredients
-                            </p>
-                        </div>
-
                         <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link href="/shop">
+                            <Link href={categoryRecommendations[selectedCategory]?.path || "/shop"}>
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
@@ -296,10 +296,14 @@ export default function QuizPage() {
                                         fontWeight: '600',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '10px'
+                                        gap: '10px',
+                                        background: 'var(--color-accent)',
+                                        color: '#fff',
+                                        border: 'none',
+                                        cursor: 'pointer'
                                     }}
                                 >
-                                    Shop Now <ArrowRight size={20} />
+                                    Explore Collection <ArrowRight size={20} />
                                 </motion.button>
                             </Link>
                             <motion.button

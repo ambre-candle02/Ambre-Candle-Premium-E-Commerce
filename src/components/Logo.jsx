@@ -4,8 +4,8 @@ const Logo = () => {
         <div className="ambre-logo">
             <div className="logo-content">
                 <span className="logo-brand">Ambre candle</span>
-                <span className="logo-catalog desktop-only">Product Catalog</span>
-                <span className="logo-est desktop-only">Est. 2024</span>
+                <span className="logo-catalog">Product Catalog</span>
+                <span className="logo-est">Est. 2024</span>
             </div>
         </div>
     );

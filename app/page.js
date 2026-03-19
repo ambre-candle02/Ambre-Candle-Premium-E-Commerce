@@ -26,7 +26,7 @@ const categorybanners = [
     },
     {
         title: 'Luxury Glass Jars',
-        img: '/images/hd/jars_hd.png',
+        img: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773904464/ambre-candles/Favourites/h9goei3q05rozx3u0ylf.png',
         path: '/categories/Glass Jar Candle'
     },
     {
@@ -79,10 +79,11 @@ const bestSellers = [
     }
 ];
 const HERO_IMAGES = [
-    '/images/hd/jars_hd.png',
-    '/images/hd/hampers_hd.png',
     '/images/hd/bouquets_hd.png',
-    '/images/hd/contact_hd.png'
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773905349/ambre-candles/Favourites/rlmc6m2snbm9zhemalro.png',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773903723/ambre-candles/Favourites/yjx1svkhkjt7qudiwduh.png',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773903722/ambre-candles/Favourites/zqzhwic38c4svydyyxeh.png',
+    'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773905596/ambre-candles/Favourites/gzigramjhkmpbs0nf28n.png'
 ];
 
 export default function Home() {
