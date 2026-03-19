@@ -32,7 +32,7 @@
 .footer-newsletter {
     background: #0a0a0a;
     color: #fff;
-    padding: 35px 0 40px 0; /* Tightened as requested */
+    padding: 35px 0 40px 0; 
     margin-top: 0 !important;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     width: 100%; /* Prevent overflow */
@@ -119,9 +119,9 @@
 
 @media (max-width: 768px) {
     .footer-newsletter {
-        padding-top: 15px !important; 
-        padding-bottom: 25px !important;
-        margin-top: 0 !important; /* Removed white gap */
+        padding-top: 25px !important; 
+        padding-bottom: 35px !important;
+        margin-top: 0 !important; 
     }
 
     .newsletter-content {

@@ -84,7 +84,7 @@ export default function AddProductPage() {
     return (
         <div style={{
             minHeight: '100vh',
-            paddingTop: '78px',
+            paddingTop: '0px',
             paddingBottom: '60px',
             paddingLeft: '0',
             paddingRight: '0',
@@ -100,18 +100,22 @@ export default function AddProductPage() {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
-                        background: 'none',
-                        border: 'none',
-                        color: '#888',
-                        fontSize: '0.9rem',
+                        gap: '10px',
+                        background: '#fff',
+                        border: '1.5px solid #d4af37',
+                        color: '#d4af37',
+                        fontSize: '0.85rem',
+                        fontWeight: '700',
                         cursor: 'pointer',
                         marginBottom: '20px',
-                        marginTop: '8px',
-                        padding: '0'
+                        marginTop: '-15px', /* SUPER-ELEVATED */
+                        padding: '10px 20px',
+                        borderRadius: '12px',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 15px rgba(212, 175, 55, 0.1)'
                     }}
                 >
-                    <ArrowLeft size={16} /> Back to Dashboard
+                    <ArrowLeft size={16} /> Dashboard
                 </button>
 
                 {/* Header */}
@@ -291,29 +295,31 @@ export default function AddProductPage() {
                     </div>
 
                     {/* Submit */}
-                    <div style={{ marginTop: '30px' }}>
+                    <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
                         <button
                             disabled={loading}
                             type="submit"
                             style={{
-                                width: '100%',
-                                padding: '18px',
+                                width: 'fit-content',
+                                minWidth: '320px',
+                                padding: '18px 50px',
                                 background: loading ? '#ddd' : '#d4af37',
                                 color: loading ? '#999' : '#fff',
                                 border: 'none',
-                                borderRadius: '16px',
+                                borderRadius: '18px',
                                 fontSize: '1.1rem',
-                                fontWeight: '700',
+                                fontWeight: '850',
                                 cursor: loading ? 'not-allowed' : 'pointer',
                                 transition: 'all 0.3s ease',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: '12px',
-                                boxShadow: '0 12px 30px rgba(0,0,0,0.1)'
+                                gap: '15px',
+                                boxShadow: '0 15px 35px rgba(212, 175, 55, 0.25)',
+                                letterSpacing: '0.5px'
                             }}
                         >
-                            {loading ? 'Publishing...' : <><Send size={20} /> Publish Product to Live Store</>}
+                            {loading ? 'Publishing...' : <><Send size={22} /> Publish to Live Store</>}
                         </button>
                     </div>
 

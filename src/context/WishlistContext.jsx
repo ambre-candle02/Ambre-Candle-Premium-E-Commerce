@@ -15,9 +15,12 @@ export const WishlistProvider = ({ children }) => {
     // Load from localStorage on mount & sync across tabs
     useEffect(() => {
         try {
-            const keptWishlist = localStorage.getItem('ambre_wishlist');
-            if (keptWishlist) {
-                setWishlist(JSON.parse(keptWishlist));
+            const saved = localStorage.getItem('ambre_wishlist');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    setWishlist(parsed);
+                }
             }
         } catch (e) {
             console.error("Wishlist initialization failed:", e);
@@ -38,7 +41,7 @@ export const WishlistProvider = ({ children }) => {
         return () => window.removeEventListener('storage', handleWishlistSync);
     }, []);
 
-    // Save to localStorage when wishlist changes, but only after initial load
+    // Save to localStorage when wishlist changes, but ONLY after initial load is complete
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem('ambre_wishlist', JSON.stringify(wishlist));

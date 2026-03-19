@@ -273,7 +273,7 @@
 
 /* CTA Section */
 .about-cta-section {
-    padding: 30px 0 20px 0;
+    padding: 30px 0 60px 0;
     text-align: center;
     background: #fdfbf7;
     position: relative;
@@ -324,7 +324,7 @@
     .about-story-section,
     .values-section,
     .about-cta-section {
-        padding: 40px 0 !important;
+        padding: 40px 0 60px 0 !important;
     }
 
     /* Hero Section - Full Width Balance */

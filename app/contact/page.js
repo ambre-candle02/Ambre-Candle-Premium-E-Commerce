@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import '../../src/styles/Contact.css';
 import toast from 'react-hot-toast';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 // Animation Variants
 const fadeInUp = {
@@ -25,6 +26,7 @@ const staggerContainer = {
 
 export default function ContactPage() {
     const router = useRouter();
+    const { getHero } = useSiteConfig();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -118,7 +120,7 @@ export default function ContactPage() {
 
             {/* --- Hero Section --- */}
             <section className="contact-hero" style={{ 
-                backgroundImage: 'url("https://res.cloudinary.com/dmw5efwf5/image/upload/v1773650440/ambre-candles/Favourites/tdboywkhdakz8slsmk1t.jpg")',
+                backgroundImage: `url("${getHero('contact', 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773650440/ambre-candles/Favourites/tdboywkhdakz8slsmk1t.jpg')}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}>

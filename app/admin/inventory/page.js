@@ -9,13 +9,13 @@ export default function InventoryHubPage() {
 
     return (
         <div className="admin-main-container">
-            <header style={{ marginBottom: '30px', paddingTop: '20px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4af37', marginBottom: '8px' }}>
+            <header style={{ marginBottom: '20px', paddingTop: '0px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4af37', marginBottom: '5px' }}>
                     <Sparkles size={24} />
                     <span style={{ fontWeight: 'bold', letterSpacing: '1.5px', textTransform: 'uppercase', fontSize: '0.75rem' }}>Resource Management</span>
                 </div>
                 <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem, 6vw, 2.2rem)', margin: 0, whiteSpace: 'nowrap' }}>Inventory Hub</h1>
-                <p style={{ color: '#666', fontSize: '1rem', marginTop: '5px' }}>Manage your product catalog and keep your cloud database in sync.</p>
+                <p style={{ color: '#666', fontSize: '0.95rem', marginTop: '5px' }}>Manage your product catalog and keep your cloud database in sync.</p>
             </header>
 
             <div className="admin-tools-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>

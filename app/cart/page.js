@@ -10,13 +10,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
+import { useMemo } from 'react';
 import '@/src/styles/Cart.css';
 
-const COLLECTIONS = [
-  { title: "The Hampers", subtitle: "Golden Glow Candle", img: "/images/hd/hampers_hd.png", path: "/categories/Hampers | Combo" },
-  { title: "The Glass Jars", subtitle: "Artisan Selection", img: "/images/hd/jars_hd.png", path: "/categories/Glass Jar Candle" },
-  { title: "The Bouquets", subtitle: "Floral Series", img: "/images/hd/bouquets_hd.png", path: "/categories/Bouquet Candle" },
-  { title: "The Festive", subtitle: "Divine Series", img: "https://res.cloudinary.com/dmw5efwf5/image/upload/q_auto,f_auto,w_1200/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg", path: "/categories/Diwali" }
+const COLLECTIONS_STATIC = [
+  { title: "The Hampers", subtitle: "Golden Glow Candle", img: "/images/hd/hampers_hd.png", path: "/categories/Hampers | Combo", key: "Hampers | Combo" },
+  { title: "The Glass Jars", subtitle: "Artisan Selection", img: "/images/hd/jars_hd.png", path: "/categories/Glass Jar Candle", key: "Glass Jar Candle" },
+  { title: "The Bouquets", subtitle: "Floral Series", img: "/images/hd/bouquets_hd.png", path: "/categories/Bouquet Candle", key: "Bouquet Candle" },
+  { title: "The Festive", subtitle: "Divine Series", img: "https://res.cloudinary.com/dmw5efwf5/image/upload/q_auto,f_auto,w_1200/v1770837023/ambre-candles/Diwali/ixm6kmfkiwgbu57zrztm.jpg", path: "/categories/Diwali", key: "Diwali" }
 ];
 
 export default function CartPage() {
@@ -28,10 +30,24 @@ export default function CartPage() {
     setIsMounted(true);
   }, []);
 
+  const { getHero, config, getCollectionHero } = useSiteConfig();
+  const heroBanner = getHero('cart');
+
+  const finalCollections = useMemo(() => {
+    return COLLECTIONS_STATIC.map(col => ({
+        ...col,
+        img: getCollectionHero(col.key) || col.img
+    }));
+  }, [config?.collections]);
+
   if (cartItems.length === 0) {
     return (
       <div className="cart-page-misa">
-        <div className="cart-hero-portal">
+        <div className="cart-hero-portal" style={{ 
+            backgroundImage: `url(${heroBanner || 'https://images.unsplash.com/photo-1595433707802-680461ff44a0?q=80&w=2000'})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+        }}>
           <div className="misa-hero-overlay"></div>
           <motion.span className="misa-hero-subtitle" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Private Selection</motion.span>
           <motion.h1 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>Your Collection</motion.h1>
@@ -54,7 +70,11 @@ export default function CartPage() {
   return (
     <div className="cart-page-misa">
       {/* Full-Width Premium Hero */}
-      <div className="cart-hero-portal">
+      <div className="cart-hero-portal" style={{ 
+          backgroundImage: `url(${heroBanner || 'https://images.unsplash.com/photo-1595433707802-680461ff44a0?q=80&w=2000'})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+      }}>
         <div className="misa-hero-overlay"></div>
         <div className="cart-back-btn-wrapper">
           <button onClick={() => router.back()} className="btn-luxury-back">
@@ -198,7 +218,7 @@ export default function CartPage() {
               }}
               className="collection-swiper-boutique"
             >
-              {COLLECTIONS.map((col, idx) => (
+              {finalCollections.map((col, idx) => (
                 <SwiperSlide key={idx}>
                   <Link href={col.path} className="col-card-misa">
                     <SafeImage src={col.img} alt={col.title} priority={idx < 2} />

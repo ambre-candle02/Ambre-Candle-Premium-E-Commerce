@@ -18,7 +18,7 @@
 .admin-layout {
     display: flex;
     min-height: 100vh;
-    background: #f8f8f8;
+    background: #f8f9fa;
 }
 
 .admin-mobile-header {
@@ -36,13 +36,47 @@
     height: 100vh;
     z-index: 1000;
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.4s ease;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
+}
+
+.admin-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.admin-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.5);
 }
 
 .admin-main-content {
     margin-left: 280px;
     flex: 1;
     padding: 40px;
-    transition: margin-left 0.3s ease;
+    background: #fcfcfc;
+    min-height: 100vh;
+    color: #1a1a1a;
+}
+
+.admin-main-content h1, 
+.admin-main-content h2, 
+.admin-main-content h3, 
+.admin-main-content h4 {
+    color: #1a1a1a;
+}
+
+.admin-main-content p, 
+.admin-main-content span {
+    color: #555;
 }
 
 .admin-sidebar a {
@@ -1100,7 +1134,7 @@
     background: #fff;
     border-radius: 24px;
     padding: 35px 25px;
-    border: 1px solid #eee;
+    border: 2px solid #d4af37; /* Cinematic Gold Border */
     cursor: pointer;
     display: flex;
     flex-direction: column;

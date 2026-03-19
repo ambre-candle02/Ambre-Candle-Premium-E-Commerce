@@ -7,6 +7,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import Link from 'next/link';
 import Image from 'next/image';
 import '@/src/styles/AuthModern.css';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState('');
@@ -14,6 +15,7 @@ export default function ForgotPasswordPage() {
     const [mounted, setMounted] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
+    const { getAuth } = useSiteConfig();
 
     useEffect(() => {
         setMounted(true);
@@ -60,7 +62,7 @@ export default function ForgotPasswordPage() {
                     style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                 >
                     <Image
-                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773864786/ambre-candles/Favourites/cmimeaewv5t0yqqdytgh.png"
+                        src={getAuth('forgot', 'https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773864786/ambre-candles/Favourites/cmimeaewv5t0yqqdytgh.png')}
                         alt="Restoration"
                         fill
                         priority

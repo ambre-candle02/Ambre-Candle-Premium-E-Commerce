@@ -13,16 +13,20 @@ export const CartProvider = ({ children }) => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    // Initialize cart from local storage only on client side to prevent hydration errors
+    // Initialize cart from local storage only on client side
     useEffect(() => {
         const savedCart = localStorage.getItem('ambre_cart');
         if (savedCart) {
             try {
-                setCart(JSON.parse(savedCart));
+                const parsedCart = JSON.parse(savedCart);
+                if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+                    setCart(parsedCart);
+                }
             } catch (e) {
                 console.error("Failed to parse cart", e);
             }
         }
+        // Set initialization to true AFTER attempting to load
         setIsInitialized(true);
 
         const handleCartSync = (e) => {
@@ -39,7 +43,7 @@ export const CartProvider = ({ children }) => {
         return () => window.removeEventListener('storage', handleCartSync);
     }, []);
 
-    // Sync cart to local storage whenever it changes, but only after initialization
+    // Sync cart to local storage whenever it changes, but ONLY after initialization is complete
     useEffect(() => {
         if (isInitialized) {
             localStorage.setItem('ambre_cart', JSON.stringify(cart));

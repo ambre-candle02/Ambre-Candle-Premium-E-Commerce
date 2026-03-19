@@ -50,7 +50,7 @@ export default function MigratePage() {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            padding: '72px 16px 40px',
+            padding: '0px 16px 40px',
             boxSizing: 'border-box'
         }}>
             <motion.div
@@ -87,17 +87,22 @@ export default function MigratePage() {
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px',
-                            background: 'none',
-                            border: 'none',
-                            color: '#888',
-                            fontSize: '0.9rem',
+                            gap: '10px',
+                            background: '#fff',
+                            border: '1.5px solid #d4af37',
+                            color: '#d4af37',
+                            fontSize: '0.85rem',
+                            fontWeight: '700',
                             cursor: 'pointer',
-                            marginBottom: '24px',
-                            padding: '0'
+                            marginBottom: '20px',
+                            marginTop: '-15px', /* SUPER-ELEVATED */
+                            padding: '10px 20px',
+                            borderRadius: '12px',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 4px 15px rgba(212, 175, 55, 0.1)'
                         }}
                     >
-                        <ArrowLeft size={16} /> Back to Dashboard
+                        <ArrowLeft size={16} /> Dashboard
                     </button>
 
                     <div style={{ textAlign: 'center', marginBottom: '30px' }}>

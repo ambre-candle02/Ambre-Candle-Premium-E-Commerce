@@ -193,6 +193,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 5;
+    pointer-events: none; /* Crucial: Let clicks pass through to product link/heart */
 }
 
 .motion-card:hover .quick-view-overlay {
@@ -216,6 +217,7 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    pointer-events: auto; /* Allow interaction with the button itself */
 }
 
 .motion-card:hover .quick-view-btn {
@@ -227,6 +229,12 @@
     color: #fff;
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.quick-view-btn.added {
+    background: #2d4a3e !important;
+    color: #fff !important;
+    border-color: #2d4a3e !important;
 }
 
 /* --- Pagination --- */

@@ -12,6 +12,15 @@ main {
     width: 100%;
 }
 
+.misa-reviews-section {
+    padding-bottom: 70px !important;
+    margin-bottom: 0 !important;
+}
+
+.misa-review-card {
+    margin-bottom: 30px;
+}
+
 /* Subtle background texture - using CSS only, no external fetch */
 .home-page::before {
     content: '';
@@ -332,7 +341,7 @@ main {
     border-bottom: 1px solid rgba(212, 175, 55, 0.15);
     margin-top: -1px;
     /* Overlap fix: Prevents any sub-pixel white gap from showing */
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     /* Reduced from 25px */
 }
 
@@ -390,8 +399,8 @@ main {
 
 /* --- SECTION HEADERS --- */
 .misa-section {
-    padding: 15px 0 10px;
-    /* Reduced further to pull section higher */
+    padding: 5px 0 10px;
+    /* Pulled sections even higher */
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
@@ -432,7 +441,7 @@ main {
 
 /* Specific gap for first section if needed */
 .misa-section:first-of-type .misa-section-header {
-    padding-top: 25px !important;
+    padding-top: 5px !important;
 }
 
 @media (max-width: 768px) {
@@ -443,9 +452,9 @@ main {
         /* Tighter for compactness below the title */
     }
 
-    /* Specifically target 'Curated For You' to have 20px gap */
+    /* Specifically target 'Curated For You' to have minimal gap */
     .misa-curated-section .misa-section-header {
-        padding-top: 20px !important; 
+        padding-top: 5px !important; 
     }
 
     .misa-section-header h2 {
@@ -936,21 +945,21 @@ main {
     box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
 }
 
-.misa-product-card:hover .misa-prod-overlay {
-    background: transparent;
-}
-
 .misa-prod-overlay {
     position: absolute;
     inset: 0;
-    opacity: 1;
-    /* Persistent visibility like shop page */
-    transition: all 0.4s ease;
-    z-index: 2;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 5;
     pointer-events: none;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 40%);
-    /* Changed to DARK gradient */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
     display: block;
+}
+
+.misa-product-card:hover .misa-prod-overlay {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .misa-wishlist-btn-home {
@@ -1635,7 +1644,8 @@ main {
 
     .misa-reviews-section {
         margin-top: -30px !important;
-        /* Adjusted downward to prevent overlapping */
+        margin-bottom: 0 !important;
+        /* Removed white gap - section now flush with footer */
     }
 
     .misa-story-btn {

@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import SafeImage from '@/src/components/SafeImage';
 import { useRef } from 'react';
 import '@/src/styles/About.css';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 // Animation Variants
 const fadeInUp = {
@@ -30,43 +31,51 @@ const staggerContainer = {
 
 export default function AboutPage() {
     const router = useRouter();
+    const { getHero } = useSiteConfig();
 
     return (
         <div className="about-page-wrapper">
             <section className="about-hero-section">
                 <SafeImage
-                    src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1773649152/ambre-candles/Favourites/u9djvn3wnfqgfxya0ymg.jpg"
+                    src={getHero('about', 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773649152/ambre-candles/Favourites/u9djvn3wnfqgfxya0ymg.jpg')}
                     alt="Ambre Heritage"
                     priority={true}
                     className="about-hero-bg-visual"
                     style={{ position: 'absolute', inset: 0, zIndex: 0 }}
                 />
 
-                <div style={{ position: 'absolute', top: '110px', left: '5%', zIndex: 20 }}>
+                <div style={{ position: 'absolute', top: '90px', left: '40px', zIndex: 50 }}>
                     <motion.button
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="desktop-only-back-btn"
+                        className="luxury-back-btn"
                         style={{
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '8px',
-                            color: '#d4af37',
-                            fontWeight: '600',
+                            color: '#ffffff',
+                            fontWeight: '700',
                             fontSize: '0.85rem',
                             textTransform: 'uppercase',
-                            letterSpacing: '2px',
+                            letterSpacing: '2.5px',
                             cursor: 'pointer',
-                            background: 'rgba(212, 175, 55, 0.1)',
-                            border: '1px solid rgba(212, 175, 55, 0.3)',
-                            padding: '10px 20px',
-                            borderRadius: '50px',
-                            backdropFilter: 'blur(10px)',
-                            transition: 'all 0.3s ease'
+                            background: '#02311d',
+                            border: '1.5px solid #02311d',
+                            padding: '12px 24px',
+                            borderRadius: '12px',
+                            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                         }}
+                        whileHover={{ 
+                            scale: 1.05, 
+                            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                            borderColor: '#d4af37',
+                            boxShadow: '0 12px 40px rgba(212, 175, 55, 0.3)'
+                        }}
+                        whileTap={{ scale: 0.95 }}
                         onClick={() => router.back()}
                     >
-                        <ArrowLeft size={16} />
+                        <ArrowLeft size={16} strokeWidth={2.5} />
                         <span>Back</span>
                     </motion.button>
                 </div>

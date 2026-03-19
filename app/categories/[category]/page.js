@@ -28,7 +28,6 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
 
     return (
         <motion.div
-            layout
             className="category-artisan-card"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,7 +153,7 @@ function CategoryContent() {
     // Removed hydration blank to improve perceived speed
 
     return (
-        <div className="category-products-container" style={{ width: '100%', padding: '20px 0', minHeight: '85vh' }}>
+        <div className="category-products-container" style={{ width: '100%', padding: '20px 0 60px 0', minHeight: '85vh' }}>
             <div className="container" style={{ marginBottom: '40px' }}>
                 <button
                     onClick={() => {
@@ -188,7 +187,7 @@ function CategoryContent() {
                 </button>
             </div>
             <div className="category-results-grid">
-                <AnimatePresence mode='popLayout'>
+                <AnimatePresence initial={false}>
                     {filteredProducts.map((p, i) => (
                         <CategoryCard
                             key={p.id}
@@ -284,8 +283,6 @@ function CategoryContent() {
 
 export default function CategoryPage() {
     return (
-        <Suspense fallback={<div>Loading Selection...</div>}>
-            <CategoryContent />
-        </Suspense>
+        <CategoryContent />
     );
 }

@@ -9,9 +9,10 @@ import { db } from '@/src/config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useWishlist } from '@/src/context/WishlistContext';
 import { useCart } from '@/src/context/CartContext';
-import { Heart, ShoppingCart, ArrowLeft, Eye, ChevronLeft, ChevronRight, X, LayoutGrid } from 'lucide-react';
+import { Heart, ShoppingCart, ShoppingBag, Check, ArrowLeft, Eye, ChevronLeft, ChevronRight, X, LayoutGrid } from 'lucide-react';
 import { Suspense, useLayoutEffect } from 'react';
 import '../../src/styles/Collection.css';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 function CollectionContent() {
     const searchParams = useSearchParams();
@@ -19,10 +20,11 @@ function CollectionContent() {
     const sort = searchParams.get('sort');
     const { toggleWishlist, isInWishlist } = useWishlist();
     const { addToCart } = useCart();
+    const { getHero, getTitle, getCollectionHero, config } = useSiteConfig();
     const [dynamicProducts, setDynamicProducts] = useState(STATIC_PRODUCTS);
     const [isSyncing, setIsSyncing] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [addedProductId, setAddedProductId] = useState(null);
     const [productsPerPage, setProductsPerPage] = useState(10); // Default to desktop 10 items
 
     // Handle responsive items per page using matchMedia
@@ -183,11 +185,30 @@ function CollectionContent() {
     };
 
     const currentHeroImage = useMemo(() => {
+        // Source: Admin Panel Dynamic overrides
+        const adminCollectionHero = getHero('collection');
+        const adminSubHero = activeSubCategory !== 'All' ? getCollectionHero(activeSubCategory) : null;
+        const adminGroupHero = activeGroup !== 'All' ? getCollectionHero(activeGroup) : null;
+
+        // Priority 1: Sub-category specific from Admin
+        if (adminSubHero) return adminSubHero;
+        
+        // Priority 2: Sub-category static fallback
         if (activeSubCategory !== 'All' && heroImageMap[activeSubCategory]) {
             return heroImageMap[activeSubCategory];
         }
-        return heroImageMap[activeGroup] || heroImageMap['All'];
-    }, [activeGroup, activeSubCategory]);
+
+        // Priority 3: Group specific from Admin
+        if (adminGroupHero) return adminGroupHero;
+        
+        // Priority 4: Main Collection global from Admin
+        if (activeGroup === 'All' && adminCollectionHero) {
+            return adminCollectionHero;
+        }
+
+        // Priority 5: Static fallbacks
+        return heroImageMap[activeGroup] || adminCollectionHero || heroImageMap['All'];
+    }, [activeGroup, activeSubCategory, config?.collections, getHero('collection')]);
 
     return (
         <div className="ambre-collection-page-root">
@@ -328,7 +349,7 @@ function CollectionContent() {
                             fontWeight: '400',
                             lineHeight: '1.2'
                         }}>
-                            Our Sustainable Candles
+                            {getHero('collection_title', 'Our Sustainable Candles')}
                         </h1>
                         <p style={{
                             fontSize: '1.15rem',
@@ -337,7 +358,7 @@ function CollectionContent() {
                             lineHeight: '1.6',
                             fontWeight: '300',
                         }}>
-                            Hand-poured with natural wax and mindful craftsmanship
+                            {getHero('collection_sub', 'Hand-poured with natural wax and mindful craftsmanship')}
                         </p>
 
                         {/* Sort Dropdown - Luxury Style */}
@@ -452,26 +473,46 @@ function CollectionContent() {
                                     {product.status === 'coming_soon' && (
                                         <div style={{ position: 'absolute', top: 15, left: 15, background: '#10b981', color: '#fff', padding: '6px 12px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.75rem', zIndex: 10 }}>COMING SOON</div>
                                     )}
-                                    
-                                    {/* Quick View Button on Hover */}
-                                    <div className="quick-view-overlay">
-                                        <button 
-                                            className="quick-view-btn"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setQuickViewProduct(product);
-                                            }}
-                                        >
-                                            <Eye size={18} />
-                                            <span>Quick View</span>
-                                        </button>
-                                    </div>
                                 </Link>
+
+                                {/* Add to Cart Button Overlay - Outside Link for better click handling */}
+                                <div className="quick-view-overlay">
+                                    <button 
+                                        className={`quick-view-btn ${addedProductId === product.id ? 'added' : ''}`}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            addToCart({ ...product, quantity: 1 });
+                                            setAddedProductId(product.id);
+                                            setTimeout(() => setAddedProductId(null), 2000);
+                                        }}
+                                        disabled={product.status === 'out_of_stock' || product.status === 'coming_soon'}
+                                        style={{
+                                            opacity: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 0.6 : 1,
+                                            cursor: (product.status === 'out_of_stock' || product.status === 'coming_soon') ? 'not-allowed' : 'pointer',
+                                            backgroundColor: addedProductId === product.id ? '#2d4a3e' : '#fff',
+                                            color: addedProductId === product.id ? '#fff' : '#1a0f05'
+                                        }}
+                                    >
+                                        {addedProductId === product.id ? (
+                                            <>
+                                                <Check size={18} />
+                                                <span>Added</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <ShoppingBag size={18} />
+                                                <span>Add to Cart</span>
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
 
                                 {/* Wishlist Button */}
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
+                                        e.stopPropagation();
                                         toggleWishlist(product);
                                     }}
                                     style={{
@@ -489,7 +530,8 @@ function CollectionContent() {
                                         cursor: 'pointer',
                                         boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
                                         transition: 'all 0.3s ease',
-                                        zIndex: 2
+                                        zIndex: 10,
+                                        pointerEvents: 'auto'
                                     }}
                                 >
                                     <Heart
@@ -590,51 +632,6 @@ function CollectionContent() {
                         </button>
                     </div>
                 )}
-
-                {/* Quick View Modal */}
-                {quickViewProduct && (
-                    <div className="quick-view-modal-overlay" onClick={() => setQuickViewProduct(null)}>
-                        <motion.div 
-                            className="quick-view-modal-content"
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="modal-close-btn" onClick={() => setQuickViewProduct(null)}>
-                                <X size={24} />
-                            </button>
-                            
-                            <div className="modal-grid">
-                                <div className="modal-image-side">
-                                    <SafeImage src={quickViewProduct.image} alt={quickViewProduct.name} />
-                                </div>
-                                <div className="modal-info-side">
-                                    <div className="modal-category">{quickViewProduct.productType}</div>
-                                    <h2 className="modal-title">{quickViewProduct.name}</h2>
-                                    <div className="modal-price">₹{quickViewProduct.price}</div>
-                                    <p className="modal-desc">{quickViewProduct.desc}</p>
-                                    
-                                    <div className="modal-actions">
-                                        <button 
-                                            className="modal-add-btn"
-                                            onClick={() => {
-                                                addToCart({ ...quickViewProduct, quantity: 1 });
-                                                setQuickViewProduct(null);
-                                            }}
-                                            disabled={quickViewProduct.status === 'out_of_stock' || quickViewProduct.status === 'coming_soon'}
-                                        >
-                                            <ShoppingCart size={20} />
-                                            <span>Add to Cart</span>
-                                        </button>
-                                        <Link href={`/product/${quickViewProduct.id}`} className="modal-details-link">
-                                            View Full Details
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                )}
             </div >
         </div >
     );
@@ -642,8 +639,6 @@ function CollectionContent() {
 
 export default function CollectionPage() {
     return (
-        <Suspense fallback={<div>Loading Collection...</div>}>
-            <CollectionContent />
-        </Suspense>
+        <CollectionContent />
     );
 }

@@ -62,80 +62,74 @@ export default function QueriesAdmin() {
 
     return (
         <div className="admin-main-container">
-            <div className="admin-header-v2" style={{ paddingTop: '20px' }}>
+            <header className="admin-header-v2">
                 <div className="admin-header-title">
-                    <span style={{ color: '#d4af37', fontWeight: 'bold', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem' }}>Customer Support</span>
-                    <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem, 6vw, 2.2rem)', margin: '5px 0 0' }}>Support Queries</h1>
+                    <span className="section-tag">Customer Support</span>
+                    <h1>Support Queries</h1>
                 </div>
-            </div>
+            </header>
 
-            <div className="admin-table-section" style={{ marginTop: '20px' }}>
+            <div className="admin-table-section">
                 <div className="admin-table-header-v2">
-                    <h3>Recent Messages</h3>
+                    <div className="header-left">
+                        <h3>Recent Messages</h3>
+                        <span className="count-badge">{filteredQueries.length} Total</span>
+                    </div>
                     <div className="admin-search-wrapper-v2">
                         <div className="admin-search-input-container">
-                            <Search size={18} className="admin-search-icon" style={{ color: '#d4af37' }} />
+                            <div className="search-icon-wrapper">
+                                <Search size={18} />
+                            </div>
                             <input
                                 className="admin-search-input-v2"
                                 type="text"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Search queries..."
+                                placeholder="Search messages..."
                             />
                         </div>
                     </div>
                 </div>
 
-                <div className="admin-table-scroll-container">
-                    <table className="admin-orders-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <div className="admin-table-scroll-container custom-scrollbar">
+                    <table className="admin-queries-table">
                         <thead>
-                            <tr style={{ borderBottom: '1px solid #eee', textAlign: 'left' }}>
-                                <th style={{ padding: '15px' }}>Date</th>
-                                <th style={{ padding: '15px' }}>Customer</th>
-                                <th style={{ padding: '15px' }}>Subject / Message</th>
-                                <th style={{ padding: '15px' }}>Status</th>
-                                <th style={{ padding: '15px', textAlign: 'right' }}>Actions</th>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Subject / Message</th>
+                                <th>Status</th>
+                                <th style={{ textAlign: 'right' }}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {loading ? (
-                                <tr><td colSpan="5" style={{ padding: '20px', textAlign: 'center' }}>Loading queries...</td></tr>
+                                <tr><td colSpan="5" className="status-msg">Loading queries...</td></tr>
                             ) : filteredQueries.length === 0 ? (
-                                <tr><td colSpan="5" style={{ padding: '20px', textAlign: 'center' }}>No queries found.</td></tr>
+                                <tr><td colSpan="5" className="status-msg">No queries found.</td></tr>
                             ) : (
                                 filteredQueries.map((q) => (
-                                    <tr key={q.id} style={{ borderBottom: '1px solid #f5f5f5' }}>
-                                        <td style={{ padding: '15px' }}>
-                                            {q.createdAt?.toDate ? q.createdAt.toDate().toLocaleDateString() : 'N/A'}
+                                    <tr key={q.id}>
+                                        <td>{q.createdAt?.toDate ? q.createdAt.toDate().toLocaleDateString() : 'N/A'}</td>
+                                        <td>
+                                            <div className="customer-name">{q.firstName} {q.lastName}</div>
+                                            <div className="customer-email">{q.email}</div>
                                         </td>
-                                        <td style={{ padding: '15px' }}>
-                                            <div style={{ fontWeight: 'bold' }}>{q.firstName} {q.lastName}</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#666' }}>{q.email}</div>
+                                        <td style={{ maxWidth: '300px' }}>
+                                            <div className="msg-subject">{q.subject}</div>
+                                            <div className="msg-preview">{q.message}</div>
                                         </td>
-                                        <td style={{ padding: '15px', maxWidth: '300px' }}>
-                                            <div style={{ fontWeight: 'bold', color: '#d4af37', marginBottom: '5px' }}>{q.subject}</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#555', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-                                                {q.message}
-                                            </div>
-                                        </td>
-                                        <td style={{ padding: '15px' }}>
-                                            <span style={{ 
-                                                padding: '4px 8px', 
-                                                borderRadius: '4px', 
-                                                fontSize: '0.8rem', 
-                                                fontWeight: 'bold',
-                                                backgroundColor: q.status === 'resolved' ? '#dcfce7' : '#fef9c3',
-                                                color: q.status === 'resolved' ? '#166534' : '#854d0e'
-                                            }}>
+                                        <td>
+                                            <span className={`status-pill ${q.status === 'resolved' ? 'resolved' : 'pending'}`}>
                                                 {q.status === 'resolved' ? 'Resolved' : 'Pending'}
                                             </span>
                                         </td>
-                                        <td style={{ padding: '15px', textAlign: 'right' }}>
-                                            <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-                                                <button onClick={() => markAsResolved(q.id, q.status)} style={{ background: q.status === 'resolved' ? '#f3f4f6' : '#dcfce7', color: q.status === 'resolved' ? '#4b5563' : '#166534', border: 'none', padding: '6px 10px', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                        <td style={{ textAlign: 'right' }}>
+                                            <div className="action-buttons">
+                                                <button onClick={() => markAsResolved(q.id, q.status)} className={`btn-action ${q.status === 'resolved' ? 'reopen' : 'resolve'}`}>
                                                     <CheckCircle size={14} /> {q.status === 'resolved' ? 'Reopen' : 'Resolve'}
                                                 </button>
-                                                <button onClick={() => deleteQuery(q.id)} style={{ background: '#fee2e2', color: '#dc2626', border: 'none', padding: '6px 10px', borderRadius: '6px', cursor: 'pointer' }}>
+                                                <button onClick={() => deleteQuery(q.id)} className="btn-action btn-delete">
                                                     <Trash2 size={14} />
                                                 </button>
                                             </div>
@@ -147,6 +141,70 @@ export default function QueriesAdmin() {
                     </table>
                 </div>
             </div>
+
+            <style jsx>{`
+                .admin-main-container {
+                    padding: 2rem;
+                    background: #f8fafc;
+                    min-height: 100vh;
+                    font-family: 'Inter', sans-serif;
+                }
+                .admin-header-v2 { padding: 20px 0; margin-bottom: 5px; }
+                .section-tag { color: #d4af37; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; display: block; }
+                .admin-header-title h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #1e293b; margin: 5px 0 0; }
+                
+                .admin-table-section {
+                    background: rgba(255, 255, 255, 0.9);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    border-radius: 16px;
+                    padding: 1.5rem;
+                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+                    height: calc(100vh - 220px);
+                    display: flex;
+                    flex-direction: column;
+                }
+                .admin-table-header-v2 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #f1f5f9;
+                    padding-bottom: 15px;
+                }
+                .header-left h3 { margin: 0; font-size: 1.2rem; color: #1e293b; }
+                .count-badge { font-size: 0.75rem; background: #f1f5f9; color: #64748b; padding: 2px 8px; border-radius: 10px; margin-top: 4px; display: inline-block; }
+                
+                .admin-search-input-container { position: relative; width: 300px; }
+                .search-icon-wrapper { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; z-index: 10; }
+                .admin-search-input-v2 { width: 100%; padding: 0.6rem 1rem 0.6rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.9rem; }
+                
+                .admin-table-scroll-container { flex: 1; overflow-y: auto; overflow-x: hidden; }
+                .admin-queries-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+                .admin-queries-table thead th { position: sticky; top: 0; background: #fff; padding: 12px; font-size: 0.75rem; color: #64748b; text-transform: uppercase; border-bottom: 2px solid #f1f5f9; z-index: 20; text-align: left; }
+                .admin-queries-table tbody td { padding: 14px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+                
+                .customer-name { font-weight: 600; color: #1e293b; }
+                .customer-email { font-size: 0.8rem; color: #94a3b8; }
+                .msg-subject { font-weight: 600; color: #d4af37; margin-bottom: 3px; }
+                .msg-preview { font-size: 0.85rem; color: #475569; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+                
+                .status-pill { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
+                .status-pill.pending { background: #fef9c3; color: #854d0e; }
+                .status-pill.resolved { background: #dcfce7; color: #166534; }
+                
+                .action-buttons { display: flex; gap: 8px; justify-content: flex-end; }
+                .btn-action { border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; display: flex; alignItems: center; gap: 5px; font-size: 0.8rem; font-weight: 500; transition: 0.2s; }
+                .resolve { background: #dcfce7; color: #166534; }
+                .reopen { background: #f1f5f9; color: #475569; }
+                .btn-delete { background: #fee2e2; color: #dc2626; }
+                
+                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+                .status-msg { padding: 40px; text-align: center; color: #64748b; font-style: italic; }
+            `}</style>
         </div>
     );
 }

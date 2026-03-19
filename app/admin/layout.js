@@ -42,18 +42,11 @@ export default function AdminLayout({ children }) {
     useEffect(() => {
         setMounted(true);
         const checkAuth = async () => {
-            // OPTIMIZATION: Check faster session storage first to avoid flickering spinner
             const fastCheck = sessionStorage.getItem('ambre_admin_session');
             if (fastCheck === 'active') {
                 setIsAuthenticated(true);
                 setIsCheckingAuth(false);
-                // Background verify
-                checkAdminStatus().then(isAuth => {
-                    if (!isAuth) {
-                        setIsAuthenticated(false);
-                        sessionStorage.removeItem('ambre_admin_session');
-                    }
-                });
+                // Trust the session implicitly on mount to avoid refresh-flicker
                 return;
             }
 
@@ -63,12 +56,15 @@ export default function AdminLayout({ children }) {
                     sessionStorage.setItem('ambre_admin_session', 'active');
                     setIsAuthenticated(true);
                 } else {
-                    sessionStorage.removeItem('ambre_admin_session');
-                    setIsAuthenticated(false);
+                    // Only clear if we are 100% sure the cookie is GONE
+                    const stillActive = sessionStorage.getItem('ambre_admin_session');
+                    if (!stillActive) {
+                        setIsAuthenticated(false);
+                    }
                 }
             } catch (err) {
-                console.error('Auth check failed.', err);
-                setIsAuthenticated(false);
+                console.error('Auth verify skipped.', err);
+                // Keep the current state on error to avoid flickering out
             } finally {
                 setIsCheckingAuth(false);
             }
@@ -84,10 +80,10 @@ export default function AdminLayout({ children }) {
     };
 
     const spinnerScreen = (
-        <div style={{ minHeight: '100vh', background: '#0d0d0d', display: 'flex', alignItems: 'center', justifyContent: 'center' }} suppressHydrationWarning>
+        <div style={{ minHeight: '100vh', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} suppressHydrationWarning>
             <div style={{ textAlign: 'center' }}>
-                <div style={{ width: '48px', height: '48px', border: '3px solid rgba(212,175,55,0.2)', borderTop: '3px solid #d4af37', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
-                <p style={{ color: '#888', fontSize: '0.9rem', fontFamily: 'sans-serif' }}>Loading Admin Panel...</p>
+                <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212,175,55,0.1)', borderTop: '3px solid #d4af37', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
+                <p style={{ color: '#d4af37', fontSize: '0.85rem', fontFamily: 'var(--font-heading)', fontWeight: '700', letterSpacing: '1px' }}>AMBRE SESSION SYNCING...</p>
             </div>
         </div>
     );
@@ -361,6 +357,31 @@ export default function AdminLayout({ children }) {
                             </Link>
                         </li>
                         <li style={{ marginBottom: '10px' }}>
+                            <Link href="/admin/site-designer" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
+                                <motion.div
+                                    whileHover={{
+                                        background: 'rgba(212, 175, 55, 0.15)',
+                                        color: '#fff'
+                                    }}
+                                    className={`nav-item ${pathname === '/admin/site-designer' ? 'active' : ''}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        padding: '12px 20px',
+                                        borderRadius: '12px',
+                                        color: pathname === '/admin/site-designer' ? '#fff' : '#888',
+                                        background: pathname === '/admin/site-designer' ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <Sparkles size={20} color={pathname === '/admin/site-designer' ? '#d4af37' : '#888'} />
+                                    <span>Design Studio</span>
+                                </motion.div>
+                            </Link>
+                        </li>
+                        <li style={{ marginBottom: '10px' }}>
                             <Link href="/admin/products" style={{ textDecoration: 'none' }} onClick={() => setSidebarOpen(false)}>
                                 <motion.div
                                     whileHover={{
@@ -388,7 +409,7 @@ export default function AdminLayout({ children }) {
                     </ul>
                 </nav>
 
-                <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                <div style={{ marginTop: 'auto', paddingTop: '20px', paddingBottom: '20px' }}>
                     <motion.button
                         onClick={handleLogout}
                         whileHover={{

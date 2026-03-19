@@ -40,7 +40,7 @@
   --header-height-mobile: 75px;
 
   /* Transitions - Optimized for snappiness */
-  --transition-smooth: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-smooth: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
   --transition-fast: 0.1s ease;
   /* Quiz Page Spacing */
   --quiz-padding-top: 150px;
@@ -136,10 +136,22 @@ a {
 }
 
 button,
-a {
+a,
+input,
+select,
+textarea {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation !important; /* Forces instant 1-tap responses */
+}
+
+/* Optimization for rendering performance */
+.misa-section,
+footer,
+.misa-story,
+.misa-trust-strip {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
 /* Utility Classes */
@@ -230,9 +242,16 @@ a {
 }
 
 /* Hardware Acceleration for Smoothness */
-.smooth-motion {
+.smooth-motion,
+.misa-product-card,
+.misa-cat-card,
+.navbar,
+.btn-primary,
+.misa-btn-premium {
   will-change: transform, opacity;
   transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 img {

@@ -7,22 +7,28 @@ import Link from 'next/link';
 import SafeImage from '@/src/components/SafeImage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 import '@/src/styles/Wishlist.css';
 
 export default function WishlistPage() {
     const { wishlist, removeFromWishlist, isLoaded } = useWishlist();
     const { addToCart } = useCart();
     const [mounted, setMounted] = useState(false);
-
     useEffect(() => {
         setMounted(true);
     }, []);
 
+    const { getHero } = useSiteConfig();
+    const heroBanner = getHero('wishlist');
 
     return (
         <div className="wishlist-page">
             {/* Premium Hero Section - ALWAYS RENDERED */}
-            <div className="wishlist-hero">
+            <div className="wishlist-hero" style={{ 
+                backgroundImage: `url(${heroBanner || 'https://images.unsplash.com/photo-1603006905003-be475563bc59?q=80&w=2000'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}>
                 <div className="wishlist-hero-overlay"></div>
                 
                 {/* Fixed Back Button Positioning */}

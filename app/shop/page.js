@@ -14,11 +14,13 @@ import { Heart, X, ShoppingBag, Check, Eye, Sparkles, LayoutGrid, IndianRupee, A
 import SafeImage from '@/src/components/SafeImage';
 import '@/src/styles/Shop.css';
 import '@/src/styles/Categories.css';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 function ShopContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const { addToCart } = useCart();
+    const { getHero } = useSiteConfig();
 
     const [priceRange, setPriceRange] = useState([0, 2000]);
     const [sortBy, setSortBy] = useState(searchParams.get('sort') === 'Bestsellers' ? 'Bestsellers' : 'Featured');
@@ -148,7 +150,7 @@ function ShopContent() {
             {/* Hero Section */}
             <div className="shop-redesign-hero">
                 <div className="hero-visual-redesign">
-                    <SafeImage src="https://res.cloudinary.com/dmw5efwf5/image/upload/v1773650440/ambre-candles/Favourites/tdboywkhdakz8slsmk1t.jpg" alt="Hero" priority />
+                    <SafeImage src={getHero('shop', 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773650440/ambre-candles/Favourites/tdboywkhdakz8slsmk1t.jpg')} alt="Hero" priority />
                     <div className="hero-overlay-redesign"></div>
                 </div>
 
@@ -350,8 +352,6 @@ function ShopContent() {
 
 export default function Shop() {
     return (
-        <Suspense fallback={<div className="loading-screen">Loading...</div>}>
-            <ShopContent />
-        </Suspense>
+        <ShopContent />
     );
 }

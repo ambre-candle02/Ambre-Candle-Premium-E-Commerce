@@ -8,7 +8,7 @@ const DEFAULT_CAT_IMAGE = 'https://res.cloudinary.com/dmw5efwf5/image/upload/v17
 
 export default function CategoriesPage() {
     return (
-        <div className="categories-hero-container" style={{ padding: '0' }}>
+        <div className="categories-hero-container" style={{ padding: '0', marginBottom: '80px' }}>
             <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}

@@ -236,9 +236,9 @@ export default function MediaLibrary() {
         <div className="admin-media-container">
             {/* Header Area */}
             {view === 'folders' && (
-                <div className="admin-header-flex" style={{ marginBottom: '40px', paddingTop: '20px' }}>
+                <div className="admin-header-flex" style={{ marginBottom: '25px', paddingTop: '0px' }}>
                     <div>
-                        <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '5px' }}>Overview</p>
+                        <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '2px' }}>Overview</p>
                         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem, 6vw, 2.5rem)', margin: 0, whiteSpace: 'nowrap' }}>Media Library</h1>
                     </div>
                 </div>
@@ -256,10 +256,13 @@ export default function MediaLibrary() {
                                 className="admin-folder-card"
                                 onClick={() => { setCurrentCategory(cat); setView('gallery'); }}
                                 initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                animate={{ 
+                                    opacity: 1, 
+                                    y: 0,
+                                    borderColor: '#d4af37' /* ALWAYS SOLID GOLD */
+                                }}
                                 whileHover={{
                                     y: -8,
-                                    borderColor: '#d4af37',
                                     boxShadow: '0 15px 30px rgba(212, 175, 55, 0.15)'
                                 }}
                                 transition={{ duration: 0.3 }}

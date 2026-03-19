@@ -15,6 +15,8 @@ import { Autoplay, Navigation, Pagination as SwiperPagination } from 'swiper/mod
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
+import { useMemo } from 'react';
 
 
 
@@ -95,7 +97,36 @@ export default function Home() {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+    const { getTitle, getHero, config, getCollectionHero } = useSiteConfig();
     const router = useRouter();
+
+    const finalCategoryBanners = useMemo(() => {
+        return categorybanners.map(cat => {
+            // Map the path to a collection name
+            let colName = '';
+            if (cat.path.includes('Hampers | Combo')) colName = 'Hampers | Combo';
+            else if (cat.path.includes('Glass Jar Candle')) colName = 'Glass Jar Candle';
+            else if (cat.path.includes('Bouquet Candle')) colName = 'Bouquet Candle';
+            else if (cat.path.includes('Diwali')) colName = 'Diwali';
+
+            const dynamicImg = colName ? getCollectionHero(colName) : null;
+            return {
+                ...cat,
+                img: dynamicImg || cat.img
+            };
+        });
+    }, [config?.collections]);
+
+    // Dynamically update Hero Images if provided in config
+    const [finalHeroImages, setFinalHeroImages] = useState(HERO_IMAGES);
+
+    useEffect(() => {
+        const dynamicHero = getHero('home');
+        if (dynamicHero) {
+            // Put the dynamic one first
+            setFinalHeroImages([dynamicHero, ...HERO_IMAGES.slice(1)]);
+        }
+    }, [getHero('home')]);
 
     useEffect(() => {
         setIsMounted(true);
@@ -119,13 +150,13 @@ export default function Home() {
 
     // Auto-rotate hero images
     useEffect(() => {
-        if (HERO_IMAGES.length <= 1) return;
+        if (finalHeroImages.length <= 1) return;
 
         const timer = setInterval(() => {
-            setCurrentHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+            setCurrentHeroIndex((prev) => (prev + 1) % finalHeroImages.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, [HERO_IMAGES.length]);
+    }, [finalHeroImages.length]);
 
     return (
         <div className="home-page-misa">
@@ -134,7 +165,7 @@ export default function Home() {
             <section className="misa-hero">
                 {/* Cinematic Background Slideshow */}
                 <div className="misa-hero-slideshow">
-                    {HERO_IMAGES.map((src, index) => (
+                    {finalHeroImages.map((src, index) => (
                         <div
                             key={index}
                             className={`misa-hero-slide ${currentHeroIndex === index ? 'active' : ''}`}
@@ -162,7 +193,7 @@ export default function Home() {
 
                     {/* Slide Indicators (Dots) */}
                     <div className="misa-hero-dots">
-                        {HERO_IMAGES.map((_, index) => (
+                        {finalHeroImages.map((_, index) => (
                             <button
                                 key={index}
                                 className={`misa-hero-dot ${currentHeroIndex === index ? 'active' : ''}`}
@@ -258,10 +289,10 @@ export default function Home() {
             <section className="misa-section misa-curated-section">
                 <div className="misa-section-header">
                     <span>Curated For You</span>
-                    <h2>Shop by Collection</h2>
+                    <h2>{getTitle('collections', 'Shop by Collection')}</h2>
                 </div>
                 <div className="misa-categories-grid">
-                    {categorybanners.map((cat, i) => (
+                    {finalCategoryBanners.map((cat, i) => (
                         <Link href={cat.path} key={i} className="misa-cat-card">
                             <motion.div
                                 initial={{ opacity: 0, y: 0 }}
@@ -319,7 +350,7 @@ export default function Home() {
             <section className="misa-section misa-bestsellers-section">
                 <div className="misa-section-header">
                     <span>Timeless Hits</span>
-                    <h2>Our Bestsellers</h2>
+                    <h2>{getTitle('bestsellers', 'Our Bestsellers')}</h2>
                 </div>
                 <div className="misa-products-grid-carousel">
                     <Swiper

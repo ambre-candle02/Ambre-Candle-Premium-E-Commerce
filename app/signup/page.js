@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import '@/src/styles/AuthModern.css';
+import { useSiteConfig } from '@/src/hooks/useSiteConfig';
 
 export default function SignupPage() {
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function SignupPage() {
     });
     const { signup } = useAuth();
     const router = useRouter();
+    const { getAuth } = useSiteConfig();
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -61,7 +63,7 @@ export default function SignupPage() {
                     style={{ position: 'relative', height: '100%', width: '100%', borderRadius: '20px', overflow: 'hidden', border: '2px solid #d4af37', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
                 >
                     <Image
-                        src="https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773866140/ambre-candles/Favourites/s17cvyqatpp5wiouh00b.png"
+                        src={getAuth('signup', 'https://res.cloudinary.com/dmw5efwf5/image/upload/f_auto,q_auto,w_800/v1773866140/ambre-candles/Favourites/s17cvyqatpp5wiouh00b.png')}
                         alt="Ambre Candle Collection"
                         fill
                         priority

@@ -59,6 +59,7 @@ export default function SafeImage({
         onClick: onClick,
         priority: priority || false,
         onLoadingComplete: handleLoadingComplete,
+        unoptimized: false, // Re-enable optimization for WebP/AVIF speed gains
     };
 
     if (fill) {
@@ -71,14 +72,15 @@ export default function SafeImage({
                     right: 0, 
                     bottom: 0, 
                     overflow: 'hidden',
-                    backgroundColor: '#f5efe6'
+                    backgroundColor: '#f5efe6',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
                 }}
                 suppressHydrationWarning
             >
                 <Image
                     {...imgProps}
                     fill
-                    unoptimized={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{
                         objectFit: style.objectFit || 'cover',
@@ -88,8 +90,10 @@ export default function SafeImage({
                         width: '100%',
                         top: 0,
                         left: 0,
-                        opacity: 1, /* Fixed milky/white background blend bug */
-                        transition: 'opacity 0.3s ease'
+                        opacity: isLoaded ? 1 : 0.5, /* Smooth fade in */
+                        transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                        transform: isLoaded ? 'scale(1) translateZ(0)' : 'scale(1.05) translateZ(0)',
+                        willChange: 'opacity, transform'
                     }}
                 />
             </div>
@@ -99,9 +103,9 @@ export default function SafeImage({
     return (
         <Image
             {...imgProps}
-            unoptimized={true}
             width={width || 500}
             height={height || 500}
+            style={{ ...style, transition: 'opacity 0.3s ease' }}
         />
     );
 }
