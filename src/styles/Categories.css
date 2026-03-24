@@ -179,14 +179,14 @@
     pointer-events: none;
 }
 
-.btn-quickview {
+.btn-wishlist-overlay {
     position: absolute;
     bottom: 20px;
     left: 20px;
     background: #fff;
-    width: 80px;
+    width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,13 +199,12 @@
     z-index: 5;
 }
 
-.btn-quickview:hover {
-    background: #d4af37;
-    color: #fff;
-    transform: scale(1.05) translateZ(0);
+.btn-wishlist-overlay:hover {
+    background: #fdfbf7;
+    transform: scale(1.1) translateZ(0);
 }
 
-.btn-quickview:active,
+.btn-wishlist-overlay:active,
 .btn-add-cart:active {
     transform: scale(0.9) translateZ(0);
 }
@@ -241,29 +240,7 @@
     transform: scale(1.1);
 }
 
-.category-wishlist-btn {
-    position: absolute !important;
-    top: 20px !important;
-    right: 20px !important;
-    left: auto !important;
-    width: 44px;
-    height: 44px;
-    background: #fff !important;
-    border: none !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
-    transition: all 0.3s ease !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    z-index: 10;
-    pointer-events: auto;
-}
-
-.category-wishlist-btn:hover {
-    background: #fff !important;
-    transform: scale(1.1);
-}
+/* Removed old wishlist button styles as it moved to overlay */
 
 /* ========================================
    MOBILE RESPONSIVE STYLES
@@ -318,8 +295,8 @@
     }
 
     .category-products-container {
-        padding-top: 5px !important;
-        /* Extreme Reduction */
+        padding-top: 85px !important;
+        /* Added space to clear the sticky navbar on mobile */
     }
 
     .categories-hero-card {
@@ -391,7 +368,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    padding: 40px 0;
+    padding: 0 0 40px 0;
 }
 
 @media (max-width: 1200px) {
@@ -433,19 +410,7 @@
     }
 
     /* Mobile Interaction Buttons */
-    .category-wishlist-btn {
-        width: 32px !important;
-        height: 32px !important;
-        top: 10px !important;
-        right: 10px !important;
-    }
-
-    .category-wishlist-btn svg {
-        width: 16px !important;
-        height: 16px !important;
-    }
-
-    .btn-quickview {
+    .btn-wishlist-overlay {
         width: 32px !important;
         height: 32px !important;
         bottom: 10px !important;
@@ -453,11 +418,7 @@
         border-radius: 50% !important;
     }
 
-    .btn-quickview span {
-        display: none !important;
-    }
-
-    .btn-quickview svg {
+    .btn-wishlist-overlay svg {
         width: 16px !important;
         height: 16px !important;
     }

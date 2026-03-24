@@ -22,7 +22,7 @@ const COLLECTIONS_STATIC = [
 ];
 
 export default function CartPage() {
-  const { cart: cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
+  const { cart: cartItems, removeFromCart, updateQuantity, subtotal, shippingFee, total } = useCart();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -168,16 +168,24 @@ export default function CartPage() {
                 </span>
               </div>
 
-              <div className="summary-row-misa complimentary">
+              <div className="summary-row-misa">
                 <span>Artisan Delivery</span>
-                <span>Complimentary</span>
+                <span>
+                  {shippingFee > 0 ? (
+                    <>
+                      <span className="currency-symbol">₹</span>{shippingFee}
+                    </>
+                  ) : (
+                    <span className="complimentary-text">Complimentary</span>
+                  )}
+                </span>
               </div>
             </div>
 
             <div className="summary-total-misa">
               <span className="total-label-huge">Total</span>
               <div className="total-amount-huge">
-                <span className="currency-symbol">₹</span>{subtotal}
+                <span className="currency-symbol">₹</span>{total}
               </div>
             </div>
 

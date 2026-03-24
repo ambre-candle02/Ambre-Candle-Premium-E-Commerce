@@ -30,7 +30,7 @@ export default function ShippingPage() {
                             <div>
                                 <h3 style={{ fontSize: '1.4rem', marginBottom: '10px' }}>Free Shipping Across India</h3>
                                 <p style={{ color: '#666', lineHeight: '1.7' }}>
-                                    At Ambre Boutique, we believe luxury should be accessible. We offer <strong>complementary shipping</strong> on all orders across India, with no minimum purchase required.
+                                    At Ambre Boutique, we believe luxury should be accessible. Free shipping on orders above <strong>₹1999</strong>.
                                 </p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ export default function ShippingPage() {
                         >
                             <MapPin size={24} color="#d4af37" style={{ marginBottom: '15px' }} />
                             <h4 style={{ marginBottom: '10px' }}>Estimated Delivery</h4>
-                            <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: '1.6' }}>Metro cities: 3-5 business days. Other regions: 5-7 business days via premium couriers.</p>
+                            <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: '1.6' }}>Metro cities: 4-6 business days. Other regions: 7-8 business days via premium couriers.</p>
                         </motion.div>
                     </div>
 

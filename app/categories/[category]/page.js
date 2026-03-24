@@ -52,11 +52,17 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
                         whileTap={{ scale: 0.8 }}
                         onClick={(e) => {
                             e.preventDefault();
-                            setQuickViewProduct(p);
+                            e.stopPropagation();
+                            toggleWishlist(p);
                         }}
-                        className="btn-quickview"
+                        className={`btn-wishlist-overlay ${isInWishlist(p.id) ? 'active' : ''}`}
+                        title={isInWishlist(p.id) ? "Remove from Wishlist" : "Add to Wishlist"}
                     >
-                        <Eye size={22} strokeWidth={1.5} />
+                        <Heart 
+                            size={22} 
+                            fill={isInWishlist(p.id) ? "#d4af37" : "none"} 
+                            color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"} 
+                        />
                     </motion.button>
 
                     <motion.button
@@ -72,27 +78,9 @@ const CategoryCard = ({ p, i, isInWishlist, toggleWishlist, setQuickViewProduct 
                         {added ? <Check size={18} /> : <ShoppingBag size={18} />}
                     </motion.button>
                 </div>
-
-                <button
-                    className="card-action-btn category-wishlist-btn"
-                    style={{
-                        background: 'rgba(255,255,255,0.8)',
-                        backdropFilter: 'blur(4px)'
-                    }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        toggleWishlist(p);
-                    }}
-                >
-                    <Heart
-                        size={18}
-                        fill={isInWishlist(p.id) ? "#d4af37" : "none"}
-                        color={isInWishlist(p.id) ? "#d4af37" : "#1a1a1a"}
-                    />
-                </button>
             </div>
 
-            <div className="card-content">
+            <div className="card-content" onClick={() => router.push(`/product/${p.id}`)} style={{ cursor: 'pointer' }}>
                 <h3 className="card-title">{p.name}</h3>
                 <p className="card-price"><span className="currency-symbol">₹</span>{p.price}</p>
             </div>
@@ -153,8 +141,8 @@ function CategoryContent() {
     // Removed hydration blank to improve perceived speed
 
     return (
-        <div className="category-products-container" style={{ width: '100%', padding: '20px 0 60px 0', minHeight: '85vh' }}>
-            <div className="container" style={{ marginBottom: '40px' }}>
+        <div className="category-products-container" style={{ width: '100%', padding: '0 0 60px 0', minHeight: '85vh', marginTop: '-25px' }}>
+            <div className="container" style={{ marginBottom: '30px' }}>
                 <button
                     onClick={() => {
                         if (window.history.length > 2) {

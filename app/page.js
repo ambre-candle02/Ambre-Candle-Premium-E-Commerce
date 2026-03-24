@@ -204,50 +204,54 @@ export default function Home() {
 
                 {/* Editorial Content Layer */}
                 <div className="misa-hero-content">
-                    <motion.div
-                        className="misa-hero-text-container"
-                        initial={{ opacity: 0, y: 0 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-                        suppressHydrationWarning
+                    {/* Fixed Subtitle at Top Center */}
+                    <motion.span
+                        className="misa-hero-subtitle"
+                        initial={{ opacity: 0, y: -20, x: "-50%" }} /* Offset X for absolute centering */
+                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                     >
-                        <motion.span
-                            className="misa-hero-subtitle"
-                            initial={{ opacity: 0, letterSpacing: "4px" }}
-                            animate={{ opacity: 1, letterSpacing: "4px" }}
-                            transition={{ duration: 1.5, ease: "easeOut" }}
+                        The New Artisan Essence
+                    </motion.span>
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentHeroIndex} /* Syncs title/desc with image changes */
+                            className="misa-hero-card"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.8 }}
+                            suppressHydrationWarning
                         >
-                            The New Artisan Essence
-                        </motion.span>
+                            <h1 className="misa-hero-title">
+                                Extraordinary <br /> Candles.
+                            </h1>
 
-                        <h1 className="misa-hero-title">
-                            Extraordinary <br /> Candles.
-                        </h1>
+                            <p className="misa-hero-desc">
+                                Turn Every Moment into a Timeless Memory with Ambre .
+                            </p>
 
-                        <p className="misa-hero-desc">
-                            Crafted for those who seek the extraordinary. <br />
-                            Experience the warmth of 100% organic soy wax.
-                        </p>
-
-                        <div className="misa-hero-cta-group">
-                            <Link href="/collection" className="misa-cta-wrapper">
-                                <motion.button
-                                    whileTap={{ scale: 0.95 }}
-                                    className="misa-btn-premium cta-primary"
-                                >
-                                    Explore Collection
-                                </motion.button>
-                            </Link>
-                            <Link href="/shop" className="misa-cta-wrapper">
-                                <motion.button
-                                    whileTap={{ scale: 0.95 }}
-                                    className="misa-btn-premium cta-secondary"
-                                >
-                                    Shop Best Sellers
-                                </motion.button>
-                            </Link>
-                        </div>
-                    </motion.div>
+                            <div className="misa-hero-cta-group">
+                                <Link href="/collection" className="misa-cta-wrapper">
+                                    <motion.button
+                                        whileTap={{ scale: 0.95 }}
+                                        className="misa-btn-premium cta-primary"
+                                    >
+                                        Explore Collection
+                                    </motion.button>
+                                </Link>
+                                <Link href="/shop" className="misa-cta-wrapper">
+                                    <motion.button
+                                        whileTap={{ scale: 0.95 }}
+                                        className="misa-btn-premium cta-secondary"
+                                    >
+                                        Shop Best Sellers
+                                    </motion.button>
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </section>
 
@@ -271,7 +275,7 @@ export default function Home() {
                     <span className="trust-icon" suppressHydrationWarning>🚚</span>
                     <div className="trust-content" suppressHydrationWarning>
                         <p suppressHydrationWarning>Free Shipping</p>
-                        <span suppressHydrationWarning>On Order ₹999+</span>
+                        <span suppressHydrationWarning>On Order ₹1999+</span>
                     </div>
                 </div>
                 <div className="misa-trust-item" suppressHydrationWarning>

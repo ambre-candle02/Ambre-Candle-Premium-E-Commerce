@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, Linkedin, Twitter, CheckCircle, Sparkles, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, CheckCircle, Sparkles, MessageCircle, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import '../../src/styles/Contact.css';
@@ -221,9 +221,7 @@ export default function ContactPage() {
                                 <div className="social-icons-container" style={{ display: 'flex', gap: '20px' }}>
                                     {[
                                         { Icon: Instagram, link: 'https://www.instagram.com/candleambre/', label: 'Instagram', color: '#E4405F' },
-                                        { Icon: Facebook, link: 'https://www.facebook.com/share/1Cgib9LvU7/', label: 'Facebook', color: '#1877F2' },
-                                        { Icon: Twitter, link: '#', label: 'Twitter', color: '#1DA1F2' },
-                                        { Icon: Linkedin, link: '#', label: 'LinkedIn', color: '#0A66C2' }
+                                        { Icon: Facebook, link: 'https://www.facebook.com/share/1Cgib9LvU7/', label: 'Facebook', color: '#1877F2' }
                                     ].map(({ Icon, link, label, color }) => (
                                         <motion.a
                                             key={label}

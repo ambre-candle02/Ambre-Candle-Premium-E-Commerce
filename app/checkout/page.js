@@ -11,7 +11,7 @@ import SafeImage from '@/src/components/SafeImage';
 import toast from 'react-hot-toast';
 
 export default function CheckoutPage() {
-    const { cart, subtotal, clearCart } = useCart();
+    const { cart, subtotal, shippingFee, total, clearCart } = useCart();
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const [step, setStep] = useState(1);
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
                 userId: user ? user.uid : 'guest', // Security Tag
                 customer: formData,
                 items: cart,
-                total: subtotal,
+                total: total,
                 status: 'Processing'
             };
 
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
                     const res = await fetch('/api/payment', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ amount: subtotal })
+                        body: JSON.stringify({ amount: total })
                     });
                     const razorData = await res.json();
 
@@ -710,11 +710,13 @@ export default function CheckoutPage() {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#666', fontSize: '0.9rem' }}>
                                 <span>Shipping</span>
-                                <span style={{ color: '#2e7d32', fontWeight: '600' }}>COMPLIMENTARY</span>
+                                <span style={{ color: shippingFee === 0 ? '#2e7d32' : '#1a1a1a', fontWeight: '600' }}>
+                                    {shippingFee === 0 ? 'COMPLIMENTARY' : `₹${shippingFee.toFixed(2)}`}
+                                </span>
                             </div>
                             <div className="st-row total" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '15px', paddingTop: '15px' }}>
                                 <span>Order Total</span>
-                                <span><span className="currency-symbol">₹</span>{subtotal.toFixed(2)}</span>
+                                <span><span className="currency-symbol">₹</span>{total.toFixed(2)}</span>
                             </div>
                         </div>
 

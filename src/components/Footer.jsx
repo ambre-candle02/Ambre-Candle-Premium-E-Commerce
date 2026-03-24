@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
@@ -123,8 +123,6 @@ const Footer = () => {
                         <div className="footer-social-v2">
                             <motion.a className="social-link instagram" whileHover={{ y: -5 }} href="https://www.instagram.com/candleambre/" target="_blank" rel="noopener noreferrer"><Instagram size={22} /></motion.a>
                             <motion.a className="social-link facebook" whileHover={{ y: -5 }} href="https://www.facebook.com/share/1Cgib9LvU7/" target="_blank" rel="noopener noreferrer"><Facebook size={22} /></motion.a>
-                            <motion.a className="social-link twitter" whileHover={{ y: -5 }} href="#" target="_blank" rel="noopener noreferrer"><Twitter size={22} /></motion.a>
-                            <motion.a className="social-link linkedin" whileHover={{ y: -5 }} href="#" target="_blank" rel="noopener noreferrer"><Linkedin size={22} /></motion.a>
                         </div>
                     </div>
 

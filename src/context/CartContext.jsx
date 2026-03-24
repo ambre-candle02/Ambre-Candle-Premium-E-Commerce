@@ -85,6 +85,10 @@ export const CartProvider = ({ children }) => {
     const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
+    // Shipping Logic: Free above ₹1999, else ₹60
+    const shippingFee = subtotal >= 1999 || subtotal === 0 ? 0 : 60;
+    const total = subtotal + shippingFee;
+
     return (
         <CartContext.Provider value={{
             cart,
@@ -96,6 +100,8 @@ export const CartProvider = ({ children }) => {
             setIsCartOpen,
             subtotal,
             totalItems,
+            shippingFee,
+            total,
             isInitialized
         }}>
             {children}
