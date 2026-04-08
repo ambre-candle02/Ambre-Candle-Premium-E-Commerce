@@ -84,6 +84,9 @@ export const metadata = {
             'max-snippet': -1,
         },
     },
+    verification: {
+        google: "jQ7mjafbcvwuDD5hoIopSVqiWgQAjCme_k0K8MdWqQE",
+    },
 };
 import SmoothScroll from "@/src/components/SmoothScroll";
 
