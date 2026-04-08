@@ -141,16 +141,36 @@ export default function MediaLibrary() {
 
     const onImageLoad = (e) => {
         const { width, height } = e.currentTarget;
-        const initialCrop = centerCrop(
-            makeAspectCrop(
-                { unit: '%', width: 90 },
-                aspect,
+        let initialCrop;
+        
+        if (aspect) {
+            initialCrop = centerCrop(
+                makeAspectCrop(
+                    { unit: '%', width: 90 },
+                    aspect,
+                    width,
+                    height
+                ),
                 width,
                 height
-            ),
-            width,
-            height
-        );
+            );
+        } else {
+            // Default to full image if no aspect ratio is set (Original/Free Hand)
+            initialCrop = {
+                unit: '%',
+                width: 100,
+                height: 100,
+                x: 0,
+                y: 0
+            };
+            setCompletedCrop({
+                unit: 'px',
+                x: 0,
+                y: 0,
+                width: width,
+                height: height
+            });
+        }
         setCrop(initialCrop);
     };
 
@@ -525,8 +545,27 @@ export default function MediaLibrary() {
                                         style={{ padding: '8px 16px', borderRadius: '10px', border: '1px solid #d4af37', background: aspect === 4/5 ? '#d4af37' : '#fff', color: aspect === 4/5 ? '#fff' : '#d4af37', fontWeight: '700', cursor: 'pointer' }}
                                     >4:5 Premium</button>
                                     <button 
-                                        onClick={() => setAspect(undefined)}
+                                        onClick={() => {
+                                            setAspect(undefined);
+                                            if (imgRef.current) {
+                                                const { width, height } = imgRef.current;
+                                                const fullCrop = { unit: '%', width: 100, height: 100, x: 0, y: 0 };
+                                                setCrop(fullCrop);
+                                                // Set completed crop in pixels for immediate save
+                                                setCompletedCrop({
+                                                    unit: 'px',
+                                                    x: 0,
+                                                    y: 0,
+                                                    width: width,
+                                                    height: height
+                                                });
+                                            }
+                                        }}
                                         style={{ padding: '8px 16px', borderRadius: '10px', border: '1px solid #d4af37', background: aspect === undefined ? '#d4af37' : '#fff', color: aspect === undefined ? '#fff' : '#d4af37', fontWeight: '700', cursor: 'pointer' }}
+                                    >Original (No Crop)</button>
+                                    <button 
+                                        onClick={() => setAspect(undefined)}
+                                        style={{ padding: '8px 16px', borderRadius: '10px', border: '1px solid #666', background: '#fff', color: '#666', fontWeight: '700', cursor: 'pointer' }}
                                     >Free Hand</button>
                                 </div>
                             </div>
