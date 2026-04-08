@@ -32,18 +32,86 @@ export const viewport = {
 };
 
 export const metadata = {
-    title: "Ambre Candle | Luxury Hand-Poured Scented Candles",
-    description: "Discover the elite collection of luxury hand-poured soy candles at Ambre Candle. Artisan pillars, aromatic jars, and festive gift sets for every occasion.",
+    metadataBase: new URL('https://www.ambrecandle.com'),
+    title: {
+        default: "Ambre Candle | Luxury Hand-Poured Scented Candles",
+        template: "%s | Ambre Candle"
+    },
+    description: "Discover the elite collection of luxury hand-poured soy candles at Ambre Candle. Artisan pillars, aromatic jars, and festive gift sets for every occasion. Experience the best scented candles in India.",
+    keywords: [
+        "scented candles", "luxury candles", "hand-poured candles", "soy candles India", 
+        "aroma candles", "decorative candles", "home fragrance", "gift sets", 
+        "premium candles", "Ambre Candle", "organic candles", "artisan candles",
+        "best candles for home", "luxury gifting India"
+    ],
+    authors: [{ name: "Ambre Candle Team" }],
+    creator: "Ambre Candle",
+    publisher: "Ambre Candle",
+    openGraph: {
+        title: "Ambre Candle | Luxury Artisan Candles",
+        description: "Elevate your space with our premium hand-poured soy candles. Discover artisan pillars and aromatic jars.",
+        url: 'https://www.ambrecandle.com',
+        siteName: 'Ambre Candle',
+        images: [
+            {
+                url: 'https://res.cloudinary.com/dmw5efwf5/image/upload/v1773905349/ambre-candles/Favourites/rlmc6m2snbm9zhemalro.png',
+                width: 1200,
+                height: 630,
+                alt: 'Ambre Candle Luxury Collection',
+            },
+        ],
+        locale: 'en_IN',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: "Ambre Candle | Luxury Artisan Candles",
+        description: "Premium hand-poured soy candles for every occasion.",
+        images: ['https://res.cloudinary.com/dmw5efwf5/image/upload/v1773905349/ambre-candles/Favourites/rlmc6m2snbm9zhemalro.png'],
+    },
     icons: {
         icon: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_128,h_128,c_fit/v1773867035/ambre-candles/Favourites/nxssshl9qeqvv7dpfa0j.png',
         apple: 'https://res.cloudinary.com/dmw5efwf5/image/upload/w_256,h_256,c_fit/v1773867035/ambre-candles/Favourites/nxssshl9qeqvv7dpfa0j.png'
-    }
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
 };
 import SmoothScroll from "@/src/components/SmoothScroll";
 
 export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "Ambre Candle",
+                            "url": "https://www.ambrecandle.com",
+                            "logo": "https://res.cloudinary.com/dmw5efwf5/image/upload/v1773867035/ambre-candles/Favourites/nxssshl9qeqvv7dpfa0j.png",
+                            "contactPoint": {
+                                "@type": "ContactPoint",
+                                "telephone": "+91-XXXXXXXXXX",
+                                "contactType": "customer service"
+                            },
+                            "sameAs": [
+                                "https://www.instagram.com/ambrecandle"
+                            ]
+                        })
+                    }}
+                />
+            </head>
             <body className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning={true}>
                 <ScrollToTop />
                 <Toaster position="bottom-center" toastOptions={{
